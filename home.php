@@ -6,6 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<title>Optimals</title>
 
+	<!-- Plugin css for this page -->
+	<link rel="stylesheet" href="assets/vendors/select2/select2.min.css" />
+	<link rel="stylesheet" href="assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />
+
 	<!-- boostrap 5:css -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css"/>
@@ -84,18 +88,23 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" type="button" onclick='window.location.replace("home.php?view=pica")'>
+					
+					<!-- Active/Inactive -->
+					<script type="text/javascript">
+						function soons() {
+							Swal.fire({
+								title: 'Comming Soon',
+								icon: 'info',
+								showCancelButton: false,
+								confirmButtonText: 'Oke',
+							}).then((result) => {
+								location.reload();
+							});
+						};
+					</script>
+					<a class="nav-link" type="button"  onclick="soons()">
 						<i class="mdi mdi-checkbox-multiple-blank-circle menu-icon"></i>
 						<span class="menu-title">PICCA</span>
-					</a>
-				</li>
-				<li class="pt-2 pb-1">
-					<span class="nav-item-head">Report</span>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">
-						<i class="mdi mdi-file-chart menu-icon"></i>
-						<span class="menu-title">Report</span>
 					</a>
 				</li>
 			</ul>
@@ -179,14 +188,23 @@
 					else if (@$_GET['view'] == "question_list") {
 						include "question_list.php";
 					}
+					else if (@$_GET['view'] == "answer") {
+						include "answer.php";
+					}
 					else if (@$_GET['view'] == "dailyinspection") {
 						include "dailyinspection.php";
 					}
 					else if (@$_GET['view'] == "dailyinspection_list") {
 						include "dailyinspection_list.php";
 					}
+					else if (@$_GET['view'] == "dailyinspection_answer") {
+						include "dailyinspection_answer.php";
+					}
 					else if (@$_GET['view'] == "issue") {
 						include "issue.php";
+					}
+					else if (@$_GET['view'] == "issue_detail") {
+						include "issue_detail.php";
 					}
 					else if (@$_GET['view'] == "pica") {
 						include "pica.php";
@@ -225,10 +243,8 @@
 
 	<!-- Custom js for this page -->
 	<script src="assets/js/dashboard.js"></script>
-
-	<!-- Select2 -->
-	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	<script src="assets/vendors/select2/select2.min.js"></script>
+	<script src="assets/js/select2.js"></script>
 
 	<!-- Datatables -->
 	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
@@ -354,48 +370,3 @@
 	</script>
 </body>
 </html> 
-
-<!-- <div class="row">
-	<div class="page-header p-0">
-		<h3 class="page-title">Form Template</h3>
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#">UI Elements</a></li>
-				<li class="breadcrumb-item active" aria-current="page"> Buttons </li>
-			</ol>
-		</nav>
-	</div>
-	<div class="col-md-6 p-0">
-		<div class="card">
-			<div class="card-body mb-5">
-				<h4 class="card-title">Default form</h4>
-				<form class="forms-sample">
-					<div class="form-group">
-						<label for="exampleInputUsername1">Username</label><span style="color:red;">*</span>
-						<input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username" required="">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1">Email address</label><span style="color:red;">*</span>
-						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required="">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1">Password</label><span style="color:red;">*</span>
-						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required="">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputConfirmPassword1">Confirm Password</label><span style="color:red;">*</span>
-						<input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password" required="">
-					</div>
-					<div class="row">
-						<div class="col">
-							<button class="btn btn-light form-control"><i style="font-size: 14px;" class="mdi mdi-close-circle-outline"></i> Cancel</button>
-						</div>
-						<div class="col">
-							<button type="submit" class="btn btn-primary mr-2 form-control"><i style="font-size: 14px;" class="mdi mdi-content-save"></i> Save </button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div> -->

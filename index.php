@@ -8,8 +8,26 @@
 	<div class="container mt-5 p-5">
 		<div class="card" style="border: 0px solid rgba(0,0,0,.125);">
 			<div class="row">
+				<div class="col-md-8 banner-sec">
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner" role="listbox">
+							<div class="carousel-item active">
+								<!-- <div class="banner-text">
+									<h2><I>#GoodMiningPractice</I></h2>
+									<p>PT MANDIRI INTIPERKASA</p>
+								</div> -->
+								<img class="d-block img-fluid" src="assets/images/dashboard/HDS.png" alt="First slide" width="100%">
+								<div class="carousel-caption d-none d-md-block">
+									<div class="banner-text">
+									</div>  
+								</div>
+							</div>
+						</div>     
+					</div>
+				</div>
 				<div class="col-md-4 login-sec">
-					<center><img class="d-block img-fluid" src="assets/images/optimal.PNG" alt="First slide" width="80%"></center>
+					<!-- <marquee class="mt-0" width="100%"><i>Optimals by Mandiricoal | #GoodMiningPractice</i></marquee> -->
+					<center><img class="d-block img-fluid" src="assets/images/optimal.PNG" alt="First slide" width="60%"></center>
 					<!-- <img class="d-block img-fluid" src="assets/images/mcol.PNG" alt="First slide" width="50%"> -->
 					<form class="login-form p-4">
 						<div class="form-group">
@@ -23,23 +41,6 @@
 						<a href="home.php" type="submit" class="form-control btn btn-login float-right" style="color:white;background: #dc3545;"><i class="mdi mdi-login-variant menu-icon"></i> Sign In</a>
 					</form>
 					<div class="copy-text"><i>Copyright mandiricoal.co.id 2023</i></div>
-				</div>
-				<div class="col-md-8 banner-sec">
-					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-						<div class="carousel-inner" role="listbox">
-							<div class="carousel-item active">
-								<div class="banner-text">
-									<h2><I>#GoodMiningPractice</I></h2>
-									<p>PT MANDIRI INTIPERKASA</p>
-								</div>
-								<img class="d-block img-fluid" src="assets/images/dashboard/HD.jpeg" alt="First slide" width="100%">
-								<div class="carousel-caption d-none d-md-block">
-									<div class="banner-text">
-									</div>  
-								</div>
-							</div>
-						</div>     
-					</div>
 				</div>
 			</div>
 		</div>

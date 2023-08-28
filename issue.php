@@ -1,10 +1,10 @@
 <div class="row">
 	<div class="page-header p-0">
-		<h3 class="page-title">Daily Inspection</h3>
+		<h3 class="page-title">Issue</h3>
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="#">Transaction</a></li>
-				<li class="breadcrumb-item active" aria-current="page"> Daily Inspection </li>
+				<li class="breadcrumb-item active" aria-current="page"> Issue </li>
 			</ol>
 		</nav>
 	</div>
@@ -13,8 +13,10 @@
 			<div class="row">
 				<div class="col mb-0">
 					<i class="mdi mdi-filter-variant"></i> Filter by :
-					<button class="btn btn-info">Approved</button>
-					<button class="btn btn-info">Not Approved</button>
+					<button class="btn btn-info">Open</button>
+					<button class="btn btn-info">Progress</button>
+					<button class="btn btn-info">Closed</button>
+					<button class="btn btn-info">Reject</button>
 				</div>
 				<div class="col text-end mb-3"><br>
 					<!-- <button class="btn btn-primary"  data-toggle="modal" data-target="#add-modal">
@@ -35,18 +37,16 @@
 				<tbody>
 					<tr>
 						<td>12/12/2020</td>
-						<td>22DIA01000001 <i style="font-size: 14px;color:#ff5730;" class="mdi mdi-alert-circle-outline"></i>
-							<br><small>Area : Front Loading OB</small>
+						<td><a href="home.php?view=dailyinspection_answer">22DIA01000001 <i style="font-size: 14px;" class="mdi mdi-link-variant"></i></a>
+							<br><small class="mt-1">Area : Front Loading OB</small>
 						</td>
 						<td><a href="" data-toggle="modal" data-target="#view-modal">Andika Simamora <i style="font-size: 14px;" class="mdi mdi-link-variant"></i></a>
 							<br><small class="mt-1">NIK : 2031</small>
 						</td>
-						<td>
-							<b><i>Not Approved</i></b>
-						</td>
+						<td><b><i>Open</i></b></td>
 						<td class="text-center">
 							<div class="button-group">
-								<a href="home.php?view=dailyinspection_answer" class="btn btn-warning">
+								<a href="home.php?view=issue_detail" class="btn btn-warning">
 									<i style="font-size: 14px;" class="mdi mdi-eye-circle-outline"></i> Detail
 								</a>
 							</div>
@@ -54,18 +54,33 @@
 					</tr>
 					<tr>
 						<td>12/12/2020</td>
-						<td>22DIA01000001 <i style="font-size: 14px;color:#ff5730;" class="mdi mdi-alert-circle-outline"></i>
-							<br><small>Area : Front Loading OB</small>
+						<td><a href="home.php?view=dailyinspection_answer">22DIA01000001 <i style="font-size: 14px;" class="mdi mdi-link-variant"></i></a>
+							<br><small class="mt-1">Area : Front Loading OB</small>
 						</td>
 						<td><a href="" data-toggle="modal" data-target="#view-modal">Andika Simamora <i style="font-size: 14px;" class="mdi mdi-link-variant"></i></a>
 							<br><small class="mt-1">NIK : 2031</small>
 						</td>
-						<td>
-							<b><i>Not Approved</i></b>
-						</td>
+						<td><b><i>Open</i></b></td>
 						<td class="text-center">
 							<div class="button-group">
-								<a href="home.php?view=dailyinspection_answer" class="btn btn-warning">
+								<a href="home.php?view=issue_detail" class="btn btn-warning">
+									<i style="font-size: 14px;" class="mdi mdi-eye-circle-outline"></i> Detail
+								</a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>12/12/2020</td>
+						<td><a href="home.php?view=dailyinspection_answer">22DIA01000001 <i style="font-size: 14px;" class="mdi mdi-link-variant"></i></a>
+							<br><small class="mt-1">Area : Front Loading OB</small>
+						</td>
+						<td><a href="" data-toggle="modal" data-target="#view-modal">Andika Simamora <i style="font-size: 14px;" class="mdi mdi-link-variant"></i></a>
+							<br><small class="mt-1">NIK : 2031</small>
+						</td>
+						<td><b><i>Open</i></b></td>
+						<td class="text-center">
+							<div class="button-group">
+								<a href="home.php?view=issue_detail" class="btn btn-warning">
 									<i style="font-size: 14px;" class="mdi mdi-eye-circle-outline"></i> Detail
 								</a>
 							</div>
@@ -74,10 +89,9 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<th>Creation Date</th>
+						<th>Status</th>
 						<th>Daily Inspection</th>
 						<th>Submitter</th>
-						<th>Status</th>
 						<th class="text-center">Action</th>
 					</tr>
 				</tfoot>

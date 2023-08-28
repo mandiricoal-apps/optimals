@@ -1,11 +1,11 @@
 
 <div class="row">
 	<div class="page-header p-0">
-		<h3 class="page-title">Card Template</h3>
+		<h3 class="page-title">Daily Inspection</h3>
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#">UI Elements</a></li>
-				<li class="breadcrumb-item active" aria-current="page"> Buttons </li>
+				<li class="breadcrumb-item"><a href="#">Transaction</a></li>
+				<li class="breadcrumb-item active" aria-current="page"> Daily Inspection </li>
 			</ol>
 		</nav>
 	</div>
