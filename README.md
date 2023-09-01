@@ -19,13 +19,13 @@ Database  : MySQL<br>
     <li>php artisan serve</li>
 </ol>
 <br>
-# Database<br>
+<h1> Database</h1><br>
 Server/Host : mandiricoal.co.id<br>
 Database Name : optimals<br>
 Username : Mandiricoal<br>
 Password : Mandiricoal2022!<br>
 <br>
-# Link<br>
+<h1> Link</h1><br>
 Development : https://optimals.mandiricoal.net/<br>
 Production :  https://optimals.mandiricoal.co.id/<br>
 Github : https://github.com/mandiricoal-apps/optimals.git/<br>
