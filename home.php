@@ -55,10 +55,24 @@
 					<span class="nav-item-head">Master Data</span>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" type="button" onclick='window.location.replace("home.php?view=user")'>
+					<a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="true" aria-controls="ui-basic">
 						<i class="mdi mdi-database menu-icon"></i>
-						<span class="menu-title">User</span>
+						<span class="menu-title">User </span>
+						<i class="menu-arrow"></i>
 					</a>
+					<div class="collapse" id="ui-basic" style="">
+						<ul class="nav flex-column sub-menu">
+							<li class="nav-item">
+								<a class="nav-link" type="button" onclick='window.location.replace("home.php?view=user")'>All User</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" type="button" onclick='window.location.replace("home.php?view=roles")'>User Roles</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" type="button" onclick='window.location.replace("home.php?view=roles_management")'>Management Roles</a>
+							</li>
+						</ul>
+					</div>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" type="button" onclick='window.location.replace("home.php?view=area")'>
@@ -111,27 +125,6 @@
 		</nav>
 
 		<div class="container-fluid page-body-wrapper">
-			<div id="settings-trigger"><i class="mdi mdi-settings"></i></div>
-			<div id="theme-settings" class="settings-panel">
-				<i class="settings-close mdi mdi-close"></i>
-				<p class="settings-heading">SIDEBAR SKINS</p>
-				<div class="sidebar-bg-options selected" id="sidebar-default-theme">
-					<div class="img-ss rounded-circle bg-light border mr-3"></div>Default
-				</div>
-				<div class="sidebar-bg-options" id="sidebar-dark-theme">
-					<div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark
-				</div>
-				<p class="settings-heading mt-2">HEADER SKINS</p>
-				<div class="color-tiles mx-0 px-4">
-					<div class="tiles default primary"></div>
-					<div class="tiles success"></div>
-					<div class="tiles warning"></div>
-					<div class="tiles danger"></div>
-					<div class="tiles info"></div>
-					<div class="tiles dark"></div>
-					<div class="tiles light"></div>
-				</div>
-			</div>
 			<!-- partial -->
 			<!-- partial:partials/_navbar.html -->
 			<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -153,7 +146,7 @@
 								<div class="nav-profile-text">Account </div>
 							</a>
 							<div class="dropdown-menu center navbar-dropdown" aria-labelledby="profileDropdown">
-								<a class="dropdown-item" href="#">
+								<a class="dropdown-item" href="#" onclick="logout()">
 									Logout 
 								</a>
 							</div>
@@ -178,6 +171,12 @@
 					}	
 					else if (@$_GET['view'] == "user") {
 						include "user.php";	
+					}
+					else if (@$_GET['view'] == "roles") {
+						include "roles.php";	
+					}
+					else if (@$_GET['view'] == "roles_management") {
+						include "roles_management.php";	
 					}
 					else if (@$_GET['view'] == "area") {
 						include "area.php";
@@ -211,7 +210,7 @@
 					} else {
 						include "dashboard.php";
 					}?>
-				</div>
+				</div><br>
 				<footer class="footer">
 					<div class="d-sm-flex justify-content-center justify-content-sm-between">
 						<span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © mandiricoal.co.id 2023</span>
@@ -283,33 +282,33 @@
 			$('#example').DataTable( {
 				dom: 'Bfrtip',
 				buttons: [
-				'pageLength',
+					'pageLength',
 
-				{
-					extend: 'excelHtml5',
-					text: '<i style="font-size: 14px;" class="mdi mdi-file-excel"></i> Excel',
-					titleAttr: 'Create New Record',
-					exportOptions: {
-						columns: [ 0, 1, 2, 3,4 ]
+					{
+						extend: 'excelHtml5',
+						text: '<i style="font-size: 14px;" class="mdi mdi-file-excel"></i> Excel',
+						titleAttr: 'Create New Record',
+						exportOptions: {
+							columns: [ 0, 1, 2, 3,4 ]
+						}
+					},
+					{
+						extend: 'print',
+						text: '<i style="font-size: 14px;" class="mdi mdi-printer"></i> Print',
+						titleAttr: 'Create New Record',
+						exportOptions: {
+							columns: [ 0, 1, 2, 3,4 ]
+						}
+					},
+					{
+						extend: 'colvis',
+						text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
+						titleAttr: 'Create New Record',
+						exportOptions: {
+							columns: [ 0, 1, 2, 3,4 ]
+						}
 					}
-				},
-				{
-					extend: 'print',
-					text: '<i style="font-size: 14px;" class="mdi mdi-printer"></i> Print',
-					titleAttr: 'Create New Record',
-					exportOptions: {
-						columns: [ 0, 1, 2, 3,4 ]
-					}
-				},
-				{
-					extend: 'colvis',
-					text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
-					titleAttr: 'Create New Record',
-					exportOptions: {
-						columns: [ 0, 1, 2, 3,4 ]
-					}
-				}
-				],
+					],
 
 				initComplete: function() {
 					var btns = $('.dt-button');
@@ -335,16 +334,16 @@
 			$('#example1').DataTable( {
 				dom: 'Bfrtip',
 				buttons: [
-				'pageLength',
-				{
-					extend: 'colvis',
-					text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
-					titleAttr: 'Create New Record',
-					exportOptions: {
-						columns: [ 0, 1, 2, 3,4 ]
+					'pageLength',
+					{
+						extend: 'colvis',
+						text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
+						titleAttr: 'Create New Record',
+						exportOptions: {
+							columns: [ 0, 1, 2, 3,4 ]
+						}
 					}
-				}
-				],
+					],
 
 				initComplete: function() {
 					var btns = $('.dt-button');
@@ -367,6 +366,21 @@
 				}
 			} );
 		} );
+	</script>
+
+	<script type="text/javascript">
+		function logout() {
+			Swal.fire({
+				title: 'Logout?',
+				text: 'Do you want to Logout?',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonText: 'Yes',
+				cancelButtonText: 'No'
+			}).then((result) => {
+				location.reload();
+			});
+		};
 	</script>
 </body>
 </html> 

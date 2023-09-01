@@ -4,7 +4,8 @@
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="#">Master Data</a></li>
-				<li class="breadcrumb-item active" aria-current="page"> Data User </li>
+				<li class="breadcrumb-item" aria-current="page"> User </li>
+				<li class="breadcrumb-item active" aria-current="page"> List </li>
 			</ol>
 		</nav>
 	</div>

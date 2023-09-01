@@ -92,6 +92,7 @@
 						<th>Status</th>
 						<th>Daily Inspection</th>
 						<th>Submitter</th>
+						<th>Status</th>
 						<th class="text-center">Action</th>
 					</tr>
 				</tfoot>
