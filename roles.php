@@ -4,7 +4,7 @@
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="#">Master Data</a></li>
-				<li class="breadcrumb-item active" aria-current="page"> Data Area </li>
+				<li class="breadcrumb-item active" aria-current="page"> User Roles </li>
 			</ol>
 		</nav>
 	</div>
@@ -13,8 +13,6 @@
 			<div class="row">
 				<div class="col mb-0">
 					<i class="mdi mdi-filter-variant"></i> Filter by :
-					<button class="btn btn-info">Active</button>
-					<button class="btn btn-info">Inactive</button>
 				</div>
 				<div class="col text-end mb-3">
 					<button class="btn btn-primary"  data-toggle="modal" data-target="#add-modal">
@@ -27,32 +25,72 @@
 					<tr>
 						<th>Roles</th>
 						<th>Description</th>
-						<!-- <th class="text-center">Action</th> -->
+						<th class="text-center">Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>Admin</td>
 						<td>Admin Admin Admin Admin</td>
+						<td class="text-center">
+							<div class="button-group">
+								<a href="home.php?view=roles_management" type="button" class="btn btn-warning">
+									<i style="font-size: 14px;" class="mdi mdi-settings"></i> Manage
+								</a>
+								<button class="btn btn-success" data-toggle="modal" data-target="#edit-modal">
+									<i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
+								</button>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td>Operation</td>
 						<td>Operation Operation Operation</td>
+						<td class="text-center">
+							<div class="button-group">
+								<a href="home.php?view=roles_management" type="button" class="btn btn-warning">
+									<i style="font-size: 14px;" class="mdi mdi-settings"></i> Manage
+								</a>
+								<button class="btn btn-success" data-toggle="modal" data-target="#edit-modal">
+									<i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
+								</button>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td>Reviewer MIP</td>
 						<td>Reviewer MIP Reviewer MIP</td>
+						<td class="text-center">
+							<div class="button-group">
+								<a href="home.php?view=roles_management" type="button" class="btn btn-warning">
+									<i style="font-size: 14px;" class="mdi mdi-settings"></i> Manage
+								</a>
+								<button class="btn btn-success" data-toggle="modal" data-target="#edit-modal">
+									<i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
+								</button>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td>Reviewer MKP</td>
 						<td>Reviewer MKPReviewer MKP</td>
+						<td class="text-center">
+							<div class="button-group">
+								<a href="home.php?view=roles_management" type="button" class="btn btn-warning">
+									<i style="font-size: 14px;" class="mdi mdi-settings"></i> Manage
+								</a>
+								<button class="btn btn-success" data-toggle="modal" data-target="#edit-modal">
+									<i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
+								</button>
+							</div>
+						</td>
 					</tr>
 				</tbody>
 				<tfoot>
 					<tr>
 						<th>Roles</th>
 						<th>Description</th>
-						<!-- <th>Action</th> -->
+						<th>Action</th>
 					</tr>
 				</tfoot>
 			</table>
@@ -71,12 +109,12 @@
 						<form class="forms-sample" action="" target="">
 							<div class="modal-body p-5">
 								<div class="form-group">
-									<label for="">Area Name</label><span style="color:red;">*</span>
-									<input type="text" class="form-control" id="" placeholder="Area Name" required="" >
+									<label for="">Role Name</label><span style="color:red;">*</span>
+									<input type="text" class="form-control" id="" placeholder="Role Name" required="" >
 								</div>
 								<div class="form-group">
-									<label for="">Area Description</label><span style="color:red;">*</span>
-									<input type="text" class="form-control" id="" placeholder="Area Description" required="" >
+									<label for="">Role Description</label><span style="color:red;">*</span>
+									<input type="text" class="form-control" id="" placeholder="Role Description" required="" >
 								</div>
 								<hr>
 								<div class="row">
@@ -106,11 +144,11 @@
 						<form class="forms-sample" action="" target="">
 							<div class="modal-body p-5">
 								<div class="form-group">
-									<label for="">Area Name</label><span style="color:red;">*</span>
+									<label for="">Role</label><span style="color:red;">*</span>
 									<input type="text" class="form-control" id="" placeholder="Area Name" required="" disabled="">
 								</div>
 								<div class="form-group">
-									<label for="">Area Description</label><span style="color:red;">*</span>
+									<label for="">Role Description</label><span style="color:red;">*</span>
 									<input type="text" class="form-control" id="" placeholder="Area Description" required="">
 								</div>
 								<hr>

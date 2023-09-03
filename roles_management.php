@@ -1,10 +1,9 @@
 <div class="page-header p-0">
-	<h3 class="page-title">User Roles</h3>
+	<h3 class="page-title">Roles Management</h3>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="#">Master Data</a></li>
-			<li class="breadcrumb-item " aria-current="page"> User </li>
-			<li class="breadcrumb-item active" aria-current="page"> Roles </li>
+			<li class="breadcrumb-item " aria-current="page"> Roles Management </li>
 		</ol>
 	</nav>
 </div>
@@ -22,12 +21,12 @@
 								<th class="text-center">Read</th>
 								<th class="text-center">Update</th>
 								<th class="text-center">Delete</th>
-								<th class="text-center">Approval</th>
+								<!-- <th class="text-center">Approval</th> -->
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>Admin</td>
+								<td>[MD] user</td>
 								<td class="text-center">
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" checked >
@@ -53,14 +52,14 @@
 										<input class="form-check-input" type="checkbox" checked >
 									</div>
 								</td>
-								<td class="text-center">
+								<!-- <td class="text-center">
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" checked >
 									</div>
-								</td>
+								</td> -->
 							</tr>
 							<tr>
-								<td>Operation MIP</td>
+								<td>[MD] Area</td>
 								<td class="text-center">
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" checked >
@@ -86,14 +85,14 @@
 										<input class="form-check-input" type="checkbox" checked >
 									</div>
 								</td>
-								<td class="text-center">
+								<!-- <td class="text-center">
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" checked >
 									</div>
-								</td>
+								</td> -->
 							</tr>
 							<tr>
-								<td>Reviewer MIP</td>
+								<td>[MD] Question & Answer</td>
 								<td class="text-center">
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" checked >
@@ -119,14 +118,14 @@
 										<input class="form-check-input" type="checkbox"  >
 									</div>
 								</td>
-								<td class="text-center">
+								<!-- <td class="text-center">
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox"  >
 									</div>
-								</td>
+								</td> -->
 							</tr>
 							<tr>
-								<td>Reviewer Contractor</td>
+								<td>[TRX] Daily Inspection</td>
 								<td class="text-center">
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" checked >
@@ -152,11 +151,77 @@
 										<input class="form-check-input" type="checkbox"  >
 									</div>
 								</td>
+								<!-- <td class="text-center">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox"  >
+									</div>
+								</td> -->
+							</tr>
+							<tr>
+								<td>[TRX] ISSUE</td>
+								<td class="text-center">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" checked >
+									</div>
+								</td>
+								<td class="text-center">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" checked >
+									</div>
+								</td>
+								<td class="text-center">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" checked >
+									</div>
+								</td>
+								<td class="text-center">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" checked >
+									</div>
+								</td>
 								<td class="text-center">
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox"  >
 									</div>
 								</td>
+								<!-- <td class="text-center">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox"  >
+									</div>
+								</td> -->
+							</tr>
+							<tr>
+								<td>[TRX] PICA</td>
+								<td class="text-center">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" checked >
+									</div>
+								</td>
+								<td class="text-center">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" checked >
+									</div>
+								</td>
+								<td class="text-center">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" checked >
+									</div>
+								</td>
+								<td class="text-center">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" checked >
+									</div>
+								</td>
+								<td class="text-center">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox"  >
+									</div>
+								</td>
+								<!-- <td class="text-center">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox"  >
+									</div>
+								</td> -->
 							</tr>
 						</tbody>
 					</table>

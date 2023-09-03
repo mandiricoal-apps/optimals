@@ -68,9 +68,6 @@
 							<li class="nav-item">
 								<a class="nav-link" type="button" onclick='window.location.replace("home.php?view=roles")'>User Roles</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" type="button" onclick='window.location.replace("home.php?view=roles_management")'>Management Roles</a>
-							</li>
 						</ul>
 					</div>
 				</li>
