@@ -134,7 +134,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="col-xl-12 pr-0">
 			<div class="card">
@@ -152,7 +152,7 @@
 							<tbody>
 								<tr>
 									<td>
-										<img src="assets/images/faces/face2.jpg" class="mr-2" alt="image" /> Example 
+										<img src="assets/images/faces/face2.jpg" class="mr-2" alt="image" /> Example
 									</td>
 									<td>
 										<div class="d-flex">
@@ -171,7 +171,7 @@
 								</tr>
 								<tr>
 									<td>
-										<img src="assets/images/faces/face3.jpg" class="mr-2" alt="image" /> Example 
+										<img src="assets/images/faces/face3.jpg" class="mr-2" alt="image" /> Example
 									</td>
 									<td>
 										<div class="d-flex">
@@ -190,7 +190,7 @@
 								</tr>
 								<tr>
 									<td>
-										<img src="assets/images/faces/face3.jpg" class="mr-2" alt="image" /> Example 
+										<img src="assets/images/faces/face3.jpg" class="mr-2" alt="image" /> Example
 									</td>
 									<td>
 										<div class="d-flex">
@@ -209,7 +209,7 @@
 								</tr>
 								<tr>
 									<td>
-										<img src="assets/images/faces/face3.jpg" class="mr-2" alt="image" /> Example 
+										<img src="assets/images/faces/face3.jpg" class="mr-2" alt="image" /> Example
 									</td>
 									<td>
 										<div class="d-flex">
@@ -228,7 +228,7 @@
 								</tr>
 								<tr>
 									<td>
-										<img src="assets/images/faces/face3.jpg" class="mr-2" alt="image" /> Example 
+										<img src="assets/images/faces/face3.jpg" class="mr-2" alt="image" /> Example
 									</td>
 									<td>
 										<div class="d-flex">
