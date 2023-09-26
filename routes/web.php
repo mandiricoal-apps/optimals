@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,4 +34,9 @@ Route::middleware(['auth'])->group(function () {
         $data['breadcrumb'] = 'home';
         return view('dashboard/dashboard', $data);
     });
+
+    Route::get('/user', [UserController::class, 'index']);
+    Route::get('/modal-view-user/{id}', [UserController::class, 'modalViewuser']);
+    Route::get('/modal-add-user', [UserController::class, 'modalAdduser']);
+    Route::post('/create-user', [UserController::class, 'createUser']);
 });

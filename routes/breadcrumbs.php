@@ -16,3 +16,16 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Home', '/');
 });
+
+Breadcrumbs::for('master-data', function (BreadcrumbTrail $trail) {
+    $trail->push('Master Data', '/');
+});
+Breadcrumbs::for('user', function (BreadcrumbTrail $trail) {
+    $trail->parent('master-data');
+    $trail->push('User', '/user');
+});
+
+Breadcrumbs::for('data-user', function (BreadcrumbTrail $trail) {
+    $trail->parent('user');
+    $trail->push('List', '/');
+});

@@ -20,29 +20,31 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $role = Role::create(['name' => 'admin']);
-        Permission::create(['name' => 'view user']);
-        Permission::create(['name' => 'edit user']);
-        Permission::create(['name' => 'create user']);
-        Permission::create(['name' => 'delete user']);
+        Role::create(['name' => 'operation']);
+
+        Permission::create(['name' => 'view_user', 'parent' => 'MD User']);
+        Permission::create(['name' => 'edit_user', 'parent' => 'MD User']);
+        Permission::create(['name' => 'create_user', 'parent' => 'MD User']);
+        Permission::create(['name' => 'delete_user', 'parent' => 'MD User']);
 
         $this->call([CompaniesSeeder::class]);
 
+
         $user = new User();
         $user->name = 'Super Admin';
-        $user->user_id = 'MIP-0001';
-        $user->company_id = 1;
+        // $user->user_id = 'MIP-0001';
+        $user->company = 'MIP';
         $user->nik = '0001';
-        $user->position = 1;
-        $user->division = 1;
-        $user->email = 'admin@mail.com';
-        $user->email_verified_at = date('Y:m:d H:i:s');
+        $user->division = 'IT';
+        // $user->email = 'admin@mail.com';
+        // $user->email_verified_at = date('Y:m:d H:i:s');
         $user->password = Hash::make('123123');
         $user->save();
 
-        $role->givePermissionTo('view user');
-        $role->givePermissionTo('edit user');
-        $role->givePermissionTo('create user');
-        $role->givePermissionTo('delete user');
+        $role->givePermissionTo('view_user');
+        $role->givePermissionTo('edit_user');
+        $role->givePermissionTo('create_user');
+        $role->givePermissionTo('delete_user');
         $user->assignRole($role);
     }
 }
