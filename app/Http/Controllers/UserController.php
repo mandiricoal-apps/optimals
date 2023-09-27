@@ -47,6 +47,7 @@ class UserController extends Controller
         return view('modal.add_user', $data);
     }
 
+
     function createUser(Request $request)
     {
         $validated = $request->validate([
@@ -58,8 +59,40 @@ class UserController extends Controller
         $newUser = User::create($data);
         $role = Role::find($request->input('roles'));
         if ($newUser->assignRole($role)) {
-            return redirect('/user')->with('message', 'Berhasil mendaftarkan user baru');
+            return redirect('/user?status=active')->with('message', 'Berhasil mendaftarkan user baru');
         }
         return back()->onlyInput();
+    }
+
+    function modalEdituser($id)
+    {
+        $data['roles'] = Role::get();
+        $data['user'] = User::find($id);
+
+        return view('modal.edit_user', $data);
+    }
+
+    function editUser(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if ($user->syncRoles([$request->input('roles')])) {
+            return redirect('/user')->with('message', 'Berhasil mengedit user');
+        }
+        return back()->onlyInput();
+    }
+
+    function activeUser($id)
+    {
+        $user = User::withTrashed()->find($id);
+        $user->restore();
+        return redirect('/user?status=inactive')->with('message', 'Berhasil mengaktifkan user');
+    }
+
+    function inactiveUser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/user?status=active')->with('message', 'Berhasil menonaktifkan user');
     }
 }

@@ -19,15 +19,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $role = Role::create(['name' => 'admin']);
-        Role::create(['name' => 'operation']);
+        $role = Role::create(['name' => 'admin', 'description' => 'Administrator']);
+        Role::create(['name' => 'operation', 'description' => 'Operation']);
+        Role::create(['name' => 'Reviewer MIP', 'description' => 'Reviewer MIP']);
+        Role::create(['name' => 'Reviewer MKP', 'description' => 'Reviewer MKP']);
 
-        Permission::create(['name' => 'view_user', 'parent' => 'MD User']);
-        Permission::create(['name' => 'edit_user', 'parent' => 'MD User']);
-        Permission::create(['name' => 'create_user', 'parent' => 'MD User']);
-        Permission::create(['name' => 'delete_user', 'parent' => 'MD User']);
-
-        $this->call([CompaniesSeeder::class]);
+        Permission::create(['name' => 'view_user', 'parent' => '[MD] User', 'type' => 'view']);
+        Permission::create(['name' => 'edit_user', 'parent' => '[MD] User', 'type' => 'edit']);
+        Permission::create(['name' => 'create_user', 'parent' => '[MD] User', 'type' => 'create']);
+        Permission::create(['name' => 'delete_user', 'parent' => '[MD] User', 'type' => 'delete']);
 
 
         $user = new User();

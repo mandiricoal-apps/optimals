@@ -43,13 +43,13 @@
                                     @if ($u->deleted_at)
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                                onclick="activate()">
+                                                onclick="activate({{ $u->id }}, this)">
                                             <b><i><label class="form-check-label ms-0"
                                                         for="flexSwitchCheckChecked">Inactive</label></i></b>
                                         </div>
                                     @else
                                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked
-                                            onclick="inactive()">
+                                            onclick="inactive({{ $u->id }}, this)">
                                         <b><i><label class="form-check-label ms-0"
                                                     for="flexSwitchCheckChecked">Active</label></i></b>
                                     @endif
@@ -64,7 +64,7 @@
                             <td>{{ ucfirst($u->getRoleNames()[0]) }}</td>
                             <td class="text-center">
                                 <div class="button-group">
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#edit-modal">
+                                    <button class="btn btn-success" onclick="modalEdit({{ $u->id }})">
                                         <i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
                                     </button>
                                 </div>
@@ -90,7 +90,7 @@
                 <div class="modal-dialog modal-md" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                            <h5 class="modal-title" id="modal-user-title" id="exampleModalLabel">Add User</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -105,7 +105,7 @@
     </div>
 @section('js')
     <script type="text/javascript">
-        function inactive() {
+        function inactive(id, button) {
             Swal.fire({
                 title: 'Inactive?',
                 text: 'Do you want to Inactivate User?',
@@ -114,11 +114,15 @@
                 confirmButtonText: 'Yes',
                 cancelButtonText: 'No'
             }).then((result) => {
-                location.reload();
+                if (result.isConfirmed) {
+                    window.location.href = '/inactive-user/' + id;
+                } else {
+                    $(button).prop('checked', true);
+                }
             });
         };
 
-        function activate() {
+        function activate(id, button) {
             Swal.fire({
                 title: 'Activate?',
                 text: 'Do you want to Activate User?',
@@ -127,7 +131,12 @@
                 confirmButtonText: 'Yes',
                 cancelButtonText: 'No'
             }).then((result) => {
-                location.reload();
+                if (result.isConfirmed) {
+                    window.location.href = '/active-user/' + id;
+                } else {
+                    $(button).prop('checked', false);
+
+                }
             });
         };
 
@@ -146,6 +155,26 @@
             $.ajax({
                 type: "get",
                 url: "/modal-add-user",
+
+                beforeSend: function() {
+                    html = `<div class="text-center"> <div class="spinner-border text-primary " role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div></div>`;
+                    $('#modal-user-body').html(html);
+
+                },
+                success: function(response) {
+                    $('#modal-user-body').html(response);
+                }
+            });
+        }
+
+        function modalEdit(id) {
+            $('#modal-user').modal();
+            $('#modal-user-title').text('Edit User');
+            $.ajax({
+                type: "get",
+                url: "/modal-edit-user/" + id,
 
                 beforeSend: function() {
                     html = `<div class="text-center"> <div class="spinner-border text-primary " role="status">

@@ -74,11 +74,10 @@
                     <div class="collapse" id="ui-basic" style="">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link" type="button" href="/user">All User</a>
+                                <a class="nav-link" type="button" href="/user?status=active">All User</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" type="button"
-                                    onclick='window.location.replace("home.php?view=roles")'>User Roles</a>
+                                <a class="nav-link" type="button" href="/roles">User Roles</a>
                             </li>
                         </ul>
                     </div>

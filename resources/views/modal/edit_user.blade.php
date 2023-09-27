@@ -1,43 +1,38 @@
 <link rel="stylesheet" href="assets/vendors/select2/select2.min.css" />
 <link rel="stylesheet" href="assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />
 
-<form class="forms-sample" action="/create-user" method="POST">
+<form class="forms-sample" action="/edit-user/{{ $user->id }}" method="POST">
     @csrf
     <div class="modal-body p-5">
         <div class="form-group">
             <label for="">Company</label><span style="color:red;">*</span>
-            <select class="form-select" id="company" name="company" required>
-                <option value=""></option>
-            </select>
+            <input class="form-control" id="company" name="" value="{{ $user->company }}" readonly required>
+
         </div>
-        <div class="form-group">
-            <label for="">Select User</label><span style="color:red;">*</span>
-            <select class="form-select" id="select_user" required>
-                <option value=""></option>
-            </select>
-        </div>
+
         <div class="form-group">
             <label for="">NIK</label><span style="color:red;">*</span>
             <input type="text" class="form-control" id="nik" name="nik" placeholder="NIK" required=""
-                readonly>
+                value="{{ $user->nik }}" readonly>
         </div>
         <div class="form-group">
             <label for="">Name</label><span style="color:red;">*</span>
             <input type="text" class="form-control" id="name" name="name" placeholder="Name" required=""
-                readonly>
+                value="{{ $user->name }}" readonly>
         </div>
         <div class="form-group">
             <label for="">Divisi</label><span style="color:red;">*</span>
             <input type="text" class="form-control" id="division" name="division" placeholder="Divisi"
-                required="" readonly>
+                value="{{ $user->division }}" required="" readonly>
         </div>
 
         <div class="form-group">
             <label for="">Roles</label><span style="color:red;">*</span>
             <select name="roles" id="roles" class="" style="width: 100%;" required>
-                <option value="">- Select Roles</option>
+
                 @foreach ($roles as $role)
-                    <option value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
+                    <option value="{{ $role->id }}" {{ $role->id == $user->roles->first()->id ? 'selected' : '' }}>
+                        {{ ucfirst($role->name) }}</option>
                 @endforeach
             </select>
         </div>
@@ -75,64 +70,8 @@
     });
 </script>
 <script>
-    var select2_company = $('#company').select2({
-        theme: 'bootstrap',
-        data: comp,
-        placeholder: 'Select Company'
-    });
-    var selected_comp = $('#company').val();
-    $('#company').change(function() {
-        selected_comp = $(this).val();
-        select2_user.val('').trigger('change');
-        clearField();
-    })
-
-    var employee = [];
-    var select2_user = $('#select_user').select2({
-        theme: 'bootstrap',
-        placeholder: 'Select User',
-        ajax: {
-            delay: 250,
-            url: 'http://mandiricoal.co.id:1880/sisakty/employee',
-            async: false,
-            data: function(params) {
-                var query = {
-                    search: params.term,
-                    company: selected_comp
-                }
-                return query;
-            },
-            processResults: function(data) {
-                // Transforms the top-level key of the response object from 'items' to 'results'
-                var temp = data.employee;
-                employee = data.employee;
-                temp.forEach(e => {
-                    e.id = e.user_id;
-                    e.text = e.user_name + ' - ' + e.user_nik;
-                });
-                return {
-                    results: temp
-                };
-            }
-        }
-    });
     var select2_roles = $('#roles').select2({
         theme: 'bootstrap'
-    });
-
-    $('#select_user').change(function(e) {
-        e.preventDefault();
-        if ($(this).val()) {
-            id = $(this).val();
-            var selected_emloyee = employee.find(function(e) {
-
-                return e.user_id == id;
-            })
-            $('#name').val(selected_emloyee.user_name);
-            $('#nik').val(selected_emloyee.user_nik);
-            $('#division').val(selected_emloyee.divisi_name);
-        }
-
     });
 
     var field = ['name', 'nik', 'division'];

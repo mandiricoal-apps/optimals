@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Auth;
@@ -38,5 +39,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user', [UserController::class, 'index']);
     Route::get('/modal-view-user/{id}', [UserController::class, 'modalViewuser']);
     Route::get('/modal-add-user', [UserController::class, 'modalAdduser']);
+    Route::get('/modal-edit-user/{id}', [UserController::class, 'modalEdituser']);
     Route::post('/create-user', [UserController::class, 'createUser']);
+    Route::post('/edit-user/{id}', [UserController::class, 'editUser']);
+    Route::get('/active-user/{id}', [UserController::class, 'activeUser']);
+    Route::get('/inactive-user/{id}', [UserController::class, 'inactiveUser']);
+
+    Route::get('/roles', [RolesController::class, 'index']);
+    Route::post('/create-roles', [RolesController::class, 'createRole']);
+    Route::post('/edit-role/{id}', [RolesController::class, 'editRole']);
+    Route::get('/role-management/{id}', [RolesController::class, 'roleManagement']);
 });

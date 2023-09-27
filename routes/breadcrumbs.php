@@ -29,3 +29,16 @@ Breadcrumbs::for('data-user', function (BreadcrumbTrail $trail) {
     $trail->parent('user');
     $trail->push('List', '/');
 });
+
+Breadcrumbs::for('roles', function (BreadcrumbTrail $trail) {
+    $trail->parent('master-data');
+    $trail->push('Roles', '/roles');
+});
+Breadcrumbs::for('data-roles', function (BreadcrumbTrail $trail) {
+    $trail->parent('roles');
+    $trail->push('List', '/roles');
+});
+Breadcrumbs::for('role-management', function (BreadcrumbTrail $trail) {
+    $trail->parent('roles');
+    $trail->push('Management Role', '/roles');
+});
