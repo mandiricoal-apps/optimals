@@ -1,5 +1,5 @@
 @extends('layout')
-
+@section('dashboard', 'active')
 @section('content')
     <div class="row">
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Symfony\Contracts\Service\Attribute\Required;
@@ -12,7 +13,6 @@ class UserController extends Controller
 {
     function index(Request $request)
     {
-
         $data['title'] = 'Data User';
         $data['breadcrumb'] = 'data-user';
         $data['roles'] = Role::get();

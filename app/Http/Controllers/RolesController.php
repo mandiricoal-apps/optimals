@@ -42,9 +42,39 @@ class RolesController extends Controller
 
     function roleManagement($id)
     {
-        $data['title'] = 'Role Management';
+        $role = Role::find($id);
+        $data['title'] = 'Role Management - ' . ucfirst($role->name);
         $data['breadcrumb'] = 'role-management';
-
+        $data['parents'] = Permission::select('parent')->groupBy('parent')->orderBy('id')->get();
+        $data['permissions'] = Permission::get();
+        $data['role'] = $role;
         return view('dashboard.role_management', $data);
+    }
+
+    function halamanCreatePermission()
+    {
+        return view('dashboard.create_permission');
+    }
+
+    function createPermission(Request $request)
+    {
+        $data = $request->except('_token');
+        if (Permission::create($data)) {
+            echo 'Berhasil';
+        } else {
+            echo 'gagal';
+        }
+    }
+
+    function updatePermission(Request $request, $id)
+    {
+        $data = $request->permissions;
+
+        $role = Role::find($id);
+        if ($role->syncPermissions($data)) {
+            return redirect("/role-management/$id")->with('message', 'Berhasil merubah role permission');
+        } else {
+            return back()->onlyInput();
+        }
     }
 }

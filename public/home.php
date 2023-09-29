@@ -62,7 +62,7 @@
                         <span class="menu-title">User </span>
                         <i class="menu-arrow"></i>
                     </a>
-                    <div class="collapse" id="ui-basic" style="">
+                    <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
                                 <a class="nav-link" type="button" onclick='window.location.replace("home.php?view=user")'>All User</a>

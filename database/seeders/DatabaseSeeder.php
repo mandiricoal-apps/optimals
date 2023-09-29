@@ -29,6 +29,17 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name' => 'create_user', 'parent' => '[MD] User', 'type' => 'create']);
         Permission::create(['name' => 'delete_user', 'parent' => '[MD] User', 'type' => 'delete']);
 
+        Permission::create(['name' => 'view_roles', 'parent' => '[MD] Roles', 'type' => 'view']);
+        Permission::create(['name' => 'edit_roles', 'parent' => '[MD] Roles', 'type' => 'edit']);
+        Permission::create(['name' => 'create_roles', 'parent' => '[MD] Roles', 'type' => 'create']);
+
+        Permission::create(['name' => 'view_area', 'parent' => '[MD] Area', 'type' => 'view']);
+        Permission::create(['name' => 'edit_area', 'parent' => '[MD] Area', 'type' => 'edit']);
+        Permission::create(['name' => 'create_area', 'parent' => '[MD] Area', 'type' => 'create']);
+        Permission::create(['name' => 'delete_area', 'parent' => '[MD] Area', 'type' => 'delete']);
+
+
+
 
         $user = new User();
         $user->name = 'Super Admin';
@@ -45,6 +56,16 @@ class DatabaseSeeder extends Seeder
         $role->givePermissionTo('edit_user');
         $role->givePermissionTo('create_user');
         $role->givePermissionTo('delete_user');
+
+        $role->givePermissionTo('view_roles');
+        $role->givePermissionTo('edit_roles');
+        $role->givePermissionTo('create_roles');
+
+        $role->givePermissionTo('view_area');
+        $role->givePermissionTo('edit_area');
+        $role->givePermissionTo('create_area');
+        $role->givePermissionTo('delete_area');
+
         $user->assignRole($role);
     }
 }

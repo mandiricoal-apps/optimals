@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UserController;
@@ -36,17 +37,33 @@ Route::middleware(['auth'])->group(function () {
         return view('dashboard/dashboard', $data);
     });
 
-    Route::get('/user', [UserController::class, 'index']);
-    Route::get('/modal-view-user/{id}', [UserController::class, 'modalViewuser']);
-    Route::get('/modal-add-user', [UserController::class, 'modalAdduser']);
-    Route::get('/modal-edit-user/{id}', [UserController::class, 'modalEdituser']);
-    Route::post('/create-user', [UserController::class, 'createUser']);
-    Route::post('/edit-user/{id}', [UserController::class, 'editUser']);
-    Route::get('/active-user/{id}', [UserController::class, 'activeUser']);
-    Route::get('/inactive-user/{id}', [UserController::class, 'inactiveUser']);
 
-    Route::get('/roles', [RolesController::class, 'index']);
-    Route::post('/create-roles', [RolesController::class, 'createRole']);
-    Route::post('/edit-role/{id}', [RolesController::class, 'editRole']);
-    Route::get('/role-management/{id}', [RolesController::class, 'roleManagement']);
+    Route::group(['middleware' => ['permission:view_user']], function () {
+        Route::get('/user', [UserController::class, 'index']);
+        Route::get('/modal-view-user/{id}', [UserController::class, 'modalViewuser']);
+        Route::get('/modal-add-user', [UserController::class, 'modalAdduser']);
+        Route::get('/modal-edit-user/{id}', [UserController::class, 'modalEdituser']);
+        Route::post('/create-user', [UserController::class, 'createUser'])->middleware(['permission:create_user']);
+        Route::post('/edit-user/{id}', [UserController::class, 'editUser'])->middleware(['permission:edit_user']);
+        Route::get('/active-user/{id}', [UserController::class, 'activeUser'])->middleware(['permission:delete_user']);
+        Route::get('/inactive-user/{id}', [UserController::class, 'inactiveUser'])->middleware(['permission:delete_user']);
+    });
+
+    Route::group(['middleware' => ['permission:view_roles']], function () {
+        Route::get('/roles', [RolesController::class, 'index']);
+        Route::post('/create-roles', [RolesController::class, 'createRole'])->middleware(['permission:create_roles']);
+        Route::post('/edit-role/{id}', [RolesController::class, 'editRole'])->middleware(['permission:edit_roles']);
+        Route::get('/role-management/{id}', [RolesController::class, 'roleManagement'])->middleware(['permission:edit_roles']);
+        Route::post('/update-permission/{id}', [RolesController::class, 'updatePermission'])->middleware(['permission:edit_roles']);
+        Route::get('/create-permission', [RolesController::class, 'halamanCreatePermission'])->middleware(['permission:edit_roles']);
+        Route::post('/create-permission', [RolesController::class, 'createPermission'])->middleware(['permission:edit_roles']);
+    });
+
+    Route::group(['middleware' => ['permission:view_area']], function () {
+        Route::get('/area', [AreaController::class, 'index']);
+        Route::post('/create-area', [AreaController::class, 'createArea'])->middleware(['permission:create_area']);
+        Route::post('/edit-area/{id}', [AreaController::class, 'editArea'])->middleware(['permission:edit_area']);
+        Route::get('/active-area/{id}', [AreaController::class, 'activeArea'])->middleware(['permission:delete_area']);
+        Route::get('/inactive-area/{id}', [AreaController::class, 'inactiveArea'])->middleware(['permission:delete_area']);
+    });
 });

@@ -1,4 +1,8 @@
 @extends('layout')
+@section('md-user', 'active')
+@section('roles', 'active')
+@section('coll-md-user', 'show')
+
 
 @section('content')
 
@@ -9,9 +13,11 @@
                     <i class="mdi mdi-filter-variant"></i> Filter by :
                 </div>
                 <div class="col text-end mb-3">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#add-modal">
-                        <i style="font-size: 14px;" class="mdi mdi-plus-circle-outline"></i> Add
-                    </button>
+                    @can('create_roles')
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#add-modal">
+                            <i style="font-size: 14px;" class="mdi mdi-plus-circle-outline"></i> Add
+                        </button>
+                    @endcan
                 </div>
             </div>
             <table id="example1" class="table table-striped table-hover" style="width:100%">
@@ -29,15 +35,17 @@
                             <td>{{ ucfirst($role->name) }}</td>
                             <td>{{ $role->description }}</td>
                             <td class="text-center">
-                                <div class="button-group">
-                                    <a href="/role-management/{{ $role->id }}" type="button" class="btn btn-warning">
-                                        <i style="font-size: 14px;" class="mdi mdi-settings"></i> Manage
-                                    </a>
-                                    <button class="btn btn-success" data-toggle="modal"
-                                        data-target="#edit-modal{{ $role->id }}">
-                                        <i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
-                                    </button>
-                                </div>
+                                @can('edit_roles')
+                                    <div class="button-group">
+                                        <a href="/role-management/{{ $role->id }}" type="button" class="btn btn-warning">
+                                            <i style="font-size: 14px;" class="mdi mdi-settings"></i> Manage
+                                        </a>
+                                        <button class="btn btn-success" data-toggle="modal"
+                                            data-target="#edit-modal{{ $role->id }}">
+                                            <i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
+                                        </button>
+                                    </div>
+                                @endcan
                             </td>
                         </tr>
                         <!-- Modal Edit-->

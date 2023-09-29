@@ -8,8 +8,8 @@
     <title>Optimals</title>
 
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="assets/vendors/select2/select2.min.css" />
-    <link rel="stylesheet" href="assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/select2/select2.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />
 
     <!-- boostrap 5:css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
@@ -17,16 +17,16 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css" />
 
     <!-- plugins:css -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
 
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="assets/vendors/jquery-bar-rating/css-stars.css" />
-    <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/jquery-bar-rating/css-stars.css" />
+    <link rel="stylesheet" href="/assets/vendors/font-awesome/css/font-awesome.min.css" />
 
-    <link rel="stylesheet" href="assets/css/demo_1/style.css" />
-    <link rel="shortcut icon" href="assets/images/favicon.png" />
+    <link rel="stylesheet" href="/assets/css/demo_1/style.css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.png" />
 
     <style>
         .card {
@@ -43,7 +43,7 @@
                 <li class="nav-item nav-profile border-bottom">
                     <a href="#" class="nav-link flex-column">
                         <div class="nav-profile-image">
-                            <img src="assets/images/9242076.png" alt="profile" />
+                            <img src="/assets/images/9242076.png" alt="profile" />
                         </div>
                         <div class="nav-profile-text d-flex ml-0 mb-3 flex-column">
                             <span class="font-weight-semibold mb-1 mt-2 text-center">{{ Auth::user()->name }}</span>
@@ -53,9 +53,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <img class="sidebar-brand-logo" src="assets/images/optimalx.png" alt="" width="200" />
+                    <img class="sidebar-brand-logo" src="/assets/images/optimalx.png" alt="" width="200" />
                 </li>
-                <li class="nav-item">
+                <li class="nav-item @yield('dashboard')">
                     <a class="nav-link" type="button" href="/">
                         <i class="mdi mdi mdi-speedometer menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
@@ -64,30 +64,38 @@
                 <li class="pt-2 pb-1">
                     <span class="nav-item-head">Master Data</span>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="true"
-                        aria-controls="ui-basic">
-                        <i class="mdi mdi-database menu-icon"></i>
-                        <span class="menu-title">User </span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="ui-basic" style="">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" type="button" href="/user?status=active">All User</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" type="button" href="/roles">User Roles</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button" onclick='window.location.replace("home.php?view=area")'>
-                        <i class="mdi mdi-database menu-icon"></i>
-                        <span class="menu-title">Area</span>
-                    </a>
-                </li>
+                @can('view_user')
+                    <li class="nav-item @yield('md-user')">
+                        <a class="nav-link " data-toggle="collapse" href="#ui-basic" aria-expanded="true"
+                            aria-controls="ui-basic">
+                            <i class="mdi mdi-database menu-icon"></i>
+                            <span class="menu-title">User </span>
+                            <i class="menu-arrow"></i>
+                        </a>
+
+                        <div class="collapse @yield('coll-md-user')" id="ui-basic" style="">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link @yield('all-user')" type="button" href="/user?status=active">All
+                                        User</a>
+                                </li>
+                                @can('view_roles')
+                                    <li class="nav-item ">
+                                        <a class="nav-link @yield('roles')" type="button" href="/roles">Management Roles</a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </div>
+                    </li>
+                @endcan
+                @can('view_area')
+                    <li class="nav-item @yield('area')">
+                        <a class="nav-link" type="button" href="/area?status=active">
+                            <i class="mdi mdi-database menu-icon"></i>
+                            <span class="menu-title">Area</span>
+                        </a>
+                    </li>
+                @endcan
                 <li class="nav-item">
                     <a class="nav-link" type="button" onclick='window.location.replace("home.php?view=question")'>
                         <i class="mdi mdi-database menu-icon"></i>
@@ -149,7 +157,7 @@
                     </ul>
                     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                         <a class="navbar-brand brand-logo-mini" href="index.html"><img
-                                src="assets/images/logo-mini.svg" alt="logo" /></a>
+                                src="/assets/images/logo-mini.svg" alt="logo" /></a>
                     </div>
                     <ul class="navbar-nav navbar-nav-right">
                         <li class="nav-item nav-profile dropdown d-none d-md-block">
@@ -249,29 +257,29 @@
     </div>
 
     <!-- plugins:js -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    {{-- <script src="/assets/vendors/js/vendor.bundle.base.js"></script> --}}
 
 
     <!-- Plugin js for this page -->
-    <script src="assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.resize.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.categories.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.fillbetween.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.stack.js"></script>
+    {{-- <script src="/assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+    <script src="/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.resize.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.categories.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.fillbetween.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.stack.js"></script> --}}
 
     <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <script src="assets/js/hoverable-collapse.js"></script>
-    <script src="assets/js/misc.js"></script>
-    <script src="assets/js/settings.js"></script>
-    <script src="assets/js/todolist.js"></script>
+    {{-- <script src="/assets/js/off-canvas.js"></script>
+    <script src="/assets/js/hoverable-collapse.js"></script>
+    <script src="/assets/js/misc.js"></script>
+    <script src="/assets/js/settings.js"></script>
+    <script src="/assets/js/todolist.js"></script> --}}
 
     <!-- Custom js for this page -->
-    <script src="assets/js/dashboard.js"></script>
-    <script src="assets/vendors/select2/select2.min.js"></script>
-    <script src="assets/js/select2.js"></script>
+    {{-- <script src="/assets/js/dashboard.js"></script> --}}
+    {{-- <script src="/assets/vendors/select2/select2.min.js"></script> --}}
+    {{-- <script src="/assets/js/select2.js"></script> --}}
 
     <!-- Datatables -->
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
@@ -412,7 +420,7 @@
             });
         };
     </script>
-    <script src="assets/js/custom.js"></script>
+    <script src="/assets/js/custom.js"></script>
 
 
     @yield('js')

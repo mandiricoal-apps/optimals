@@ -1,4 +1,7 @@
 @extends('layout')
+@section('md-user', 'active')
+@section('all-user', 'active')
+@section('coll-md-user', 'show')
 @section('css')
     <style>
         td.fit,
@@ -18,11 +21,13 @@
                     <a href="/user?status=active" class="btn btn-info">Active</a>
                     <a href="/user?status=inactive" class="btn btn-info">Inactive</a>
                 </div>
-                <div class="col text-end mb-3">
-                    <button class="btn btn-primary" onclick="modalAdd()">
-                        <i style="font-size: 14px;" class="mdi mdi-plus-circle-outline"></i> Add
-                    </button>
-                </div>
+                @can('create_user')
+                    <div class="col text-end mb-3">
+                        <button class="btn btn-primary" onclick="modalAdd()">
+                            <i style="font-size: 14px;" class="mdi mdi-plus-circle-outline"></i> Add
+                        </button>
+                    </div>
+                @endcan
             </div>
             <table id="example1" class="table table-striped table-hover" style="width:100%">
                 <thead>
@@ -42,14 +47,18 @@
                                 <div class="form-check form-switch">
                                     @if ($u->deleted_at)
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                                onclick="activate({{ $u->id }}, this)">
+                                            @can('delete_user')
+                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                                    onclick="activate({{ $u->id }}, this)">
+                                            @endcan
                                             <b><i><label class="form-check-label ms-0"
                                                         for="flexSwitchCheckChecked">Inactive</label></i></b>
                                         </div>
                                     @else
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked
-                                            onclick="inactive({{ $u->id }}, this)">
+                                        @can('delete_user')
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked
+                                                onclick="inactive({{ $u->id }}, this)">
+                                        @endcan
                                         <b><i><label class="form-check-label ms-0"
                                                     for="flexSwitchCheckChecked">Active</label></i></b>
                                     @endif
@@ -63,11 +72,13 @@
                             <td>{{ $u->company }}</td>
                             <td>{{ ucfirst($u->getRoleNames()[0]) }}</td>
                             <td class="text-center">
-                                <div class="button-group">
-                                    <button class="btn btn-success" onclick="modalEdit({{ $u->id }})">
-                                        <i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
-                                    </button>
-                                </div>
+                                @can('edit_user')
+                                    <div class="button-group">
+                                        <button class="btn btn-success" onclick="modalEdit({{ $u->id }})">
+                                            <i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
+                                        </button>
+                                    </div>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach
@@ -164,6 +175,7 @@
 
                 },
                 success: function(response) {
+
                     $('#modal-user-body').html(response);
                 }
             });

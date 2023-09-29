@@ -42,3 +42,12 @@ Breadcrumbs::for('role-management', function (BreadcrumbTrail $trail) {
     $trail->parent('roles');
     $trail->push('Management Role', '/roles');
 });
+
+Breadcrumbs::for('area', function (BreadcrumbTrail $trail) {
+    $trail->parent('master-data');
+    $trail->push('Area', '/area');
+});
+Breadcrumbs::for('data-area', function (BreadcrumbTrail $trail) {
+    $trail->parent('area');
+    $trail->push('List', '/roles');
+});
