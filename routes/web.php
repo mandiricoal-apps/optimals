@@ -37,6 +37,9 @@ Route::middleware(['auth'])->group(function () {
         return view('dashboard/dashboard', $data);
     });
 
+    Route::get('/company-api', [UserController::class, 'companyApi']);
+    Route::get('/employee-api', [UserController::class, 'employeeApi']);
+
 
     Route::group(['middleware' => ['permission:view_user']], function () {
         Route::get('/user', [UserController::class, 'index']);

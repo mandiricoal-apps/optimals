@@ -95,4 +95,20 @@ class UserController extends Controller
         $user->delete();
         return redirect('/user?status=active')->with('message', 'Berhasil menonaktifkan user');
     }
+
+    function companyApi()
+    {
+        $url = "http://mandiricoal.co.id:1880/sisakty/company/";
+        $company = file_get_contents($url);
+
+        return $company;
+    }
+
+    function employeeApi(Request $request)
+    {
+        $url = "http://mandiricoal.co.id:1880/sisakty/employee?company=" . $request->company . "&search=" . $request->search;
+        if ($employee = file_get_contents($url)) {
+            return json_decode($employee);
+        }
+    }
 }

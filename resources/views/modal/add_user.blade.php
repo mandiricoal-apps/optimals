@@ -60,7 +60,7 @@
     var comp = [];
     $.ajax({
         type: "get",
-        url: "http://mandiricoal.co.id:1880/sisakty/company/",
+        url: "/company-api",
         async: false,
         dataType: "json",
         success: function(data) {
@@ -93,7 +93,7 @@
         placeholder: 'Select User',
         ajax: {
             delay: 250,
-            url: 'http://mandiricoal.co.id:1880/sisakty/employee',
+            url: '/employee-api',
             async: false,
             data: function(params) {
                 var query = {
