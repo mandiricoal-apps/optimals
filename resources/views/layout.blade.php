@@ -96,12 +96,14 @@
                         </a>
                     </li>
                 @endcan
-                <li class="nav-item">
-                    <a class="nav-link" type="button" onclick='window.location.replace("home.php?view=question")'>
-                        <i class="mdi mdi-database menu-icon"></i>
-                        <span class="menu-title">Question & Answer</span>
-                    </a>
-                </li>
+                @can('view_qna')
+                    <li class="nav-item @yield('qna')">
+                        <a class="nav-link" type="button" href="/qna">
+                            <i class="mdi mdi-database menu-icon"></i>
+                            <span class="menu-title">Question & Answer</span>
+                        </a>
+                    </li>
+                @endcan
                 <li class="pt-2 pb-1">
                     <span class="nav-item-head">Transactions</span>
                 </li>

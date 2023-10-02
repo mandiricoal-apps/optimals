@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Auth\Events\Login;
@@ -68,5 +69,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/edit-area/{id}', [AreaController::class, 'editArea'])->middleware(['permission:edit_area']);
         Route::get('/active-area/{id}', [AreaController::class, 'activeArea'])->middleware(['permission:delete_area']);
         Route::get('/inactive-area/{id}', [AreaController::class, 'inactiveArea'])->middleware(['permission:delete_area']);
+    });
+
+    Route::group(['middleware' => ['permission:view_qna']], function () {
+        Route::get('/qna', [QuestionController::class, 'index']);
+        Route::get('/question/{area}', [QuestionController::class, 'question']);
+        Route::get('/inactive-question/{id}', [QuestionController::class, 'inactiveQuestion'])->middleware(['permission:delete_qna']);
+        Route::get('/active-question/{id}', [QuestionController::class, 'activeQuestion'])->middleware(['permission:delete_qna']);
+        Route::post('/create-question', [QuestionController::class, 'createQuestion'])->middleware(['permission:create_qna']);
+        Route::post('/edit-question/{id}', [QuestionController::class, 'editQuestion'])->middleware(['permission:edit_qna']);
     });
 });

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('question_id')->constrained('question', 'id');
             $table->double('point');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

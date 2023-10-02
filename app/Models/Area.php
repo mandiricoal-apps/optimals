@@ -22,4 +22,9 @@ class Area extends Model
             $model->area_code = IdGenerator::generate(['table' => 'area', 'field' => 'area_code', 'length' => 5, 'prefix' => 'A']);
         });
     }
+
+    function question()
+    {
+        return $this->hasMany(Question::class, 'area_id', 'id');
+    }
 }

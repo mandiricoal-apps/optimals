@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id();
             $table->text('question');
             $table->double('weight');
+            $table->integer('numbering')->nullable();
             $table->foreignId('area_id')->constrained('area', 'id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

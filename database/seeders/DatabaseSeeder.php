@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Area;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
         $role = Role::create(['name' => 'admin', 'description' => 'Administrator']);
         Role::create(['name' => 'operation', 'description' => 'Operation']);
         Role::create(['name' => 'Reviewer MIP', 'description' => 'Reviewer MIP']);
@@ -38,6 +40,10 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name' => 'create_area', 'parent' => '[MD] Area', 'type' => 'create']);
         Permission::create(['name' => 'delete_area', 'parent' => '[MD] Area', 'type' => 'delete']);
 
+        Permission::create(['name' => 'view_qna', 'parent' => '[MD] Question and Andswer', 'type' => 'view']);
+        Permission::create(['name' => 'edit_qna', 'parent' => '[MD] Question and Andswer', 'type' => 'edit']);
+        Permission::create(['name' => 'create_qna', 'parent' => '[MD] Question and Andswer', 'type' => 'create']);
+        Permission::create(['name' => 'delete_qna', 'parent' => '[MD] Question and Andswer', 'type' => 'delete']);
 
 
 
@@ -66,6 +72,21 @@ class DatabaseSeeder extends Seeder
         $role->givePermissionTo('create_area');
         $role->givePermissionTo('delete_area');
 
+        $role->givePermissionTo('view_qna');
+        $role->givePermissionTo('edit_qna');
+        $role->givePermissionTo('create_qna');
+        $role->givePermissionTo('delete_qna');
+
         $user->assignRole($role);
+
+        Area::create(['area_name' => 'Front Loading OB', 'description' => 'Front Loading OB']);
+        Area::create(['area_name' => 'Front Loading Coal', 'description' => 'Front Loading Coal']);
+        Area::create(['area_name' => 'Area Disposal', 'description' => 'Area Disposal']);
+        Area::create(['area_name' => 'Area Dewatering', 'description' => 'Area Dewatering']);
+        Area::create(['area_name' => 'Area Haulroad', 'description' => 'Area Haulroad']);
+
+        $this->call([
+            QuestionSeeder::class,
+        ]);
     }
 }

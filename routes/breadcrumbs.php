@@ -51,3 +51,12 @@ Breadcrumbs::for('data-area', function (BreadcrumbTrail $trail) {
     $trail->parent('area');
     $trail->push('List', '/roles');
 });
+
+Breadcrumbs::for('qna', function (BreadcrumbTrail $trail) {
+    $trail->parent('master-data');
+    $trail->push('Question & Answer', '/qna');
+});
+Breadcrumbs::for('question', function (BreadcrumbTrail $trail) {
+    $trail->parent('qna');
+    $trail->push('Question', '/qna');
+});
