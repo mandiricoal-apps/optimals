@@ -37,7 +37,8 @@
                             <td class="text-center">
                                 @can('edit_roles')
                                     <div class="button-group">
-                                        <a href="/role-management/{{ $role->id }}" type="button" class="btn btn-warning">
+                                        <a href="/role-management/{{ $role->id }}" onclick="showLoader()" type="button"
+                                            class="btn btn-warning">
                                             <i style="font-size: 14px;" class="mdi mdi-settings"></i> Manage
                                         </a>
                                         <button class="btn btn-success" data-toggle="modal"
@@ -118,7 +119,8 @@
                             </button>
                         </div>
 
-                        <form class="forms-sample" action="/create-roles" method="post" target="">
+                        <form class="forms-sample" action="/create-roles" method="post" onsubmit="showLoader()"
+                            target="">
                             @csrf
                             <div class="modal-body p-5">
                                 <div class="form-group">

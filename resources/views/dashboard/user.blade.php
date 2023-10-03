@@ -18,8 +18,8 @@
             <div class="row">
                 <div class="col mb-0">
                     <i class="mdi mdi-filter-variant"></i> Filter by :
-                    <a href="/user?status=active" class="btn btn-info">Active</a>
-                    <a href="/user?status=inactive" class="btn btn-info">Inactive</a>
+                    <a href="/user?status=active" onclick="showLoader()" class="btn btn-info">Active</a>
+                    <a href="/user?status=inactive" onclick="showLoader();" class="btn btn-info">Inactive</a>
                 </div>
                 @can('create_user')
                     <div class="col text-end mb-3">
@@ -72,13 +72,15 @@
                             <td>{{ $u->company }}</td>
                             <td>{{ ucfirst($u->getRoleNames()[0]) }}</td>
                             <td class="text-center">
-                                @can('edit_user')
-                                    <div class="button-group">
-                                        <button class="btn btn-success" onclick="modalEdit({{ $u->id }})">
-                                            <i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
-                                        </button>
-                                    </div>
-                                @endcan
+                                @if (!$u->deleted_at)
+                                    @can('edit_user')
+                                        <div class="button-group">
+                                            <button class="btn btn-success" onclick="modalEdit({{ $u->id }})">
+                                                <i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
+                                            </button>
+                                        </div>
+                                    @endcan
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -126,6 +128,7 @@
                 cancelButtonText: 'No'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    showLoader()
                     window.location.href = '/inactive-user/' + id;
                 } else {
                     $(button).prop('checked', true);
@@ -143,6 +146,7 @@
                 cancelButtonText: 'No'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    showLoader()
                     window.location.href = '/active-user/' + id;
                 } else {
                     $(button).prop('checked', false);

@@ -7,8 +7,9 @@
             <div class="row">
                 <div class="col mb-0">
                     <i class="mdi mdi-filter-variant"></i> Filter by :
-                    <a href="/question/{{ $area_id }}" class="btn btn-info">Active</a>
-                    <a href="/question/{{ $area_id }}?status=inactive" class="btn btn-info">Inactive</a>
+                    <a href="/question/{{ $area_id }}" onclick="showLoader();" class="btn btn-info">Active</a>
+                    <a href="/question/{{ $area_id }}?status=inactive" onclick="showLoader();"
+                        class="btn btn-info">Inactive</a>
                 </div>
                 <div class="col text-end mb-3">
                     @can('create_qna')
@@ -58,7 +59,7 @@
                             <td>{{ $q->weight }}</td>
                             <td class="text-center">
                                 <div class="button-group">
-                                    <a href="/answer/{{ $q->id }}" class="btn btn-warning">
+                                    <a href="/answer/{{ $q->id }}" onclick="showLoader()" class="btn btn-warning">
                                         <i style="font-size: 14px;" class="mdi mdi-playlist-check"></i> Answer
                                     </a>
                                     @can('edit_qna')
@@ -83,8 +84,8 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form class="forms-sample" action="/edit-question/{{ $q->id }}" method="POST"
-                                        target="">
+                                    <form class="forms-sample" action="/edit-question/{{ $q->id }}"
+                                        onsubmit="showLoader();" method="POST" target="">
                                         @csrf
                                         <div class="modal-body p-5">
                                             <div class="form-group">
@@ -144,7 +145,8 @@
                             </button>
                         </div>
 
-                        <form class="forms-sample" action="/create-question" method="POST" target="">
+                        <form class="forms-sample" action="/create-question" onsubmit="showLoader();" method="POST"
+                            target="">
                             @csrf
                             <div class="modal-body p-5">
                                 <div class="form-group">
@@ -177,51 +179,6 @@
                 </div>
             </div>
 
-
-
-            <!-- Modal VView-->
-            <div class="modal fade" id="view-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-md" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Detail User</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form class="forms-sample" action="" target="">
-                            <div class="modal-body p-5">
-                                <div class="form-group">
-                                    <label for="">NIK</label>
-                                    <input type="text" class="form-control" id="" placeholder="NIK"
-                                        required="" disabled="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Name</label>
-                                    <input type="text" class="form-control" id="" placeholder="Name"
-                                        required="" disabled="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Divisi</label>
-                                    <input type="text" class="form-control" id="" placeholder="Divisi"
-                                        required="" disabled="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Company</label>
-                                    <input type="text" class="form-control" id="" placeholder="Company"
-                                        required="" disabled="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Roles</label>=
-                                    <input type="text" class="form-control" id="" placeholder="Company"
-                                        required="" disabled="">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -237,6 +194,7 @@
                 cancelButtonText: 'No'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    showLoader();
                     window.location.href = '/inactive-question/' + id;
                 } else {
                     $(button).prop('checked', true);
@@ -254,6 +212,7 @@
                 cancelButtonText: 'No'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    showLoader();
                     window.location.href = '/active-question/' + id;
                 } else {
                     $(button).prop('checked', false);

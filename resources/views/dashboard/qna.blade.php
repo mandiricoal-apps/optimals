@@ -20,7 +20,7 @@
         <div class="row">
             @foreach ($areas as $area)
                 <div class="col-12 col-md-4">
-                    <a href="/question/{{ $area->id }}" style="text-decoration: none">
+                    <a href="/question/{{ $area->id }}" onclick="showLoader()" style="text-decoration: none">
                         <div class="card card-statx stretch-card mb-3" id="area-card"
                             style="background-image: url(assets/images/dashboard/img_7.jpg">
                             <div class="card-body">

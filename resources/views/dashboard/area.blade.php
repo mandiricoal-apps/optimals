@@ -8,8 +8,8 @@
             <div class="row">
                 <div class="col mb-0">
                     <i class="mdi mdi-filter-variant"></i> Filter by :
-                    <a href="/area?status=active" class="btn btn-info">Active</a>
-                    <a href="/area?status=inactive" class="btn btn-info">Inactive</a>
+                    <a href="/area?status=active" onclick="showLoader()" class="btn btn-info">Active</a>
+                    <a href="/area?status=inactive" onclick="showLoader()" class="btn btn-info">Inactive</a>
                 </div>
                 <div class="col text-end mb-3">
                     @can('create_area')
@@ -61,14 +61,16 @@
                             <td>{{ $a->area_name }}</td>
                             <td>{{ $a->description }}</td>
                             <td class="text-center">
-                                @can('edit_area')
-                                    <div class="button-group">
-                                        <button class="btn btn-success" data-toggle="modal"
-                                            data-target="#edit-modal{{ $a->id }}">
-                                            <i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
-                                        </button>
-                                    </div>
-                                @endcan
+                                @if (!$a->deleted_at)
+                                    @can('edit_area')
+                                        <div class="button-group">
+                                            <button class="btn btn-success" data-toggle="modal"
+                                                data-target="#edit-modal{{ $a->id }}">
+                                                <i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
+                                            </button>
+                                        </div>
+                                    @endcan
+                                @endif
                             </td>
                         </tr>
                         <!-- Modal Edit-->
@@ -82,8 +84,8 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form class="forms-sample" action="/edit-area/{{ $a->id }}" method="post"
-                                        target="">
+                                    <form class="forms-sample" action="/edit-area/{{ $a->id }}"
+                                        onsubmit="showLoader()" method="post" target="">
                                         @csrf
                                         <div class="modal-body p-5">
                                             <div class="form-group">
@@ -140,7 +142,8 @@
                             </button>
                         </div>
 
-                        <form class="forms-sample" action="/create-area" target="" method="post">
+                        <form class="forms-sample" action="/create-area" onsubmit="showLoader();" target=""
+                            method="post">
                             @csrf
                             <div class="modal-body p-5">
                                 <div class="form-group">
@@ -189,6 +192,7 @@
                 cancelButtonText: 'No'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    showLoader();
                     window.location.href = '/inactive-area/' + id;
                 } else {
                     $(button).prop('checked', true);
@@ -206,6 +210,7 @@
                 cancelButtonText: 'No'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    showLoader();
                     window.location.href = '/active-area/' + id;
                 } else {
                     $(button).prop('checked', false);

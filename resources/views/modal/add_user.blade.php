@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="assets/vendors/select2/select2.min.css" />
 <link rel="stylesheet" href="assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />
 
-<form class="forms-sample" action="/create-user" method="POST">
+<form class="forms-sample" action="/create-user" onsubmit="showLoader();" method="POST">
     @csrf
     <div class="modal-body p-5">
         <div class="form-group">

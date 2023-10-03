@@ -16,7 +16,7 @@
         <div class="col-xl-12 pr-0">
             <div class="card">
                 <div class="card-body">
-                    <form action="/update-permission/{{ $role->id }}" method="post">
+                    <form action="/update-permission/{{ $role->id }}" onsubmit="showLoader()" method="post">
                         @csrf
                         <div class="table-responsive">
                             <table class="table custom-table text-dark">

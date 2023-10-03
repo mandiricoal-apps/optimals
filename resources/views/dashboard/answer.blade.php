@@ -1,4 +1,5 @@
 @extends('layout')
+@section('qna', 'active')
 
 @section('content')
     <div class="card">
@@ -38,7 +39,7 @@
                     <tbody>
                         @foreach ($question->answer as $answer)
                             <tr>
-                                <td style="white-space: pre-linew;">
+                                <td style="white-space: pre-line;">
                                     <p> {{ $answer->answer }} </p>
                                 </td>
                                 <td>{{ $answer->point }} Point</td>
@@ -66,8 +67,8 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form class="forms-sample" action="/edit-answer/{{ $answer->id }}" method="POST"
-                                                target="">
+                                            <form class="forms-sample" action="/edit-answer/{{ $answer->id }}"
+                                                onsubmit="showLoader();" method="POST" target="">
                                                 @csrf
                                                 <div class="modal-body p-5">
                                                     <div class="form-group">
@@ -118,7 +119,8 @@
                             </button>
                         </div>
 
-                        <form class="forms-sample" action="/create-answer" method="POST" target="">
+                        <form class="forms-sample" action="/create-answer" onsubmit="showLoader();" method="POST"
+                            target="">
                             @csrf
                             <div class="modal-body p-5">
                                 <div class="form-group">

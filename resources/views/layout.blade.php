@@ -32,11 +32,34 @@
         .card {
             border-radius: 20px !important;
         }
+
+        .loader {
+            position: fixed;
+            z-index: 2000;
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(255, 255, 255, 1);
+
+
+        }
+
+        .img-loader {
+            position: inherit;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
     @yield('css')
 </head>
 
 <body>
+    <div class="loader">
+        <div class="img-loader">
+            <img class="" src="/assets/images/loader.svg" alt="">
+
+        </div>
+    </div>
     <div class="container-scroller">
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
@@ -65,7 +88,7 @@
                     <span class="nav-item-head">Master Data</span>
                 </li>
                 @can('view_user')
-                    <li class="nav-item @yield('md-user')">
+                    <li class="nav-item @yield('md-user')" id="parent">
                         <a class="nav-link " data-toggle="collapse" href="#ui-basic" aria-expanded="true"
                             aria-controls="ui-basic">
                             <i class="mdi mdi-database menu-icon"></i>
@@ -162,7 +185,7 @@
                                 src="/assets/images/logo-mini.svg" alt="logo" /></a>
                     </div>
                     <ul class="navbar-nav navbar-nav-right">
-                        <li class="nav-item nav-profile dropdown d-none d-md-block">
+                        <li class="nav-item nav-profile dropdown d-none d-md-block" id="parent">
                             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#"
                                 data-toggle="dropdown" aria-expanded="false">
                                 <div class="nav-profile-text">Account </div>
@@ -319,6 +342,13 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+            hideLoader();
+
+            $('.nav-item').click(function() {
+                if (!($(this).attr('id') == 'parent')) {
+                    showLoader();
+                }
+            })
             $('#example').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
@@ -418,13 +448,33 @@
                 confirmButtonText: 'Yes',
                 cancelButtonText: 'No'
             }).then((result) => {
-                window.location.href = '/logout'
+
+                if (result.isConfirmed) {
+                    showLoader();
+                    window.location.href = '/logout'
+                }
+
             });
         };
     </script>
     <script src="/assets/js/custom.js"></script>
 
+    <script>
+        const loader = $('.loader');
+        if (loader.prop('hidden') == false) {
+            showLoader();
+        }
 
+        function showLoader() {
+            // loader.prop('hidden', false);
+            loader.fadeIn('fast');
+        }
+
+        function hideLoader() {
+            // loader.prop('hidden', true);
+            loader.fadeOut('slow');
+        }
+    </script>
     @yield('js')
 </body>
 
