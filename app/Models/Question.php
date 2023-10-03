@@ -17,4 +17,9 @@ class Question extends Model
     {
         return $this->belongsTo(Area::class, 'area_id', 'id');
     }
+
+    function answer()
+    {
+        return $this->hasMany(Answer::class, 'question_id', 'id');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\Area;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -52,7 +53,7 @@ class QuestionController extends Controller
         $question->numbering = null;
         $question->save();
         $question->delete();
-        Question::where('numbering', '>', $numbering)->update(['numbering' => DB::raw('`numbering`-1')]);
+        Question::where('numbering', '>', $numbering)->where('area_id', '=', $area_id)->update(['numbering' => DB::raw('`numbering`-1')]);
         return redirect('/question/' . $area_id . '?status=active')->with('message', 'Berhasil menonaktifkan question');
     }
 
@@ -88,16 +89,56 @@ class QuestionController extends Controller
         $question->numbering = $request->numbering;
         if ($cur_numbering != $new_numbering) {
             if ($cur_numbering > $new_numbering) {
-                Question::where('numbering', '>=', $new_numbering)->where('numbering', '<', $cur_numbering)->update(['numbering' => DB::raw('`numbering`+1')]);
+                Question::where('numbering', '>=', $new_numbering)->where('numbering', '<', $cur_numbering)->where('area_id', '=', $question->area_id)->update(['numbering' => DB::raw('`numbering`+1')]);
             }
             if ($cur_numbering < $new_numbering) {
-                Question::where('numbering', '<=', $new_numbering)->where('numbering', '>', $cur_numbering)->update(['numbering' => DB::raw('`numbering`-1')]);
+                Question::where('numbering', '<=', $new_numbering)->where('numbering', '>', $cur_numbering)->where('area_id', '=', $question->area_id)->update(['numbering' => DB::raw('`numbering`-1')]);
             }
             // Question::where('numbering', '>', $cur_numbering)->update(['numbering' => DB::raw('`numbering`+1')]);
         }
 
         if ($question->save()) {
             return redirect("/question/$question->area_id")->with('message', 'Berhasil mengubah question');
+        }
+        return back()->onlyInput();
+    }
+
+    function answer(Question $question)
+    {
+        $data['title'] = 'Answer';
+        $data['breadcrumb'] = 'answer';
+        $data['question'] = $question;
+
+        return view('dashboard.answer', $data);
+    }
+
+    function createAnswer(Request $request)
+    {
+        $validated = $request->validate([
+            'answer' => 'required',
+            'point' => 'required',
+        ]);
+        $data = $request->except('_token');
+        $save = Answer::create($data);
+        if ($save) {
+            return redirect("/answer/$request->question_id")->with('message', 'Berhasil mendaftarkan answer baru');
+        }
+        return back()->onlyInput();
+    }
+
+    function editAnswer(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'answer' => 'required',
+            'point' => 'required',
+        ]);
+
+        $answer = Answer::find($id);
+        $answer->answer = $request->answer;
+        $answer->point = $request->point;
+
+        if ($answer->save()) {
+            return redirect("/answer/$answer->question_id")->with('message', 'Berhasil mengubah answer');
         }
         return back()->onlyInput();
     }

@@ -78,5 +78,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/active-question/{id}', [QuestionController::class, 'activeQuestion'])->middleware(['permission:delete_qna']);
         Route::post('/create-question', [QuestionController::class, 'createQuestion'])->middleware(['permission:create_qna']);
         Route::post('/edit-question/{id}', [QuestionController::class, 'editQuestion'])->middleware(['permission:edit_qna']);
+        Route::get('/answer/{question}', [QuestionController::class, 'answer']);
+        Route::post('/create-answer', [QuestionController::class, 'createAnswer'])->middleware(['permission:create_qna']);
+        Route::post('/edit-answer/{id}', [QuestionController::class, 'editAnswer'])->middleware(['permission:edit_qna']);
     });
 });

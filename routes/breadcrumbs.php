@@ -60,3 +60,7 @@ Breadcrumbs::for('question', function (BreadcrumbTrail $trail) {
     $trail->parent('qna');
     $trail->push('Question', '/qna');
 });
+Breadcrumbs::for('answer', function (BreadcrumbTrail $trail) {
+    $trail->parent('question');
+    $trail->push('Answer', '/qna');
+});

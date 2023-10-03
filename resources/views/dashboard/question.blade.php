@@ -58,7 +58,7 @@
                             <td>{{ $q->weight }}</td>
                             <td class="text-center">
                                 <div class="button-group">
-                                    <a href="home.php?view=answer" class="btn btn-warning">
+                                    <a href="/answer/{{ $q->id }}" class="btn btn-warning">
                                         <i style="font-size: 14px;" class="mdi mdi-playlist-check"></i> Answer
                                     </a>
                                     @can('edit_qna')
