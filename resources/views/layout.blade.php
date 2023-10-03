@@ -57,13 +57,12 @@
     <div class="loader">
         <div class="img-loader">
             <img class="" src="/assets/images/loader.svg" alt="">
-
         </div>
     </div>
     <div class="container-scroller">
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
-                <li class="nav-item nav-profile border-bottom">
+                <li class="nav-item  nav-profile border-bottom" id="parent">
                     <a href="#" class="nav-link flex-column">
                         <div class="nav-profile-image">
                             <img src="/assets/images/9242076.png" alt="profile" />
@@ -75,7 +74,7 @@
                         </div>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item " id="parent">
                     <img class="sidebar-brand-logo" src="/assets/images/optimalx.png" alt="" width="200" />
                 </li>
                 <li class="nav-item @yield('dashboard')">
@@ -175,7 +174,7 @@
       <span class="mdi mdi-chevron-double-left"></span>
      </button> -->
                     <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" id="parent">
                             <h5><i class="mdi mdi mdi-view-dashboard menu-icon"></i><i>GoodMiningPractice</i><small> |
                                     PT Mandiri Intiperkasa</small></h5>
                         </li>

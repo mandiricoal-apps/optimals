@@ -73,8 +73,8 @@
                                                 <div class="modal-body p-5">
                                                     <div class="form-group">
                                                         <label for="">Answer</label><span style="color:red;">*</span>
-                                                        <input type="text" class="form-control" id="answer" name="answer"
-                                                            placeholder="Answer" value="{{ $answer->answer }}" required="">
+                                                        <textarea type="text" class="form-control" id="answer" name="answer" placeholder="Answer" rows="6"
+                                                            required="">{{ $answer->answer }}</textarea>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="">Point</label><span style="color:red;">*</span>
@@ -125,8 +125,8 @@
                             <div class="modal-body p-5">
                                 <div class="form-group">
                                     <label for="">Answer</label><span style="color:red;">*</span>
-                                    <input type="text" class="form-control" id="answer" name="answer"
-                                        placeholder="Answer" required="">
+                                    <textarea type="text" class="form-control" id="answer" name="answer" placeholder="Answer" rows="6"
+                                        required=""></textarea>
                                 </div>
                                 <input type="hidden" name="question_id" value="{{ $question->id }}">
                                 <div class="form-group">
