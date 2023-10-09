@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
         $user->division = 'IT';
         // $user->email = 'admin@mail.com';
         // $user->email_verified_at = date('Y:m:d H:i:s');
-        $user->password = Hash::make('123123');
+        $user->password = Hash::make(md5('123123'));
         $user->save();
 
         $role->givePermissionTo('view_user');

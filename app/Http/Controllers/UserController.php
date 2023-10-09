@@ -53,9 +53,9 @@ class UserController extends Controller
         $validated = $request->validate([
             'nik' => 'required|unique:users',
         ]);
-        $data = $request->except(['_token', 'roles']);
+        $data = $request->except(['_token', 'roles', 'password']);
 
-        $data['password'] = Hash::make('Optimal2023');
+        $data['password'] = Hash::make($request->password);
         $newUser = User::create($data);
         $role = Role::find($request->input('roles'));
         if ($newUser->assignRole($role)) {

@@ -16,6 +16,7 @@
                 <option value=""></option>
             </select>
         </div>
+        <input type="hidden" name="password" id="password">
         <div class="form-group">
             <label for="">NIK</label><span style="color:red;">*</span>
             <input type="text" class="form-control" id="nik" name="nik" placeholder="NIK" required=""
@@ -128,9 +129,11 @@
 
                 return e.user_id == id;
             })
+            console.log(selected_emloyee);
             $('#name').val(selected_emloyee.user_name);
             $('#nik').val(selected_emloyee.user_nik);
             $('#division').val(selected_emloyee.divisi_name);
+            $('#password').val(selected_emloyee.user_password);
         }
 
     });
