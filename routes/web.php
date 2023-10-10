@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthApi;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\QuestionController;
