@@ -15,6 +15,8 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
+        $credentials['password'] = md5($credentials['password']);
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 

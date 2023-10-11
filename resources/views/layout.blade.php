@@ -8,8 +8,8 @@
     <title>Optimals</title>
 
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="assets/vendors/select2/select2.min.css" />
-    <link rel="stylesheet" href="assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/select2/select2.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />
 
     <!-- boostrap 5:css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
@@ -17,26 +17,55 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css" />
 
     <!-- plugins:css -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
 
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="assets/vendors/jquery-bar-rating/css-stars.css" />
-    <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/jquery-bar-rating/css-stars.css" />
+    <link rel="stylesheet" href="/assets/vendors/font-awesome/css/font-awesome.min.css" />
 
-    <link rel="stylesheet" href="assets/css/demo_1/style.css" />
-    <link rel="shortcut icon" href="assets/images/favicon.png" />
+    <link rel="stylesheet" href="/assets/css/demo_1/style.css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.png" />
+
+    <style>
+        .card {
+            border-radius: 20px !important;
+        }
+
+        .loader {
+            position: fixed;
+            z-index: 2000;
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(255, 255, 255, 1);
+
+
+        }
+
+        .img-loader {
+            position: inherit;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    @yield('css')
 </head>
 
 <body>
+    <div class="loader">
+        <div class="img-loader">
+            <img class="" src="/assets/images/loader.svg" alt="">
+        </div>
+    </div>
     <div class="container-scroller">
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
-                <li class="nav-item nav-profile border-bottom">
+                <li class="nav-item  nav-profile border-bottom" id="parent">
                     <a href="#" class="nav-link flex-column">
                         <div class="nav-profile-image">
-                            <img src="assets/images/9242076.png" alt="profile" />
+                            <img src="/assets/images/9242076.png" alt="profile" />
                         </div>
                         <div class="nav-profile-text d-flex ml-0 mb-3 flex-column">
                             <span class="font-weight-semibold mb-1 mt-2 text-center">{{ Auth::user()->name }}</span>
@@ -45,10 +74,10 @@
                         </div>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <img class="sidebar-brand-logo" src="assets/images/optimalx.png" alt="" width="200" />
+                <li class="nav-item " id="parent">
+                    <img class="sidebar-brand-logo" src="/assets/images/optimalx.png" alt="" width="200" />
                 </li>
-                <li class="nav-item">
+                <li class="nav-item @yield('dashboard')">
                     <a class="nav-link" type="button" href="/">
                         <i class="mdi mdi mdi-speedometer menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
@@ -57,38 +86,46 @@
                 <li class="pt-2 pb-1">
                     <span class="nav-item-head">Master Data</span>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="true"
-                        aria-controls="ui-basic">
-                        <i class="mdi mdi-database menu-icon"></i>
-                        <span class="menu-title">User </span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="ui-basic" style="">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" type="button"
-                                    onclick='window.location.replace("home.php?view=user")'>All User</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" type="button"
-                                    onclick='window.location.replace("home.php?view=roles")'>User Roles</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button" onclick='window.location.replace("home.php?view=area")'>
-                        <i class="mdi mdi-database menu-icon"></i>
-                        <span class="menu-title">Area</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button" onclick='window.location.replace("home.php?view=question")'>
-                        <i class="mdi mdi-database menu-icon"></i>
-                        <span class="menu-title">Question & Answer</span>
-                    </a>
-                </li>
+                @can('view_user')
+                    <li class="nav-item @yield('md-user')" id="parent">
+                        <a class="nav-link " data-toggle="collapse" href="#ui-basic" aria-expanded="true"
+                            aria-controls="ui-basic">
+                            <i class="mdi mdi-database menu-icon"></i>
+                            <span class="menu-title">User </span>
+                            <i class="menu-arrow"></i>
+                        </a>
+
+                        <div class="collapse @yield('coll-md-user')" id="ui-basic" style="">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link @yield('all-user')" type="button" href="/user?status=active">All
+                                        User</a>
+                                </li>
+                                @can('view_roles')
+                                    <li class="nav-item ">
+                                        <a class="nav-link @yield('roles')" type="button" href="/roles">Management Roles</a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </div>
+                    </li>
+                @endcan
+                @can('view_area')
+                    <li class="nav-item @yield('area')">
+                        <a class="nav-link" type="button" href="/area?status=active">
+                            <i class="mdi mdi-database menu-icon"></i>
+                            <span class="menu-title">Area</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('view_qna')
+                    <li class="nav-item @yield('qna')">
+                        <a class="nav-link" type="button" href="/qna">
+                            <i class="mdi mdi-database menu-icon"></i>
+                            <span class="menu-title">Question & Answer</span>
+                        </a>
+                    </li>
+                @endcan
                 <li class="pt-2 pb-1">
                     <span class="nav-item-head">Transactions</span>
                 </li>
@@ -137,23 +174,23 @@
       <span class="mdi mdi-chevron-double-left"></span>
      </button> -->
                     <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" id="parent">
                             <h5><i class="mdi mdi mdi-view-dashboard menu-icon"></i><i>GoodMiningPractice</i><small> |
                                     PT Mandiri Intiperkasa</small></h5>
                         </li>
                     </ul>
                     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                         <a class="navbar-brand brand-logo-mini" href="index.html"><img
-                                src="assets/images/logo-mini.svg" alt="logo" /></a>
+                                src="/assets/images/logo-mini.svg" alt="logo" /></a>
                     </div>
                     <ul class="navbar-nav navbar-nav-right">
-                        <li class="nav-item nav-profile dropdown d-none d-md-block">
+                        <li class="nav-item nav-profile dropdown d-none d-md-block" id="parent">
                             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#"
                                 data-toggle="dropdown" aria-expanded="false">
                                 <div class="nav-profile-text">Account </div>
                             </a>
                             <div class="dropdown-menu center navbar-dropdown" aria-labelledby="profileDropdown">
-                                <a class="dropdown-item" href="/logout">
+                                <a class="dropdown-item" onclick="logout()">
                                     Logout
                                 </a>
                             </div>
@@ -183,10 +220,23 @@
                             </div>
                         </div>
                     @endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $err)
+                                    <li>{{ $err }}</li>
+                                @endforeach
+
+                            </ul>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="page-header p-0">
                             <h3 class="page-title">{{ $title }}</h3>
-                            @if ($breadcrumb)
+                            @if (isset($breadcrumb))
                                 {{ Breadcrumbs::render($breadcrumb) }}
                             @endif
                             {{-- <nav aria-label="breadcrumb">
@@ -211,29 +261,49 @@
         </div>
     </div>
 
+    <!-- Modal MD-->
+    <div class="modal fade" id="modal-md" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detail User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-md-body"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- plugins:js -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    {{-- <script src="/assets/vendors/js/vendor.bundle.base.js"></script> --}}
+
 
     <!-- Plugin js for this page -->
-    <script src="assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.resize.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.categories.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.fillbetween.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.stack.js"></script>
+    {{-- <script src="/assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+    <script src="/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.resize.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.categories.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.fillbetween.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.stack.js"></script> --}}
 
     <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <script src="assets/js/hoverable-collapse.js"></script>
-    <script src="assets/js/misc.js"></script>
-    <script src="assets/js/settings.js"></script>
-    <script src="assets/js/todolist.js"></script>
+    {{-- <script src="/assets/js/off-canvas.js"></script>
+    <script src="/assets/js/hoverable-collapse.js"></script>
+    <script src="/assets/js/misc.js"></script>
+    <script src="/assets/js/settings.js"></script>
+    <script src="/assets/js/todolist.js"></script> --}}
 
     <!-- Custom js for this page -->
-    <script src="assets/js/dashboard.js"></script>
-    <script src="assets/vendors/select2/select2.min.js"></script>
-    <script src="assets/js/select2.js"></script>
+    {{-- <script src="/assets/js/dashboard.js"></script> --}}
+    {{-- <script src="/assets/vendors/select2/select2.min.js"></script> --}}
+    {{-- <script src="/assets/js/select2.js"></script> --}}
 
     <!-- Datatables -->
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
@@ -250,6 +320,7 @@
 
     <!-- Sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <style type="text/css">
         .size {
@@ -270,6 +341,13 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+            hideLoader();
+
+            $('.nav-item').click(function() {
+                if (!($(this).attr('id') == 'parent')) {
+                    showLoader();
+                }
+            })
             $('#example').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
@@ -369,10 +447,34 @@
                 confirmButtonText: 'Yes',
                 cancelButtonText: 'No'
             }).then((result) => {
-                location.reload();
+
+                if (result.isConfirmed) {
+                    showLoader();
+                    window.location.href = '/logout'
+                }
+
             });
         };
     </script>
+    <script src="/assets/js/custom.js"></script>
+
+    <script>
+        const loader = $('.loader');
+        if (loader.prop('hidden') == false) {
+            showLoader();
+        }
+
+        function showLoader() {
+            // loader.prop('hidden', false);
+            loader.fadeIn('fast');
+        }
+
+        function hideLoader() {
+            // loader.prop('hidden', true);
+            loader.fadeOut('slow');
+        }
+    </script>
+    @yield('js')
 </body>
 
 </html>

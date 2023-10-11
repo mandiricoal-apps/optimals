@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('question', function (Blueprint $table) {
             $table->id();
-            $table->string('comp_id', 10)->unique();
-            $table->string('comp_code', 50)->uniqie();
-            $table->string('comp_name');
+            $table->text('question');
+            $table->double('weight');
+            $table->integer('numbering')->nullable();
+            $table->foreignId('area_id')->constrained('area', 'id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('question');
     }
 };

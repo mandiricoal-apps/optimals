@@ -1,0 +1,69 @@
+question;weight;area_id;numbering
+Tinggi Jenjang Penggalian (Digging Bench Height);12;1;1
+Kondisi Lantai Kerja Penggalian;12;1;2
+Drainase, Air Permukaan;10;1;3
+Batas Penggalian (Digging Limit);10;1;4
+Luasan Area Penggalian (Working Geometry);10;1;5
+Alat Grade Box/Alat Kontrol Elevasi;9;1;6
+Material Sisa Penimbunan, Material Free Dump;5;1;7
+Penerangan Shift Malam;10;1;8
+Patok Acuan Kemiringan Lereng Final Design/BAtter Peg/Bowplank;8;1;9
+Perapihan Dinding Lereng Final Design atau Dinding Penggalian Temporary;8;1;10
+Tanggul Pengaman/Bundwall;6;1;11
+Cara Penggalian (Drop Cut & Ideal);10;2;1
+Lebar Front (2,5 X Lebar Unit Terbesar);8;2;2
+Tinggi Bench/Jenjang;8;2;3
+Acuan Grading;6;2;4
+Kondisi Lantai Kerja;6;2;5
+Grade Front;5;2;6
+Drainase;8;2;7
+Kantungan Air;8;2;8
+Kesesuaian Alat Loading (Sesuai tebal seam dan working geometri);6;2;9
+DT Menggunakan Label Sesuai Raw Material;4;2;10
+Maksimalisasi Floor Batubara (Min per penurunan 4 meter);4;2;11
+Proses Cleaning Batubara;7;2;12
+Kebersihan Alat Angkut;7;2;13
+Kebersihan Alat Loading;7;2;14
+Genangan di Area PIT;8;3;1
+Genangan di Area Disposal;8;3;2
+Kondisi Pompa Sump;8;3;3
+Kondisi Elevasi air SUMP;8;3;4
+Alat Keselamatan ( PPE );8;3;5
+Akses Sarana dan Prasarana ke Pompa;7;3;6
+Penerangan shift malam;7;3;7
+Ceceran Bahan Hidrokarbon/Bahan Bakar Beracun (B3);7;3;8
+Pos Crew/Operator Dewatering di Area Sump (Pompa);7;3;9
+Kolam Penampungan Sedimentasi (Sediment Trap) di Area Sump;7;3;10
+Rambu Keselamatan Dewatering;5;3;11
+Kondisi Pipa Pompa Air Sump/HDPE;5;3;12
+Kolam Control Box di Outlet Pompa di Keluaran & Kondisi Kolam Pengendapan;5;3;13
+Peralatan Penanganan Hidrokarbon/Spillket;4;3;14
+Rambu Elevasi Air/BAr Meter di Sump dan Critical Level;3;3;15
+Lampu Rotari Pada Unit Pompa;3;3;16
+Dozer Support;8;4;1
+Tinggi Jenjang Penimbunan (Dumping Bench Height);8;4;2
+Kondisi Lantai Kerja Penimbunan;8;4;3
+Drainase, Air Permukaan;8;4;4
+Batas Penimbunan (Dumping Limit);8;4;5
+Luasan Area Penimbunan (Dumping Working Geometry);8;4;6
+Alat Grade Box/ Alat Kontrol Elevasi;6;4;7
+Material Sisa Penimbunan, Material Free dump;7;4;8
+Tanggul Pembatas Timbunan/ Windrow;9;4;9
+Kestabilan Lereng Penimbunan;7;4;10
+Penerangan Shift Malam;9;4;11
+Rambu -Rambu Dumping Point;7;4;12
+Pos pengawas;3;4;13
+Tempat Parkir Sarana;3;4;14
+Kondisi Permukaan Jalan;10;5;1
+Kemiringan Jalan atau Grade pada Tanjakan/Turunan (Grade Profil Memanjang (%));10;5;2
+Lebar Jalan Angkut (Road Width);10;5;3
+Kemiringan Jalan Pada Tikungan (Super Elevasi (%));10;5;4
+Tanggul Pengaman/Bundwall;10;5;5
+Rambu Keselamatan Jalan Angkut;10;5;6
+Profil Melintang Jalan/Crossfall (%);8;5;7
+Jarak Pandang/Visibility;7;5;8
+Drainase, Air Permukaan;5;5;9
+Patok Acuan Tepi Jalan (Guide Post);5;5;10
+Tumpukan Material Sisa (Spoil);5;5;11
+Penerangan di Persimpangan (Shift Malam), NA Apabila Penilaian Dilakukan pada Siang Hari;5;5;12
+Pembatas Jalur Jalan/Median/Devider;5;5;13
