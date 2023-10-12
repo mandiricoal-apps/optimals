@@ -8,7 +8,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
     <style type="text/css">
         @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 
@@ -119,7 +119,7 @@
          <h2><I>#GoodMiningPractice</I></h2>
          <p>PT MANDIRI INTIPERKASA</p>
         </div> -->
-                                    <img class="d-block img-fluid" src="assets/images/dashboard/HDS.png"
+                                    <img class="d-block img-fluid" src="/assets/images/dashboard/HDS.png"
                                         alt="First slide" width="100%">
                                     <div class="carousel-caption d-none d-md-block">
                                         <div class="banner-text">
@@ -132,7 +132,7 @@
 
                     <div class="col-md-4 login-sec">
                         <!-- <marquee class="mt-0" width="100%"><i>Optimals by Mandiricoal | #GoodMiningPractice</i></marquee> -->
-                        <center><img class="d-block img-fluid" src="assets/images/optimal.PNG" alt="First slide"
+                        <center><img class="d-block img-fluid" src="/assets/images/optimal.PNG" alt="First slide"
                                 width="60%"></center>
                         <!-- <img class="d-block img-fluid" src="assets/images/mcol.PNG" alt="First slide" width="50%"> -->
                         @if ($errors->has('nik'))
