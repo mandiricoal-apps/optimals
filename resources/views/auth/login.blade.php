@@ -132,7 +132,7 @@
 
                     <div class="col-md-4 login-sec">
                         <!-- <marquee class="mt-0" width="100%"><i>Optimals by Mandiricoal | #GoodMiningPractice</i></marquee> -->
-                        <center><img class="d-block img-fluid" src="/assets/images/optimal.PNG" alt="First slide"
+                        <center><img class="d-block img-fluid" src="/assets/images/optimal.png" alt="First slide"
                                 width="60%"></center>
                         <!-- <img class="d-block img-fluid" src="assets/images/mcol.PNG" alt="First slide" width="50%"> -->
                         @if ($errors->has('nik'))
