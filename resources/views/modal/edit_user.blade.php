@@ -52,24 +52,6 @@
 
 <script src="assets/vendors/select2/select2.min.js"></script>
 <script>
-    var comp = [];
-    $.ajax({
-        type: "get",
-        url: "http://mandiricoal.co.id:1880/sisakty/company/",
-        async: false,
-        dataType: "json",
-        success: function(data) {
-            var temp = data.employee;
-            temp.forEach(e => {
-                e.id = e.comp_name;
-                e.text = e.comp_name;
-            });
-
-            comp = temp;
-        }
-    });
-</script>
-<script>
     var select2_roles = $('#roles').select2({
         theme: 'bootstrap'
     });

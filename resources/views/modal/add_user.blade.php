@@ -93,7 +93,7 @@
         theme: 'bootstrap',
         placeholder: 'Select User',
         ajax: {
-            delay: 250,
+            delay: 300,
             url: '/employee-api',
             async: false,
             data: function(params) {

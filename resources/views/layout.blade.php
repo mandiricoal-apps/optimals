@@ -213,6 +213,7 @@
                     @if (session('message'))
                         <div class="row">
                             <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                <h5>Success ! &#128512;</h5>
                                 {!! session('message') !!}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -222,6 +223,7 @@
                     @endif
                     @if ($errors->any())
                         <div class="alert alert-danger alert-dismissible" role="alert">
+                            <h5>Failed ! &#128532;</h5>
                             <ul class="mb-0">
                                 @foreach ($errors->all() as $err)
                                     <li>{{ $err }}</li>
