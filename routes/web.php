@@ -35,6 +35,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/migrate', function () {
     return Artisan::call('migrate');
 });
+Route::get('/migrate-refresh', function () {
+    return Artisan::call('migrate:refresh');
+});
 Route::get('/seed', function () {
     return Artisan::call('db:seed');
 });
