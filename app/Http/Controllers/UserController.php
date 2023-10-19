@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     function index(Request $request)
     {
-        $data['title'] = 'Data User';
+        $data['title'] = 'Data User ' . ucfirst($request->status);
         $data['breadcrumb'] = 'data-user';
         $data['roles'] = Role::get();
 
@@ -27,7 +27,8 @@ class UserController extends Controller
             $user = $user->withTrashed();
         }
 
-        $data['user'] = $user->get();
+        $data['user'] = $user->whereNot('id', 1)->get();
+        $data['status'] = $request->status;
 
         return view('dashboard.user', $data);
     }

@@ -29,7 +29,7 @@
 </form> --}}
 
 <div class="ml-2">
-    <h1>{{ $user->name }}</h1>
+    <h3>{{ $user->name }}</h3>
     <h5>{{ ucfirst($user->getRoleNames()[0]) }}</h5>
 </div>
 <div class="table-responsive">
@@ -37,15 +37,15 @@
         <tbody>
             <tr>
                 <th class="fit">NIK</th>
-                <td>{{ $user->nik }}</td>
+                <td>: {{ $user->nik }}</td>
             </tr>
             <tr>
                 <th>Company</th>
-                <td>{{ $user->company }}</td>
+                <td>: {{ $user->company }}</td>
             </tr>
             <tr>
                 <th>Division</th>
-                <td>{{ $user->division }}</td>
+                <td>: {{ $user->division }}</td>
             </tr>
         </tbody>
     </table>

@@ -18,8 +18,10 @@
             <div class="row">
                 <div class="col mb-0">
                     <i class="mdi mdi-filter-variant"></i> Filter by :
-                    <a href="/user?status=active" onclick="showLoader()" class="btn btn-info">Active</a>
-                    <a href="/user?status=inactive" onclick="showLoader();" class="btn btn-info">Inactive</a>
+                    <a href="/user?status=active" onclick="showLoader()"
+                        class="btn btn-{{ $status == 'active' ? 'info' : 'secondary' }}">Active</a>
+                    <a href="/user?status=inactive" onclick="showLoader();"
+                        class="btn btn-{{ $status == 'inactive' ? 'info' : 'secondary' }}">Inactive</a>
                 </div>
                 @can('create_user')
                     <div class="col text-end mb-3">

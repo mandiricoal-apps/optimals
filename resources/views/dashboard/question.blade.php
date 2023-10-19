@@ -7,9 +7,10 @@
             <div class="row">
                 <div class="col mb-0">
                     <i class="mdi mdi-filter-variant"></i> Filter by :
-                    <a href="/question/{{ $area_id }}" onclick="showLoader();" class="btn btn-info">Active</a>
+                    <a href="/question/{{ $area_id }}" onclick="showLoader();"
+                        class="btn btn-{{ $status == 'active' ? 'info' : 'secondary' }}">Active</a>
                     <a href="/question/{{ $area_id }}?status=inactive" onclick="showLoader();"
-                        class="btn btn-info">Inactive</a>
+                        class="btn btn-{{ $status == 'inactive' ? 'info' : 'secondary' }}">Inactive</a>
                 </div>
                 <div class="col text-end mb-3">
                     @can('create_qna')
@@ -54,7 +55,7 @@
                                     </div>
                                 @endif
                             </td>
-                            <td>{{ $q->numbering ?? '-' }}</td>
+                            <td class="text-center">{{ $q->numbering ?? '-' }}</td>
                             <td>{{ $q->question }}</td>
                             <td>{{ $q->weight }}</td>
                             <td class="text-center">

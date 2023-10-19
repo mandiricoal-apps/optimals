@@ -22,7 +22,7 @@ class QuestionController extends Controller
     function question(Request $request, Area $area)
     {
 
-        $data['title'] = 'Questions in ' . $area->area_name;
+        $data['title'] = 'Questions ' . ucfirst($request->status ?? 'active') . ' in ' . $area->area_name . ' (' . $area->area_code . ')';
         $data['breadcrumb'] = 'question';
         $data['area_id'] = $area->id;
         if ($request->status == 'inactive') {
@@ -30,6 +30,7 @@ class QuestionController extends Controller
         } else {
             $data['question'] = $area->question;
         }
+        $data['status'] = $request->status ?? 'active';
 
         return view('dashboard.question', $data);
     }

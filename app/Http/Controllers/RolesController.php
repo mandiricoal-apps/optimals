@@ -12,7 +12,7 @@ class RolesController extends Controller
     {
         $data['title'] = 'Data Role';
         $data['breadcrumb'] = 'data-roles';
-        $data['roles'] = Role::get();
+        $data['roles'] = Role::whereNot('name', 'admin')->get();
 
         return view('dashboard.roles', $data);
     }

@@ -27,10 +27,10 @@
                                 <div class="d-flex justify-content-between">
                                     <div class="text-white">
                                         <div style="color: #ffffff;">
+                                            <h6 class="mb-0">{{ $area->area_code }}</h6>
                                             <h3 class="font-weight-bold mb-0">{{ $area->area_name }}<i
                                                     class="mdi mdi-arrow-top-right"></i></h3>
                                         </div>
-                                        <h6>{{ $area->description }}</h6>
                                         <div class="badge badge-danger">
                                             <span class="mdi mdi-file-question"></span>
                                             {{ $area->question->count() }} questions

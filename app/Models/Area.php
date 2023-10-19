@@ -19,7 +19,7 @@ class Area extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->area_code = IdGenerator::generate(['table' => 'area', 'field' => 'area_code', 'length' => 5, 'prefix' => 'A']);
+            $model->area_code = IdGenerator::generate(['table' => 'area', 'field' => 'area_code', 'length' => 4, 'prefix' => 'A']);
         });
     }
 
