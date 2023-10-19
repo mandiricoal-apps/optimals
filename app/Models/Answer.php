@@ -19,7 +19,7 @@ class Answer extends Model
         parent::boot();
         self::creating(function ($model) {
             $prefix = 'A' . $model->question->area->area_code;
-            $model->code = IdGenerator::generate(['table' => 'answer', 'field' => 'code', 'length' => 9, 'prefix' => $prefix]);
+            $model->code = IdGenerator::generate(['table' => 'answer', 'field' => 'code', 'length' => 9, 'prefix' => $prefix, 'reset_on_prefix_change' => true]);
         });
     }
 
