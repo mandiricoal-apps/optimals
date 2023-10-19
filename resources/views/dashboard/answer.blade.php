@@ -9,6 +9,7 @@
             <div class="row">
                 <div class="col-10 mb-0">
                     <div class="pl-2 mb-0">
+                        <h3>{{ $question->code }}</h3>
                         <span class="font-12 text-muted">Question : </span>
                         <p class="m-0 text-black"> {{ $question->question }}</p>
                         <span class="font-12 text-muted">Area : </span>
@@ -30,15 +31,17 @@
                 <table id="" class="table table-striped table-hover w-100">
                     <thead>
                         <tr>
+                            <th width="20%">Code</th>
                             <th width="50%">Answer</th>
-                            <th width="20%">Point</th>
-                            <th width="20%">Score Point</th>
+                            <th width="10%">Point</th>
+                            <th width="10%">Score Point</th>
                             <th width="10%" class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($question->answer as $answer)
                             <tr>
+                                <td>{{ $answer->code }}</td>
                                 <td style="white-space: pre-line;">
                                     <p> {{ $answer->answer }} </p>
                                 </td>

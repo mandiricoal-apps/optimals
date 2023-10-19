@@ -25,6 +25,7 @@
                     <tr>
                         <th>Status</th>
                         <th>Numbering</th>
+                        <th>Code</th>
                         <th>Question</th>
                         <th>Weight</th>
                         <th class="text-center">Action</th>
@@ -56,6 +57,7 @@
                                 @endif
                             </td>
                             <td class="text-center">{{ $q->numbering ?? '-' }}</td>
+                            <td>{{ $q->code }}</td>
                             <td>{{ $q->question }}</td>
                             <td>{{ $q->weight }}</td>
                             <td class="text-center">
