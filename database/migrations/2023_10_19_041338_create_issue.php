@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('issue', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sumary_id')->constrained('daily_inspection_sumary', 'id');
+            $table->foreignId('sumary_id')->constrained('daily_inspection_summary', 'id');
             $table->string('code');
             $table->text('issue');
             $table->string('status', '50')->default('open');

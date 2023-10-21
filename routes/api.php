@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthApi;
 use App\Http\Controllers\api\InspectionApi;
 use Illuminate\Http\Request;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,12 @@ Route::post('/login', [AuthApi::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/logout', [AuthApi::class, 'logout']);
+
     Route::get('/sync', [InspectionApi::class, 'sync']);
+
+    Route::prefix('inspection')->group(function () {
+        Route::post('/create', [InspectionApi::class, 'create']);
+    });
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

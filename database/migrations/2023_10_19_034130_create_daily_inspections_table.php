@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('area_id')->constrained('area', 'id');
             $table->integer('total_score');
             $table->dateTime('approved_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -31,6 +32,8 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('daily_inspections');
+        Schema::enableForeignKeyConstraints();
     }
 };
