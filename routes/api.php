@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthApi;
-use App\Http\Controllers\api\InspectionApi;
+use App\Http\Controllers\Api\InspectionApi;
 use Illuminate\Http\Request;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +22,8 @@ Route::post('/login', [AuthApi::class, 'login']);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/logout', [AuthApi::class, 'logout']);
 
-    // Route::get('/sync', [InspectionApi::class, 'sync']);
-    Route::get('/sync', 'App\Http\Controllers\api\inspectionApi@sync');
+    Route::get('/sync', [InspectionApi::class, 'sync']);
+    // Route::get('/sync', 'App\Http\Controllers\api\inspectionApi@sync');
 
     Route::prefix('inspection')->group(function () {
         Route::post('/create', [InspectionApi::class, 'create']);
