@@ -19,7 +19,7 @@ class DailyInspection extends Model
         parent::boot();
         self::creating(function ($model) {
             $prefix = date('y') . 'DI' . $model->area->area_code;
-            $model->code = IdGenerator::generate(['table' => 'daily_inspections', 'field' => 'code', 'length' => 12, 'prefix' => $prefix]);
+            $model->code = IdGenerator::generate(['table' => 'daily_inspections', 'field' => 'code', 'length' => 12, 'prefix' => $prefix, 'reset_on_prefix_change' => true]);
         });
     }
 
