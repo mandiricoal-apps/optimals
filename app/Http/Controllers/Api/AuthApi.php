@@ -21,7 +21,7 @@ class AuthApi extends Controller
         if (!Auth::attempt($credentials)) {
 
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Login gagal. Pastikan nik dan password sesuai.'
             ], 401);
         }
         $user = User::where('nik', $credentials['nik'])->firstOrFail();
