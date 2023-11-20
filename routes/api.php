@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('inspection')->group(function () {
         Route::post('/create', [InspectionApi::class, 'create']);
     });
-    Route::post('/upload-image', [InspectionApi::class, 'uploadImage']);
+    Route::get('/upload-image', [InspectionApi::class, 'uploadImage']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
