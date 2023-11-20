@@ -21,9 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthApi::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/simbolik', function () {
-        return Artisan::call('storage:link');
-    });
+    // Route::get('/simbolik', function () {
+    //     return Artisan::call('storage:link');
+    // });
     Route::get('/logout', [AuthApi::class, 'logout']);
 
     Route::get('/sync', [InspectionApi::class, 'sync']);
@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('inspection')->group(function () {
         Route::post('/create', [InspectionApi::class, 'create']);
     });
-    Route::get('/upload-image', [InspectionApi::class, 'uploadImage']);
+    Route::post('/upload-image', [InspectionApi::class, 'uploadImage']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
