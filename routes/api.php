@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthApi;
 use App\Http\Controllers\Api\InspectionApi;
 use Illuminate\Http\Request;
 use Illuminate\Routing\RouteGroup;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthApi::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/simbolik', function () {
+        return Artisan::call('storage:link');
+    });
     Route::get('/logout', [AuthApi::class, 'logout']);
 
     Route::get('/sync', [InspectionApi::class, 'sync']);
