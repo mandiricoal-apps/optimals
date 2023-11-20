@@ -102,11 +102,13 @@ class InspectionApi extends Controller
                 $validator = array_merge($validator, [
                     'location.sump' => 'required',
                 ]);
+                break;
             case 5:
                 $validator = array_merge($validator, [
                     'location.nama_jalan' => 'required',
                     'location.segmen' => 'required',
                 ]);
+                break;
             default:
                 $validator = array_merge($validator, [
                     'location.pit' => 'required',
