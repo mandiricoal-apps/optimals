@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('inspection_id')->constrained('daily_inspections', 'id');
             $table->foreignId('question_id')->constrained('question', 'id');
-            $table->foreignId('answer_id')->constrained('question', 'id');
+            $table->foreignId('answer_id')->constrained('answer', 'id');
             $table->integer('score');
             $table->timestamps();
         });
