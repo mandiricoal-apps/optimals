@@ -24,4 +24,8 @@ class DailyInspectionSummary extends Model
     {
         return $this->belongsTo(Answer::class, 'answer_id', 'id');
     }
+    function issue()
+    {
+        return $this->hasOne(Issue::class, 'sumary_id', 'id');
+    }
 }

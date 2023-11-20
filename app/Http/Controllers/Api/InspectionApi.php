@@ -7,6 +7,8 @@ use App\Models\Area;
 use App\Models\DailyInspection;
 use App\Models\DailyInspectionSummary;
 use App\Models\DataLocation;
+use App\Models\Issue;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +28,7 @@ class InspectionApi extends Controller
     function create(Request $request)
     {
 
-        $data = (array)json_decode($request->all()['data']);
+        $data = $request->all();
         $daily_inspection = $data;
         $summary_daily_inspection = $data['summary'];
         $data_location = $data['location'];
@@ -46,15 +48,6 @@ class InspectionApi extends Controller
 
             //crate data location
             $data_location['inspection_id'] = $inspection_id;
-            // if ($data_location->file('image_file')) {
-            //     $image = $data_location->file('image_file');
-            //     $filename = $save_daily_inspection->code . $image->extension();
-
-            //     $image->storeAs('location_photo', $filename, ['disk' => 'public']);
-            //     $data_location['image'] = $filename;
-            // } else {
-            //     return response()->json(['message' => 'File gagal di upload'], 400);
-            // }
             DataLocation::create($data_location);
 
             //create summary daily inspection
@@ -63,14 +56,20 @@ class InspectionApi extends Controller
                 $item['inspection_id'] = $inspection_id;
                 $item['created_at'] = $date;
                 $item['updated_at'] = $date;
+                $saveSummary = DailyInspectionSummary::create($item);
+                if (array_key_exists('issue', $item)) {
+                    $tempIssue = $item['issue'];
+                    $tempIssue['sumary_id'] = $saveSummary->id;
+                    Issue::create($tempIssue);
+                }
+
                 return $item;
             }, $summary_daily_inspection);
-            DailyInspectionSummary::insert($summary_daily_inspection);
             DB::commit();
             return response()->json(['message' => $save_daily_inspection->id], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return response()->json(['message' => $th], 500);
+            return response()->json(['message' => $th->getMessage()], 500);
         }
     }
 
@@ -85,7 +84,7 @@ class InspectionApi extends Controller
             'summary.*.answer_id' => 'required',
             'summary.*.score' => 'required',
             'location' => 'required',
-            // 'location.image_file' => 'required|image:jpeg,png,jpg|max:2048'
+            'location.image' => 'required'
         ];
         switch ($area_id) {
             case 3:
@@ -123,5 +122,34 @@ class InspectionApi extends Controller
         }
 
         return $validator;
+    }
+
+    function uploadImage(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'image_file' => 'required|image|mimes:jpg,jpeg,png|max:10240',
+            'type' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()], 400);
+        }
+
+        if ($request->file('image_file')) {
+            $image = $request->file('image_file');
+            $filename = $image->getClientOriginalName();
+            if ($request->type == "location") {
+                $folder = "location_photo";
+            } else if ($request->type == "issue") {
+                $folder = "issue_photo";
+            } else {
+                $folder = "photo";
+            }
+            $image->storeAs($folder, $filename, ['disk' => 'public']);
+
+            return response()->json(['message' => 'File ' . $filename . ' berhasil di-upload'], 200);
+        } else {
+            return response()->json(['message' => 'File gagal di-upload'], 400);
+        }
     }
 }

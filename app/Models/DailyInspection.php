@@ -36,4 +36,8 @@ class DailyInspection extends Model
     {
         return $this->hasOne(DataLocation::class, 'inspection_id', 'id');
     }
+    function user()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
 }
