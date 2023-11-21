@@ -4,8 +4,8 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <div class="row">
-                <div class="col mb-0">
+            <div class="row mb-1">
+                <div class="col">
                     <i class="mdi mdi-filter-variant"></i> Filter by :
                     <a href="/question/{{ $area_id }}" onclick="showLoader();"
                         class="btn btn-{{ $status == 'active' ? 'info' : 'secondary' }}">Active</a>

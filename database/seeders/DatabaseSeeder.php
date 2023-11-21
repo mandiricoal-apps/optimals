@@ -45,7 +45,13 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name' => 'create_qna', 'parent' => '[MD] Question and Andswer', 'type' => 'create']);
         Permission::create(['name' => 'delete_qna', 'parent' => '[MD] Question and Andswer', 'type' => 'delete']);
 
+        Permission::create(['name' => 'view_daily_inspection', 'parent' => '[Trans] Daily Inspection', 'type' => 'view']);
+        Permission::create(['name' => 'edit_daily_inspection', 'parent' => '[Trans] Daily Inspection', 'type' => 'edit']);
+        Permission::create(['name' => 'delete_daily_inspection', 'parent' => '[Trans] Daily Inspection', 'type' => 'delete']);
 
+        Permission::create(['name' => 'view_issue', 'parent' => '[Trans] Issue', 'type' => 'view']);
+        Permission::create(['name' => 'edit_issue', 'parent' => '[Trans] Issue', 'type' => 'edit']);
+        Permission::create(['name' => 'delete_issue', 'parent' => '[Trans] Issue', 'type' => 'delete']);
 
         $user = new User();
         $user->name = 'Super Admin';
@@ -76,6 +82,14 @@ class DatabaseSeeder extends Seeder
         $role->givePermissionTo('edit_qna');
         $role->givePermissionTo('create_qna');
         $role->givePermissionTo('delete_qna');
+
+        $role->givePermissionTo('view_daily_inspection');
+        $role->givePermissionTo('edit_daily_inspection');
+        $role->givePermissionTo('delete_daily_inspection');
+
+        $role->givePermissionTo('view_issue');
+        $role->givePermissionTo('edit_issue');
+        $role->givePermissionTo('delete_issue');
 
         $user->assignRole($role);
 

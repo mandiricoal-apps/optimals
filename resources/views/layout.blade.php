@@ -49,6 +49,15 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
+        #area-card {
+            cursor: pointer;
+        }
+
+        #area-card:hover {
+            transform: scale(1.1);
+            /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
     </style>
     @yield('css')
 </head>
@@ -129,13 +138,14 @@
                 <li class="pt-2 pb-1">
                     <span class="nav-item-head">Transactions</span>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button"
-                        onclick='window.location.replace("home.php?view=dailyinspection")'>
-                        <i class="mdi mdi-checkbox-multiple-marked-circle menu-icon"></i>
-                        <span class="menu-title">Daily Inspection</span>
-                    </a>
-                </li>
+                @can('view_daily_inspection')
+                    <li class="nav-item @yield('daily_inspection')">
+                        <a class="nav-link" type="button" href="/daily-inspection">
+                            <i class="mdi mdi-checkbox-multiple-marked-circle menu-icon"></i>
+                            <span class="menu-title">Daily Inspection</span>
+                        </a>
+                    </li>
+                @endcan
                 <li class="nav-item">
                     <a class="nav-link" type="button" onclick='window.location.replace("home.php?view=issue")'>
                         <i class="mdi mdi-checkbox-multiple-blank-circle menu-icon"></i>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthApi;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DailyInspectionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UserController;
@@ -93,5 +94,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/answer/{question}', [QuestionController::class, 'answer']);
         Route::post('/create-answer', [QuestionController::class, 'createAnswer'])->middleware(['permission:create_qna']);
         Route::post('/edit-answer/{id}', [QuestionController::class, 'editAnswer'])->middleware(['permission:edit_qna']);
+    });
+    Route::group(['middleware' => ['permission:view_daily_inspection']], function () {
+        Route::get('/daily-inspection', [DailyInspectionController::class, 'index']);
+        Route::get('/daily-inspection-area/{area}', [DailyInspectionController::class, 'perArea']);
+        Route::get('/daily-inspection-detail/{dailyInspection}', [DailyInspectionController::class, 'detailDailyInspection']);
     });
 });

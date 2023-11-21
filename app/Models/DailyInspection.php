@@ -38,6 +38,6 @@ class DailyInspection extends Model
     }
     function user()
     {
-        return $this->belongsTo(User::class, 'created_by', 'id');
+        return $this->belongsTo(User::class, 'create_by', 'id');
     }
 }

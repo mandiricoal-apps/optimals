@@ -27,4 +27,8 @@ class Area extends Model
     {
         return $this->hasMany(Question::class, 'area_id', 'id');
     }
+    function dailyInspection()
+    {
+        return $this->hasMany(DailyInspection::class, 'area_id', 'id');
+    }
 }
