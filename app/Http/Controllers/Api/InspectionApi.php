@@ -154,4 +154,35 @@ class InspectionApi extends Controller
             return response()->json(['message' => 'File gagal di-upload'], 400);
         }
     }
+
+    function uploadMultipleImage(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'image_file.*' => 'required|image|mimes:jpg,jpeg,png|max:10240',
+            'type' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()], 400);
+        }
+
+        if ($request->file('image_file')) {
+            foreach ($request->file('image_file') as $key => $value) {
+                // $image = $request->file('image_file');
+                $filename = $value->getClientOriginalName();
+                if ($request->type == "location") {
+                    $folder = "location_photo";
+                } else if ($request->type == "issue") {
+                    $folder = "issue_photo";
+                } else {
+                    $folder = "photo";
+                }
+                $value->storeAs($folder, $filename, ['disk' => 'public']);
+            }
+
+            return response()->json(['message' => 'Semua file berhasil di-upload'], 200);
+        } else {
+            return response()->json(['message' => 'File gagal di-upload'], 400);
+        }
+    }
 }

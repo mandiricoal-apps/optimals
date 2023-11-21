@@ -33,6 +33,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/create', [InspectionApi::class, 'create']);
     });
     Route::post('/upload-image', [InspectionApi::class, 'uploadImage']);
+    Route::post('/upload-multi-image', [InspectionApi::class, 'uploadMultipleImage']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
