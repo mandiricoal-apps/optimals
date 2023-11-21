@@ -32,7 +32,7 @@ class InspectionApi extends Controller
         $daily_inspection = $data;
         $summary_daily_inspection = $data['summary'];
         $data_location = $data['location'];
-        // return response()->json($data['location']);
+
         $validator = Validator::make($data, $this->setValidator($data['area_id']));
 
         if ($validator->fails()) {
@@ -57,7 +57,7 @@ class InspectionApi extends Controller
                 $item['created_at'] = $date;
                 $item['updated_at'] = $date;
                 $saveSummary = DailyInspectionSummary::create($item);
-                if (array_key_exists('issue', $item)) {
+                if (array_key_exists('issue', $item['issue'])) {
                     $tempIssue = $item['issue'];
                     $tempIssue['sumary_id'] = $saveSummary->id;
                     Issue::create($tempIssue);
