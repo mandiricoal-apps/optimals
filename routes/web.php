@@ -99,5 +99,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/daily-inspection', [DailyInspectionController::class, 'index']);
         Route::get('/daily-inspection-area/{area}', [DailyInspectionController::class, 'perArea']);
         Route::get('/daily-inspection-detail/{dailyInspection}', [DailyInspectionController::class, 'detailDailyInspection']);
+        Route::post('/edit-score/{dailyInspection}', [DailyInspectionController::class, 'editScore'])->middleware(['permission:edit_daily_inspection']);
+        Route::get('/approve-daily-inspection/{dailyInspection}', [DailyInspectionController::class, 'approve'])->middleware(['permission:edit_daily_inspection']);
     });
 });

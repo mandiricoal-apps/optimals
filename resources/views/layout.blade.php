@@ -52,6 +52,7 @@
 
         #area-card {
             cursor: pointer;
+            transition: 0.3s;
         }
 
         #area-card:hover {

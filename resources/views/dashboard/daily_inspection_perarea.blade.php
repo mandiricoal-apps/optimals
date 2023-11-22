@@ -35,8 +35,12 @@
                                     </b>
                                 </td>
                                 <td>
-                                    {{ $di->code }} <i style="font-size: 14px;color:#ff5730;"
-                                        class="mdi mdi-alert-circle-outline"></i>
+                                    {{ $di->code }}
+                                    @if ($di->issue > 0)
+                                        <i style="font-size: 14px;color:#ff5730;" class="mdi mdi-alert-circle-outline"
+                                            data-toggle="tooltip" data-placement="top"
+                                            title="{{ $di->issue }} issue"></i>
+                                    @endif
                                     <br><small>Area : {{ $area_name }}</small>
                                 </td>
                                 <td>
@@ -49,7 +53,8 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="button-group">
-                                        <a href="/daily-inspection-detail/{{ $di->id }}" class="btn btn-warning">
+                                        <a href="/daily-inspection-detail/{{ $di->id }}" onclick="showLoader()"
+                                            class="btn btn-warning">
                                             <i style="font-size: 14px;" class="mdi mdi-eye-circle-outline"></i> Detail
                                         </a>
                                     </div>

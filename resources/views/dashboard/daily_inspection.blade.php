@@ -8,7 +8,7 @@
                 <div class="row ">
                     @foreach ($areas as $area)
                         <div class="col-12 col-md-4">
-                            <a href="/daily-inspection-area/{{ $area->id }}?status=not-approved"
+                            <a href="/daily-inspection-area/{{ $area->id }}?status=not-approved" onclick="showLoader()"
                                 style="color: #ffffff; text-decoration: none">
                                 <div class="card card-statx stretch-card mb-3" id="area-card">
                                     <div class="card-body">
