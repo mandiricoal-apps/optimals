@@ -121,14 +121,16 @@
                     <table id="" class="table table-striped table-hover mb-5">
                         <thead>
                             <tr>
+                                <th>No.</th>
                                 <th width="50%">Question & Answer</th>
-                                <th>Issue</th>
+                                <th width="40%">Issue</th>
                                 <th width="5%">Score Point</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($dailyInspection->summary as $summary)
                                 <tr>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
                                     <td style="white-space: normal; overflow: hidden;">
                                         {{ $summary->question->question }} <br><br>
                                         <small>{{ $summary->answer->answer }}</small>
