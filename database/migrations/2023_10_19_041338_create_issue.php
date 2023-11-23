@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('issue');
             $table->string('status', '50')->default('open');
             $table->text('closed_reason')->nullable();
-            $table->string('image')->nullable();
+            $table->json('image')->nullable();
             $table->foreignId('updated_by')->nullable()->constrained('users', 'id');
             $table->timestamps();
         });

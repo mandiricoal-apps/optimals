@@ -40,4 +40,12 @@ class DailyInspection extends Model
     {
         return $this->belongsTo(User::class, 'create_by', 'id');
     }
+    function userUpdateScore()
+    {
+        return $this->belongsTo(User::class, 'score_update_by', 'id');
+    }
+    function userapprove()
+    {
+        return $this->belongsTo(User::class, 'approved_by', 'id');
+    }
 }

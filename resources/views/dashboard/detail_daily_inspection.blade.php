@@ -40,6 +40,15 @@
                                                             class="text-success font-weight-bold">
                                                             {{ $dailyInspection->total_score }}</h1>
                                                     </h5>
+                                                    @if ($dailyInspection->score_update_by != null)
+                                                        <p class="card-text"><small class="text-muted">Score has been
+                                                                Changed by
+                                                                <b>{{ $dailyInspection->userUpdateScore->name }}</b> <br>
+                                                                with
+                                                                reason: {{ $dailyInspection->reason_score }}
+                                                            </small>
+                                                        </p>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="card-body flex-wrap mb-0 px-2">
@@ -57,7 +66,8 @@
                                                         </div>
                                                     @endcan
                                                 @else
-                                                    <p class="card-text"><small class="text-muted">Approved at
+                                                    <p class="card-text"><small class="text-muted">Approved by
+                                                            <b>{{ $dailyInspection->userapprove->name }}</b> at
                                                             {{ date('d M Y H:i', strtotime($dailyInspection->approved_at)) }}</small>
                                                     </p>
                                                 @endif
@@ -169,11 +179,16 @@
                             <form class="forms-sample" method="post" action="/edit-score/{{ $dailyInspection->id }}"
                                 onsubmit="showLoader()" target="">
                                 <div class="modal-body p-5">
+                                    @csrf
                                     <div class="form-group">
                                         <label for="">Point</label><span style="color:red;">*</span>
-                                        @csrf
                                         <input type="number" class="form-control" id=""
                                             value="{{ $dailyInspection->total_score }}" name="score" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Reason</label><span style="color:red;">*</span>
+                                        <textarea class="form-control" id="" value="{{ $dailyInspection->total_score }}" name="reason_score"
+                                            required="" rows="3"></textarea>
                                     </div>
                                     <hr>
                                     <div class="row">

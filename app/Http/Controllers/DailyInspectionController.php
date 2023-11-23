@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Area;
 use App\Models\DailyInspection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DailyInspectionController extends Controller
@@ -100,8 +101,11 @@ class DailyInspectionController extends Controller
 
         $credentials = $request->validate([
             'score' => 'required|numeric',
+            'reason_score' => 'required',
         ]);
         $dailyInspection->total_score = $request->score;
+        $dailyInspection->reason_score = $request->reason_score;
+        $dailyInspection->score_update_by = Auth::user()->id;
 
         if ($dailyInspection->save()) {
             return redirect("/daily-inspection-detail/$dailyInspection->id")->with('message', 'Berhasil mengubah score');
@@ -112,6 +116,7 @@ class DailyInspectionController extends Controller
     function approve(DailyInspection $dailyInspection)
     {
         $dailyInspection->approved_at = date(now());
+        $dailyInspection->approved_by = Auth::user()->id;
 
         if ($dailyInspection->save()) {
             return redirect("/daily-inspection-detail/$dailyInspection->id")->with('message', 'Daily Inspection berhasil di-approve');
