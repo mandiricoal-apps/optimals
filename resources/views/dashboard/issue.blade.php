@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('issue', 'active')
+
 @section('content')
     <div class="row">
         <div class="card">
@@ -10,8 +12,8 @@
                         <a href="/issue?status=open" class="btn btn-{{ $status == 'open' ? 'info' : 'secondary' }}">Open</a>
                         <a href="/issue?status=progress"
                             class="btn btn-{{ $status == 'progress' ? 'info' : 'secondary' }}">Progress</a>
-                        <a href="/issue?status=closed"
-                            class="btn btn-{{ $status == 'closed' ? 'info' : 'secondary' }}">Closed</a>
+                        <a href="/issue?status=close"
+                            class="btn btn-{{ $status == 'close' ? 'info' : 'secondary' }}">Close</a>
                         <a href="/issue?status=reject"
                             class="btn btn-{{ $status == 'reject' ? 'info' : 'secondary' }}">Reject</a>
                     </div>
@@ -48,7 +50,7 @@
                                 <td><b><i>{{ ucfirst($issue->status) }}</i></b></td>
                                 <td class="text-center">
                                     <div class="button-group">
-                                        <a href="home.php?view=issue_detail" class="btn btn-warning">
+                                        <a href="/detail-issue/{{ $issue->issue_id }}" class="btn btn-warning">
                                             <i style="font-size: 14px;" class="mdi mdi-eye-circle-outline"></i> Detail
                                         </a>
                                     </div>
@@ -75,18 +77,5 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        function toggleSwitchClicked() {
-            Swal.fire({
-                title: 'Reload Page?',
-                text: 'Do you want to reload the page?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'No'
-            }).then((result) => {
-                location.reload();
-            });
-        };
-    </script>
+
 @endsection

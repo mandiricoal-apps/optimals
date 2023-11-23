@@ -150,7 +150,8 @@
                                             <small>
                                                 {{ $summary->issue->issue }}<br><br>
                                                 <i><b>Status : {{ ucfirst($summary->issue->status) }} |
-                                                        <a href="#">Detail Issue <i
+                                                        <a href="/detail-issue/{{ $summary->issue->id }}"
+                                                            target="_blank">Detail Issue <i
                                                                 class="mdi mdi-arrow-top-right"></i></a>
                                                     </b></i>
                                             </small>

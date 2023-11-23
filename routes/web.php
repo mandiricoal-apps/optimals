@@ -105,5 +105,7 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::group(['middleware' => ['permission:view_issue']], function () {
         Route::get('/issue', [IssueController::class, 'index']);
+        Route::get('/detail-issue/{issue}', [IssueController::class, 'detail']);
+        Route::post('//change-status-issue/{issue}', [IssueController::class, 'changeStatus'])->middleware(['permission:edit_issue']);
     });
 });

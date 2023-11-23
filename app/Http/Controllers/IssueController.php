@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Issue;
+use App\Models\ProgressIssue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class IssueController extends Controller
@@ -28,5 +31,79 @@ class IssueController extends Controller
         $data['issues'] = $issues;
 
         return view('dashboard.issue', $data);
+    }
+
+    function detail(Issue $issue)
+    {
+        $data['breadcrumb'] = "detail_issue";
+        $data['title'] = "Issue " . $issue->code;
+        $data['issue'] = $issue;
+
+        if ($issue->status == 'progress') {
+            $color = 'primary';
+        } else if ($issue->status == 'close') {
+            $color = 'success';
+        } else if ($issue->status == 'reject') {
+            $color = 'danger';
+        } else {
+            $color = 'warning';
+        }
+        $data['color'] = $color;
+
+        return view('dashboard.detail_issue', $data);
+    }
+
+    function changeStatus(Request $request, Issue $issue)
+    {
+        $credentials = $request->validate([
+            'status' => 'required',
+            'closed_file' => 'max:10240|mimes:png,jpg,doc,docs,pdf,xlsx,docx',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $issue->status = $request->status;
+            $issue->updated_by = Auth::user()->id;
+            if (ProgressIssue::where('issue_id', '=', $issue->id)->count() > 0) {
+                $progressIssue = $issue->progressIssue;
+            } else {
+                $progressIssueNew = ProgressIssue::create(['issue_id' => $issue->id]);
+                $progressIssue = ProgressIssue::find($progressIssueNew)->first();
+            }
+            if ($request->status == 'progress') {
+                $progressIssue->progress_at = date(now());
+                $progressIssue->progress_by = Auth::user()->id;
+            } else if ($request->status == 'close') {
+                $progressIssue->closed_at = date(now());
+                $progressIssue->closed_by = Auth::user()->id;
+                $progressIssue->closed_reason = $request->reason;
+                if ($request->file('closed_file')) {
+                    $image = $request->file('closed_file');
+                    $filename = 'ATTCH' . date('ymd') . $image->getClientOriginalName();
+                    $folder = "attach_file";
+
+                    $image->storeAs($folder, $filename, ['disk' => 'public']);
+                    $progressIssue->closed_file = $filename;
+                }
+            } else if ($request->status == 'reject') {
+                $progressIssue->rejected_at = date(now());
+                $progressIssue->rejected_by = Auth::user()->id;
+                $progressIssue->rejected_reason = $request->reason;
+            }
+
+            $issue->save();
+            $progressIssue->save();
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->withErrors([
+                'issue' => $th->getMessage(),
+            ]);
+        }
+
+
+
+        return back();
     }
 }
