@@ -145,7 +145,7 @@
                                                         <p class="mt-3">Issue has been <b>Closed </b> by
                                                             {{ $issue->progressIssue->userClosed->name }} at
                                                             {{ date('d M y H:i') }} <br>
-                                                            with reason: {{ $issue->progressIssue->rejected_reason }}.
+                                                            with reason: {{ $issue->progressIssue->closed_reason }}.
                                                         </p>
                                                         @if ($issue->progressIssue->closed_file)
                                                             <a href="{{ asset('storage/attach_file/' . $issue->progressIssue->closed_file) }}"
