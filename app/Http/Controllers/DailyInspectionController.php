@@ -33,6 +33,7 @@ class DailyInspectionController extends Controller
             ->join('users', 'daily_inspections.create_by', '=', 'users.id')
             ->join('daily_inspection_summary', 'daily_inspection_summary.inspection_id', '=', 'daily_inspections.id')
             ->leftJoin('issue', 'issue.sumary_id', '=', 'daily_inspection_summary.id')
+            ->orderByDesc('created_at')
             ->where('area_id', '=', $area->id);
 
 

@@ -147,12 +147,14 @@
                         </a>
                     </li>
                 @endcan
-                <li class="nav-item">
-                    <a class="nav-link" type="button" onclick='window.location.replace("home.php?view=issue")'>
-                        <i class="mdi mdi-checkbox-multiple-blank-circle menu-icon"></i>
-                        <span class="menu-title">ISSUE</span>
-                    </a>
-                </li>
+                @can('view_issue')
+                    <li class="nav-item @yield('issue')">
+                        <a href="/issue" class="nav-link" type="button">
+                            <i class="mdi mdi-checkbox-multiple-blank-circle menu-icon"></i>
+                            <span class="menu-title">ISSUE</span>
+                        </a>
+                    </li>
+                @endcan
                 <li class="nav-item">
 
                     <!-- Active/Inactive -->
@@ -391,6 +393,7 @@
                         }
                     }
                 ],
+                order: [],
 
                 initComplete: function() {
                     var btns = $('.dt-button');
@@ -426,7 +429,7 @@
                         }
                     }
                 ],
-
+                order: [],
                 initComplete: function() {
                     var btns = $('.dt-button');
                     btns.addClass('btn btn-dark');

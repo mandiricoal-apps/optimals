@@ -81,3 +81,8 @@ Breadcrumbs::for('detail_daily_inspection', function (BreadcrumbTrail $trail) {
     $trail->parent('daily_inspection_perarea');
     $trail->push('Detail Daily Inspection', '/daily-inspection');
 });
+
+Breadcrumbs::for('issue', function (BreadcrumbTrail $trail) {
+    $trail->parent('transaction');
+    $trail->push('issue', '/issue');
+});

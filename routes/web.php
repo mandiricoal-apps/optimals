@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthApi;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DailyInspectionController;
+use App\Http\Controllers\IssueController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UserController;
@@ -101,5 +102,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/daily-inspection-detail/{dailyInspection}', [DailyInspectionController::class, 'detailDailyInspection']);
         Route::post('/edit-score/{dailyInspection}', [DailyInspectionController::class, 'editScore'])->middleware(['permission:edit_daily_inspection']);
         Route::get('/approve-daily-inspection/{dailyInspection}', [DailyInspectionController::class, 'approve'])->middleware(['permission:edit_daily_inspection']);
+    });
+    Route::group(['middleware' => ['permission:view_issue']], function () {
+        Route::get('/issue', [IssueController::class, 'index']);
     });
 });
