@@ -79,7 +79,7 @@ class IssueController extends Controller
                 $progressIssue->closed_reason = $request->reason;
                 if ($request->file('closed_file')) {
                     $image = $request->file('closed_file');
-                    $filename = 'ATTCH' . date('ymd') . $image->getClientOriginalName();
+                    $filename = 'ATTCH' . date('ymdhis') . $image->getClientOriginalName();
                     $folder = "attach_file";
 
                     $image->storeAs($folder, $filename, ['disk' => 'public']);
