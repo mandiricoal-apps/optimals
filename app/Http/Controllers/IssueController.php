@@ -68,8 +68,9 @@ class IssueController extends Controller
                 $progressIssue = $issue->progressIssue;
             } else {
                 $progressIssueNew = ProgressIssue::create(['issue_id' => $issue->id]);
-                $progressIssue = ProgressIssue::find($progressIssueNew)->first();
+                $progressIssue = ProgressIssue::find($progressIssueNew->id);
             }
+
             if ($request->status == 'progress') {
                 $progressIssue->progress_at = date(now());
                 $progressIssue->progress_by = Auth::user()->id;

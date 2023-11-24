@@ -93,9 +93,11 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
-                <li class="pt-2 pb-1">
-                    <span class="nav-item-head">Master Data</span>
-                </li>
+                @canany(['view_user', 'view_area', 'view_qna'])
+                    <li class="pt-2 pb-1">
+                        <span class="nav-item-head">Master Data</span>
+                    </li>
+                @endcanany
                 @can('view_user')
                     <li class="nav-item @yield('md-user')" id="parent">
                         <a class="nav-link " data-toggle="collapse" href="#ui-basic" aria-expanded="true"
@@ -136,9 +138,11 @@
                         </a>
                     </li>
                 @endcan
-                <li class="pt-2 pb-1">
-                    <span class="nav-item-head">Transactions</span>
-                </li>
+                @canany(['view_daily_inspection', 'view_issue'])
+                    <li class="pt-2 pb-1">
+                        <span class="nav-item-head">Transactions</span>
+                    </li>
+                @endcanany
                 @can('view_daily_inspection')
                     <li class="nav-item @yield('daily_inspection')">
                         <a class="nav-link" type="button" href="/daily-inspection">
@@ -155,7 +159,7 @@
                         </a>
                     </li>
                 @endcan
-                <li class="nav-item">
+                <li class="nav-item" id="parent">
 
                     <!-- Active/Inactive -->
                     <script type="text/javascript">
@@ -165,9 +169,7 @@
                                 icon: 'info',
                                 showCancelButton: false,
                                 confirmButtonText: 'Oke',
-                            }).then((result) => {
-                                location.reload();
-                            });
+                            })
                         };
                     </script>
                     <a class="nav-link" type="button" onclick="soons()">
@@ -183,9 +185,10 @@
             <!-- partial:partials/_navbar.html -->
             <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
                 <div class="navbar-menu-wrapper d-flex align-items-stretch" style="background: #dc3545;">
-                    <!-- <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-      <span class="mdi mdi-chevron-double-left"></span>
-     </button> -->
+                    {{-- <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                        data-toggle="minimize">
+                        <span class="mdi mdi-chevron-double-left"></span>
+                    </button> --}}
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown" id="parent">
                             <h5><i class="mdi mdi mdi-view-dashboard menu-icon"></i><i>GoodMiningPractice</i><small> |
