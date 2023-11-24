@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('issue_id')->nullable()->constrained('issue', 'id');
             $table->dateTime('progress_at')->nullable();
             $table->foreignId('progress_by')->nullable()->constrained('users', 'id');
+            $table->text('progress_reason')->nullable();
             $table->dateTime('closed_at')->nullable();
             $table->foreignId('closed_by')->nullable()->constrained('users', 'id');
             $table->string('closed_file')->nullable();

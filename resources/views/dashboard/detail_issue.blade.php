@@ -44,7 +44,8 @@
                                     <div class="row mb-3">
                                         <div class="col">
 
-                                            <span class="badge badge-{{ $color }}">{{ ucfirst($issue->status) }}
+                                            <span
+                                                class="badge badge-{{ $color }}">{{ ucfirst($issue->status == 'reject' ? 'Cancled' : $issue->status) }}
                                             </span>
 
                                         </div>
@@ -113,15 +114,21 @@
                                                                             {{ $issue->status == 'open' ? 'selected' : '' }}
                                                                             disabled>Open
                                                                         </option> --}}
-                                                                        <option
-                                                                            {{ $issue->status == 'progress' ? 'selected' : '' }}
-                                                                            value="progress">Progress</option>
-                                                                        <option
-                                                                            {{ $issue->status == 'close' ? 'selected' : '' }}
-                                                                            value="close">Close</option>
-                                                                        <option
-                                                                            {{ $issue->status == 'reject' ? 'selected' : '' }}
-                                                                            value="reject">Reject</option>
+                                                                        @can('progress_issue')
+                                                                            <option
+                                                                                {{ $issue->status == 'progress' ? 'selected' : '' }}
+                                                                                value="progress">Progress</option>
+                                                                        @endcan
+                                                                        @can('close_issue')
+                                                                            <option
+                                                                                {{ $issue->status == 'close' ? 'selected' : '' }}
+                                                                                value="close">Close</option>
+                                                                        @endcan
+                                                                        @can('cancle_issue')
+                                                                            <option
+                                                                                {{ $issue->status == 'reject' ? 'selected' : '' }}
+                                                                                value="reject">Reject</option>
+                                                                        @endcan
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-3">
@@ -133,7 +140,7 @@
                                                         @endif
                                                     @endcan
                                                     @if ($issue->status == 'reject')
-                                                        <p>Issue has been <b>Rejected</b> by
+                                                        <p>Issue has been <b>Cancled</b> by
                                                             {{ $issue->progressIssue->userRejected->name }} at
                                                             {{ date('d M y H:i') }} <br>
                                                             with reason: {{ $issue->progressIssue->rejected_reason }}.
@@ -141,7 +148,9 @@
                                                     @elseif ($issue->status == 'progress')
                                                         <p class="mt-3">Issue is being <b>progressed </b> by
                                                             {{ $issue->progressIssue->userProgress->name }} start at
-                                                            {{ date('d M y H:i') }}.
+                                                            {{ date('d M y H:i') }} <br>
+                                                            with reason:
+                                                            {{ $issue->progressIssue->progress_reason }}.
                                                         </p>
                                                     @elseif ($issue->status == 'close')
                                                         <p class="mt-3">Issue has been <b>Closed </b> by
@@ -186,7 +195,10 @@
                         @csrf
                         <input type="hidden" name="status" value="progress">
                         <p>Are you sure to <b>Progress</b> this issue ?</p>
-
+                        <div class="mb-3">
+                            <p>Please give reason <b class="text-danger">*</b></p>
+                            <textarea name="reason" id="reason" class="form-control" rows="3" placeholder="Reason" required></textarea>
+                        </div>
                         <div class="row">
                             <div class="col">
                                 <button class="btn btn-light form-control" data-dismiss="modal" aria-label="Close"><i

@@ -15,7 +15,7 @@
                         <a href="/issue?status=close"
                             class="btn btn-{{ $status == 'close' ? 'info' : 'secondary' }}">Close</a>
                         <a href="/issue?status=reject"
-                            class="btn btn-{{ $status == 'reject' ? 'info' : 'secondary' }}">Reject</a>
+                            class="btn btn-{{ $status == 'reject' ? 'info' : 'secondary' }}">Cancle</a>
                     </div>
 
                 </div>
@@ -47,7 +47,8 @@
                                             class="mdi mdi-link-variant"></i></a>
                                     <br><small class="mt-1">NIK : {{ $issue->nik }}</small>
                                 </td>
-                                <td><b><i>{{ ucfirst($issue->status) }}</i></b></td>
+                                <td><b><i>{{ ucfirst($issue->status == 'reject' ? 'Cancle' : $issue->status) }}</i></b>
+                                </td>
                                 <td class="text-center">
                                     <div class="button-group">
                                         <a href="/detail-issue/{{ $issue->issue_id }}" class="btn btn-warning">

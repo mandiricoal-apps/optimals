@@ -78,7 +78,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if ($user->syncRoles([$request->input('roles')])) {
-            return redirect('/user')->with('message', 'Berhasil mengedit user');
+            return redirect('/user?status=active')->with('message', 'Berhasil mengedit user');
         }
         return back()->onlyInput();
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Area;
 use App\Models\DailyInspection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -12,18 +13,36 @@ class DailyInspectionController extends Controller
 {
     function index()
     {
+
         $data['title'] = 'Daily Inspection';
         $data['breadcrumb'] = 'daily_inspection';
-        $data['areas'] = Area::get();
+
+        $areas = Area::withCount([
+            'dailyInspection' => function (Builder $query) {
+                $accesbilityData = Auth::user()->roles[0]->accesbility_data;
+                if ($accesbilityData == 'user_company') {
+                    $query->whereHas('user', function ($q) {
+                        return $q->where('company', '=', Auth::user()->company);
+                    });
+                }
+                $query->where('approved_at', '=', NULL);
+            },
+        ]);
+
+
+        $data['areas'] = $areas->get();
         return view('dashboard.daily_inspection', $data);
     }
 
     function perArea(Request $request, Area $area)
     {
+        $accesbilityData = Auth::user()->roles[0]->accesbility_data;
         $status = "not-approved";
         if ($request->status) {
             $status = $request->status;
         }
+
+
         $data['status'] = $status;
         $data['title'] = ($status == "not-approved" ? 'Open' : 'Close') . ' Daily Inspection in ' . $area->area_name . ' (' . $area->area_code . ')';
         $data['breadcrumb'] = 'daily_inspection_perarea';
@@ -35,7 +54,9 @@ class DailyInspectionController extends Controller
             ->leftJoin('issue', 'issue.sumary_id', '=', 'daily_inspection_summary.id')
             ->orderByDesc('created_at')
             ->where('area_id', '=', $area->id);
-
+        if ($accesbilityData == 'user_company') {
+            $dailyInspection = $dailyInspection->where('users.company', '=', Auth::user()->company);
+        }
 
         if ($status == "approved") {
             $dailyInspection = $dailyInspection->where("approved_at", "IS NOT", NULL);

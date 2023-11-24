@@ -12,6 +12,7 @@ class IssueController extends Controller
 {
     function index(Request $request)
     {
+        $accesbilityData = Auth::user()->roles[0]->accesbility_data;
         $data['breadcrumb'] = "issue";
         $status = 'open';
         if ($request->status) {
@@ -26,8 +27,11 @@ class IssueController extends Controller
             ->join('users', 'users.id', '=', 'daily_inspections.create_by')
             ->join('area', 'area.id', '=', 'daily_inspections.area_id')
             ->where('issue.status', '=', $status)
-            ->orderBy('issue.created_at', 'desc')
-            ->get(['issue.created_at', 'issue.status', 'issue.code as issue_code', 'issue.id as issue_id', 'daily_inspections.id as inspections_id', 'daily_inspections.code as inspection_code', 'area.area_name', 'users.name', 'users.id as user_id', 'users.nik']);
+            ->orderBy('issue.created_at', 'desc');
+        if ($accesbilityData == 'user_company') {
+            $issues->where('users.company', '=', Auth::user()->company);
+        }
+        $issues = $issues->get(['issue.created_at', 'issue.status', 'issue.code as issue_code', 'issue.id as issue_id', 'daily_inspections.id as inspections_id', 'daily_inspections.code as inspection_code', 'area.area_name', 'users.name', 'users.id as user_id', 'users.nik']);
         $data['issues'] = $issues;
 
         return view('dashboard.issue', $data);
@@ -74,6 +78,7 @@ class IssueController extends Controller
             if ($request->status == 'progress') {
                 $progressIssue->progress_at = date(now());
                 $progressIssue->progress_by = Auth::user()->id;
+                $progressIssue->progress_reason = $request->reason;
             } else if ($request->status == 'close') {
                 $progressIssue->closed_at = date(now());
                 $progressIssue->closed_by = Auth::user()->id;

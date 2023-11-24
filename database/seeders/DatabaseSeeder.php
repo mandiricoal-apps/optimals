@@ -21,10 +21,11 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $role = Role::create(['name' => 'admin', 'description' => 'Administrator']);
-        Role::create(['name' => 'operation', 'description' => 'Operation']);
-        Role::create(['name' => 'Reviewer MIP', 'description' => 'Reviewer MIP']);
-        Role::create(['name' => 'Reviewer MKP', 'description' => 'Reviewer MKP']);
+        $role = Role::create(['name' => 'admin', 'description' => 'Administrator', 'accesbility_data' => 'all']);
+        Role::create(['name' => 'Reviewer MIP', 'description' => 'Reviewer MIP', 'accesbility_data' => 'all']);
+        Role::create(['name' => 'Reviewer MKP', 'description' => 'Reviewer MKP', 'accesbility_data' => 'user_company']);
+        Role::create(['name' => 'Reviewer RML', 'description' => 'Reviewer RML', 'accesbility_data' => 'user_company']);
+        Role::create(['name' => 'Operational Team', 'description' => 'Operational Team', 'accesbility_data' => 'all']);
 
         Permission::create(['name' => 'view_user', 'parent' => '[MD] User', 'type' => 'view']);
         Permission::create(['name' => 'edit_user', 'parent' => '[MD] User', 'type' => 'edit']);
@@ -52,6 +53,12 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name' => 'view_issue', 'parent' => '[Trans] Issue', 'type' => 'view']);
         Permission::create(['name' => 'edit_issue', 'parent' => '[Trans] Issue', 'type' => 'edit']);
         Permission::create(['name' => 'delete_issue', 'parent' => '[Trans] Issue', 'type' => 'delete']);
+
+        Permission::create(['name' => 'progress_issue', 'parent' => '[Trans] Progress Issue', 'type' => 'view']);
+        Permission::create(['name' => 'close_issue', 'parent' => '[Trans] Close Issue', 'type' => 'view']);
+        Permission::create(['name' => 'cancle_issue', 'parent' => '[Trans] Cancle Issue', 'type' => 'view']);
+
+
 
         $user = new User();
         $user->name = 'Super Admin';
@@ -90,6 +97,11 @@ class DatabaseSeeder extends Seeder
         $role->givePermissionTo('view_issue');
         $role->givePermissionTo('edit_issue');
         $role->givePermissionTo('delete_issue');
+
+        $role->givePermissionTo('progress_issue');
+        $role->givePermissionTo('close_issue');
+        $role->givePermissionTo('cancle_issue');
+
 
         $user->assignRole($role);
 

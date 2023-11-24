@@ -90,10 +90,10 @@ class InspectionApi extends Controller
             case 3:
                 $validator = array_merge($validator, [
                     'location.disposal' => 'required',
-                    'location.blok_start' => 'required|min:1|max:1000|numeric',
-                    'location.blok_end' => 'required|min:1|max:1000|numeric',
-                    'location.strip_start' => 'required|min:1|max:1000|numeric',
-                    'location.strip_end' => 'required|min:1|max:1000|numeric',
+                    'location.blok_start' => 'min:1|max:1000|numeric',
+                    'location.blok_end' => 'min:1|max:1000|numeric',
+                    'location.strip_start' => 'min:1|max:1000|numeric',
+                    'location.strip_end' => 'min:1|max:1000|numeric',
                     'location.rl' => 'required|min:-20|max:20|numeric',
 
                 ]);
@@ -112,10 +112,10 @@ class InspectionApi extends Controller
             default:
                 $validator = array_merge($validator, [
                     'location.pit' => 'required',
-                    'location.blok_start' => 'required|min:1|max:1000|numeric',
-                    'location.blok_end' => 'required|min:1|max:1000|numeric',
-                    'location.strip_start' => 'required|min:1|max:1000|numeric',
-                    'location.strip_end' => 'required|min:1|max:1000|numeric',
+                    'location.blok_start' => 'min:1|max:1000|numeric',
+                    'location.blok_end' => 'min:1|max:1000|numeric',
+                    'location.strip_start' => 'min:1|max:1000|numeric',
+                    'location.strip_end' => 'min:1|max:1000|numeric',
                     'location.seam' => 'required',
                     'location.rl' => 'required|min:-20|max:20|numeric',
                     'location.no_unit' => 'required',

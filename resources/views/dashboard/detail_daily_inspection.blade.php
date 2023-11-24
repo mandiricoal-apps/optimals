@@ -57,7 +57,7 @@
                                                         <div>
                                                             <button class="btn btn-success" data-toggle="modal"
                                                                 data-target="#score-modal"><i style="font-size: 14px;"
-                                                                    class="mdi mdi-pencil-circle-outline"></i> Edit
+                                                                    class="mdi mdi-pencil-circle-outline"></i> Update
                                                                 Score</button>
                                                             <button class="btn btn-primary"
                                                                 onclick="approve({{ $dailyInspection->id }})"><i

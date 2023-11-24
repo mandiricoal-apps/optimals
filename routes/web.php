@@ -56,9 +56,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/employee-api', [UserController::class, 'employeeApi']);
 
 
+    Route::get('/modal-view-user/{id}', [UserController::class, 'modalViewuser']);
     Route::group(['middleware' => ['permission:view_user']], function () {
         Route::get('/user', [UserController::class, 'index']);
-        Route::get('/modal-view-user/{id}', [UserController::class, 'modalViewuser']);
         Route::get('/modal-add-user', [UserController::class, 'modalAdduser']);
         Route::get('/modal-edit-user/{id}', [UserController::class, 'modalEdituser']);
         Route::post('/create-user', [UserController::class, 'createUser'])->middleware(['permission:create_user']);
