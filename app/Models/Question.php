@@ -26,11 +26,11 @@ class Question extends Model
 
     function area()
     {
-        return $this->belongsTo(Area::class, 'area_id', 'id');
+        return $this->belongsTo(Area::class, 'area_id', 'id')->withTrashed();
     }
 
     function answer()
     {
-        return $this->hasMany(Answer::class, 'question_id', 'id');
+        return $this->hasMany(Answer::class, 'question_id', 'id')->withTrashed();
     }
 }

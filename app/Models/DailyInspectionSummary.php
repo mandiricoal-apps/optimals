@@ -14,15 +14,15 @@ class DailyInspectionSummary extends Model
 
     function inspection()
     {
-        return $this->belongsTo(DailyInspection::class, 'inspection_id', 'id');
+        return $this->belongsTo(DailyInspection::class, 'inspection_id', 'id')->withTrashed();
     }
     function question()
     {
-        return $this->belongsTo(Question::class, 'question_id', 'id');
+        return $this->belongsTo(Question::class, 'question_id', 'id')->withTrashed();
     }
     function answer()
     {
-        return $this->belongsTo(Answer::class, 'answer_id', 'id');
+        return $this->belongsTo(Answer::class, 'answer_id', 'id')->withTrashed();
     }
     function issue()
     {

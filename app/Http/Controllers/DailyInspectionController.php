@@ -55,7 +55,7 @@ class DailyInspectionController extends Controller
     {
         $data['title'] = 'Daily Inspection ' . $dailyInspection->code;
         $data['breadcrumb'] = 'detail_daily_inspection';
-        $dailyInspection->load('summary', 'location', 'summary.question', 'summary.answer', 'summary.issue');
+        $dailyInspection->load('summary', 'location', 'summary.question', 'summary.answer', 'summary.issue', 'user');
         $location = $dailyInspection->location;
         $dataLocation = [];
         switch ($dailyInspection->area_id) {

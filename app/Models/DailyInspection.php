@@ -25,7 +25,7 @@ class DailyInspection extends Model
 
     function area()
     {
-        return $this->belongsTo(Area::class, 'area_id', 'id');
+        return $this->belongsTo(Area::class, 'area_id', 'id')->withTrashed();
     }
 
     function summary()
@@ -38,14 +38,14 @@ class DailyInspection extends Model
     }
     function user()
     {
-        return $this->belongsTo(User::class, 'create_by', 'id');
+        return $this->belongsTo(User::class, 'create_by', 'id')->withTrashed();
     }
     function userUpdateScore()
     {
-        return $this->belongsTo(User::class, 'score_update_by', 'id');
+        return $this->belongsTo(User::class, 'score_update_by', 'id')->withTrashed();
     }
     function userapprove()
     {
-        return $this->belongsTo(User::class, 'approved_by', 'id');
+        return $this->belongsTo(User::class, 'approved_by', 'id')->withTrashed();
     }
 }

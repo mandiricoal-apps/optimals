@@ -25,6 +25,6 @@ class Answer extends Model
 
     function question()
     {
-        return $this->belongsTo(Question::class, 'question_id', 'id');
+        return $this->belongsTo(Question::class, 'question_id', 'id')->withTrashed();
     }
 }

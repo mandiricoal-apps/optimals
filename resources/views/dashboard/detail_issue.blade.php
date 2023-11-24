@@ -64,10 +64,12 @@
                                                     <div class="col-3 my-auto text-center">
                                                         <img src="{{ asset('storage/issue_photo/' . $item) }}"
                                                             class="img-fluid" id="img-location" alt="{{ $item }}"
-                                                            data-toggle="modal" data-target="#img-modal">
+                                                            data-toggle="modal"
+                                                            data-target="#img-modal{{ $loop->iteration }}">
                                                     </div>
-                                                    <div class="modal fade" id="img-modal" tabindex="-1" role="dialog"
-                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="img-modal{{ $loop->iteration }}"
+                                                        tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
                                                         <div class="modal-dialog modal-md modal-dialog-centered"
                                                             role="document" style="width: fit-content">
                                                             <div class="modal-content">
@@ -89,7 +91,7 @@
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th width="">Answer<br><br>
+                                                <th width="" style="white-space: normal">Answer<br><br>
                                                     <small>{{ $issue->summary->answer->answer }}</small>
                                                 </th>
                                             </tr>
