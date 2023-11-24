@@ -43,6 +43,9 @@ Route::get('/migrate-refresh', function () {
 Route::get('/seed', function () {
     return Artisan::call('db:seed');
 });
+Route::get('/simbolik', function () {
+    return Artisan::call('storage:link');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
