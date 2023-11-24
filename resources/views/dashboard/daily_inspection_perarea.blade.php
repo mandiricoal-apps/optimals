@@ -29,10 +29,8 @@
                     <tbody>
                         @foreach ($daily_inspections as $di)
                             <tr>
-                                <td>{{ date('d M Y', strtotime($di->created_at)) }} <br>
-                                    <b>
-                                        {{ date('H:i', strtotime($di->created_at)) }}
-                                    </b>
+                                <td>
+                                    {!! tanggalTable($di->created_at) !!}
                                 </td>
                                 <td>
                                     {{ $di->code }}

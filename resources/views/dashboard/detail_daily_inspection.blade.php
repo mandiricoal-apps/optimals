@@ -68,7 +68,7 @@
                                                 @else
                                                     <p class="card-text"><small class="text-muted">Approved by
                                                             <b>{{ $dailyInspection->userapprove->name }}</b> at
-                                                            {{ date('d M Y H:i', strtotime($dailyInspection->approved_at)) }}</small>
+                                                            {{ tanggalText($dailyInspection->approved_at) }}</small>
                                                     </p>
                                                 @endif
                                             </div>
@@ -80,7 +80,7 @@
                                     <p class="m-0 text-black">{{ $dailyInspection->code }}</p>
                                     <span class="font-12 text-muted">Creation Date : </span>
                                     <p class="m-0 text-black">
-                                        {{ date('d M Y H:i', strtotime($dailyInspection->created_at)) }}
+                                        {{ tanggalText($dailyInspection->created_at) }}
                                     </p>
                                     <span class="font-12 text-muted">Area : </span>
                                     <p class="m-0 text-black"> {{ $dailyInspection->area->area_name }}</p>

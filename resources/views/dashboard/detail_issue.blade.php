@@ -30,7 +30,7 @@
                                     <p class="m-0 text-black">{{ $issue->summary->inspection->code }}</p>
                                     <span class="font-12 text-muted">Creation Date : </span>
                                     <p class="m-0 text-black">
-                                        {{ date('d M Y H:i', strtotime($issue->summary->inspection->created_at)) }} </p>
+                                        {{ tanggalText($issue->summary->inspection->created_at) }} </p>
                                     <span class="font-12 text-muted">Area : </span>
                                     <p class="m-0 text-black"> {{ $issue->summary->inspection->area->area_name }}</p>
                                     <span class="font-12 text-muted">Submitter : </span>
@@ -142,20 +142,20 @@
                                                     @if ($issue->status == 'reject')
                                                         <p>Issue has been <b>Cancled</b> by
                                                             {{ $issue->progressIssue->userRejected->name }} at
-                                                            {{ date('d M y H:i') }} <br>
+                                                            {{ tanggalText($issue->progressIssue->rejected_at) }} <br>
                                                             with reason: {{ $issue->progressIssue->rejected_reason }}.
                                                         </p>
                                                     @elseif ($issue->status == 'progress')
                                                         <p class="mt-3">Issue is being <b>progressed </b> by
                                                             {{ $issue->progressIssue->userProgress->name }} start at
-                                                            {{ date('d M y H:i') }} <br>
+                                                            {{ tanggalText($issue->progressIssue->progress_at) }} <br>
                                                             with reason:
                                                             {{ $issue->progressIssue->progress_reason }}.
                                                         </p>
                                                     @elseif ($issue->status == 'close')
                                                         <p class="mt-3">Issue has been <b>Closed </b> by
                                                             {{ $issue->progressIssue->userClosed->name }} at
-                                                            {{ date('d M y H:i') }} <br>
+                                                            {{ tanggalText($issue->progressIssue->closed_at) }} <br>
                                                             with reason: {{ $issue->progressIssue->closed_reason }}.
                                                         </p>
                                                         @if ($issue->progressIssue->closed_file)

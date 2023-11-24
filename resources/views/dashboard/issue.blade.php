@@ -33,9 +33,7 @@
                     <tbody>
                         @foreach ($issues as $issue)
                             <tr>
-                                <td>{{ date('d M Y', strtotime($issue->created_at)) }} <br>
-                                    <b>{{ date('H:i', strtotime($issue->created_at)) }}</b>
-                                </td>
+                                <td>{!! tanggalTable($issue->created_at) !!}</td>
                                 <td>{{ $issue->issue_code }}</td>
                                 <td><a href="/daily-inspection-detail/{{ $issue->inspections_id }}"
                                         target="_blank">{{ $issue->inspection_code }}
