@@ -53,18 +53,25 @@
                                             </div>
                                             <div class="card-body flex-wrap mb-0 px-2">
                                                 @if ($dailyInspection->approved_at == null)
-                                                    @can('edit_daily_inspection')
-                                                        <div>
-                                                            <button class="btn btn-success" data-toggle="modal"
-                                                                data-target="#score-modal"><i style="font-size: 14px;"
-                                                                    class="mdi mdi-pencil-circle-outline"></i> Update
-                                                                Score</button>
-                                                            <button class="btn btn-primary"
-                                                                onclick="approve({{ $dailyInspection->id }})"><i
-                                                                    style="font-size: 14px;" class="mdi mdi-check"></i>
-                                                                Approve</button>
-                                                        </div>
-                                                    @endcan
+                                                    @if (tanggal2bulandepan($dailyInspection->created_at) == false)
+                                                        @can('edit_daily_inspection')
+                                                            <div>
+                                                                <button class="btn btn-success" data-toggle="modal"
+                                                                    data-target="#score-modal"><i style="font-size: 14px;"
+                                                                        class="mdi mdi-pencil-circle-outline"></i> Update
+                                                                    Score</button>
+                                                                <button class="btn btn-primary"
+                                                                    onclick="approve({{ $dailyInspection->id }})"><i
+                                                                        style="font-size: 14px;" class="mdi mdi-check"></i>
+                                                                    Approve</button>
+                                                            </div>
+                                                        @endcan
+                                                    @else
+                                                        <p class="card-text"><small class="text-muted">Approved by
+                                                                <b>System</b> at
+                                                                {{ tanggalText(date('Y-m-02 H:i:s', strtotime($dailyInspection->created_at . ' +1 months'))) }}</small>
+                                                        </p>
+                                                    @endif
                                                 @else
                                                     <p class="card-text"><small class="text-muted">Approved by
                                                             <b>{{ $dailyInspection->userapprove->name }}</b> at

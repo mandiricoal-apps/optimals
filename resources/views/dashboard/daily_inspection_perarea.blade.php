@@ -47,7 +47,14 @@
                                     <br><small class="mt-1">NIK : {{ $di->nik }}</small>
                                 </td>
                                 <td>
-                                    <b><i>{{ $di->approved_at ? 'Approved' : 'Not Approved' }}</i></b>
+
+                                    @if ($di->approved_at)
+                                        <b><i>Approved</i></b>
+                                    @else
+                                        <b><i>{{ tanggal2bulandepan($di->created_at) ? 'Approved by System' : 'Not Approved' }}</i></b>
+                                    @endif
+
+
                                 </td>
                                 <td class="text-center">
                                     <div class="button-group">

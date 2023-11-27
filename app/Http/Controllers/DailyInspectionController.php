@@ -26,6 +26,13 @@ class DailyInspectionController extends Controller
                     });
                 }
                 $query->where('approved_at', '=', NULL);
+                $query->whereRaw('NOW() < DATE_ADD(
+                    DATE_ADD(
+                        LAST_DAY(daily_inspections.created_at) + INTERVAL 2 DAY,
+                        INTERVAL 0 DAY
+                    ),
+                    INTERVAL TIME_TO_SEC(TIME(daily_inspections.created_at)) SECOND
+                )');
             },
         ]);
 
@@ -53,15 +60,28 @@ class DailyInspectionController extends Controller
             ->join('daily_inspection_summary', 'daily_inspection_summary.inspection_id', '=', 'daily_inspections.id')
             ->leftJoin('issue', 'issue.sumary_id', '=', 'daily_inspection_summary.id')
             ->orderByDesc('created_at')
+
             ->where('area_id', '=', $area->id);
         if ($accesbilityData == 'user_company') {
             $dailyInspection = $dailyInspection->where('users.company', '=', Auth::user()->company);
         }
 
         if ($status == "approved") {
-            $dailyInspection = $dailyInspection->where("approved_at", "IS NOT", NULL);
+            $dailyInspection = $dailyInspection->where("approved_at", "IS NOT", NULL)->orWhereRaw('NOW() > DATE_ADD(
+                DATE_ADD(
+                    LAST_DAY(daily_inspections.created_at) + INTERVAL 2 DAY,
+                    INTERVAL 0 DAY
+                ),
+                INTERVAL TIME_TO_SEC(TIME(daily_inspections.created_at)) SECOND
+            )');
         } else {
-            $dailyInspection = $dailyInspection->where("approved_at", "=", NULL);
+            $dailyInspection = $dailyInspection->where("approved_at", "=", NULL)->whereRaw('NOW() < DATE_ADD(
+                DATE_ADD(
+                    LAST_DAY(daily_inspections.created_at) + INTERVAL 2 DAY,
+                    INTERVAL 0 DAY
+                ),
+                INTERVAL TIME_TO_SEC(TIME(daily_inspections.created_at)) SECOND
+            )');
         }
         $dailyInspection = $dailyInspection->groupBy('daily_inspections.id');
         $dailyInspection = $dailyInspection->get();

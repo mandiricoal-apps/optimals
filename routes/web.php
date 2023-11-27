@@ -47,10 +47,6 @@ Route::get('/simbolik', function () {
     return Artisan::call('storage:link');
 });
 
-Route::get('/run-helper', function () {
-    exec('composer dump-autoload');
-    echo 'composer dump-autoload complete';
-});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);

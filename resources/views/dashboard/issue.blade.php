@@ -60,7 +60,8 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Status</th>
+                            <th>Creation Date</th>
+                            <th>Issue Code</th>
                             <th>Daily Inspection</th>
                             <th>Submitter</th>
                             <th>Status</th>

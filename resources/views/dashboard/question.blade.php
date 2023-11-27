@@ -132,6 +132,7 @@
                         <tr>
                             <th>Status</th>
                             <th>Numbering</th>
+                            <th>Code</th>
                             <th>Question</th>
                             <th>Weight</th>
                             <th class="text-center">Action</th>
