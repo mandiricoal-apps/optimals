@@ -361,8 +361,8 @@
         $(document).ready(function() {
             hideLoader();
 
-            $('.nav-item').click(function() {
-                if (!($(this).attr('id') == 'parent')) {
+            $('.nav-link').click(function() {
+                if (!($(this).parent('.nav-item').attr('id') == 'parent')) {
                     showLoader();
                 }
             })

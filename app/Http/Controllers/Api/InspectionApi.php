@@ -157,7 +157,6 @@ class InspectionApi extends Controller
 
     function uploadMultipleImage(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'image_file.*' => 'required|image|mimes:jpg,jpeg,png|max:10240',
             'type' => 'required'
@@ -184,5 +183,26 @@ class InspectionApi extends Controller
         } else {
             return response()->json(['message' => 'File gagal di-upload'], 400);
         }
+    }
+
+    function getDailyInspectionByUser(Request $request, $user_id)
+    {
+        $ofset = 0;
+        $limit = 10;
+        $dailyInspections = DailyInspection::with(['summary', 'location', 'summary.question', 'summary.answer', 'summary.issue'])
+            ->where('create_by', '=', $user_id);
+        if ($request->start) {
+            $dailyInspections = $dailyInspections->where('daily_inspections.created_at', '>=', $request->start . ' 00:00:00');
+        }
+        if ($request->end) {
+            $dailyInspections = $dailyInspections->where('daily_inspections.created_at', '<=', $request->end . ' 23:59:59');
+        }
+        if ($request->area) {
+            $dailyInspections = $dailyInspections->where('daily_inspections.area+id', '=', $request->area);
+        }
+        $dailyInspections = $dailyInspections->skip($ofset)->take($limit)->orderByDesc('created_at');
+        $dailyInspections = $dailyInspections->get();
+
+        return response()->json(['message' => 'Daily Inspections', 'data' => $dailyInspections], 200);
     }
 }

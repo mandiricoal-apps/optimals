@@ -19,7 +19,6 @@
             <div class="col-2 my-auto">
                 <button type="submit" class="btn btn-success btn-sm">
                     <span style="font-size: 20px;" class="mdi mdi-magnify"></span>
-
                 </button>
             </div>
         </div>
