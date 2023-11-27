@@ -26,8 +26,15 @@ class IssueController extends Controller
             ->join('daily_inspections', 'daily_inspections.id', '=', 'daily_inspection_summary.inspection_id')
             ->join('users', 'users.id', '=', 'daily_inspections.create_by')
             ->join('area', 'area.id', '=', 'daily_inspections.area_id')
-            ->where('issue.status', '=', $status)
-            ->orderBy('issue.created_at', 'desc');
+            ->where('issue.status', '=', $status);
+
+        if ($request->start) {
+            $issues = $issues->where('issue.created_at', '>=', $request->start . ' 00:00:00');
+        }
+        if ($request->end) {
+            $issues = $issues->where('issue.created_at', '<=', $request->end . ' 23:59:59');
+        }
+        $issues =  $issues->orderBy('issue.created_at', 'desc');
         if ($accesbilityData == 'user_company') {
             $issues->where('users.company', '=', Auth::user()->company);
         }

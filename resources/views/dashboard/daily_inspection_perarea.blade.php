@@ -5,14 +5,19 @@
 
         <div class="card">
             <div class="card-body">
+
                 <div class="row mb-1">
-                    <div class="col">
+                    <div class="col-5">
                         <i class="mdi mdi-filter-variant"></i> Filter by :
                         <a class="btn btn-{{ $status == 'not-approved' ? 'info' : 'secondary' }}"
                             href="/daily-inspection-area/{{ $area_id }}?status=not-approved">Not
                             Approved</a>
                         <a class="btn btn-{{ $status == 'approved' ? 'info' : 'secondary' }}"
                             href="/daily-inspection-area/{{ $area_id }}?status=approved">Approved</a>
+                    </div>
+                    <div class="col-7">
+                        <x-filter_data
+                            url="{{ $status == 'not-approved' ? '/daily-inspection-area/' . $area_id . '?status=not-approved' : '/daily-inspection-area/' . $area_id . '?status=approved' }}" />
                     </div>
 
                 </div>

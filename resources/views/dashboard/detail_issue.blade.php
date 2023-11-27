@@ -45,7 +45,7 @@
                                         <div class="col">
 
                                             <span
-                                                class="badge badge-{{ $color }}">{{ ucfirst($issue->status == 'reject' ? 'Cancled' : $issue->status) }}
+                                                class="badge badge-{{ $color }}">{{ ucfirst($issue->status == 'reject' ? 'Canceled' : $issue->status) }}
                                             </span>
 
                                         </div>
@@ -140,7 +140,7 @@
                                                         @endif
                                                     @endcan
                                                     @if ($issue->status == 'reject')
-                                                        <p>Issue has been <b>Cancled</b> by
+                                                        <p>Issue has been <b>Canceled</b> by
                                                             {{ $issue->progressIssue->userRejected->name }} at
                                                             {{ tanggalText($issue->progressIssue->rejected_at) }} <br>
                                                             with reason: {{ $issue->progressIssue->rejected_reason }}.

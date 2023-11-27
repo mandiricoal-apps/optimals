@@ -83,6 +83,13 @@ class DailyInspectionController extends Controller
                 INTERVAL TIME_TO_SEC(TIME(daily_inspections.created_at)) SECOND
             )');
         }
+
+        if ($request->start) {
+            $dailyInspection = $dailyInspection->where('daily_inspections.created_at', '>=', $request->start . ' 00:00:00');
+        }
+        if ($request->end) {
+            $dailyInspection = $dailyInspection->where('daily_inspections.created_at', '<=', $request->end . ' 23:59:59');
+        }
         $dailyInspection = $dailyInspection->groupBy('daily_inspections.id');
         $dailyInspection = $dailyInspection->get();
 
