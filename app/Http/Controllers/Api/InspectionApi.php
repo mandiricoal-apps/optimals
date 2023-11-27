@@ -187,8 +187,14 @@ class InspectionApi extends Controller
 
     function getDailyInspectionByUser(Request $request, $user_id)
     {
-        $ofset = 0;
+        $offset = 0;
         $limit = 10;
+        if ($request->offset) {
+            $offset = $request->offset;
+        }
+        if ($request->limit) {
+            $limit = $request->limit;
+        }
         $dailyInspections = DailyInspection::with(['summary', 'location', 'summary.question', 'summary.answer', 'summary.issue'])
             ->where('create_by', '=', $user_id);
         if ($request->start) {
@@ -198,9 +204,9 @@ class InspectionApi extends Controller
             $dailyInspections = $dailyInspections->where('daily_inspections.created_at', '<=', $request->end . ' 23:59:59');
         }
         if ($request->area) {
-            $dailyInspections = $dailyInspections->where('daily_inspections.area+id', '=', $request->area);
+            $dailyInspections = $dailyInspections->where('daily_inspections.area_id', '=', $request->area);
         }
-        $dailyInspections = $dailyInspections->skip($ofset)->take($limit)->orderByDesc('created_at');
+        $dailyInspections = $dailyInspections->skip($offset)->take($limit)->orderByDesc('created_at');
         $dailyInspections = $dailyInspections->get();
 
         return response()->json(['message' => 'Daily Inspections', 'data' => $dailyInspections], 200);
