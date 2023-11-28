@@ -90,10 +90,10 @@ class InspectionApi extends Controller
             case 3:
                 $validator = array_merge($validator, [
                     'location.disposal' => 'required',
-                    'location.blok_start' => 'max:1000|numeric',
-                    'location.blok_end' => 'max:1000|numeric',
-                    'location.strip_start' => 'max:1000|numeric',
-                    'location.strip_end' => 'max:1000|numeric',
+                    'location.blok_start' => 'nullable|min:1|max:1000|numeric',
+                    'location.blok_end' => 'nullable|min:1|max:1000|numeric',
+                    'location.strip_start' => 'nullable|min:1|max:1000|numeric',
+                    'location.strip_end' => 'nullable|min:1|max:1000|numeric',
                     'location.rl' => 'required|min:-300|max:150|numeric',
 
                 ]);
@@ -106,16 +106,16 @@ class InspectionApi extends Controller
             case 5:
                 $validator = array_merge($validator, [
                     'location.nama_jalan' => 'required',
-                    'location.segmen' => 'required',
+                    // 'location.segmen' => 'required',
                 ]);
                 break;
             default:
                 $validator = array_merge($validator, [
                     'location.pit' => 'required',
-                    'location.blok_start' => 'max:1000|numeric',
-                    'location.blok_end' => 'max:1000|numeric',
-                    'location.strip_start' => 'max:1000|numeric',
-                    'location.strip_end' => 'max:1000|numeric',
+                    'location.blok_start' => 'nullable|min:1|max:1000|numeric',
+                    'location.blok_end' => 'nullable|min:1|max:1000|numeric',
+                    'location.strip_start' => 'nullable|min:1|max:1000|numeric',
+                    'location.strip_end' => 'nullable|min:1|max:1000|numeric',
                     'location.seam' => 'required',
                     'location.rl' => 'required|min:-300|max:150|numeric',
                     // 'location.no_unit' => 'required',
