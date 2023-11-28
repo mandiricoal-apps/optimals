@@ -118,7 +118,7 @@ class InspectionApi extends Controller
                     'location.strip_end' => 'max:1000|numeric',
                     'location.seam' => 'required',
                     'location.rl' => 'required|min:-300|max:150|numeric',
-                    'location.no_unit' => 'required',
+                    // 'location.no_unit' => 'required',
                 ]);
                 break;
         }
