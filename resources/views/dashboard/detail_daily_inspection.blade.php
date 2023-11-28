@@ -191,12 +191,12 @@
                                     <div class="form-group">
                                         <label for="">Point</label><span style="color:red;">*</span>
                                         <input type="number" class="form-control" id=""
-                                            value="{{ $dailyInspection->total_score }}" name="score" required="">
+                                            value="{{ $dailyInspection->total_score }}" max="100" min="1"
+                                            step="any" name="score" required="">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Reason</label><span style="color:red;">*</span>
-                                        <textarea class="form-control" id="" value="{{ $dailyInspection->total_score }}" name="reason_score"
-                                            required="" rows="3"></textarea>
+                                        <textarea class="form-control" id="" name="reason_score" required="" rows="3"></textarea>
                                     </div>
                                     <hr>
                                     <div class="row">

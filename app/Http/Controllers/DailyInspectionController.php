@@ -61,19 +61,29 @@ class DailyInspectionController extends Controller
             ->leftJoin('issue', 'issue.sumary_id', '=', 'daily_inspection_summary.id')
             ->orderByDesc('created_at')
 
-            ->where('area_id', '=', $area->id);
+            ->where('daily_inspections.area_id', '=', $area->id);
         if ($accesbilityData == 'user_company') {
             $dailyInspection = $dailyInspection->where('users.company', '=', Auth::user()->company);
         }
 
+
+
+        if ($request->start) {
+            $dailyInspection = $dailyInspection->where('daily_inspections.created_at', '>=', $request->start . ' 00:00:00');
+        }
+        if ($request->end) {
+            $dailyInspection = $dailyInspection->where('daily_inspections.created_at', '<=', $request->end . ' 23:59:59');
+        }
         if ($status == "approved") {
-            $dailyInspection = $dailyInspection->where("approved_at", "IS NOT", NULL)->orWhereRaw('NOW() > DATE_ADD(
-                DATE_ADD(
-                    LAST_DAY(daily_inspections.created_at) + INTERVAL 2 DAY,
-                    INTERVAL 0 DAY
-                ),
-                INTERVAL TIME_TO_SEC(TIME(daily_inspections.created_at)) SECOND
-            )');
+            $dailyInspection = $dailyInspection->where(function ($query) {
+                $query->where("approved_at", "IS NOT", NULL)->orWhereRaw('NOW() > DATE_ADD(
+                    DATE_ADD(
+                        LAST_DAY(daily_inspections.created_at) + INTERVAL 2 DAY,
+                        INTERVAL 0 DAY
+                    ),
+                    INTERVAL TIME_TO_SEC(TIME(daily_inspections.created_at)) SECOND
+                )');
+            });
         } else {
             $dailyInspection = $dailyInspection->where("approved_at", "=", NULL)->whereRaw('NOW() < DATE_ADD(
                 DATE_ADD(
@@ -82,13 +92,6 @@ class DailyInspectionController extends Controller
                 ),
                 INTERVAL TIME_TO_SEC(TIME(daily_inspections.created_at)) SECOND
             )');
-        }
-
-        if ($request->start) {
-            $dailyInspection = $dailyInspection->where('daily_inspections.created_at', '>=', $request->start . ' 00:00:00');
-        }
-        if ($request->end) {
-            $dailyInspection = $dailyInspection->where('daily_inspections.created_at', '<=', $request->end . ' 23:59:59');
         }
         $dailyInspection = $dailyInspection->groupBy('daily_inspections.id');
         $dailyInspection = $dailyInspection->get();
