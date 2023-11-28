@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('code', 100)->unique();
             $table->foreignId('create_by')->constrained('users', 'id');
             $table->foreignId('area_id')->constrained('area', 'id');
-            $table->double('total_score');
+            $table->float('total_score');
             $table->text('reason_score')->nullable();
             $table->foreignId('score_update_by')->nullable()->constrained('users', 'id');
             $table->foreignId('approved_by')->nullable()->constrained('users', 'id');
