@@ -14,15 +14,15 @@ class ProgressIssue extends Model
 
     function userProgress()
     {
-        return $this->belongsTo(User::class, 'progress_by', 'id')->withTrashed();
+        return $this->belongsTo(User::class, 'progress_by', 'id');
     }
     function userClosed()
     {
-        return $this->belongsTo(User::class, 'closed_by', 'id')->withTrashed();
+        return $this->belongsTo(User::class, 'closed_by', 'id');
     }
     function userRejected()
     {
-        return $this->belongsTo(User::class, 'rejected_by', 'id')->withTrashed();
+        return $this->belongsTo(User::class, 'rejected_by', 'id');
     }
     function issue()
     {

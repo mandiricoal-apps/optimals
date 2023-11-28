@@ -59,6 +59,10 @@
             transform: scale(1.1);
             /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
         }
+
+        th {
+            font-weight: bold !important;
+        }
     </style>
     @yield('css')
 </head>
@@ -226,6 +230,20 @@
 
             <div class="main-panel">
                 <div class="content-wrapper px-5 ">
+                    <div class="row">
+                        <div class="page-header p-0">
+                            <h3 class="page-title">{{ $title }}</h3>
+                            @if (isset($breadcrumb))
+                                {{ Breadcrumbs::render($breadcrumb) }}
+                            @endif
+                            {{-- <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">UI Elements</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"> Buttons </li>
+                                </ol>
+                            </nav> --}}
+                        </div>
+                    </div>
                     @if (session('message'))
                         <div class="row">
                             <div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -251,20 +269,7 @@
                             </button>
                         </div>
                     @endif
-                    <div class="row">
-                        <div class="page-header p-0">
-                            <h3 class="page-title">{{ $title }}</h3>
-                            @if (isset($breadcrumb))
-                                {{ Breadcrumbs::render($breadcrumb) }}
-                            @endif
-                            {{-- <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">UI Elements</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"> Buttons </li>
-                                </ol>
-                            </nav> --}}
-                        </div>
-                    </div>
+
                     @yield('content')
                 </div>
                 <footer class="footer">

@@ -99,6 +99,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/answer/{question}', [QuestionController::class, 'answer']);
         Route::post('/create-answer', [QuestionController::class, 'createAnswer'])->middleware(['permission:create_qna']);
         Route::post('/edit-answer/{id}', [QuestionController::class, 'editAnswer'])->middleware(['permission:edit_qna']);
+        Route::get('/inactive-answer/{answer}', [QuestionController::class, 'inactiveAnswer'])->middleware(['permission:delete_qna']);
+        Route::get('/active-answer/{id}', [QuestionController::class, 'activeAnswer'])->middleware(['permission:delete_qna']);
     });
     Route::group(['middleware' => ['permission:view_daily_inspection']], function () {
         Route::get('/daily-inspection', [DailyInspectionController::class, 'index']);

@@ -26,6 +26,7 @@
                         <tr>
                             <th>Creation Date</th>
                             <th>Daily Inspection</th>
+                            <th>Score</th>
                             <th>Submitter</th>
                             <th>Status</th>
                             <th class="text-center">Action</th>
@@ -45,6 +46,9 @@
                                             title="{{ $di->issue }} issue"></i>
                                     @endif
                                     <br><small>Area : {{ $area_name }}</small>
+                                </td>
+                                <td>
+                                    {{ $di->total_score }}
                                 </td>
                                 <td>
                                     <a href="#" onclick="modalUser({{ $di->user_id }})">{{ $di->name }} <i
@@ -77,6 +81,7 @@
                         <tr>
                             <th>Creation Date</th>
                             <th>Daily Inspection</th>
+                            <th>Score</th>
                             <th>Submitter</th>
                             <th>Status</th>
                             <th class="text-center">Action</th>

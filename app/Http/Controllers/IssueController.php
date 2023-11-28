@@ -38,7 +38,7 @@ class IssueController extends Controller
         if ($accesbilityData == 'user_company') {
             $issues->where('users.company', '=', Auth::user()->company);
         }
-        $issues = $issues->get(['issue.created_at', 'issue.status', 'issue.code as issue_code', 'issue.id as issue_id', 'daily_inspections.id as inspections_id', 'daily_inspections.code as inspection_code', 'area.area_name', 'users.name', 'users.id as user_id', 'users.nik']);
+        $issues = $issues->get(['issue.created_at', 'issue.status', 'issue.code as issue_code', 'issue.id as issue_id', 'daily_inspections.id as inspections_id', 'daily_inspections.code as inspection_code', 'area.area_name', 'users.name', 'users.id as user_id', 'users.nik', 'users.company as company']);
         $data['issues'] = $issues;
 
         return view('dashboard.issue', $data);
@@ -49,6 +49,9 @@ class IssueController extends Controller
         $data['breadcrumb'] = "detail_issue";
         $data['title'] = "Issue " . $issue->code;
         $data['issue'] = $issue;
+        $issue->load(['summary.inspection.user' => function ($query) {
+            $query->withTrashed();
+        }]);
 
         if ($issue->status == 'progress') {
             $color = 'primary';

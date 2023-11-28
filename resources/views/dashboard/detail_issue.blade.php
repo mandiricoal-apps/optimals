@@ -52,11 +52,12 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="ml-1">
-                                            <h5>Images</h5>
+                                            <h5>Attachment</h5>
                                         </div>
                                         @if ($issue->image == null)
                                             <div class="col-12 text-center ">
-                                                <h2 class="text-black-50"><span class="mdi mdi-image-area"></span> NO IMAGE
+                                                <h2 class="text-black-50"><span class="mdi mdi-image-area"></span> NO
+                                                    ATTACHMENT
                                                 </h2>
                                             </div>
                                         @else
@@ -104,7 +105,7 @@
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <td>
+                                                <td style="white-space: normal">
                                                     @can('edit_issue')
                                                         @if ($issue->status == 'open' || $issue->status == 'progress')
                                                             <div class="row">
@@ -115,19 +116,21 @@
                                                                             disabled>Open
                                                                         </option> --}}
                                                                         @can('progress_issue')
-                                                                            <option
-                                                                                {{ $issue->status == 'progress' ? 'selected' : '' }}
-                                                                                value="progress">Progress</option>
+                                                                            @if ($issue->status != 'progress')
+                                                                                <option
+                                                                                    {{ $issue->status == 'progress' ? 'selected' : '' }}
+                                                                                    value="progress">On Progress</option>
+                                                                            @endif
                                                                         @endcan
                                                                         @can('close_issue')
                                                                             <option
                                                                                 {{ $issue->status == 'close' ? 'selected' : '' }}
-                                                                                value="close">Close</option>
+                                                                                value="close">Closed</option>
                                                                         @endcan
                                                                         @can('cancle_issue')
                                                                             <option
                                                                                 {{ $issue->status == 'reject' ? 'selected' : '' }}
-                                                                                value="reject">Reject</option>
+                                                                                value="reject">Cancelled</option>
                                                                         @endcan
                                                                     </select>
                                                                 </div>
@@ -139,31 +142,48 @@
                                                             </div>
                                                         @endif
                                                     @endcan
-                                                    @if ($issue->status == 'reject')
-                                                        <p>Issue has been <b>Canceled</b> by
-                                                            {{ $issue->progressIssue->userRejected->name }} at
-                                                            {{ tanggalText($issue->progressIssue->rejected_at) }} <br>
-                                                            with reason: {{ $issue->progressIssue->rejected_reason }}.
-                                                        </p>
-                                                    @elseif ($issue->status == 'progress')
-                                                        <p class="mt-3">Issue is being <b>progressed </b> by
-                                                            {{ $issue->progressIssue->userProgress->name }} start at
-                                                            {{ tanggalText($issue->progressIssue->progress_at) }} <br>
-                                                            with reason:
-                                                            {{ $issue->progressIssue->progress_reason }}.
-                                                        </p>
-                                                    @elseif ($issue->status == 'close')
-                                                        <p class="mt-3">Issue has been <b>Closed </b> by
-                                                            {{ $issue->progressIssue->userClosed->name }} at
-                                                            {{ tanggalText($issue->progressIssue->closed_at) }} <br>
-                                                            with reason: {{ $issue->progressIssue->closed_reason }}.
-                                                        </p>
-                                                        @if ($issue->progressIssue->closed_file)
-                                                            <a href="{{ asset('storage/attach_file/' . $issue->progressIssue->closed_file) }}"
-                                                                target="_blank">Attachment
-                                                                <i style="font-size: 14px;"
-                                                                    class="mdi mdi-link-variant"></i></a>
-                                                        @endif
+                                                    @if ($issue->status != 'open')
+                                                        <ul>
+                                                            @if ($issue->progressIssue->rejected_at != null)
+                                                                <li>Issue has been <b>Canceled</b> by
+                                                                    {{ $issue->progressIssue->userRejected->name }} at
+                                                                    {{ tanggalText($issue->progressIssue->rejected_at) }}
+                                                                    <br>
+                                                                    with reason:
+                                                                    {!! nl2br($issue->progressIssue->rejected_reason) !!}.
+                                                                </li>
+                                                            @endif
+                                                            @if ($issue->progressIssue->progress_at != null)
+                                                                <li class="mt-3">Issue is being <b>progressed </b> by
+                                                                    {{ $issue->progressIssue->userProgress->name }} start
+                                                                    at
+                                                                    {{ tanggalText($issue->progressIssue->progress_at) }}
+                                                                    <br>
+                                                                    with reason:
+                                                                    {!! nl2br($issue->progressIssue->progress_reason) !!}.
+                                                                </li>
+                                                            @endif
+                                                            @if ($issue->progressIssue->closed_at != null)
+                                                                <li class="mt-3">Issue has been <b>Closed </b> by
+                                                                    {{ $issue->progressIssue->userClosed->name }} at
+                                                                    {{ tanggalText($issue->progressIssue->closed_at) }}
+                                                                    <br>
+                                                                    with reason:
+                                                                    {!! nl2br($issue->progressIssue->closed_reason) !!}.
+                                                                </li>
+                                                                @if ($issue->progressIssue->closed_file)
+                                                                    <a href="{{ asset('storage/attach_file/' . $issue->progressIssue->closed_file) }}"
+                                                                        target="_blank">Attachment
+                                                                        <i style="font-size: 14px;"
+                                                                            class="mdi mdi-link-variant"></i></a>
+                                                                @else
+                                                                    <p>No Attachment</p>
+                                                                @endif
+                                                            @endif
+
+
+                                                        </ul>
+
                                                     @endif
                                                 </td>
                                             </tr>

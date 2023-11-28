@@ -28,6 +28,7 @@
                             <th>Issue Code</th>
                             <th>Daily Inspection</th>
                             <th>Submitter</th>
+                            <th>Company</th>
                             <th>Status</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -47,6 +48,7 @@
                                             class="mdi mdi-link-variant"></i></a>
                                     <br><small class="mt-1">NIK : {{ $issue->nik }}</small>
                                 </td>
+                                <td>{{ strtoupper($issue->company) }}</td>
                                 <td><b><i>{{ ucfirst($issue->status == 'reject' ? 'Cancel' : $issue->status) }}</i></b>
                                 </td>
                                 <td class="text-center">
@@ -66,6 +68,7 @@
                             <th>Issue Code</th>
                             <th>Daily Inspection</th>
                             <th>Submitter</th>
+                            <th>Company</th>
                             <th>Status</th>
                             <th class="text-center">Action</th>
                         </tr>

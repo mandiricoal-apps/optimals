@@ -41,10 +41,10 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name' => 'create_area', 'parent' => '[MD] Area', 'type' => 'create']);
         Permission::create(['name' => 'delete_area', 'parent' => '[MD] Area', 'type' => 'delete']);
 
-        Permission::create(['name' => 'view_qna', 'parent' => '[MD] Question and Andswer', 'type' => 'view']);
-        Permission::create(['name' => 'edit_qna', 'parent' => '[MD] Question and Andswer', 'type' => 'edit']);
-        Permission::create(['name' => 'create_qna', 'parent' => '[MD] Question and Andswer', 'type' => 'create']);
-        Permission::create(['name' => 'delete_qna', 'parent' => '[MD] Question and Andswer', 'type' => 'delete']);
+        Permission::create(['name' => 'view_qna', 'parent' => '[MD] Question and Answer', 'type' => 'view']);
+        Permission::create(['name' => 'edit_qna', 'parent' => '[MD] Question and Answer', 'type' => 'edit']);
+        Permission::create(['name' => 'create_qna', 'parent' => '[MD] Question and Answer', 'type' => 'create']);
+        Permission::create(['name' => 'delete_qna', 'parent' => '[MD] Question and Answer', 'type' => 'delete']);
 
         Permission::create(['name' => 'view_daily_inspection', 'parent' => '[Trans] Daily Inspection', 'type' => 'view']);
         Permission::create(['name' => 'edit_daily_inspection', 'parent' => '[Trans] Daily Inspection', 'type' => 'edit']);
@@ -54,9 +54,9 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name' => 'edit_issue', 'parent' => '[Trans] Issue', 'type' => 'edit']);
         Permission::create(['name' => 'delete_issue', 'parent' => '[Trans] Issue', 'type' => 'delete']);
 
-        Permission::create(['name' => 'progress_issue', 'parent' => '[Trans] Progress Issue', 'type' => 'view']);
-        Permission::create(['name' => 'close_issue', 'parent' => '[Trans] Close Issue', 'type' => 'view']);
-        Permission::create(['name' => 'cancle_issue', 'parent' => '[Trans] Cancle Issue', 'type' => 'view']);
+        Permission::create(['name' => 'progress_issue', 'parent' => '[Trans] Issue - On Progress', 'type' => 'view']);
+        Permission::create(['name' => 'close_issue', 'parent' => '[Trans] Issue - Closed', 'type' => 'view']);
+        Permission::create(['name' => 'cancle_issue', 'parent' => '[Trans] Issue - Cancel', 'type' => 'view']);
 
 
 
