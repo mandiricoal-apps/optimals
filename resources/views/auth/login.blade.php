@@ -116,11 +116,11 @@
                             <div class="carousel-inner" role="listbox">
                                 <div class="carousel-item active">
                                     <!-- <div class="banner-text">
-         <h2><I>#GoodMiningPractice</I></h2>
-         <p>PT MANDIRI INTIPERKASA</p>
-        </div> -->
-                                    <img class="d-block img-fluid" src="/assets/images/dashboard/HDS.png"
-                                        alt="First slide" width="100%">
+                                    <h2><I>#GoodMiningPractice</I></h2>
+                                    <p>PT MANDIRI INTIPERKASA</p>
+                                    </div> -->
+                                    <img class="d-block img-fluid" src="/assets/images/dashboard/login.jpg"
+                                        alt="First slide" width="100%" style="opacity:0.9">
                                     <div class="carousel-caption d-none d-md-block">
                                         <div class="banner-text">
                                         </div>

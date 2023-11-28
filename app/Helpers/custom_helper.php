@@ -28,3 +28,8 @@ function tanggal2bulandepan($date)
 
     return $today > $nextMotnh;
 }
+
+function areaImage()
+{
+    return ['OB.jpg', 'COAL.jpg',  'DISPOSAL.jpg', 'DEWATERING.jpg', 'HAULROAD.jpg'];
+}
