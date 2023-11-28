@@ -7,6 +7,7 @@ use App\Models\Area;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthApi extends Controller
 {
@@ -34,10 +35,13 @@ class AuthApi extends Controller
             'token_type' => 'Bearer',
             'data' => [
                 'user' => $user,
-                'area' => $area
+                'area' => $area,
+                'maxScore' => maxScore()
             ]
         ]);
     }
+
+
 
     public function logout()
     {

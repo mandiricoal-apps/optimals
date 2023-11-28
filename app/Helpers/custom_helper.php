@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+
 function test()
 {
     return "test";
@@ -32,4 +34,22 @@ function tanggal2bulandepan($date)
 function areaImage()
 {
     return ['OB.jpg', 'COAL.jpg',  'DISPOSAL.jpg', 'DEWATERING.jpg', 'HAULROAD.jpg'];
+}
+
+function maxScore()
+{
+    $results = DB::table('question as q')
+        ->select('q.area_id as area', DB::raw('SUM(a.max_point * q.weight) as total_score'))
+        ->joinSub(
+            DB::table('answer')
+                ->select('question_id', DB::raw('MAX(point) as max_point'))
+                ->groupBy('question_id'),
+            'a',
+            'q.id',
+            '=',
+            'a.question_id'
+        )
+        ->groupBy('q.area_id')
+        ->get();
+    return $results;
 }
