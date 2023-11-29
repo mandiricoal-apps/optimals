@@ -11,7 +11,7 @@
                     <div class="col-12 col-md-4">
                         <a href="/question/{{ $area->id }}" onclick="showLoader()" style="text-decoration: none">
                             <div class="card card-statx stretch-card mb-3" id="area-card"
-                                style="background-image: url(assets/images/dashboard/{{ areaImage()[$loop->index] }}">
+                                style="background-image: url(assets/images/dashboard/{{ areaImage()[$loop->index > 4 ? 1 : $loop->index] }}">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
                                         <div class="text-white">
