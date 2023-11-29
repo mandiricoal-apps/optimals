@@ -195,7 +195,7 @@ class InspectionApi extends Controller
         if ($request->limit) {
             $limit = $request->limit;
         }
-        $dailyInspections = DailyInspection::with(['summary', 'location', 'summary.question', 'summary.answer', 'summary.issue'])
+        $dailyInspections = DailyInspection::with(['summary', 'location', 'summary.question', 'summary.answer', 'summary.issue', 'summary.issue.progressIssue'])
             ->where('create_by', '=', $user_id);
         if ($request->start) {
             $dailyInspections = $dailyInspections->where('daily_inspections.created_at', '>=', $request->start . ' 00:00:00');
