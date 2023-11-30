@@ -484,23 +484,30 @@
 
     <script>
         const loader = $('.loader');
-        $(document).ready(function() {
-            // if (loader.prop('hidden') == false) {
-            //     showLoader();
-            // }
-            hideLoader();
-        });
+        if (loader.prop('hidden') == false) {
+            showLoader();
+        }
 
         function showLoader() {
             // loader.prop('hidden', false);
             loader.fadeIn('fast');
         }
 
-
         function hideLoader() {
             // loader.prop('hidden', true);
             loader.fadeOut('slow');
         }
+    </script>
+    <script>
+        window.addEventListener("pageshow", function(event) {
+            var historyTraversal = event.persisted ||
+                (typeof window.performance != "undefined" &&
+                    window.performance.navigation.type === 2);
+            if (historyTraversal) {
+                // Handle page restore.
+                window.location.reload();
+            }
+        });
     </script>
     @yield('js')
 </body>
