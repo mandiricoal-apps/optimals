@@ -484,14 +484,18 @@
 
     <script>
         const loader = $('.loader');
-        if (loader.prop('hidden') == false) {
-            showLoader();
-        }
+        $(document).ready(function() {
+            // if (loader.prop('hidden') == false) {
+            //     showLoader();
+            // }
+            hideLoader();
+        });
 
         function showLoader() {
             // loader.prop('hidden', false);
             loader.fadeIn('fast');
         }
+
 
         function hideLoader() {
             // loader.prop('hidden', true);
