@@ -51,9 +51,9 @@ Route::get('/simbolik', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::get('/', function () {
-        $data['title'] = 'Dashboard';
-        $data['breadcrumb'] = 'home';
-        return view('dashboard/dashboard', $data);
+        // $data['title'] = 'Optimals ()';
+        // $data['breadcrumb'] = 'home';
+        return view('dashboard/dashboard', []);
     });
 
     Route::get('/company-api', [UserController::class, 'companyApi']);

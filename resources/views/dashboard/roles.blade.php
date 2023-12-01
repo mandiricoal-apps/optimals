@@ -10,7 +10,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col mb-0">
-                    <i class="mdi mdi-filter-variant"></i> Filter by :
+                    <!-- <i class="mdi mdi-filter-variant"></i> Filter by : -->
                 </div>
                 <div class="col text-end mb-3">
                     @can('create_roles')
