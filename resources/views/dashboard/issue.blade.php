@@ -6,8 +6,8 @@
 <div class="row">
     <div class="card">
         <div class="card-body">
-            <div class="row mb-1">
-                <div class="col-5">
+            <div class="row border mb-3 py-2">
+                <div class="col-5 my-auto">
                     <i class="mdi mdi-filter-variant"></i> Filter by :
                     <a href="/issue?status=open" class="btn btn-{{ $status == 'open' ? 'info' : 'secondary' }}">Open</a>
                     <a href="/issue?status=progress"
@@ -29,6 +29,7 @@
                             <th>Daily Inspection</th>
                             <th>Submitter</th>
                             <th>Company</th>
+                            <th>Description</th>
                             <th>Status</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -49,6 +50,7 @@
                                 <br><small class="mt-1">NIK : {{ $issue->nik }}</small>
                             </td>
                             <td>{{ strtoupper($issue->company) }}</td>
+                            <td>{{ $issue->issue }}</td>
                             <td><b><i>{{ ucfirst($issue->status == 'reject' ? 'Cancel' : $issue->status) }}</i></b>
                             </td>
                             <td class="text-center">
@@ -69,6 +71,7 @@
                             <th>Daily Inspection</th>
                             <th>Submitter</th>
                             <th>Company</th>
+                            <th>Description</th>
                             <th>Status</th>
                             <th class="text-center">Action</th>
                         </tr>

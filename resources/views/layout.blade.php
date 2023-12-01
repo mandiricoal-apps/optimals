@@ -379,7 +379,7 @@ aria-hidden="true">
             dom: 'Bfrtip',
             columnDefs: [
             {
-                targets: 1,
+                targets: 5,
                 visible: false
             }
             ], 
@@ -391,7 +391,7 @@ aria-hidden="true">
                     text: '<i style="font-size: 14px;" class="mdi mdi-file-excel"></i> Excel',
                     titleAttr: 'Create New Record',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
+                        columns: ':visible'
                     }
                 },
                 {
@@ -399,7 +399,7 @@ aria-hidden="true">
                     text: '<i style="font-size: 14px;" class="mdi mdi-printer"></i> Print',
                     titleAttr: 'Create New Record',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
+                        columns: ':visible'
                     }
                 },
                 {
