@@ -32,6 +32,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('inspection')->group(function () {
         Route::post('/create', [InspectionApi::class, 'create']);
         Route::get('/get/{user_id}', [InspectionApi::class, 'getDailyInspectionByUser']);
+        Route::get('/get-one/{id}', [InspectionApi::class, 'getOneDailyInspection']);
     });
     Route::post('/upload-image', [InspectionApi::class, 'uploadImage']);
     Route::post('/upload-multi-image', [InspectionApi::class, 'uploadMultipleImage']);
