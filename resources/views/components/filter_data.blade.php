@@ -1,7 +1,7 @@
-<div class="py-2 pl-2 border">
+
     <form action="{{ $url }}" method="get" onsubmit="showLoader()">
         <div class="row mb-1 justify-content-end ">
-            <div class="col-10 my-auto">
+            <div class="col-10 my-auto p-0">
                 <div class="input-group input-group-sm">
                     <div class="input-group-prepend ">
                         <span class="input-group-text text-dark">From</span>
@@ -23,5 +23,3 @@
             </div>
         </div>
     </form>
-
-</div>

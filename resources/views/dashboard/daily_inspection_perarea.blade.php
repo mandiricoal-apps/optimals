@@ -6,8 +6,8 @@
         <div class="card">
             <div class="card-body">
 
-                <div class="row mb-1">
-                    <div class="col-5">
+                <div class="row mb-3 border py-2">
+                    <div class="col-5 my-auto">
                         <i class="mdi mdi-filter-variant"></i> Filter by :
                         <a class="btn btn-{{ $status == 'not-approved' ? 'info' : 'secondary' }}"
                             href="/daily-inspection-area/{{ $area_id }}?status=not-approved">Not
