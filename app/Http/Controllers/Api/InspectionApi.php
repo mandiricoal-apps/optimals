@@ -39,6 +39,9 @@ class InspectionApi extends Controller
             return response()->json(['message' => $validator->errors()], 400);
         }
         $daily_inspection['create_by'] = Auth::user()->id;
+        if ($daily_inspection['created_at']) {
+            $daily_inspection['updated_at'] = $daily_inspection['created_at'];
+        }
 
         DB::beginTransaction();
         try {
@@ -46,12 +49,18 @@ class InspectionApi extends Controller
             $save_daily_inspection = DailyInspection::create($daily_inspection);
             $inspection_id = $save_daily_inspection->id;
 
+
             //crate data location
             $data_location['inspection_id'] = $inspection_id;
             DataLocation::create($data_location);
 
             //create summary daily inspection
-            $date = date(now());
+            if ($daily_inspection['created_at']) {
+
+                $date = $daily_inspection['created_at'];
+            } else {
+                $date = date(now());
+            }
             $summary_daily_inspection = array_map(function ($item) use ($inspection_id, $date) {
                 $item['inspection_id'] = $inspection_id;
                 $item['created_at'] = $date;
@@ -60,6 +69,8 @@ class InspectionApi extends Controller
                 if (array_key_exists('issue', $item['issue'])) {
                     $tempIssue = $item['issue'];
                     $tempIssue['sumary_id'] = $saveSummary->id;
+                    $tempIssue['created_at'] = $date;
+                    $tempIssue['updated_at'] = $date;
                     Issue::create($tempIssue);
                 }
 
@@ -195,7 +206,7 @@ class InspectionApi extends Controller
         if ($request->limit) {
             $limit = $request->limit;
         }
-        $dailyInspections = DailyInspection::with(['summary', 'location', 'summary.question', 'summary.answer', 'summary.issue', 'summary.issue.progressIssue'])
+        $dailyInspections = DailyInspection::with(['summary', 'location', 'summary.question', 'summary.answer', 'summary.issue', 'summary.issue.progressIssue', 'summary.issue.progressIssue.userProgress', 'summary.issue.progressIssue.userClosed', 'summary.issue.progressIssue.userRejected'])
             ->where('create_by', '=', $user_id);
         if ($request->start) {
             $dailyInspections = $dailyInspections->where('daily_inspections.created_at', '>=', $request->start . ' 00:00:00');
@@ -209,6 +220,12 @@ class InspectionApi extends Controller
         $dailyInspections = $dailyInspections->skip($offset)->take($limit)->orderByDesc('created_at');
         $dailyInspections = $dailyInspections->get();
 
+        return response()->json(['message' => 'Daily Inspections', 'data' => $dailyInspections], 200);
+    }
+    function getOneDailyInspection($id)
+    {
+        $dailyInspections = DailyInspection::with(['summary', 'location', 'summary.question', 'summary.answer', 'summary.issue', 'summary.issue.progressIssue', 'summary.issue.progressIssue.userProgress', 'summary.issue.progressIssue.userClosed', 'summary.issue.progressIssue.userRejected'])
+            ->find($id);
         return response()->json(['message' => 'Daily Inspections', 'data' => $dailyInspections], 200);
     }
 }
