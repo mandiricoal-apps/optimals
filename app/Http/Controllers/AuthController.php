@@ -20,7 +20,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended()->with('message', '<strong>Hallo ' . Auth::user()->name . '!</strong> Welcome to administrator page.');
+            return redirect()->intended()->with('message', '<strong>Hallo ' . Auth::user()->name . ',</strong> Welcome to Optimals.');
         }
 
         return redirect('/login')->withErrors([
