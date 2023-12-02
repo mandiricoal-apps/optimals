@@ -39,7 +39,7 @@ class InspectionApi extends Controller
             return response()->json(['message' => $validator->errors()], 400);
         }
         $daily_inspection['create_by'] = Auth::user()->id;
-        if ($daily_inspection['created_at']) {
+        if (isset($daily_inspection['created_at'])) {
             $daily_inspection['updated_at'] = $daily_inspection['created_at'];
         }
 
