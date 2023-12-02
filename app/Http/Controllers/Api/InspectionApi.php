@@ -55,7 +55,7 @@ class InspectionApi extends Controller
             DataLocation::create($data_location);
 
             //create summary daily inspection
-            if ($daily_inspection['created_at']) {
+            if (isset($daily_inspection['created_at'])) {
 
                 $date = $daily_inspection['created_at'];
             } else {
