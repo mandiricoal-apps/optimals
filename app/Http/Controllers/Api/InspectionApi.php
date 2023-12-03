@@ -228,4 +228,29 @@ class InspectionApi extends Controller
             ->find($id);
         return response()->json(['message' => 'Daily Inspections', 'data' => $dailyInspections], 200);
     }
+
+    function countInspection(Request $request, $idUser)
+    {
+        $type = $request->type;
+        $inspection = DailyInspection::where('create_by', $idUser);
+        $issue = DB::table("issue")
+            ->join('daily_inspection_summary', 'daily_inspection_summary.id', '=', 'issue.sumary_id')
+            ->join('daily_inspections', 'daily_inspection_summary.inspection_id', '=', 'daily_inspections.id')->where('daily_inspections.create_by', $idUser);
+        if ($type == "day") {
+            $inspection = $inspection->whereDate('created_at', date('Y-m-d'));
+            $issue = $issue->whereDate('issue.created_at', date('Y-m-d'));
+        } else if ($type == "month") {
+            $inspection = $inspection->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', date('Y'));
+            $issue = $issue->whereMonth('issue.created_at', date('m'))
+                ->whereYear('issue.created_at', date('Y'));
+        }
+        return response()->json([
+            'message' => 'Daily Inspection Total',
+            'data' => [
+                'daily_inspection' => $inspection->count(),
+                'issue' => $issue->count(),
+            ]
+        ]);
+    }
 }
