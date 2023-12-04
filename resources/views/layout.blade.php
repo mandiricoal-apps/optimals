@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="/assets/vendors/font-awesome/css/font-awesome.min.css" />
 
     <link rel="stylesheet" href="/assets/css/demo_1/style.css" />
-    <link rel="shortcut icon" href="/assets/images/favicon.png" />
+    <link rel="shortcut icon" href="/assets/images/logo/logo_img2.jpg" />
 
     <style>
         .card {
@@ -199,8 +199,7 @@
             </button> --}}
             <ul class="navbar-nav">
                 <li class="nav-item dropdown" id="parent">
-                    <h5><i class="mdi mdi mdi-view-dashboard menu-icon"></i><i>GoodMiningPractice</i><small> |
-                    PT Mandiri Intiperkasa</small></h5>
+                    <h5><i class="mdi mdi mdi-view-dashboard menu-icon"></i><i>OPTIMALS</i><small> | Operation Mandiricoal System</small></h5>
                 </li>
             </ul>
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="/assets/images/logo/logo_img2.jpg" />
     <style type="text/css">
         @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 
@@ -150,8 +151,8 @@
 
                     <div class="col-md-4 login-sec">
                         <!-- <marquee class="mt-0" width="100%"><i>Optimals by Mandiricoal | #GoodMiningPractice</i></marquee> -->
-                        <center><img class="d-block img-fluid" src="/assets/images/optimal.png" alt="First slide"
-                            width="60%"></center>
+                        <center><img class="d-block img-fluid" src="/assets/images/logo/logo_img3.png" alt="First slide"
+                            width="100%"></center>
                             <!-- <img class="d-block img-fluid" src="assets/images/mcol.PNG" alt="First slide" width="50%"> -->
                             @if ($errors->has('nik'))
                             <div class="alert alert-danger alert-dismissible" role="alert">
