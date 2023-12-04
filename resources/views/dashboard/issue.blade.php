@@ -21,15 +21,19 @@
                     <x-filter_data url="/issue?status={{ request()->get('status') }}" />
                     </div>
                 </div>
-                <table id="example" class="table table-striped table-hover" style="width:100%">
+                <table id="issue" class="table table-striped table-hover" style="width:100%">
                     <thead>
                         <tr>
                             <th>Creation Date</th>
                             <th>Issue Code</th>
                             <th>Daily Inspection</th>
+                            <th>Daily Inspection ID</th>
+                            <th>Daily Inspection Area</th>
                             <th>Submitter</th>
-                            <th>Company</th>
+                            <th>Submitter Name</th>
+                            <th>Submitter NIK</th>
                             <th>Description</th>
+                            <th>Company</th>
                             <th>Status</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -44,13 +48,17 @@
                                 <i style="font-size: 14px;" class="mdi mdi-link-variant"></i></a>
                                 <br><small class="mt-1">Area : {{ $issue->area_name }}</small>
                             </td>
+                            <td>{{ $issue->inspection_code }}</td>
+                            <td>{{ $issue->area_name }}</td>
                             <td><a href="#" onclick="modalUser({{ $issue->user_id }})" data-toggle="modal"
                                 data-target="#view-modal">{{ $issue->name }} <i style="font-size: 14px;"
                                 class="mdi mdi-link-variant"></i></a>
                                 <br><small class="mt-1">NIK : {{ $issue->nik }}</small>
                             </td>
-                            <td>{{ strtoupper($issue->company) }}</td>
+                            <td>{{ $issue->name }}</td>
+                            <td>{{ $issue->nik }}</td>
                             <td>{{ $issue->issue }}</td>
+                            <td>{{ strtoupper($issue->company) }}</td>
                             <td><b><i>{{ ucfirst($issue->status == 'reject' ? 'Cancel' : $issue->status) }}</i></b>
                             </td>
                             <td class="text-center">

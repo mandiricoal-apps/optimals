@@ -375,32 +375,26 @@ aria-hidden="true">
             }
         })
         $('#example').DataTable({
-            dom: 'Bfrtip',
-            columnDefs: [
-            {
-                targets: 5,
-                visible: false
-            }
-            ], 
+            dom: 'Bfrtip', 
             buttons: [
-                'pageLength',
+            'pageLength',
 
-                {
-                    extend: 'excelHtml5',
-                    text: '<i style="font-size: 14px;" class="mdi mdi-file-excel"></i> Excel',
-                    titleAttr: 'Create New Record',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                },
-                {
-                    extend: 'print',
-                    text: '<i style="font-size: 14px;" class="mdi mdi-printer"></i> Print',
-                    titleAttr: 'Create New Record',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                },
+            {
+                extend: 'excelHtml5',
+                text: '<i style="font-size: 14px;" class="mdi mdi-file-excel"></i> Excel',
+                titleAttr: 'Create New Record',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+                // {
+                //     extend: 'print',
+                //     text: '<i style="font-size: 14px;" class="mdi mdi-printer"></i> Print',
+                //     titleAttr: 'Create New Record',
+                //     exportOptions: {
+                //         columns: ':visible'
+                //     }
+                // },
                 {
                     extend: 'colvis',
                     text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
@@ -410,42 +404,42 @@ aria-hidden="true">
                     }
                 }
                 ],
-            order: [],
+                order: [],
 
-            initComplete: function() {
-                var btns = $('.dt-button');
-                btns.addClass('btn btn-dark');
-                btns.removeClass('dt-button');
+                initComplete: function() {
+                    var btns = $('.dt-button');
+                    btns.addClass('btn btn-dark');
+                    btns.removeClass('dt-button');
 
-                this.api().columns().every(function() {
-                    let column = this;
-                    let title = column.footer().textContent;
+                    this.api().columns().every(function() {
+                        let column = this;
+                        let title = column.footer().textContent;
 
-                    let input = document.createElement('input');
-                    input.placeholder = title;
-                    column.footer().replaceChildren(input);
-                    input.addEventListener('keyup', () => {
-                        if (column.search() !== this.value) {
-                            column.search(input.value).draw();
-                        }
+                        let input = document.createElement('input');
+                        input.placeholder = title;
+                        column.footer().replaceChildren(input);
+                        input.addEventListener('keyup', () => {
+                            if (column.search() !== this.value) {
+                                column.search(input.value).draw();
+                            }
+                        });
                     });
-                });
-            }
-        });
+                }
+            });
 
         $('#example1').DataTable({
             dom: 'Bfrtip',
             buttons: [
-                'pageLength',
-                {
-                    extend: 'colvis',
-                    text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
-                    titleAttr: 'Create New Record',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
-                    }
+            'pageLength',
+            {
+                extend: 'colvis',
+                text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
+                titleAttr: 'Create New Record',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4]
                 }
-                ],
+            }
+            ],
             order: [],
             initComplete: function() {
                 var btns = $('.dt-button');
@@ -467,6 +461,104 @@ aria-hidden="true">
                 });
             }
         });
+
+        $('#daily').DataTable({
+            dom: 'Bfrtip',
+            columnDefs: [
+            {
+                targets: [4, 5],
+                visible: false
+            }
+            ], 
+            buttons: [
+            'pageLength',
+
+            {
+                extend: 'excelHtml5',
+                text: '<i style="font-size: 14px;" class="mdi mdi-file-excel"></i> Excel',
+                titleAttr: 'Create New Record',
+                exportOptions: {
+                    columns: [0,1,2,4,5,6]
+                }
+            },
+            {
+                extend: 'colvis',
+                text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
+                titleAttr: 'Create New Record'
+            }
+            ],
+            order: [],
+
+            initComplete: function() {
+                var btns = $('.dt-button');
+                btns.addClass('btn btn-dark');
+                btns.removeClass('dt-button');
+
+                this.api().columns().every(function() {
+                    let column = this;
+                    let title = column.footer().textContent;
+
+                    let input = document.createElement('input');
+                    input.placeholder = title;
+                    column.footer().replaceChildren(input);
+                    input.addEventListener('keyup', () => {
+                        if (column.search() !== this.value) {
+                            column.search(input.value).draw();
+                        }
+                    });
+                });
+            }
+        });
+
+        $('#issue').DataTable({
+            dom: 'Bfrtip',
+            columnDefs: [
+            {
+                targets: [3, 4, 6, 7,8],
+                visible: false
+            }
+            ], 
+            buttons: [
+            'pageLength',
+
+            {
+                extend: 'excelHtml5',
+                text: '<i style="font-size: 14px;" class="mdi mdi-file-excel"></i> Excel',
+                titleAttr: 'Create New Record',
+                exportOptions: {
+                    columns: [0, 1, 3, 4, 6, 7, 8, 9, 10],
+                }
+            },
+            {
+                extend: 'colvis',
+                text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
+                titleAttr: 'Create New Record',
+            }
+            ],
+            order: [],
+
+            initComplete: function() {
+                var btns = $('.dt-button');
+                btns.addClass('btn btn-dark');
+                btns.removeClass('dt-button');
+
+                this.api().columns().every(function() {
+                    let column = this;
+                    let title = column.footer().textContent;
+
+                    let input = document.createElement('input');
+                    input.placeholder = title;
+                    column.footer().replaceChildren(input);
+                    input.addEventListener('keyup', () => {
+                        if (column.search() !== this.value) {
+                            column.search(input.value).draw();
+                        }
+                    });
+                });
+            }
+        });
+
+
     });
 </script>
 
@@ -499,19 +591,19 @@ aria-hidden="true">
 
     function showLoader() {
             // loader.prop('hidden', false);
-        loader.fadeIn('fast');
-    }
+            loader.fadeIn('fast');
+        }
 
-    function hideLoader() {
+        function hideLoader() {
             // loader.prop('hidden', true);
-        loader.fadeOut('slow');
-    }
-</script>
+            loader.fadeOut('slow');
+        }
+    </script>
     <script>
         window.addEventListener("pageshow", function(event) {
             var historyTraversal = event.persisted ||
-                (typeof window.performance != "undefined" &&
-                    window.performance.navigation.type === 2);
+            (typeof window.performance != "undefined" &&
+                window.performance.navigation.type === 2);
             if (historyTraversal) {
                 // Handle page restore.
                 window.location.reload();
