@@ -15,7 +15,7 @@ class AuthApi extends Controller
 {
     public function login(Request $request)
     {
-        $credentials = $request->only('nik', 'password');
+        $credentials = $request->only('user_id', 'password');
 
         $credentials['password'] = md5($credentials['password']);
 
@@ -24,10 +24,10 @@ class AuthApi extends Controller
         if (!Auth::attempt($credentials)) {
 
             return response()->json([
-                'message' => 'Login gagal. Pastikan nik dan password sesuai.'
+                'message' => 'Login gagal. Pastikan user id dan password sesuai.'
             ], 401);
         }
-        $user = User::where('nik', $credentials['nik'])->firstOrFail();
+        $user = User::where('user_id', $credentials['user_id'])->firstOrFail();
         $token = $user->createToken('auth_token')->plainTextToken;
         $area = Area::with(['question', 'question.answer'])->get();
 

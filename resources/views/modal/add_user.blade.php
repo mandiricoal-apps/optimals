@@ -27,6 +27,7 @@
             <input type="text" class="form-control" id="name" name="name" placeholder="Name" required=""
                 readonly>
         </div>
+
         <div class="form-group">
             <label for="">Divisi</label><span style="color:red;">*</span>
             <input type="text" class="form-control" id="division" name="division" placeholder="Divisi"
@@ -36,6 +37,11 @@
             <label for="">Email</label><span style="color:red;">*</span>
             <input type="text" class="form-control" id="email" name="email" placeholder="Email" required=""
                 readonly>
+        </div>
+        <div class="form-group">
+            <label for="">User ID</label><span style="color:red;">*</span>
+            <input type="text" class="form-control" id="user_id" name="user_id" placeholder="User ID"
+                required="" readonly>
         </div>
 
         <div class="form-group">
@@ -134,17 +140,18 @@
 
                 return e.user_id == id;
             })
-            // console.log(selected_emloyee);
+            console.log(selected_emloyee);
             $('#name').val(selected_emloyee.user_name);
             $('#nik').val(selected_emloyee.user_nik);
             $('#division').val(selected_emloyee.divisi_name);
             $('#password').val(selected_emloyee.user_password);
             $('#email').val(selected_emloyee.user_email);
+            $('#user_id').val(selected_emloyee.user_login);
         }
 
     });
 
-    var field = ['name', 'nik', 'division'];
+    var field = ['name', 'nik', 'division', 'email', 'user_id'];
 
     function clearField() {
         field.forEach(f => {
