@@ -59,12 +59,14 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/modal-view-user/{id}', [UserController::class, 'modalViewuser']);
+    Route::post('/change-password', [UserController::class, 'changePassword']);
     Route::group(['middleware' => ['permission:view_user']], function () {
         Route::get('/user', [UserController::class, 'index']);
         Route::get('/modal-add-user', [UserController::class, 'modalAdduser']);
         Route::get('/modal-edit-user/{id}', [UserController::class, 'modalEdituser']);
         Route::post('/create-user', [UserController::class, 'createUser'])->middleware(['permission:create_user']);
         Route::post('/edit-user/{id}', [UserController::class, 'editUser'])->middleware(['permission:edit_user']);
+        Route::get('/reset-password/{id}', [UserController::class, 'resetPassword'])->middleware(['permission:edit_user']);
         Route::get('/active-user/{id}', [UserController::class, 'activeUser'])->middleware(['permission:delete_user']);
         Route::get('/inactive-user/{id}', [UserController::class, 'inactiveUser'])->middleware(['permission:delete_user']);
     });

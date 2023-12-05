@@ -3,71 +3,71 @@
 @section('all-user', 'active')
 @section('coll-md-user', 'show')
 @section('css')
-<style>
-    td.fit,
-    th.fit {
-        white-space: nowrap;
-        width: 1%;
-    }
-</style>
+    <style>
+        td.fit,
+        th.fit {
+            white-space: nowrap;
+            width: 1%;
+        }
+    </style>
 @stop
 
 @section('content')
-<div class="card">
-    <div class="card-body">
-        <div class="row mb-1">
-            <div class="col">
-                <i class="mdi mdi-filter-variant"></i> Filter by :
-                <a href="/user?status=active" onclick="showLoader()"
-                class="btn btn-{{ $status == 'active' ? 'info' : 'secondary' }}">Active</a>
-                <a href="/user?status=inactive" onclick="showLoader();"
-                class="btn btn-{{ $status == 'inactive' ? 'info' : 'secondary' }}">Inactive</a>
+    <div class="card">
+        <div class="card-body">
+            <div class="row mb-1">
+                <div class="col">
+                    <i class="mdi mdi-filter-variant"></i> Filter by :
+                    <a href="/user?status=active" onclick="showLoader()"
+                        class="btn btn-{{ $status == 'active' ? 'info' : 'secondary' }}">Active</a>
+                    <a href="/user?status=inactive" onclick="showLoader();"
+                        class="btn btn-{{ $status == 'inactive' ? 'info' : 'secondary' }}">Inactive</a>
+                </div>
+                @can('create_user')
+                    <div class="col text-end mb-3">
+                        <button class="btn btn-primary" onclick="modalAdd()">
+                            <i style="font-size: 14px;" class="mdi mdi-plus-circle-outline"></i> Add
+                        </button>
+                    </div>
+                @endcan
             </div>
-            @can('create_user')
-            <div class="col text-end mb-3">
-                <button class="btn btn-primary" onclick="modalAdd()">
-                    <i style="font-size: 14px;" class="mdi mdi-plus-circle-outline"></i> Add
-                </button>
-            </div>
-            @endcan
-        </div>
-        <table id="example1" class="table table-striped table-hover" style="width:100%">
-            <thead>
-                <tr>
-                    <th width="">Status</th>
-                    <th width="">Name</th>
-                    <th width="">Divisi</th>
-                    <th width="">Company</th>
-                    <th width="">Roles</th>
-                    <th class="text-center" width="25%">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($user as $u)
-                <tr>
-                    <td class="ps-5">
-                        <div class="form-check form-switch">
-                            @if ($u->deleted_at)
-                            <div class="form-check form-switch">
-                                @can('delete_user')
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                onclick="activate({{ $u->id }}, this)">
-                                @endcan
-                                <b><i><label class="form-check-label ms-0"
-                                    for="flexSwitchCheckChecked">Inactive</label></i></b>
-                                </div>
-                                @else
-                                @can('delete_user')
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked
-                                onclick="inactive({{ $u->id }}, this)">
-                                @endcan
-                                <b><i><label class="form-check-label ms-0"
-                                    for="flexSwitchCheckChecked">Active</label></i></b>
+            <table id="example1" class="table table-striped table-hover" style="width:100%">
+                <thead>
+                    <tr>
+                        <th width="">Status</th>
+                        <th width="">Name</th>
+                        <th width="">Divisi</th>
+                        <th width="">Company</th>
+                        <th width="">Roles</th>
+                        <th class="text-center" width="25%">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($user as $u)
+                        <tr>
+                            <td class="ps-5">
+                                <div class="form-check form-switch">
+                                    @if ($u->deleted_at)
+                                        <div class="form-check form-switch">
+                                            @can('delete_user')
+                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                                    onclick="activate({{ $u->id }}, this)">
+                                            @endcan
+                                            <b><i><label class="form-check-label ms-0"
+                                                        for="flexSwitchCheckChecked">Inactive</label></i></b>
+                                        </div>
+                                    @else
+                                        @can('delete_user')
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked
+                                                onclick="inactive({{ $u->id }}, this)">
+                                        @endcan
+                                        <b><i><label class="form-check-label ms-0"
+                                                    for="flexSwitchCheckChecked">Active</label></i></b>
                                     @endif
                                 </div>
                             </td>
                             <td><a href="javascript:void(0)" onclick="modalUser({{ $u->id }})">{{ $u->name }} <i
-                                style="font-size: 14px;" class="mdi mdi-link-variant"></i></a>
+                                        style="font-size: 14px;" class="mdi mdi-link-variant"></i></a>
                                 <br><small class="mt-1">NIK : {{ $u->nik }}</small>
                             </td>
                             <td>{{ $u->division }}</td>
@@ -75,23 +75,23 @@
                             <td>{{ ucfirst($u->getRoleNames()[0]) }}</td>
                             <td class="text-center">
                                 @if (!$u->deleted_at)
-                                @can('edit_user')
-                                <div class="button-group">
-                                    <button class="btn btn-success" onclick="modalEdit({{ $u->id }})">
-                                        <i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
-                                    </button>
-                                    <button class="btn btn-warning" onclick="reset()">
-                                      Reset Password
-                                  </button>
-                              </div>
-                              @endcan
-                              @endif
-                          </td>
-                      </tr>
-                      @endforeach
+                                    @can('edit_user')
+                                        <div class="button-group">
+                                            <button class="btn btn-success" onclick="modalEdit({{ $u->id }})">
+                                                <i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
+                                            </button>
+                                            <button class="btn btn-warning" onclick="reset({{ $u->id }})">
+                                                Reset Password
+                                            </button>
+                                        </div>
+                                    @endcan
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
 
-                  </tbody>
-                  <tfoot>
+                </tbody>
+                <tfoot>
                     <tr>
                         <th>Status</th>
                         <th>Name</th>
@@ -121,7 +121,7 @@
             </div>
         </div>
     </div>
-    @section('js')
+@section('js')
     <script type="text/javascript">
         function inactive(id, button) {
             Swal.fire({
@@ -212,10 +212,10 @@
     </script>
 
     <script type="text/javascript">
-        function reset() {
+        function reset(id) {
             Swal.fire({
                 title: 'Reset Password?',
-                text: 'Do you want to Reset Password?',
+                html: 'Do you want to Reset Password? <br> <b> password: Optimals2023! </b>',
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
@@ -224,12 +224,12 @@
 
                 if (result.isConfirmed) {
                     showLoader();
-                    window.location.href = '#'
+                    window.location.href = '/reset-password/' + id;
                 }
 
             });
         };
     </script>
 
-    @stop
-    @endsection
+@stop
+@endsection
