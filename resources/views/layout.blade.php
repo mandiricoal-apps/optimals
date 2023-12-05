@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="/assets/vendors/font-awesome/css/font-awesome.min.css" />
 
     <link rel="stylesheet" href="/assets/css/demo_1/style.css" />
-    <link rel="shortcut icon" href="/assets/images/logo/logo_img2.jpg" />
+    <link rel="shortcut icon" href="/assets/images/logo/logo_img4.png" />
 
     <!-- animation css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -81,8 +81,8 @@
             <img class="" src="/assets/images/loader.svg" alt="">
         </div>
     </div>
-    <div class="container-scroller">
-        <nav class="sidebar sidebar-offcanvas animate__animated animate__slideInLeft" id="sidebar">
+    <div class="container-scroller ">
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item  nav-profile border-bottom" id="parent">
                     <a href="#" class="nav-link flex-column">
@@ -186,7 +186,7 @@
                     </script>
                     <a class="nav-link" type="button" onclick="soons()">
                         <i class="mdi mdi-checkbox-multiple-blank-circle menu-icon"></i>
-                        <span class="menu-title">PICCA</span>
+                        <span class="menu-title">PICA</span>
                     </a>
                 </li>
             </ul>
