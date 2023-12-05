@@ -222,30 +222,34 @@
             <hr>
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-striped" width="100%">
-                        <thead>
-                            <tr>
-                                <th scope="col" width="20%">Last Update</th>
-                                <th scope="col" width="60%">Issue</th>
-                                <th scope="col" width="20%" style="text-align:center;">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($lastIssue as $is)
+                    <div class="table-responsive">
+                        <table class="table table-striped" width="100%">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        {!! tanggalTable($is->updated_at) !!}
-                                    </td>
-                                    <td>
-                                        {{ $is->code }}<br>
-                                        <small><b>Description :</b> {{ $is->issue }}</small>
-                                    </td>
-                                    <td style="text-align:center;"><i>{{ ucfirst($is->status) }}</i></td>
+                                    <th scope="col" width="20%">Last Update</th>
+                                    <th scope="col" width="60%">
+                                        Issue</th>
+                                    <th scope="col" width="20%" style="text-align:center;">Status</th>
                                 </tr>
-                            @endforeach
+                            </thead>
+                            <tbody>
+                                @foreach ($lastIssue as $is)
+                                    <tr>
+                                        <td>
+                                            {!! tanggalTable($is->updated_at) !!}
+                                        </td>
+                                        <td style="white-space:pre-line; line-break:auto ">
+                                            {{ $is->code }}<br>
+                                            <small><b>Description :</b> {{ $is->issue }}</small>
+                                        </td>
+                                        <td style="text-align:center;"><i>{{ ucfirst($is->status) }}</i></td>
+                                    </tr>
+                                @endforeach
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+
+                    </div>
                     <hr>
                     @can('view_issue')
                         <div class="text-end">
@@ -301,8 +305,13 @@
                 data: {
                     labels: ['MIP', 'MKP', 'RML'],
                     datasets: [{
-                        label: '#dailyinspection',
-                        data: [{{ $MIP }}, {{ $MKP }}, {{ $RML }}],
+                        label: '#dailyinspection(%)',
+                        data: [
+                            {{ round(($MIP / $total_all) * 100, 2) }},
+                            {{ round(($MKP / $total_all) * 100, 2) }},
+                            {{ round(($RML / $total_all) * 100, 2) }}
+
+                        ],
                         borderWidth: 1,
                         backgroundColor: [
                             'crimson',

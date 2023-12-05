@@ -73,7 +73,7 @@ function issue()
         'open' => 'Open',
         'close' => 'Closed',
         'progress' => 'On Progress',
-        'reject' => 'Cancled',
+        'reject' => 'Canclled',
     ];
 }
 

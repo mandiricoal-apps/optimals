@@ -29,7 +29,7 @@
     <link rel="shortcut icon" href="/assets/images/logo/logo_img2.jpg" />
 
     <!-- animation css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     <style>
         .card {
@@ -141,7 +141,7 @@
                             <span class="menu-title">Area</span>
                         </a>
                     </li>
-                    @endcan
+                @endcan
                 @can('view_qna')
                     <li class="nav-item @yield('qna')">
                         <a class="nav-link" type="button" href="/qna">
@@ -192,7 +192,7 @@
             </ul>
         </nav>
 
-    
+
         <div class="container-fluid page-body-wrapper">
             <!-- partial -->
             <!-- partial:partials/_navbar.html -->
@@ -311,7 +311,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="modal-md-body">
+                    <div id="">
                         <form method="post" action="/change-password" onsubmit="showLoader()" class="p-5">
                             @csrf
                             <div class="form-group">
@@ -641,7 +641,7 @@
             });
         };
     </script>
-    <script src="/assets/js/custom.js"></script>
+
 
     <script>
         const loader = $('.loader');
@@ -670,6 +670,7 @@
             }
         });
     </script>
+    <script src="/assets/js/custom.js"></script>
     @yield('js')
 </body>
 

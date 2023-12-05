@@ -301,7 +301,7 @@
                     <div class="modal-body ">
                         @csrf
                         <input type="hidden" name="status" value="reject">
-                        <p>Are you sure to <b>Cancelled</b> this issue ?</p>
+                        <p>Are you sure to <b>Reject</b> this issue ?</p>
                         <div class="mb-3">
                             <p>Please give reason <b class="text-danger">*</b></p>
                             <textarea name="reason" id="reason" class="form-control" rows="3" placeholder="Reason" required></textarea>
