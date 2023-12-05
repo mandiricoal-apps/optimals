@@ -141,25 +141,7 @@
                             <span class="menu-title">Area</span>
                         </a>
                     </li>
-
-                </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                data-toggle="offcanvas">
-                <span class="mdi mdi-menu"></span>
-            </button>
-        </div>
-    </nav>
-
-    <div class="main-panel">
-        <div class="content-wrapper px-5 animate__animated animate__pulse">
-            <div class="row">
-                <div class="page-header p-0">
-                    @if(isset($title))<h3 class="page-title">{{ $title }}</h3>@endif
-                    @if (isset($breadcrumb))
-                    {{ Breadcrumbs::render($breadcrumb) }}
-                    @endif
-                    {{-- <nav aria-label="breadcrumb">
-                @endcan
+                    @endcan
                 @can('view_qna')
                     <li class="nav-item @yield('qna')">
                         <a class="nav-link" type="button" href="/qna">
@@ -210,9 +192,53 @@
             </ul>
         </nav>
 
+    
         <div class="container-fluid page-body-wrapper">
             <!-- partial -->
             <!-- partial:partials/_navbar.html -->
+            <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+                <div class="navbar-menu-wrapper d-flex align-items-stretch" style="background: #dc3545;">
+                    {{-- <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                data-toggle="minimize">
+                <span class="mdi mdi-chevron-double-left"></span>
+            </button> --}}
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown" id="parent">
+                            <h5><i class="mdi mdi mdi-view-dashboard menu-icon"></i><i>OPTIMALS</i><small> | Operation
+                                    Mandiricoal System</small></h5>
+                        </li>
+                    </ul>
+                    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                        <a class="navbar-brand brand-logo-mini" href="index.html"><img
+                                src="/assets/images/logo-mini.svg" alt="logo" /></a>
+                    </div>
+                    <ul class="navbar-nav navbar-nav-right">
+                        <li class="nav-item nav-profile dropdown d-none d-md-block" id="parent">
+                            <a class="nav-link dropdown-toggle" id="profileDropdown" href="#"
+                                data-toggle="dropdown" aria-expanded="false">
+                                <div class="nav-profile-text">Account </div>
+                            </a>
+                            <div class="dropdown-menu center navbar-dropdown">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#modal-pass">
+                                    Change Password
+                                </a>
+                                <a class="dropdown-item" onclick="logout()">
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item nav-logout d-none d-lg-block">
+                            <a class="nav-link" href="/">
+                                <i class="mdi mdi-home-circle"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                        data-toggle="offcanvas">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+                </div>
+            </nav>
 
             <div class="main-panel">
                 <div class="content-wrapper px-5 ">
