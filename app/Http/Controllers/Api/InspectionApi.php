@@ -8,6 +8,7 @@ use App\Models\DailyInspection;
 use App\Models\DailyInspectionSummary;
 use App\Models\DataLocation;
 use App\Models\Issue;
+use App\Models\LogScore;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,6 +49,16 @@ class InspectionApi extends Controller
             //create daily inspection
             $save_daily_inspection = DailyInspection::create($daily_inspection);
             $inspection_id = $save_daily_inspection->id;
+
+            //create log score
+            LogScore::create([
+                'inspection_id' => $inspection_id,
+                'score' => $daily_inspection['total_score'],
+                'description' => 'Frist Score',
+                'created_by' => $daily_inspection['create_by'],
+                'created_at' => $save_daily_inspection->created_at,
+                'updated_at' => $save_daily_inspection->created_at,
+            ]);
 
 
             //crate data location

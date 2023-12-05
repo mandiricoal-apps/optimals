@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Area;
 use App\Models\DailyInspection;
+use App\Models\LogScore;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -146,6 +147,7 @@ class DailyInspectionController extends Controller
 
         $data['dailyInspection'] = $dailyInspection;
         $data['dataLocation'] = $dataLocation;
+        $data['logScore'] = LogScore::with(['user'])->where('inspection_id', $dailyInspection->id)->get();
 
         return view('dashboard.detail_daily_inspection', $data);
     }
@@ -160,6 +162,15 @@ class DailyInspectionController extends Controller
         $dailyInspection->total_score = $request->score;
         $dailyInspection->reason_score = $request->reason_score;
         $dailyInspection->score_update_by = Auth::user()->id;
+
+        //create log score
+        LogScore::create([
+            'inspection_id' => $dailyInspection->id,
+            'score' => $dailyInspection->total_score,
+            'description' => $request->reason_score,
+            'created_by' => Auth::user()->id,
+
+        ]);
 
         if ($dailyInspection->save()) {
             return redirect("/daily-inspection-detail/$dailyInspection->id")->with('message', 'Berhasil mengubah score');
