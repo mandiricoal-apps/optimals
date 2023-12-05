@@ -43,7 +43,7 @@ class UserController extends Controller
 
     function modalAdduser()
     {
-        $data['roles'] = Role::get();
+        $data['roles'] = Role::whereNot('id', 1)->get();
 
         return view('modal.add_user', $data);
     }

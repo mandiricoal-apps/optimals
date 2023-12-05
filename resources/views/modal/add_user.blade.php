@@ -32,6 +32,11 @@
             <input type="text" class="form-control" id="division" name="division" placeholder="Divisi"
                 required="" readonly>
         </div>
+        <div class="form-group">
+            <label for="">Email</label><span style="color:red;">*</span>
+            <input type="text" class="form-control" id="email" name="email" placeholder="Email" required=""
+                readonly>
+        </div>
 
         <div class="form-group">
             <label for="">Roles</label><span style="color:red;">*</span>
@@ -129,11 +134,12 @@
 
                 return e.user_id == id;
             })
-            console.log(selected_emloyee);
+            // console.log(selected_emloyee);
             $('#name').val(selected_emloyee.user_name);
             $('#nik').val(selected_emloyee.user_nik);
             $('#division').val(selected_emloyee.divisi_name);
             $('#password').val(selected_emloyee.user_password);
+            $('#email').val(selected_emloyee.user_email);
         }
 
     });

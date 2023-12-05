@@ -25,6 +25,11 @@
             <input type="text" class="form-control" id="division" name="division" placeholder="Divisi"
                 value="{{ $user->division }}" required="" readonly>
         </div>
+        <div class="form-group">
+            <label for="">Email</label><span style="color:red;">*</span>
+            <input type="text" class="form-control" id="email" name="email" placeholder="Email"
+                value="{{ $user->email }}" required="" readonly>
+        </div>
 
         <div class="form-group">
             <label for="">Roles</label><span style="color:red;">*</span>
