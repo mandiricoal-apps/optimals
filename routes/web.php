@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthApi;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DailyInspectionController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IssueController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RolesController;
@@ -12,6 +13,7 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,11 +52,7 @@ Route::get('/simbolik', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
-    Route::get('/', function () {
-        // $data['title'] = 'Optimals ()';
-        // $data['breadcrumb'] = 'home';
-        return view('dashboard/dashboard', []);
-    });
+    Route::get('/', [DashboardController::class, 'index']);
 
     Route::get('/company-api', [UserController::class, 'companyApi']);
     Route::get('/employee-api', [UserController::class, 'employeeApi']);

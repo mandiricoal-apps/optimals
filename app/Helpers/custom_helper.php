@@ -53,3 +53,31 @@ function maxScore()
         ->get();
     return $results;
 }
+
+function colorScore($val)
+{
+    if ($val <= 60) {
+        return 'danger';
+    } else if ($val >= 61 && $val <= 69) {
+        return 'warning';
+    } else if ($val >= 70 && $val <= 79) {
+        return 'primary';
+    } else {
+        return 'success';
+    }
+}
+
+function issue()
+{
+    return [
+        'open' => 'Open',
+        'close' => 'Closed',
+        'progress' => 'On Progress',
+        'reject' => 'Cancled',
+    ];
+}
+
+function company()
+{
+    return ['MIP', 'MKP', 'RML'];
+}

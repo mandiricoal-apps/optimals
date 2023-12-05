@@ -48,7 +48,7 @@
                                     <br><small>Area : {{ $area_name }}</small>
                                 </td>
                                 <td>
-                                    {{ $di->total_score }}
+                                    {{ round($di->total_score, 2) }}
                                 </td>
                                 <td>
                                     <a href="#" onclick="modalUser({{ $di->user_id }})">{{ $di->name }} <i
