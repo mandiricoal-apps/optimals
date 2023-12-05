@@ -204,7 +204,7 @@
             </button> --}}
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown" id="parent">
-                            <h5><i class="mdi mdi mdi-view-dashboard menu-icon"></i><i>OPTIMALS</i><small> | Operation
+                            <h5>OPTIMALS |<small> Operation
                                     Mandiricoal System</small></h5>
                         </li>
                     </ul>

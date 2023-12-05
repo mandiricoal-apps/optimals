@@ -69,6 +69,7 @@
                             <td><a href="javascript:void(0)" onclick="modalUser({{ $u->id }})">{{ $u->name }} <i
                                         style="font-size: 14px;" class="mdi mdi-link-variant"></i></a>
                                 <br><small class="mt-1">NIK : {{ $u->nik }}</small>
+                                <br><small class="mt-1">User ID : {{ $u->user_id }}</small>
                             </td>
                             <td>{{ $u->division }}</td>
                             <td>{{ $u->company }}</td>
