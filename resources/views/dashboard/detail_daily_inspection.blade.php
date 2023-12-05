@@ -32,7 +32,7 @@
                                                                 with
                                                                 reason: {{ $dailyInspection->reason_score }} <br>
                                                                 <a href="#" data-toggle="modal"
-                                                                    data-target="#log-score-modal">View log <i
+                                                                    data-target="#log-score-modal">Score History <i
                                                                         style="font-size: 14px;"
                                                                         class="mdi mdi-link-variant"></i></a>
                                                             </small>
