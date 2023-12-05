@@ -79,7 +79,7 @@
                 <div class="col-2">
                     <label for=""></label>
                     <button type="submit" class="btn btn-primary mr-2 form-control form-control-sm"><i
-                            style="font-size: 14px;" class="mdi mdi-content-save"></i> Search </button>
+                            style="font-size: 14px;" class="mdi mdi-magnify"></i> Search </button>
                 </div>
                 <div class="col"></div>
             </div>
