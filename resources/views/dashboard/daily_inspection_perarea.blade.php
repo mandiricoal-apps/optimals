@@ -65,6 +65,7 @@
                     </td>
                     <td>
 
+
                         @if ($di->approved_at)
                         <b><i>Approved</i></b>
                         @else

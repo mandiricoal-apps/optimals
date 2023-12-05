@@ -39,7 +39,7 @@ class InspectionApi extends Controller
             return response()->json(['message' => $validator->errors()], 400);
         }
         $daily_inspection['create_by'] = Auth::user()->id;
-        if ($daily_inspection['created_at']) {
+        if (isset($daily_inspection['created_at'])) {
             $daily_inspection['updated_at'] = $daily_inspection['created_at'];
         }
 
@@ -55,7 +55,7 @@ class InspectionApi extends Controller
             DataLocation::create($data_location);
 
             //create summary daily inspection
-            if ($daily_inspection['created_at']) {
+            if (isset($daily_inspection['created_at'])) {
 
                 $date = $daily_inspection['created_at'];
             } else {
@@ -227,5 +227,30 @@ class InspectionApi extends Controller
         $dailyInspections = DailyInspection::with(['summary', 'location', 'summary.question', 'summary.answer', 'summary.issue', 'summary.issue.progressIssue', 'summary.issue.progressIssue.userProgress', 'summary.issue.progressIssue.userClosed', 'summary.issue.progressIssue.userRejected'])
             ->find($id);
         return response()->json(['message' => 'Daily Inspections', 'data' => $dailyInspections], 200);
+    }
+
+    function countInspection(Request $request, $idUser)
+    {
+        $type = $request->type;
+        $inspection = DailyInspection::where('create_by', $idUser);
+        $issue = DB::table("issue")
+            ->join('daily_inspection_summary', 'daily_inspection_summary.id', '=', 'issue.sumary_id')
+            ->join('daily_inspections', 'daily_inspection_summary.inspection_id', '=', 'daily_inspections.id')->where('daily_inspections.create_by', $idUser);
+        if ($type == "day") {
+            $inspection = $inspection->whereDate('created_at', date('Y-m-d'));
+            $issue = $issue->whereDate('issue.created_at', date('Y-m-d'));
+        } else if ($type == "month") {
+            $inspection = $inspection->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', date('Y'));
+            $issue = $issue->whereMonth('issue.created_at', date('m'))
+                ->whereYear('issue.created_at', date('Y'));
+        }
+        return response()->json([
+            'message' => 'Daily Inspection Total',
+            'data' => [
+                'daily_inspection' => $inspection->count(),
+                'issue' => $issue->count(),
+            ]
+        ]);
     }
 }
