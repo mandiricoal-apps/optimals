@@ -105,9 +105,9 @@
                                                         @endif
                                                     @endif
                                                     <!--  <img src="https://akcdn.detik.net.id/visual/2016/11/07/1773d313-6717-43e3-87d6-c8bc5effcc5d_169.jpg" style=" border-radius:5px;">&emsp;
-                                                                                <img src="https://akcdn.detik.net.id/visual/2016/11/07/1773d313-6717-43e3-87d6-c8bc5effcc5d_169.jpg" style=" border-radius:5px;">&emsp;
-                                                                                <img src="https://akcdn.detik.net.id/visual/2016/11/07/1773d313-6717-43e3-87d6-c8bc5effcc5d_169.jpg" style=" border-radius:5px;">&emsp;
-                                                                                <img src="https://akcdn.detik.net.id/visual/2016/11/07/1773d313-6717-43e3-87d6-c8bc5effcc5d_169.jpg" style=" border-radius:5px;">&emsp; -->
+                                                                                            <img src="https://akcdn.detik.net.id/visual/2016/11/07/1773d313-6717-43e3-87d6-c8bc5effcc5d_169.jpg" style=" border-radius:5px;">&emsp;
+                                                                                            <img src="https://akcdn.detik.net.id/visual/2016/11/07/1773d313-6717-43e3-87d6-c8bc5effcc5d_169.jpg" style=" border-radius:5px;">&emsp;
+                                                                                            <img src="https://akcdn.detik.net.id/visual/2016/11/07/1773d313-6717-43e3-87d6-c8bc5effcc5d_169.jpg" style=" border-radius:5px;">&emsp; -->
                                                 </th>
                                             </tr>
                                             <tr>
@@ -291,7 +291,7 @@
         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Change Status to Close</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Change Status to Cancelled</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -301,7 +301,7 @@
                     <div class="modal-body ">
                         @csrf
                         <input type="hidden" name="status" value="reject">
-                        <p>Are you sure to <b>Reject</b> this issue ?</p>
+                        <p>Are you sure to <b>Cancelled</b> this issue ?</p>
                         <div class="mb-3">
                             <p>Please give reason <b class="text-danger">*</b></p>
                             <textarea name="reason" id="reason" class="form-control" rows="3" placeholder="Reason" required></textarea>
