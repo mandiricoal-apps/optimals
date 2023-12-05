@@ -37,7 +37,7 @@
         @endif
         <div class="page-header p-0">
             <h3 class="page-title">Dashboard Daily Inspection
-                {{ 'in ' . (request()->company && request()->company != 'all' ? request()->company : '') . ' ' }}
+                {{ (request()->company && request()->company != 'all' ? 'in ' . request()->company : '') . ' ' }}
                 <small>({{ isset($title_date) ? $title_date : date('F Y') }})</small>
             </h3>
             <nav aria-label="breadcrumb">

@@ -112,4 +112,36 @@ class UserController extends Controller
             return json_decode($employee);
         }
     }
+
+    function changePassword(Request $request)
+    {
+        # Validation
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed|min:8',
+        ]);
+
+
+        #Match The Old Password
+        if (!Hash::check(md5($request->old_password), auth()->user()->password)) {
+            return back()->withErrors(['Old password is wrong.']);
+        }
+
+
+        #Update the new Password
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make(md5($request->new_password))
+        ]);
+
+        return back()->with('message', 'Successfully changed password.');
+    }
+
+    function resetPassword($idUser)
+    {
+        $user = User::find($idUser);
+        $user->password = Hash::make(md5('Optimals2023!'));
+        if ($user->save()) {
+            return back()->with('message', 'Successfully changed password.');
+        }
+    }
 }

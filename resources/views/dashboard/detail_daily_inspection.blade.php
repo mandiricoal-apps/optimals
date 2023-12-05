@@ -26,11 +26,18 @@
                                                             {{ round($dailyInspection->total_score, 2) }}</h1>
                                                     </h5>
                                                     @if ($dailyInspection->score_update_by != null)
+                                                        <small>
+                                                            First Score : {{ round($logScore->first()->score, 2) }}
+                                                        </small>
                                                         <p class="card-text"><small class="text-muted">Score has been
                                                                 Changed by
                                                                 <b>{{ $dailyInspection->userUpdateScore->name }}</b> <br>
                                                                 with
-                                                                reason: {{ $dailyInspection->reason_score }}
+                                                                reason: {{ $dailyInspection->reason_score }} <br>
+                                                                <a href="#" data-toggle="modal"
+                                                                    data-target="#log-score-modal">Score History <i
+                                                                        style="font-size: 14px;"
+                                                                        class="mdi mdi-link-variant"></i></a>
                                                             </small>
                                                         </p>
                                                     @endif
@@ -191,6 +198,45 @@
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="log-score-modal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-md" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Score History</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <th>No.</th>
+                                            <th>Score</th>
+                                            <th>Reason</th>
+                                            <th>Updater</th>
+                                            <th>Date</th>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($logScore as $log)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $log->score }}</td>
+                                                    <td>{{ $log->description }}</td>
+                                                    <td>{{ $log->user->name }}</td>
+                                                    <td>{{ tanggalText($log->created_at) }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
