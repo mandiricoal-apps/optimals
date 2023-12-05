@@ -153,7 +153,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 login-sec animate__animated animate__flipInY">
+                    <div class="col-md-4 pt-0 login-sec animate__animated animate__flipInY">
                         <!-- <marquee class="mt-0" width="100%"><i>Optimals by Mandiricoal | #GoodMiningPractice</i></marquee> -->
                         <center><img class="d-block img-fluid" src="/assets/images/logo/logo_img3.png" alt="First slide"
                             width="100%"></center>
@@ -169,28 +169,36 @@
                             <form class="login-form p-4" method="Post" action="/login">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1" class=""><b><i
-                                        class="mdi mdi-account menu-icon"></i> NIK</b></label>
-                                        <input type="text" class="form-control" placeholder="" name="nik" id="nik">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1" class=""><b><i
-                                            class="mdi mdi-lock-outline menu-icon"></i> Password</b></label>
-                                            <input type="password" class="form-control" placeholder="" name="password"
-                                            id="password">
-                                        </div><br>
-                                        <button type="submit" class="form-control btn btn-login float-right"
-                                        style="color:white;background: #dc3545;"><i class="mdi mdi-login-variant menu-icon"></i>
-                                    Sign In</button>
-                                </form>
-                                <br>
-                                <div class="p-4 text-center"><i>Copyright mandiricoal.co.id 2023</i></div>
-                            </div>
-                        </div>
+                                    <label for="exampleInputEmail1" class=""><b><i class="mdi mdi-account menu-icon"></i> NIK</b></label>
+                                    <input type="text" class="form-control" placeholder="" name="nik" id="nik">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1" class=""><b><i class="mdi mdi-lock-outline menu-icon"></i> Password</b></label>
+                                    <input type="password" class="form-control" placeholder="" name="password" id="password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" onclick="show()"> Show Password
+                                </div><br>
+                                <button type="submit" class="form-control btn btn-login float-right"
+                                style="color:white;background: #dc3545;"><i class="mdi mdi-login-variant menu-icon"></i>
+                            Sign In</button>
+                        </form>
+                        <br>
+                        <div class="p-4 text-center"><i>Copyright mandiricoal.co.id 2023</i></div>
                     </div>
-                </section>
+                </div>
+            </div>
+        </section>
+    </body>
 
-
-            </body>
-
-            </html>
+    <script>
+        function show() {
+          var x = document.getElementById("password");
+          if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+</html>
