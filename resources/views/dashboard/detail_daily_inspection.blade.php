@@ -26,6 +26,9 @@
                                                             {{ round($dailyInspection->total_score, 2) }}</h1>
                                                     </h5>
                                                     @if ($dailyInspection->score_update_by != null)
+                                                        <small>
+                                                            First Score : {{ round($logScore->first()->score, 2) }}
+                                                        </small>
                                                         <p class="card-text"><small class="text-muted">Score has been
                                                                 Changed by
                                                                 <b>{{ $dailyInspection->userUpdateScore->name }}</b> <br>
