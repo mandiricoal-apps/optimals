@@ -307,9 +307,9 @@
                     datasets: [{
                         label: '#dailyinspection(%)',
                         data: [
-                            {{ round(($MIP / $total_all) * 100, 2) }},
-                            {{ round(($MKP / $total_all) * 100, 2) }},
-                            {{ round(($RML / $total_all) * 100, 2) }}
+                            {{ $total_all == 0 ? 0 : round(($MIP / $total_all) * 100, 2) }},
+                            {{ $total_all == 0 ? 0 : round(($MKP / $total_all) * 100, 2) }},
+                            {{ $total_all == 0 ? 0 : round(($RML / $total_all) * 100, 2) }}
 
                         ],
                         borderWidth: 1,
