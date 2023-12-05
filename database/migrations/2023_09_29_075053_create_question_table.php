@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('question', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->unique();
             $table->text('question');
             $table->double('weight');
             $table->integer('numbering')->nullable();
@@ -31,6 +32,8 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('question');
+        Schema::enableForeignKeyConstraints();
     }
 };

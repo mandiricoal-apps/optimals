@@ -3,12 +3,17 @@
 use App\Http\Controllers\Api\AuthApi;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DailyInspectionController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IssueController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Auth\Events\Login;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,25 +36,37 @@ Route::get('/login', function () {
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/migrate', function () {
+    return Artisan::call('migrate');
+});
+Route::get('/migrate-refresh', function () {
+    return Artisan::call('migrate:refresh');
+});
+Route::get('/seed', function () {
+    return Artisan::call('db:seed');
+});
+Route::get('/simbolik', function () {
+    return Artisan::call('storage:link');
+});
+
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
-    Route::get('/', function () {
-        $data['title'] = 'Dashboard';
-        $data['breadcrumb'] = 'home';
-        return view('dashboard/dashboard', $data);
-    });
+    Route::get('/', [DashboardController::class, 'index']);
 
     Route::get('/company-api', [UserController::class, 'companyApi']);
     Route::get('/employee-api', [UserController::class, 'employeeApi']);
 
 
+    Route::get('/modal-view-user/{id}', [UserController::class, 'modalViewuser']);
+    Route::post('/change-password', [UserController::class, 'changePassword']);
     Route::group(['middleware' => ['permission:view_user']], function () {
         Route::get('/user', [UserController::class, 'index']);
-        Route::get('/modal-view-user/{id}', [UserController::class, 'modalViewuser']);
         Route::get('/modal-add-user', [UserController::class, 'modalAdduser']);
         Route::get('/modal-edit-user/{id}', [UserController::class, 'modalEdituser']);
         Route::post('/create-user', [UserController::class, 'createUser'])->middleware(['permission:create_user']);
         Route::post('/edit-user/{id}', [UserController::class, 'editUser'])->middleware(['permission:edit_user']);
+        Route::get('/reset-password/{id}', [UserController::class, 'resetPassword'])->middleware(['permission:edit_user']);
         Route::get('/active-user/{id}', [UserController::class, 'activeUser'])->middleware(['permission:delete_user']);
         Route::get('/inactive-user/{id}', [UserController::class, 'inactiveUser'])->middleware(['permission:delete_user']);
     });
@@ -82,5 +99,19 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/answer/{question}', [QuestionController::class, 'answer']);
         Route::post('/create-answer', [QuestionController::class, 'createAnswer'])->middleware(['permission:create_qna']);
         Route::post('/edit-answer/{id}', [QuestionController::class, 'editAnswer'])->middleware(['permission:edit_qna']);
+        Route::get('/inactive-answer/{answer}', [QuestionController::class, 'inactiveAnswer'])->middleware(['permission:delete_qna']);
+        Route::get('/active-answer/{id}', [QuestionController::class, 'activeAnswer'])->middleware(['permission:delete_qna']);
+    });
+    Route::group(['middleware' => ['permission:view_daily_inspection']], function () {
+        Route::get('/daily-inspection', [DailyInspectionController::class, 'index']);
+        Route::get('/daily-inspection-area/{area}', [DailyInspectionController::class, 'perArea']);
+        Route::get('/daily-inspection-detail/{dailyInspection}', [DailyInspectionController::class, 'detailDailyInspection']);
+        Route::post('/edit-score/{dailyInspection}', [DailyInspectionController::class, 'editScore'])->middleware(['permission:edit_daily_inspection']);
+        Route::get('/approve-daily-inspection/{dailyInspection}', [DailyInspectionController::class, 'approve'])->middleware(['permission:edit_daily_inspection']);
+    });
+    Route::group(['middleware' => ['permission:view_issue']], function () {
+        Route::get('/issue', [IssueController::class, 'index']);
+        Route::get('/detail-issue/{issue}', [IssueController::class, 'detail']);
+        Route::post('//change-status-issue/{issue}', [IssueController::class, 'changeStatus'])->middleware(['permission:edit_issue']);
     });
 });

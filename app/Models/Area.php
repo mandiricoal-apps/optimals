@@ -19,12 +19,16 @@ class Area extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->area_code = IdGenerator::generate(['table' => 'area', 'field' => 'area_code', 'length' => 5, 'prefix' => 'A']);
+            $model->area_code = IdGenerator::generate(['table' => 'area', 'field' => 'area_code', 'length' => 3, 'prefix' => 'A']);
         });
     }
 
     function question()
     {
         return $this->hasMany(Question::class, 'area_id', 'id');
+    }
+    function dailyInspection()
+    {
+        return $this->hasMany(DailyInspection::class, 'area_id', 'id');
     }
 }

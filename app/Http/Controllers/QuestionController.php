@@ -7,6 +7,7 @@ use App\Models\Area;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class QuestionController extends Controller
 {
@@ -22,7 +23,7 @@ class QuestionController extends Controller
     function question(Request $request, Area $area)
     {
 
-        $data['title'] = 'Questions in ' . $area->area_name;
+        $data['title'] = 'Questions ' . ucfirst($request->status ?? 'active') . ' in ' . $area->area_name . ' (' . $area->area_code . ')';
         $data['breadcrumb'] = 'question';
         $data['area_id'] = $area->id;
         if ($request->status == 'inactive') {
@@ -30,6 +31,7 @@ class QuestionController extends Controller
         } else {
             $data['question'] = $area->question;
         }
+        $data['status'] = $request->status ?? 'active';
 
         return view('dashboard.question', $data);
     }
@@ -103,11 +105,19 @@ class QuestionController extends Controller
         return back()->onlyInput();
     }
 
-    function answer(Question $question)
+    function answer(Request $request, Question $question)
     {
         $data['title'] = 'Answer';
         $data['breadcrumb'] = 'answer';
+
+        $data['status'] = $request->status;
         $data['question'] = $question;
+        $answer = Answer::where('question_id', '=', $question->id);
+        $status = $request->status;
+        if ($status == 'inactive') {
+            $answer = $answer->onlyTrashed();
+        }
+        $data['answers'] = $answer->get();
 
         return view('dashboard.answer', $data);
     }
@@ -116,7 +126,10 @@ class QuestionController extends Controller
     {
         $validated = $request->validate([
             'answer' => 'required',
-            'point' => 'required',
+            'point' => [
+                'required',
+                Rule::unique('answer', 'point')->where('question_id', request('question_id'))->whereNull('deleted_at')
+            ],
         ]);
         $data = $request->except('_token');
         $save = Answer::create($data);
@@ -129,17 +142,49 @@ class QuestionController extends Controller
     function editAnswer(Request $request, $id)
     {
         $validated = $request->validate([
-            'answer' => 'required',
-            'point' => 'required',
+
+            'point' => [
+                'required',
+                Rule::unique('answer', 'point')->where('question_id', request('question_id'))->whereNull('deleted_at')->ignore($id)
+            ],
         ]);
+        if ($validated) {
+            $answer = Answer::find($id);
+            $answer->point = $request->point;
 
-        $answer = Answer::find($id);
-        $answer->answer = $request->answer;
-        $answer->point = $request->point;
-
-        if ($answer->save()) {
-            return redirect("/answer/$answer->question_id")->with('message', 'Berhasil mengubah answer');
+            if ($answer->save()) {
+                return redirect("/answer/$answer->question_id")->with('message', 'Berhasil mengubah answer');
+            }
         }
         return back()->onlyInput();
+    }
+
+    function inActiveAnswer(Answer $answer)
+    {
+        $question_id = $answer->question_id;
+
+
+        if ($answer->delete()) {
+            return redirect("/answer/$question_id")->with('message', 'Answer behasil Di-nonactive-kan');
+        }
+    }
+    function activeAnswer($id)
+    {
+        $answer = Answer::withTrashed()->find($id);
+
+        $question_id = $answer->question_id;
+        $countAnswer = Question::find($question_id)->answer->count();
+        if ($countAnswer >= 4) {
+            return redirect("/answer/$question_id")->withErrors(['Answer max 4']);
+        }
+        $countSamePoint = Answer::where('point', $answer->point)->where('question_id', $question_id)->count();
+        if ($countSamePoint > 0) {
+            return redirect("/answer/$question_id")->withErrors(["Point must be unique"]);
+        }
+
+
+        if ($answer->restore()) {
+            return redirect("/answer/$question_id")->with('message', 'Answer behasil Di-active-kan');
+        }
     }
 }

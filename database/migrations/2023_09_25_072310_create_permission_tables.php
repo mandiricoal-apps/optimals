@@ -45,6 +45,8 @@ class CreatePermissionTables extends Migration
             $table->string('name');       // For MySQL 8.0 use string('name', 125);
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
             $table->string('description')->nullable(); //ditambah hiskia
+            $table->enum('accesbility_data', ['all', 'user_company'])->nullable(); //ditambah hiskia
+            $table->json('list_comp')->nullable(); //ditambah hiskia
             $table->timestamps();
             if ($teams || config('permission.testing')) {
                 $table->unique([$columnNames['team_foreign_key'], 'name', 'guard_name']);

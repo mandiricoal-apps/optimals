@@ -26,7 +26,10 @@
     <link rel="stylesheet" href="/assets/vendors/font-awesome/css/font-awesome.min.css" />
 
     <link rel="stylesheet" href="/assets/css/demo_1/style.css" />
-    <link rel="shortcut icon" href="/assets/images/favicon.png" />
+    <link rel="shortcut icon" href="/assets/images/logo/logo_img4.png" />
+
+    <!-- animation css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     <style>
         .card {
@@ -49,6 +52,25 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
+        #area-card {
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #area-card:hover {
+            transform: scale(1.1);
+            /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+
+        th {
+            font-weight: bold !important;
+        }
+
+        .table-hover tbody tr:hover td,
+        .table-hover tbody tr:hover th {
+            background-color: #1a55e312 !important;
+        }
     </style>
     @yield('css')
 </head>
@@ -59,7 +81,7 @@
             <img class="" src="/assets/images/loader.svg" alt="">
         </div>
     </div>
-    <div class="container-scroller">
+    <div class="container-scroller ">
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item  nav-profile border-bottom" id="parent">
@@ -83,9 +105,11 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
-                <li class="pt-2 pb-1">
-                    <span class="nav-item-head">Master Data</span>
-                </li>
+                @canany(['view_user', 'view_area', 'view_qna'])
+                    <li class="pt-2 pb-1">
+                        <span class="nav-item-head">Master Data</span>
+                    </li>
+                @endcanany
                 @can('view_user')
                     <li class="nav-item @yield('md-user')" id="parent">
                         <a class="nav-link " data-toggle="collapse" href="#ui-basic" aria-expanded="true"
@@ -126,23 +150,28 @@
                         </a>
                     </li>
                 @endcan
-                <li class="pt-2 pb-1">
-                    <span class="nav-item-head">Transactions</span>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button"
-                        onclick='window.location.replace("home.php?view=dailyinspection")'>
-                        <i class="mdi mdi-checkbox-multiple-marked-circle menu-icon"></i>
-                        <span class="menu-title">Daily Inspection</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button" onclick='window.location.replace("home.php?view=issue")'>
-                        <i class="mdi mdi-checkbox-multiple-blank-circle menu-icon"></i>
-                        <span class="menu-title">ISSUE</span>
-                    </a>
-                </li>
-                <li class="nav-item">
+                @canany(['view_daily_inspection', 'view_issue'])
+                    <li class="pt-2 pb-1">
+                        <span class="nav-item-head">Transactions</span>
+                    </li>
+                @endcanany
+                @can('view_daily_inspection')
+                    <li class="nav-item @yield('daily_inspection')">
+                        <a class="nav-link" type="button" href="/daily-inspection">
+                            <i class="mdi mdi-checkbox-multiple-marked-circle menu-icon"></i>
+                            <span class="menu-title">Daily Inspection</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('view_issue')
+                    <li class="nav-item @yield('issue')">
+                        <a href="/issue" class="nav-link" type="button">
+                            <i class="mdi mdi-checkbox-multiple-blank-circle menu-icon"></i>
+                            <span class="menu-title">ISSUE</span>
+                        </a>
+                    </li>
+                @endcan
+                <li class="nav-item" id="parent">
 
                     <!-- Active/Inactive -->
                     <script type="text/javascript">
@@ -152,31 +181,31 @@
                                 icon: 'info',
                                 showCancelButton: false,
                                 confirmButtonText: 'Oke',
-                            }).then((result) => {
-                                location.reload();
-                            });
+                            })
                         };
                     </script>
                     <a class="nav-link" type="button" onclick="soons()">
                         <i class="mdi mdi-checkbox-multiple-blank-circle menu-icon"></i>
-                        <span class="menu-title">PICCA</span>
+                        <span class="menu-title">PICA</span>
                     </a>
                 </li>
             </ul>
         </nav>
+
 
         <div class="container-fluid page-body-wrapper">
             <!-- partial -->
             <!-- partial:partials/_navbar.html -->
             <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
                 <div class="navbar-menu-wrapper d-flex align-items-stretch" style="background: #dc3545;">
-                    <!-- <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-      <span class="mdi mdi-chevron-double-left"></span>
-     </button> -->
+                    {{-- <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                data-toggle="minimize">
+                <span class="mdi mdi-chevron-double-left"></span>
+            </button> --}}
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown" id="parent">
-                            <h5><i class="mdi mdi mdi-view-dashboard menu-icon"></i><i>GoodMiningPractice</i><small> |
-                                    PT Mandiri Intiperkasa</small></h5>
+                            <h5><i class="mdi mdi mdi-view-dashboard menu-icon"></i><i>OPTIMALS</i><small> | Operation
+                                    Mandiricoal System</small></h5>
                         </li>
                     </ul>
                     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -189,7 +218,10 @@
                                 data-toggle="dropdown" aria-expanded="false">
                                 <div class="nav-profile-text">Account </div>
                             </a>
-                            <div class="dropdown-menu center navbar-dropdown" aria-labelledby="profileDropdown">
+                            <div class="dropdown-menu center navbar-dropdown">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#modal-pass">
+                                    Change Password
+                                </a>
                                 <a class="dropdown-item" onclick="logout()">
                                     Logout
                                 </a>
@@ -210,9 +242,27 @@
 
             <div class="main-panel">
                 <div class="content-wrapper px-5 ">
+                    <div class="row">
+                        <div class="page-header p-0">
+                            @if (isset($title))
+                                <h3 class="page-title">{{ $title }}</h3>
+                            @endif
+                            @if (isset($breadcrumb))
+                                {{ Breadcrumbs::render($breadcrumb) }}
+                            @endif
+                            {{-- <nav aria-label="breadcrumb">
+
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">UI Elements</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> Buttons </li>
+                        </ol>
+                    </nav> --}}
+                        </div>
+                    </div>
                     @if (session('message'))
                         <div class="row">
                             <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                <h5>Success !</h5>
                                 {!! session('message') !!}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -222,6 +272,7 @@
                     @endif
                     @if ($errors->any())
                         <div class="alert alert-danger alert-dismissible" role="alert">
+                            <h5>Failed !</h5>
                             <ul class="mb-0">
                                 @foreach ($errors->all() as $err)
                                     <li>{{ $err }}</li>
@@ -233,20 +284,7 @@
                             </button>
                         </div>
                     @endif
-                    <div class="row">
-                        <div class="page-header p-0">
-                            <h3 class="page-title">{{ $title }}</h3>
-                            @if (isset($breadcrumb))
-                                {{ Breadcrumbs::render($breadcrumb) }}
-                            @endif
-                            {{-- <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">UI Elements</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"> Buttons </li>
-                                </ol>
-                            </nav> --}}
-                        </div>
-                    </div>
+
                     @yield('content')
                 </div>
                 <footer class="footer">
@@ -257,6 +295,58 @@
                                 href="https://themewagon.com/">mandiricoal.co.id</a></span>
                     </div>
                 </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal MD-->
+    <div class="modal fade" id="modal-pass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="">
+                        <form method="post" action="/change-password" onsubmit="showLoader()" class="p-5">
+                            @csrf
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Old Password</label><span
+                                    style="color:red;">*</span>
+                                <input type="password" class="form-control form-control-sm" name="old_password"
+                                    placeholder="old password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">New Password</label><span
+                                    style="color:red;">*</span>
+                                <input type="password" class="form-control form-control-sm" name="new_password"
+                                    placeholder="new password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Confirm Password</label><span
+                                    style="color:red;">*</span>
+                                <input type="password" class="form-control form-control-sm"
+                                    name="new_password_confirmation" placeholder="confirm password" required>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button class="btn btn-light form-control" data-dismiss="modal"
+                                        aria-label="Close"><i style="font-size: 14px;"
+                                            class="mdi mdi-close-circle-outline"></i> Cancel</button>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary mr-2 form-control"><i
+                                            style="font-size: 14px;" class="mdi mdi-content-save"></i> Save </button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -286,19 +376,19 @@
 
     <!-- Plugin js for this page -->
     {{-- <script src="/assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
-    <script src="/assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="/assets/vendors/flot/jquery.flot.js"></script>
-    <script src="/assets/vendors/flot/jquery.flot.resize.js"></script>
-    <script src="/assets/vendors/flot/jquery.flot.categories.js"></script>
-    <script src="/assets/vendors/flot/jquery.flot.fillbetween.js"></script>
-    <script src="/assets/vendors/flot/jquery.flot.stack.js"></script> --}}
+<script src="/assets/vendors/chart.js/Chart.min.js"></script>
+<script src="/assets/vendors/flot/jquery.flot.js"></script>
+<script src="/assets/vendors/flot/jquery.flot.resize.js"></script>
+<script src="/assets/vendors/flot/jquery.flot.categories.js"></script>
+<script src="/assets/vendors/flot/jquery.flot.fillbetween.js"></script>
+<script src="/assets/vendors/flot/jquery.flot.stack.js"></script> --}}
 
     <!-- inject:js -->
     {{-- <script src="/assets/js/off-canvas.js"></script>
-    <script src="/assets/js/hoverable-collapse.js"></script>
-    <script src="/assets/js/misc.js"></script>
-    <script src="/assets/js/settings.js"></script>
-    <script src="/assets/js/todolist.js"></script> --}}
+<script src="/assets/js/hoverable-collapse.js"></script>
+<script src="/assets/js/misc.js"></script>
+<script src="/assets/js/settings.js"></script>
+<script src="/assets/js/todolist.js"></script> --}}
 
     <!-- Custom js for this page -->
     {{-- <script src="/assets/js/dashboard.js"></script> --}}
@@ -343,8 +433,8 @@
         $(document).ready(function() {
             hideLoader();
 
-            $('.nav-item').click(function() {
-                if (!($(this).attr('id') == 'parent')) {
+            $('.nav-link').click(function() {
+                if (!($(this).parent('.nav-item').attr('id') == 'parent')) {
                     showLoader();
                 }
             })
@@ -358,17 +448,17 @@
                         text: '<i style="font-size: 14px;" class="mdi mdi-file-excel"></i> Excel',
                         titleAttr: 'Create New Record',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4]
+                            columns: ':visible'
                         }
                     },
-                    {
-                        extend: 'print',
-                        text: '<i style="font-size: 14px;" class="mdi mdi-printer"></i> Print',
-                        titleAttr: 'Create New Record',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4]
-                        }
-                    },
+                    // {
+                    //     extend: 'print',
+                    //     text: '<i style="font-size: 14px;" class="mdi mdi-printer"></i> Print',
+                    //     titleAttr: 'Create New Record',
+                    //     exportOptions: {
+                    //         columns: ':visible'
+                    //     }
+                    // },
                     {
                         extend: 'colvis',
                         text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
@@ -378,6 +468,7 @@
                         }
                     }
                 ],
+                order: [],
 
                 initComplete: function() {
                     var btns = $('.dt-button');
@@ -413,6 +504,52 @@
                         }
                     }
                 ],
+                order: [],
+                initComplete: function() {
+                    var btns = $('.dt-button');
+                    btns.addClass('btn btn-dark');
+                    btns.removeClass('dt-button');
+
+                    this.api().columns().every(function() {
+                        let column = this;
+                        let title = column.footer().textContent;
+
+                        let input = document.createElement('input');
+                        input.placeholder = title;
+                        column.footer().replaceChildren(input);
+                        input.addEventListener('keyup', () => {
+                            if (column.search() !== this.value) {
+                                column.search(input.value).draw();
+                            }
+                        });
+                    });
+                }
+            });
+
+            $('#daily').DataTable({
+                dom: 'Bfrtip',
+                columnDefs: [{
+                    targets: [4, 5],
+                    visible: false
+                }],
+                buttons: [
+                    'pageLength',
+
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i style="font-size: 14px;" class="mdi mdi-file-excel"></i> Excel',
+                        titleAttr: 'Create New Record',
+                        exportOptions: {
+                            columns: [0, 1, 2, 4, 5, 6]
+                        }
+                    },
+                    {
+                        extend: 'colvis',
+                        text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
+                        titleAttr: 'Create New Record'
+                    }
+                ],
+                order: [],
 
                 initComplete: function() {
                     var btns = $('.dt-button');
@@ -434,6 +571,54 @@
                     });
                 }
             });
+
+            $('#issue').DataTable({
+                dom: 'Bfrtip',
+                columnDefs: [{
+                    targets: [3, 4, 6, 7, 8],
+                    visible: false
+                }],
+                buttons: [
+                    'pageLength',
+
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i style="font-size: 14px;" class="mdi mdi-file-excel"></i> Excel',
+                        titleAttr: 'Create New Record',
+                        exportOptions: {
+                            columns: [0, 1, 3, 4, 6, 7, 8, 9, 10],
+                        }
+                    },
+                    {
+                        extend: 'colvis',
+                        text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
+                        titleAttr: 'Create New Record',
+                    }
+                ],
+                order: [],
+
+                initComplete: function() {
+                    var btns = $('.dt-button');
+                    btns.addClass('btn btn-dark');
+                    btns.removeClass('dt-button');
+
+                    this.api().columns().every(function() {
+                        let column = this;
+                        let title = column.footer().textContent;
+
+                        let input = document.createElement('input');
+                        input.placeholder = title;
+                        column.footer().replaceChildren(input);
+                        input.addEventListener('keyup', () => {
+                            if (column.search() !== this.value) {
+                                column.search(input.value).draw();
+                            }
+                        });
+                    });
+                }
+            });
+
+
         });
     </script>
 
@@ -456,7 +641,7 @@
             });
         };
     </script>
-    <script src="/assets/js/custom.js"></script>
+
 
     <script>
         const loader = $('.loader');
@@ -474,6 +659,18 @@
             loader.fadeOut('slow');
         }
     </script>
+    <script>
+        window.addEventListener("pageshow", function(event) {
+            var historyTraversal = event.persisted ||
+                (typeof window.performance != "undefined" &&
+                    window.performance.navigation.type === 2);
+            if (historyTraversal) {
+                // Handle page restore.
+                window.location.reload();
+            }
+        });
+    </script>
+    <script src="/assets/js/custom.js"></script>
     @yield('js')
 </body>
 

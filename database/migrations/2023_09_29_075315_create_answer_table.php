@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('answer', function (Blueprint $table) {
             $table->id();
             $table->text('answer');
+            $table->string('code')->nullable();
             $table->foreignId('question_id')->constrained('question', 'id');
             $table->double('point');
             $table->timestamps();

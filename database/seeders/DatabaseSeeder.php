@@ -21,10 +21,11 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $role = Role::create(['name' => 'admin', 'description' => 'Administrator']);
-        Role::create(['name' => 'operation', 'description' => 'Operation']);
-        Role::create(['name' => 'Reviewer MIP', 'description' => 'Reviewer MIP']);
-        Role::create(['name' => 'Reviewer MKP', 'description' => 'Reviewer MKP']);
+        $role = Role::create(['name' => 'admin', 'description' => 'Administrator', 'accesbility_data' => 'all']);
+        Role::create(['name' => 'Reviewer MIP', 'description' => 'Reviewer MIP', 'accesbility_data' => 'all']);
+        Role::create(['name' => 'Reviewer MKP', 'description' => 'Reviewer MKP', 'accesbility_data' => 'user_company']);
+        Role::create(['name' => 'Reviewer RML', 'description' => 'Reviewer RML', 'accesbility_data' => 'user_company']);
+        Role::create(['name' => 'Operational Team', 'description' => 'Operational Team', 'accesbility_data' => 'all']);
 
         Permission::create(['name' => 'view_user', 'parent' => '[MD] User', 'type' => 'view']);
         Permission::create(['name' => 'edit_user', 'parent' => '[MD] User', 'type' => 'edit']);
@@ -40,10 +41,22 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name' => 'create_area', 'parent' => '[MD] Area', 'type' => 'create']);
         Permission::create(['name' => 'delete_area', 'parent' => '[MD] Area', 'type' => 'delete']);
 
-        Permission::create(['name' => 'view_qna', 'parent' => '[MD] Question and Andswer', 'type' => 'view']);
-        Permission::create(['name' => 'edit_qna', 'parent' => '[MD] Question and Andswer', 'type' => 'edit']);
-        Permission::create(['name' => 'create_qna', 'parent' => '[MD] Question and Andswer', 'type' => 'create']);
-        Permission::create(['name' => 'delete_qna', 'parent' => '[MD] Question and Andswer', 'type' => 'delete']);
+        Permission::create(['name' => 'view_qna', 'parent' => '[MD] Question and Answer', 'type' => 'view']);
+        Permission::create(['name' => 'edit_qna', 'parent' => '[MD] Question and Answer', 'type' => 'edit']);
+        Permission::create(['name' => 'create_qna', 'parent' => '[MD] Question and Answer', 'type' => 'create']);
+        Permission::create(['name' => 'delete_qna', 'parent' => '[MD] Question and Answer', 'type' => 'delete']);
+
+        Permission::create(['name' => 'view_daily_inspection', 'parent' => '[Trans] Daily Inspection', 'type' => 'view']);
+        Permission::create(['name' => 'edit_daily_inspection', 'parent' => '[Trans] Daily Inspection', 'type' => 'edit']);
+        Permission::create(['name' => 'delete_daily_inspection', 'parent' => '[Trans] Daily Inspection', 'type' => 'delete']);
+
+        Permission::create(['name' => 'view_issue', 'parent' => '[Trans] Issue', 'type' => 'view']);
+        Permission::create(['name' => 'edit_issue', 'parent' => '[Trans] Issue', 'type' => 'edit']);
+        Permission::create(['name' => 'delete_issue', 'parent' => '[Trans] Issue', 'type' => 'delete']);
+
+        Permission::create(['name' => 'progress_issue', 'parent' => '[Trans] Issue - On Progress', 'type' => 'view']);
+        Permission::create(['name' => 'close_issue', 'parent' => '[Trans] Issue - Closed', 'type' => 'view']);
+        Permission::create(['name' => 'cancle_issue', 'parent' => '[Trans] Issue - Cancel', 'type' => 'view']);
 
 
 
@@ -76,6 +89,19 @@ class DatabaseSeeder extends Seeder
         $role->givePermissionTo('edit_qna');
         $role->givePermissionTo('create_qna');
         $role->givePermissionTo('delete_qna');
+
+        $role->givePermissionTo('view_daily_inspection');
+        $role->givePermissionTo('edit_daily_inspection');
+        $role->givePermissionTo('delete_daily_inspection');
+
+        $role->givePermissionTo('view_issue');
+        $role->givePermissionTo('edit_issue');
+        $role->givePermissionTo('delete_issue');
+
+        $role->givePermissionTo('progress_issue');
+        $role->givePermissionTo('close_issue');
+        $role->givePermissionTo('cancle_issue');
+
 
         $user->assignRole($role);
 

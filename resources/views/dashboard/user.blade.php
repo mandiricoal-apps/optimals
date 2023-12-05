@@ -15,11 +15,13 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <div class="row">
-                <div class="col mb-0">
+            <div class="row mb-1">
+                <div class="col">
                     <i class="mdi mdi-filter-variant"></i> Filter by :
-                    <a href="/user?status=active" onclick="showLoader()" class="btn btn-info">Active</a>
-                    <a href="/user?status=inactive" onclick="showLoader();" class="btn btn-info">Inactive</a>
+                    <a href="/user?status=active" onclick="showLoader()"
+                        class="btn btn-{{ $status == 'active' ? 'info' : 'secondary' }}">Active</a>
+                    <a href="/user?status=inactive" onclick="showLoader();"
+                        class="btn btn-{{ $status == 'inactive' ? 'info' : 'secondary' }}">Inactive</a>
                 </div>
                 @can('create_user')
                     <div class="col text-end mb-3">
@@ -32,12 +34,12 @@
             <table id="example1" class="table table-striped table-hover" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Status</th>
-                        <th>Name</th>
-                        <th>Divisi</th>
-                        <th>Company</th>
-                        <th>Roles</th>
-                        <th class="text-center">Action</th>
+                        <th width="">Status</th>
+                        <th width="">Name</th>
+                        <th width="">Divisi</th>
+                        <th width="">Company</th>
+                        <th width="">Roles</th>
+                        <th class="text-center" width="25%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,6 +79,9 @@
                                         <div class="button-group">
                                             <button class="btn btn-success" onclick="modalEdit({{ $u->id }})">
                                                 <i style="font-size: 14px;" class="mdi mdi-pencil-circle-outline"></i> Edit
+                                            </button>
+                                            <button class="btn btn-warning" onclick="reset({{ $u->id }})">
+                                                Reset Password
                                             </button>
                                         </div>
                                     @endcan
@@ -173,8 +178,8 @@
 
                 beforeSend: function() {
                     html = `<div class="text-center"> <div class="spinner-border text-primary " role="status">
-                                <span class="sr-only">Loading...</span>
-                            </div></div>`;
+                    <span class="sr-only">Loading...</span>
+                    </div></div>`;
                     $('#modal-user-body').html(html);
 
                 },
@@ -194,8 +199,8 @@
 
                 beforeSend: function() {
                     html = `<div class="text-center"> <div class="spinner-border text-primary " role="status">
-                                <span class="sr-only">Loading...</span>
-                            </div></div>`;
+                    <span class="sr-only">Loading...</span>
+                    </div></div>`;
                     $('#modal-user-body').html(html);
 
                 },
@@ -204,6 +209,26 @@
                 }
             });
         }
+    </script>
+
+    <script type="text/javascript">
+        function reset(id) {
+            Swal.fire({
+                title: 'Reset Password?',
+                html: 'Do you want to Reset Password? <br> <b> password: Optimals2023! </b>',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No'
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+                    showLoader();
+                    window.location.href = '/reset-password/' + id;
+                }
+
+            });
+        };
     </script>
 
 @stop

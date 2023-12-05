@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\AuthApi;
-use App\Http\Controllers\api\InspectionApi;
+use App\Http\Controllers\Api\InspectionApi;
 use Illuminate\Http\Request;
+use Illuminate\Routing\RouteGroup;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +21,24 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthApi::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    // Route::get('/simbolik', function () {
+    //     return Artisan::call('storage:link');
+    // });
     Route::get('/logout', [AuthApi::class, 'logout']);
+
     Route::get('/sync', [InspectionApi::class, 'sync']);
+    Route::post('/change-password', [AuthApi::class, 'changePassword']);
+
+    // Route::get('/sync', 'App\Http\Controllers\api\inspectionApi@sync');
+
+    Route::prefix('inspection')->group(function () {
+        Route::post('/create', [InspectionApi::class, 'create']);
+        Route::get('/get/{user_id}', [InspectionApi::class, 'getDailyInspectionByUser']);
+        Route::get('/get-one/{id}', [InspectionApi::class, 'getOneDailyInspection']);
+        Route::get('/count-inspection/{id}', [InspectionApi::class, 'countInspection']);
+    });
+    Route::post('/upload-image', [InspectionApi::class, 'uploadImage']);
+    Route::post('/upload-multi-image', [InspectionApi::class, 'uploadMultipleImage']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

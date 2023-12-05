@@ -9,7 +9,7 @@ class AreaController extends Controller
 {
     function index(Request $request)
     {
-        $data['title'] = 'Area';
+        $data['title'] = 'Area ' . ucfirst($request->status);
         $data['breadcrumb'] = 'data-area';
 
         $area = new Area();
@@ -24,6 +24,7 @@ class AreaController extends Controller
         }
         $area = $area->get();
         $data['area'] = $area;
+        $data['status'] = $request->status;
         return view('dashboard.area', $data);
     }
 

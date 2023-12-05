@@ -8,8 +8,10 @@
             <div class="row">
                 <div class="col mb-0">
                     <i class="mdi mdi-filter-variant"></i> Filter by :
-                    <a href="/area?status=active" onclick="showLoader()" class="btn btn-info">Active</a>
-                    <a href="/area?status=inactive" onclick="showLoader()" class="btn btn-info">Inactive</a>
+                    <a href="/area?status=active" onclick="showLoader()"
+                        class="btn btn-{{ $status == 'active' ? 'info' : 'secondary' }}">Active</a>
+                    <a href="/area?status=inactive" onclick="showLoader()"
+                        class="btn btn-{{ $status == 'inactive' ? 'info' : 'secondary' }}">Inactive</a>
                 </div>
                 <div class="col text-end mb-3">
                     @can('create_area')
@@ -58,7 +60,10 @@
                                     @endif
                                 </div>
                             </td>
-                            <td>{{ $a->area_name }}</td>
+                            <td>
+                                <b>{{ $a->area_code }}</b><br>
+                                {{ $a->area_name }}
+                            </td>
                             <td>{{ $a->description }}</td>
                             <td class="text-center">
                                 @if (!$a->deleted_at)

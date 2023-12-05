@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,6 +13,16 @@ class Question extends Model
 
     protected $table = 'question';
     protected $guarded = ['id'];
+
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $prefix = 'Q' . $model->area->area_code;
+            $model->code = IdGenerator::generate(['table' => 'question', 'field' => 'code', 'length' => 7, 'prefix' => $prefix, 'reset_on_prefix_change' => true]);
+        });
+    }
+
 
     function area()
     {

@@ -64,3 +64,29 @@ Breadcrumbs::for('answer', function (BreadcrumbTrail $trail) {
     $trail->parent('question');
     $trail->push('Answer', '/qna');
 });
+
+Breadcrumbs::for('transaction', function (BreadcrumbTrail $trail) {
+    $trail->push('Transaction', '/');
+});
+
+Breadcrumbs::for('daily_inspection', function (BreadcrumbTrail $trail) {
+    $trail->parent('transaction');
+    $trail->push('Daily Inspection', '/daily-inspection');
+});
+Breadcrumbs::for('daily_inspection_perarea', function (BreadcrumbTrail $trail) {
+    $trail->parent('daily_inspection');
+    $trail->push('Daily Inspection In Area', '/daily-inspection');
+});
+Breadcrumbs::for('detail_daily_inspection', function (BreadcrumbTrail $trail) {
+    $trail->parent('daily_inspection_perarea');
+    $trail->push('Detail Daily Inspection', '/daily-inspection');
+});
+
+Breadcrumbs::for('issue', function (BreadcrumbTrail $trail) {
+    $trail->parent('transaction');
+    $trail->push('Issue', '/issue');
+});
+Breadcrumbs::for('detail_issue', function (BreadcrumbTrail $trail) {
+    $trail->parent('issue');
+    $trail->push('Detail Issue', '/issue');
+});
