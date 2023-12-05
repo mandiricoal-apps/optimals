@@ -13,6 +13,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="shortcut icon" href="/assets/images/logo/logo_img2.jpg" />
+
+    <!-- animation css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <style type="text/css">
         @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 
@@ -114,8 +118,8 @@
     <section class="">
         <div class="container mt-5 p-5">
             <div class="card" style="border: 0px solid rgba(0,0,0,.125);">
-                <div class="row">
-                    <div class="col-md-8 banner-sec">
+                <div class="row  ">
+                    <div class="col-md-8 banner-sec animate__animated animate__pulse">
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
                             <!-- Indicators -->
                             <ol class="carousel-indicators">
@@ -149,7 +153,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 login-sec">
+                    <div class="col-md-4 login-sec animate__animated animate__flipInY">
                         <!-- <marquee class="mt-0" width="100%"><i>Optimals by Mandiricoal | #GoodMiningPractice</i></marquee> -->
                         <center><img class="d-block img-fluid" src="/assets/images/logo/logo_img3.png" alt="First slide"
                             width="100%"></center>

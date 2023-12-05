@@ -91,7 +91,10 @@
             <div class="card stretch-card mb-2 p-2">
                 <div class="card-body d-flex flex-wrap justify-content-between" style="padding: 28px">
                     <div>
-                        <h4 class="text-danger font-weight-bold mb-1 text-black"> PT MIP </h4>
+                        <img src="/assets/images/logo/mip.png" width="50px">
+                    </div>
+                    <div>
+                        <h4 class=" font-weight-bold mb-1 text-black"> PT MIP </h4>
                         <h6 class="text-muted">PT Mandiri Intiperkasa</h6>
                     </div>
                     <h4 class=" font-weight-bold">{{ $MIP }}</h4>
@@ -100,7 +103,10 @@
             <div class="card stretch-card mb-2">
                 <div class="card-body d-flex flex-wrap justify-content-between" style="padding: 28px">
                     <div>
-                        <h4 class="text-warning font-weight-bold mb-1 text-black"> PT MKP </h4>
+                        <img src="/assets/images/logo/mkp.png" width="50px">
+                    </div>
+                    <div>
+                        <h4 class=" font-weight-bold mb-1 text-black"> PT MKP </h4>
                         <h6 class="text-muted">PT Mandala Karya Prima</h6>
                     </div>
                     <h4 class=" font-weight-bold">{{ $MKP }}</h4>
@@ -109,7 +115,10 @@
             <div class="card stretch-card mb-2">
                 <div class="card-body d-flex flex-wrap justify-content-between" style="padding: 28px">
                     <div>
-                        <h4 class="text-info font-weight-bold mb-1 text-black"> PT RML </h4>
+                        <img src="/assets/images/logo/rml.png" width="50px">
+                    </div>
+                    <div>
+                        <h4 class=" font-weight-bold mb-1 text-black"> PT RML </h4>
                         <h6 class="text-muted">PT Riung Mitra Lestari</h6>
                     </div>
                     <h4 class=" font-weight-bold">{{ $RML }}</h4>

@@ -28,6 +28,9 @@
     <link rel="stylesheet" href="/assets/css/demo_1/style.css" />
     <link rel="shortcut icon" href="/assets/images/logo/logo_img2.jpg" />
 
+    <!-- animation css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <style>
         .card {
             border-radius: 20px !important;
@@ -78,7 +81,7 @@
         </div>
     </div>
     <div class="container-scroller">
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <nav class="sidebar sidebar-offcanvas animate__animated animate__slideInLeft" id="sidebar">
             <ul class="nav">
                 <li class="nav-item  nav-profile border-bottom" id="parent">
                     <a href="#" class="nav-link flex-column">
@@ -234,7 +237,7 @@
     </nav>
 
     <div class="main-panel">
-        <div class="content-wrapper px-5 ">
+        <div class="content-wrapper px-5 animate__animated animate__pulse">
             <div class="row">
                 <div class="page-header p-0">
                     @if(isset($title))<h3 class="page-title">{{ $title }}</h3>@endif
