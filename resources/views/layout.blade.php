@@ -208,102 +208,144 @@
                 </div>
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-profile dropdown d-none d-md-block" id="parent">
-                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#"
-                        data-toggle="dropdown" aria-expanded="false">
-                        <div class="nav-profile-text">Account </div>
-                    </a>
-                    <div class="dropdown-menu center navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" onclick="logout()">
-                            Logout
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                            <div class="nav-profile-text">Account </div>
                         </a>
-                    </div>
-                </li>
-                <li class="nav-item nav-logout d-none d-lg-block">
-                    <a class="nav-link" href="/">
-                        <i class="mdi mdi-home-circle"></i>
-                    </a>
-                </li>
-            </ul>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-            data-toggle="offcanvas">
-            <span class="mdi mdi-menu"></span>
-        </button>
-    </div>
-</nav>
-
-<div class="main-panel">
-    <div class="content-wrapper px-5 ">
-        <div class="row">
-            <div class="page-header p-0">
-                @if(isset($title))<h3 class="page-title">{{ $title }}</h3>@endif
-                @if (isset($breadcrumb))
-                {{ Breadcrumbs::render($breadcrumb) }}
-                @endif
-                {{-- <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">UI Elements</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"> Buttons </li>
-                    </ol>
-                </nav> --}}
-            </div>
+                        <div class="dropdown-menu center navbar-dropdown"  data-toggle="modal" data-target="#modal-pass">
+                            <a class="dropdown-item">
+                                Change Password
+                            </a>
+                            <a class="dropdown-item" onclick="logout()">
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item nav-logout d-none d-lg-block">
+                        <a class="nav-link" href="/">
+                            <i class="mdi mdi-home-circle"></i>
+                        </a>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                data-toggle="offcanvas">
+                <span class="mdi mdi-menu"></span>
+            </button>
         </div>
-        @if (session('message'))
-        <div class="row">
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-                <h5>Success !</h5>
-                {!! session('message') !!}
+    </nav>
+
+    <div class="main-panel">
+        <div class="content-wrapper px-5 ">
+            <div class="row">
+                <div class="page-header p-0">
+                    @if(isset($title))<h3 class="page-title">{{ $title }}</h3>@endif
+                    @if (isset($breadcrumb))
+                    {{ Breadcrumbs::render($breadcrumb) }}
+                    @endif
+                    {{-- <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">UI Elements</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> Buttons </li>
+                        </ol>
+                    </nav> --}}
+                </div>
+            </div>
+            @if (session('message'))
+            <div class="row">
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <h5>Success !</h5>
+                    {!! session('message') !!}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            @endif
+            @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <h5>Failed !</h5>
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $err)
+                    <li>{{ $err }}</li>
+                    @endforeach
+
+                </ul>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-        </div>
-        @endif
-        @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <h5>Failed !</h5>
-            <ul class="mb-0">
-                @foreach ($errors->all() as $err)
-                <li>{{ $err }}</li>
-                @endforeach
+            @endif
 
-            </ul>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            @yield('content')
         </div>
-        @endif
-
-        @yield('content')
+        <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright ©
+                mandiricoal.co.id 2023</span>
+                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block"> Optimals By: <a
+                    href="https://themewagon.com/">mandiricoal.co.id</a></span>
+                </div>
+            </footer>
+        </div>
     </div>
-    <footer class="footer">
-        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright ©
-            mandiricoal.co.id 2023</span>
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block"> Optimals By: <a
-                href="https://themewagon.com/">mandiricoal.co.id</a></span>
-            </div>
-        </footer>
-    </div>
-</div>
 </div>
 
 <!-- Modal MD-->
-<div class="modal fade" id="modal-md" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-md" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Detail User</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div id="modal-md-body"></div>
+<div class="modal fade" id="modal-pass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-md-body">
+                    <form method="post" action="" class="p-5">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Old Password</label><span style="color:red;">*</span>
+                            <input type="password" class="form-control form-control-sm" placeholder="old password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">New Password</label><span style="color:red;">*</span>
+                            <input type="password" class="form-control form-control-sm" placeholder="new password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Confirm Password</label><span style="color:red;">*</span>
+                            <input type="password" class="form-control form-control-sm" placeholder="confirm password" required>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-light form-control" data-dismiss="modal" aria-label="Close"><i style="font-size: 14px;" class="mdi mdi-close-circle-outline"></i> Cancel</button>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary mr-2 form-control"><i style="font-size: 14px;" class="mdi mdi-content-save"></i> Save </button>
+                            </div>
+                        </div>
+                    </form>
 
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Modal MD-->
+<div class="modal fade" id="modal-md" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-md-body"></div>
+
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- plugins:js -->
@@ -375,32 +417,26 @@ aria-hidden="true">
             }
         })
         $('#example').DataTable({
-            dom: 'Bfrtip',
-            columnDefs: [
-            {
-                targets: 5,
-                visible: false
-            }
-            ], 
+            dom: 'Bfrtip', 
             buttons: [
-                'pageLength',
+            'pageLength',
 
-                {
-                    extend: 'excelHtml5',
-                    text: '<i style="font-size: 14px;" class="mdi mdi-file-excel"></i> Excel',
-                    titleAttr: 'Create New Record',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                },
-                {
-                    extend: 'print',
-                    text: '<i style="font-size: 14px;" class="mdi mdi-printer"></i> Print',
-                    titleAttr: 'Create New Record',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                },
+            {
+                extend: 'excelHtml5',
+                text: '<i style="font-size: 14px;" class="mdi mdi-file-excel"></i> Excel',
+                titleAttr: 'Create New Record',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+                // {
+                //     extend: 'print',
+                //     text: '<i style="font-size: 14px;" class="mdi mdi-printer"></i> Print',
+                //     titleAttr: 'Create New Record',
+                //     exportOptions: {
+                //         columns: ':visible'
+                //     }
+                // },
                 {
                     extend: 'colvis',
                     text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
@@ -410,42 +446,42 @@ aria-hidden="true">
                     }
                 }
                 ],
-            order: [],
+                order: [],
 
-            initComplete: function() {
-                var btns = $('.dt-button');
-                btns.addClass('btn btn-dark');
-                btns.removeClass('dt-button');
+                initComplete: function() {
+                    var btns = $('.dt-button');
+                    btns.addClass('btn btn-dark');
+                    btns.removeClass('dt-button');
 
-                this.api().columns().every(function() {
-                    let column = this;
-                    let title = column.footer().textContent;
+                    this.api().columns().every(function() {
+                        let column = this;
+                        let title = column.footer().textContent;
 
-                    let input = document.createElement('input');
-                    input.placeholder = title;
-                    column.footer().replaceChildren(input);
-                    input.addEventListener('keyup', () => {
-                        if (column.search() !== this.value) {
-                            column.search(input.value).draw();
-                        }
+                        let input = document.createElement('input');
+                        input.placeholder = title;
+                        column.footer().replaceChildren(input);
+                        input.addEventListener('keyup', () => {
+                            if (column.search() !== this.value) {
+                                column.search(input.value).draw();
+                            }
+                        });
                     });
-                });
-            }
-        });
+                }
+            });
 
         $('#example1').DataTable({
             dom: 'Bfrtip',
             buttons: [
-                'pageLength',
-                {
-                    extend: 'colvis',
-                    text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
-                    titleAttr: 'Create New Record',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
-                    }
+            'pageLength',
+            {
+                extend: 'colvis',
+                text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
+                titleAttr: 'Create New Record',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4]
                 }
-                ],
+            }
+            ],
             order: [],
             initComplete: function() {
                 var btns = $('.dt-button');
@@ -467,6 +503,104 @@ aria-hidden="true">
                 });
             }
         });
+
+        $('#daily').DataTable({
+            dom: 'Bfrtip',
+            columnDefs: [
+            {
+                targets: [4, 5],
+                visible: false
+            }
+            ], 
+            buttons: [
+            'pageLength',
+
+            {
+                extend: 'excelHtml5',
+                text: '<i style="font-size: 14px;" class="mdi mdi-file-excel"></i> Excel',
+                titleAttr: 'Create New Record',
+                exportOptions: {
+                    columns: [0,1,2,4,5,6]
+                }
+            },
+            {
+                extend: 'colvis',
+                text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
+                titleAttr: 'Create New Record'
+            }
+            ],
+            order: [],
+
+            initComplete: function() {
+                var btns = $('.dt-button');
+                btns.addClass('btn btn-dark');
+                btns.removeClass('dt-button');
+
+                this.api().columns().every(function() {
+                    let column = this;
+                    let title = column.footer().textContent;
+
+                    let input = document.createElement('input');
+                    input.placeholder = title;
+                    column.footer().replaceChildren(input);
+                    input.addEventListener('keyup', () => {
+                        if (column.search() !== this.value) {
+                            column.search(input.value).draw();
+                        }
+                    });
+                });
+            }
+        });
+
+        $('#issue').DataTable({
+            dom: 'Bfrtip',
+            columnDefs: [
+            {
+                targets: [3, 4, 6, 7,8],
+                visible: false
+            }
+            ], 
+            buttons: [
+            'pageLength',
+
+            {
+                extend: 'excelHtml5',
+                text: '<i style="font-size: 14px;" class="mdi mdi-file-excel"></i> Excel',
+                titleAttr: 'Create New Record',
+                exportOptions: {
+                    columns: [0, 1, 3, 4, 6, 7, 8, 9, 10],
+                }
+            },
+            {
+                extend: 'colvis',
+                text: '<i style="font-size: 14px;" class="mdi mdi-eye"></i> Visibility',
+                titleAttr: 'Create New Record',
+            }
+            ],
+            order: [],
+
+            initComplete: function() {
+                var btns = $('.dt-button');
+                btns.addClass('btn btn-dark');
+                btns.removeClass('dt-button');
+
+                this.api().columns().every(function() {
+                    let column = this;
+                    let title = column.footer().textContent;
+
+                    let input = document.createElement('input');
+                    input.placeholder = title;
+                    column.footer().replaceChildren(input);
+                    input.addEventListener('keyup', () => {
+                        if (column.search() !== this.value) {
+                            column.search(input.value).draw();
+                        }
+                    });
+                });
+            }
+        });
+
+
     });
 </script>
 
@@ -499,19 +633,19 @@ aria-hidden="true">
 
     function showLoader() {
             // loader.prop('hidden', false);
-        loader.fadeIn('fast');
-    }
+            loader.fadeIn('fast');
+        }
 
-    function hideLoader() {
+        function hideLoader() {
             // loader.prop('hidden', true);
-        loader.fadeOut('slow');
-    }
-</script>
+            loader.fadeOut('slow');
+        }
+    </script>
     <script>
         window.addEventListener("pageshow", function(event) {
             var historyTraversal = event.persisted ||
-                (typeof window.performance != "undefined" &&
-                    window.performance.navigation.type === 2);
+            (typeof window.performance != "undefined" &&
+                window.performance.navigation.type === 2);
             if (historyTraversal) {
                 // Handle page restore.
                 window.location.reload();
