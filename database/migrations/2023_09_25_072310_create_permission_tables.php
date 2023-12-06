@@ -47,6 +47,7 @@ class CreatePermissionTables extends Migration
             $table->string('description')->nullable(); //ditambah hiskia
             $table->enum('accesbility_data', ['all', 'user_company'])->nullable(); //ditambah hiskia
             $table->json('list_comp')->nullable(); //ditambah hiskia
+            $table->boolean('is_admin')->default(0); //ditambah hiskia
             $table->timestamps();
             if ($teams || config('permission.testing')) {
                 $table->unique([$columnNames['team_foreign_key'], 'name', 'guard_name']);

@@ -25,7 +25,7 @@ function tanggalText($date)
 
 function tanggal2bulandepan($date)
 {
-    $nextMotnh = date('Y-m-02 H:i:s', strtotime($date . ' +1 months'));
+    $nextMotnh = date('Y-m-02 23:59:59', strtotime($date . ' +1 months'));
     $today = date(now());
 
     return $today > $nextMotnh;

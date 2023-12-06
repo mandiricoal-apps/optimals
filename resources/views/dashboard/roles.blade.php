@@ -77,6 +77,11 @@
                                                     name="description" placeholder="Area Description" required=""
                                                     value="{{ $role->description }}">
                                             </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="is_admin"
+                                                    name="is_admin" value="option1" {{ $role->is_admin ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="is_admin">Administrator</label>
+                                            </div>
                                             <hr>
                                             <div class="row">
                                                 <div class="col">
@@ -133,6 +138,13 @@
                                     <input type="text" class="form-control" id="description" name="description"
                                         placeholder="Role Description" required>
                                 </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="is_admin" name="is_admin"
+                                        value="option1">
+                                    <label class="form-check-label" for="is_admin">Administrator</label>
+                                </div>
+
                                 <hr>
                                 <div class="row">
                                     <div class="col">

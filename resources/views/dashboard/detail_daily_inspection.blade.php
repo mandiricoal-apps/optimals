@@ -62,7 +62,7 @@
                                                     @else
                                                         <p class="card-text"><small class="text-muted">Approved by
                                                                 <b>System</b> at
-                                                                {{ tanggalText(date('Y-m-02 H:i:s', strtotime($dailyInspection->created_at . ' +1 months'))) }}</small>
+                                                                {{ tanggalText(date('Y-m-02 23:59:59', strtotime($dailyInspection->created_at . ' +1 months'))) }}</small>
                                                         </p>
                                                     @endif
                                                 @else
