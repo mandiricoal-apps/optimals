@@ -117,7 +117,7 @@ class QuestionController extends Controller
         if ($status == 'inactive') {
             $answer = $answer->onlyTrashed();
         }
-        $data['answers'] = $answer->get();
+        $data['answers'] = $answer->orderBy('point')->get();
 
         return view('dashboard.answer', $data);
     }
