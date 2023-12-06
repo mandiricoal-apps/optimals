@@ -29,8 +29,11 @@
 </form> --}}
 
 <div class="ml-2">
-    <h3>{{ $user->name }}</h3>
-    <h5>{{ ucfirst($user->getRoleNames()[0]) }}</h5>
+    <h3>{{ $user->name }} <small class="text-muted"> {{ $user->user_id }}</small></h3>
+    <h5>
+
+        {{ ucfirst($user->getRoleNames()[0]) }}</h5>
+
 </div>
 <div class="table-responsive">
     <table class="table table-borderless table-light">
@@ -47,6 +50,11 @@
                 <th>Division</th>
                 <td>: {{ $user->division }}</td>
             </tr>
+            <tr>
+                <th>Email</th>
+                <td>: {{ $user->email }}</td>
+            </tr>
+
         </tbody>
     </table>
 
