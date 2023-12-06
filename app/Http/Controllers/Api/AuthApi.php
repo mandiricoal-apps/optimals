@@ -29,7 +29,12 @@ class AuthApi extends Controller
         }
         $user = User::where('user_id', $credentials['user_id'])->firstOrFail();
         $token = $user->createToken('auth_token')->plainTextToken;
-        $area = Area::with(['question', 'question.answer'])->get();
+        $area = Area::with([
+            'question' => function ($query) {
+                return $query->select('question.*')->orderBy('question.numbering');
+            },
+            'question.answer',
+        ])->get();
 
         return response()->json([
             'message' => 'Login success',
