@@ -31,9 +31,11 @@ class AuthApi extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
         $area = Area::with([
             'question' => function ($query) {
-                return $query->select('question.*')->orderBy('question.numbering');
+                return $query->orderBy('question.numbering');
             },
-            'question.answer',
+            'question.answer' => function ($query) {
+                return $query->orderBy('point');
+            },
         ])->get();
 
         return response()->json([
