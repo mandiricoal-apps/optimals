@@ -111,7 +111,9 @@
         }
     </style>
     <!------ Include the above in your HEAD tag ---------->
-    <title>Optimals. Dashboard| Login</title>
+
+    <title>Optimals</title>
+
 </head>
 
 <body>
