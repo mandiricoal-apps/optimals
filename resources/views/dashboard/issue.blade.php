@@ -60,8 +60,9 @@
                                     <td>{{ $issue->nik }}</td>
                                     <td style="white-space:pre-wrap; min-width: 300px;">{{ $issue->issue }}</td>
                                     <td>{{ strtoupper($issue->company) }}</td>
-                                    <td><b><i>{{ ucfirst($issue->status == 'reject' ? 'Cancel' : $issue->status) }}</i></b>
-                                    </td>
+                                    {{-- <td><b><i>{{ ucfirst($issue->status == 'reject' ? 'Cancel' : $issue->status) }}</i></b>
+                                    </td> --}}
+                                    <td><b><i>{{ issue()[$issue->status] }}</i></b></td>
                                     <td class="text-center">
                                         <div class="button-group">
                                             <a href="/detail-issue/{{ $issue->issue_id }}" class="btn btn-warning">

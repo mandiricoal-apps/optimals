@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            // $table->string('user_id', 50)->nullable();
+            $table->string('user_id', 20)->nullable();
             $table->string('nik', 50)->unique();
             $table->string('company');
             $table->string('division');

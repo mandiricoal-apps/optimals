@@ -56,7 +56,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/company-api', [UserController::class, 'companyApi']);
     Route::get('/employee-api', [UserController::class, 'employeeApi']);
-
+    Route::get('/get-role', [RolesController::class, 'getRole']);
 
     Route::get('/modal-view-user/{id}', [UserController::class, 'modalViewuser']);
     Route::post('/change-password', [UserController::class, 'changePassword']);

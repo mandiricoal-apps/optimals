@@ -44,8 +44,7 @@
                                     <div class="row mb-3">
                                         <div class="col">
 
-                                            <span
-                                                class="badge badge-{{ $color }}">{{ ucfirst($issue->status == 'reject' ? 'Canceled' : $issue->status) }}
+                                            <span class="badge badge-{{ $color }}">{{ issue()[$issue->status] }}
                                             </span>
 
                                         </div>
@@ -105,9 +104,9 @@
                                                         @endif
                                                     @endif
                                                     <!--  <img src="https://akcdn.detik.net.id/visual/2016/11/07/1773d313-6717-43e3-87d6-c8bc5effcc5d_169.jpg" style=" border-radius:5px;">&emsp;
-                                                                                            <img src="https://akcdn.detik.net.id/visual/2016/11/07/1773d313-6717-43e3-87d6-c8bc5effcc5d_169.jpg" style=" border-radius:5px;">&emsp;
-                                                                                            <img src="https://akcdn.detik.net.id/visual/2016/11/07/1773d313-6717-43e3-87d6-c8bc5effcc5d_169.jpg" style=" border-radius:5px;">&emsp;
-                                                                                            <img src="https://akcdn.detik.net.id/visual/2016/11/07/1773d313-6717-43e3-87d6-c8bc5effcc5d_169.jpg" style=" border-radius:5px;">&emsp; -->
+                                                                                                        <img src="https://akcdn.detik.net.id/visual/2016/11/07/1773d313-6717-43e3-87d6-c8bc5effcc5d_169.jpg" style=" border-radius:5px;">&emsp;
+                                                                                                        <img src="https://akcdn.detik.net.id/visual/2016/11/07/1773d313-6717-43e3-87d6-c8bc5effcc5d_169.jpg" style=" border-radius:5px;">&emsp;
+                                                                                                        <img src="https://akcdn.detik.net.id/visual/2016/11/07/1773d313-6717-43e3-87d6-c8bc5effcc5d_169.jpg" style=" border-radius:5px;">&emsp; -->
                                                 </th>
                                             </tr>
                                             <tr>
@@ -151,7 +150,7 @@
                                                     @if ($issue->status != 'open')
                                                         <ul>
                                                             @if ($issue->progressIssue->rejected_at != null)
-                                                                <li>Issue has been <b>Canceled</b> by
+                                                                <li>Issue has been <b>Cancelled</b> by
                                                                     {{ $issue->progressIssue->userRejected->name }} at
                                                                     {{ tanggalText($issue->progressIssue->rejected_at) }}
                                                                     <br>
@@ -301,7 +300,7 @@
                     <div class="modal-body ">
                         @csrf
                         <input type="hidden" name="status" value="reject">
-                        <p>Are you sure to <b>Reject</b> this issue ?</p>
+                        <p>Are you sure to <b>cancel</b> this issue ?</p>
                         <div class="mb-3">
                             <p>Please give reason <b class="text-danger">*</b></p>
                             <textarea name="reason" id="reason" class="form-control" rows="3" placeholder="Reason" required></textarea>

@@ -11,7 +11,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'nik' => ['required'],
+            'user_id' => ['required'],
             'password' => ['required'],
         ]);
 
@@ -24,8 +24,8 @@ class AuthController extends Controller
         }
 
         return redirect('/login')->withErrors([
-            'nik' => 'NIK atau password yang dimasukkan salah!.',
-        ])->onlyInput('nik');
+            'user_id' => 'User ID atau password yang dimasukkan salah!.',
+        ])->onlyInput('user_id');
     }
     public function logout(Request $request)
     {
