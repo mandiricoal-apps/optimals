@@ -19,11 +19,12 @@ Grade Front;5;2;6
 Drainase;8;2;7
 Kantungan Air;8;2;8
 Kesesuaian Alat Loading (Sesuai tebal seam dan working geometri);6;2;9
-DT Menggunakan Label Sesuai Raw Material;4;2;10
+DT Menggunakan Label Sesuai Raw Material;6;2;10
 Maksimalisasi Floor Batubara (Min per penurunan 4 meter);4;2;11
-Proses Cleaning Batubara;7;2;12
+Proses Cleaning Batubara;4;2;12
 Kebersihan Alat Angkut;7;2;13
 Kebersihan Alat Loading;7;2;14
+Kebersihan Front dari OB, Sampah dan Lainnya;7;2;15
 Genangan di Area PIT;8;3;1
 Genangan di Area Disposal;8;3;2
 Kondisi Pompa Sump;8;3;3
@@ -42,7 +43,7 @@ Rambu Elevasi Air/BAr Meter di Sump dan Critical Level;3;3;15
 Lampu Rotari Pada Unit Pompa;3;3;16
 Dozer Support;8;4;1
 Tinggi Jenjang Penimbunan (Dumping Bench Height);8;4;2
-Kondisi Lantai Kerja Penimbunan;8;4;3
+Kondisi Lantai Kerja Penimbunan;9;4;3
 Drainase, Air Permukaan;8;4;4
 Batas Penimbunan (Dumping Limit);8;4;5
 Luasan Area Penimbunan (Dumping Working Geometry);8;4;6
