@@ -242,7 +242,7 @@
                                             {{ $is->code }}<br>
                                             <small><b>Description :</b> {{ $is->issue }}</small>
                                         </td>
-                                        <td style="text-align:center;"><i>{{ ucfirst($is->status) }}</i></td>
+                                        <td style="text-align:center;"><i>{{ issue()[$is->status] }}</i></td>
                                     </tr>
                                 @endforeach
 

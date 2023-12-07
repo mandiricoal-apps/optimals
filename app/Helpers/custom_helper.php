@@ -73,9 +73,10 @@ function issue()
         'open' => 'Open',
         'close' => 'Closed',
         'progress' => 'On Progress',
-        'reject' => 'Canclled',
+        'reject' => 'Cancelled',
     ];
 }
+
 
 function company()
 {
