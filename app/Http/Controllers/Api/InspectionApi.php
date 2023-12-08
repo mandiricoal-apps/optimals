@@ -29,7 +29,7 @@ class InspectionApi extends Controller
     function create(Request $request)
     {
 
-        $data = $request->all();
+        $data = $request->except(['issue_images']);
         $daily_inspection = $data;
         $summary_daily_inspection = $data['summary'];
         $data_location = $data['location'];
