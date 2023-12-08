@@ -79,6 +79,9 @@ class InspectionApi extends Controller
                 $saveSummary = DailyInspectionSummary::create($item);
                 if (array_key_exists('issue', $item['issue'])) {
                     $tempIssue = $item['issue'];
+                    if(isset($tempIssue['image'])){
+                        $tempIssue['image']= json_encode($tempIssue['image']);
+                    }
                     $tempIssue['sumary_id'] = $saveSummary->id;
                     $tempIssue['created_at'] = $date;
                     $tempIssue['updated_at'] = $date;
@@ -91,7 +94,7 @@ class InspectionApi extends Controller
             return response()->json(['message' => $save_daily_inspection->id], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return response()->json(['message' => $th->getTrace()], 500);
+            return response()->json(['message' => $th->getMessage()], 500);
         }
     }
 
