@@ -91,7 +91,7 @@ class InspectionApi extends Controller
             return response()->json(['message' => $save_daily_inspection->id], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return response()->json(['message' => $th->getMessage()], 500);
+            return response()->json(['message' => $th->getTrace], 500);
         }
     }
 
