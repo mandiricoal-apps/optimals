@@ -54,7 +54,7 @@ class InspectionApi extends Controller
             LogScore::create([
                 'inspection_id' => $inspection_id,
                 'score' => $daily_inspection['total_score'],
-                'description' => 'Frist Score',
+                'description' => 'First Score',
                 'created_by' => $daily_inspection['create_by'],
                 'created_at' => $save_daily_inspection->created_at,
                 'updated_at' => $save_daily_inspection->created_at,

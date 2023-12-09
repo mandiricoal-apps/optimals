@@ -415,6 +415,9 @@ aria-hidden="true">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
+    <!-- Navbar -->
+    <script src="../assets/js/off-canvas.js"></script>
+
     <style type="text/css">
         .size {
             : #f96868;
