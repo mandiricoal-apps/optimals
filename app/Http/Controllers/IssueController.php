@@ -22,11 +22,12 @@ class IssueController extends Controller
         $data['title'] = ucfirst($status) . " Issue";
 
         $issues = DB::table('issue')
-        ->join('daily_inspection_summary', 'daily_inspection_summary.id', '=', 'issue.sumary_id')
-        ->join('daily_inspections', 'daily_inspections.id', '=', 'daily_inspection_summary.inspection_id')
-        ->join('users', 'users.id', '=', 'daily_inspections.create_by')
-        ->join('area', 'area.id', '=', 'daily_inspections.area_id')
-        ->where('issue.status', '=', $status);
+            ->join('daily_inspection_summary', 'daily_inspection_summary.id', '=', 'issue.sumary_id')
+            ->join('daily_inspections', 'daily_inspections.id', '=', 'daily_inspection_summary.inspection_id')
+            ->join('users', 'users.id', '=', 'daily_inspections.create_by')
+            ->join('area', 'area.id', '=', 'daily_inspections.area_id')
+            ->join('data_location', 'data_location.inspection_id', '=', 'daily_inspections.id')
+            ->where('issue.status', '=', $status);
 
         if ($request->start) {
             $issues = $issues->where('issue.created_at', '>=', $request->start . ' 00:00:00');
@@ -36,7 +37,7 @@ class IssueController extends Controller
         }
         $issues =  $issues->orderBy('issue.created_at', 'desc');
         if ($accesbilityData == 'user_company') {
-            $issues->where('users.company', '=', Auth::user()->company);
+            $issues->where('data_location.pit', '=', Auth::user()->company);
         }
         $issues = $issues->get(['issue.created_at', 'issue.status', 'issue.issue as issue', 'issue.code as issue_code', 'issue.id as issue_id', 'daily_inspections.id as inspections_id', 'daily_inspections.code as inspection_code', 'area.area_name', 'users.name', 'users.id as user_id', 'users.nik', 'users.company as company']);
         $data['issues'] = $issues;

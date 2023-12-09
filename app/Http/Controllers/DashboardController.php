@@ -60,11 +60,12 @@ class DashboardController extends Controller
             ->join('daily_inspection_summary', 'daily_inspection_summary.id', '=', 'issue.sumary_id')
             ->join('daily_inspections', 'daily_inspections.id', '=', 'daily_inspection_summary.inspection_id')
             ->join('users', 'users.id', '=', 'daily_inspections.create_by')
+            ->join('data_location', 'data_location.inspection_id', '=', 'daily_inspections.id')
             ->where('issue.created_at', '>=', $from)
             ->where('issue.created_at', '<=', $to);
 
         if ($request->company && $request->company != "all") {
-            $issue = $issue->where('users.company', '=', $request->company);
+            $issue = $issue->where('data_location.pit', '=', $request->company);
         }
         $issue = $issue->groupBy('status')->get();
 
