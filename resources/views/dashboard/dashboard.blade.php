@@ -50,14 +50,14 @@
         <form action="/" onsubmit="showLoader();" method="GET">
             <div class="row">
 
-                <div class="col-2">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="">From</label>
                         <input type="date" class="form-control  form-control-sm" id="from" placeholder="from"
                             name="from" required="" value="{{ request()->from ?? date('Y-m-01') }}">
                     </div>
                 </div>
-                <div class="col-2">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="">To</label>
                         <input type="date" class="form-control form-control-sm" id="to" placeholder="to"
@@ -65,7 +65,7 @@
                             value="{{ request()->to ?? date('Y-m-d', strtotime('last day of this month')) }}">
                     </div>
                 </div>
-                <div class="col-2">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="">Company</label>
                         <select class="form-control form-control-sm" id="company" name="company" required>
@@ -76,7 +76,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-2">
+                <div class="col-md-2">
                     <label for=""></label>
                     <button type="submit" class="btn btn-primary mr-2 form-control form-control-sm"><i
                             style="font-size: 14px;" class="mdi mdi-magnify"></i> Search </button>
@@ -242,7 +242,7 @@
                                             {{ $is->code }}<br>
                                             <small><b>Description :</b> {{ $is->issue }}</small>
                                         </td>
-                                        <td style="text-align:center;"><i>{{ ucfirst($is->status) }}</i></td>
+                                        <td style="text-align:center;"><i>{{ issue()[$is->status] }}</i></td>
                                     </tr>
                                 @endforeach
 

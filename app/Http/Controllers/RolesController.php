@@ -77,4 +77,14 @@ class RolesController extends Controller
             return back()->onlyInput();
         }
     }
+
+    function getRole(Request $request)
+    {
+        if ($request->company == 'MIP') {
+            $role = Role::get();
+        } else {
+            $role = Role::where('is_admin', 0)->get();
+        }
+        return json_encode($role);
+    }
 }

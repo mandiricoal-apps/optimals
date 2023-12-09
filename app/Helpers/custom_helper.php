@@ -25,7 +25,7 @@ function tanggalText($date)
 
 function tanggal2bulandepan($date)
 {
-    $nextMotnh = date('Y-m-02 H:i:s', strtotime($date . ' +1 months'));
+    $nextMotnh = date('Y-m-02 23:59:59', strtotime($date . ' +1 months'));
     $today = date(now());
 
     return $today > $nextMotnh;
@@ -33,7 +33,7 @@ function tanggal2bulandepan($date)
 
 function areaImage()
 {
-    return ['OB.jpg', 'COAL.jpg',  'DISPOSAL.jpg', 'DEWATERING.jpg', 'HAULROAD.jpg'];
+    return ['OB.jpg', 'COAL.jpg',  'DISPOSAL.jpg', 'DEWATERING.jpg', 'HAULROAD.jpg', 'default.png'];
 }
 
 function maxScore()
@@ -73,9 +73,10 @@ function issue()
         'open' => 'Open',
         'close' => 'Closed',
         'progress' => 'On Progress',
-        'reject' => 'Canclled',
+        'reject' => 'Cancelled',
     ];
 }
+
 
 function company()
 {

@@ -1,5 +1,5 @@
-{{-- <link rel="stylesheet" href="assets/vendors/select2/select2.min.css" />
-<link rel="stylesheet" href="assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" /> --}}
+<link rel="stylesheet" href="assets/vendors/select2/select2.min.css" />
+<link rel="stylesheet" href="assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />
 
 <form class="forms-sample" action="/create-user" onsubmit="showLoader();" method="POST">
     @csrf
@@ -47,10 +47,10 @@
         <div class="form-group">
             <label for="">Roles</label><span style="color:red;">*</span>
             <select name="roles" id="roles" class="" style="width: 100%;" required>
-                <option value="">- Select Roles</option>
-                @foreach ($roles as $role)
+                <option value=""></option>
+                {{-- @foreach ($roles as $role)
                     <option value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
-                @endforeach
+                @endforeach --}}
             </select>
         </div>
         <hr>
@@ -128,8 +128,34 @@
             }
         }
     });
+
     var select2_roles = $('#roles').select2({
-        theme: 'bootstrap'
+        theme: 'bootstrap',
+        placeholder: 'Select Roles',
+        async: false,
+        search: false,
+        ajax: {
+            delay: 300,
+            url: '/get-role',
+            data: function(params) {
+                var query = {
+
+                    company: selected_comp
+                }
+                return query;
+            },
+            processResults: function(data) {
+                var temp = JSON.parse(data);
+
+                temp.forEach(e => {
+                    e.text = e.description;
+                });
+                console.log(temp);
+                return {
+                    results: temp,
+                }
+            },
+        }
     });
 
     $('#select_user').change(function(e) {

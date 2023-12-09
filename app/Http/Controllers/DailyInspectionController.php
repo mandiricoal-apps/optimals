@@ -78,21 +78,15 @@ class DailyInspectionController extends Controller
         if ($status == "approved") {
             $dailyInspection = $dailyInspection->where(function ($query) {
                 $query->where("approved_at", "IS NOT", NULL)->orWhereRaw('NOW() > DATE_ADD(
-                    DATE_ADD(
-                        LAST_DAY(daily_inspections.created_at) + INTERVAL 2 DAY,
-                        INTERVAL 0 DAY
-                    ),
-                    INTERVAL TIME_TO_SEC(TIME(daily_inspections.created_at)) SECOND
-                )');
+                    LAST_DAY(daily_inspections.created_at) + INTERVAL 3 DAY,
+                    INTERVAL 0 DAY
+            )');
             });
         } else {
             $dailyInspection = $dailyInspection->where("approved_at", "=", NULL)->whereRaw('NOW() < DATE_ADD(
-                DATE_ADD(
-                    LAST_DAY(daily_inspections.created_at) + INTERVAL 2 DAY,
-                    INTERVAL 0 DAY
-                ),
-                INTERVAL TIME_TO_SEC(TIME(daily_inspections.created_at)) SECOND
-            )');
+                LAST_DAY(daily_inspections.created_at) + INTERVAL 3 DAY,
+                INTERVAL 0 DAY
+        )');
         }
         $dailyInspection = $dailyInspection->groupBy('daily_inspections.id');
         $dailyInspection = $dailyInspection->get();
