@@ -179,12 +179,12 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1" class=""><b><i
                             class="mdi mdi-account menu-icon"></i> User ID</b></label>
-                            <input type="text" class="form-control" placeholder="" name="user_id" id="user_id">
+                            <input type="text" class="form-control" placeholder="User ID" name="user_id" id="user_id">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1" class=""><b><i
                                 class="mdi mdi-lock-outline menu-icon"></i> Password</b></label>
-                                <input type="password" class="form-control" placeholder="" name="password"
+                                <input type="password" class="form-control" placeholder="Password" name="password"
                                 id="password">
                             </div>
                             <div class="form-group">
@@ -209,7 +209,7 @@
                                 <p class="card-text"><strong>Optimals - GMP (Good Mining Practices)</strong> adalah Operational System PT Mandiri Intiperkasa yang mengelola inspeksi lapangan secara digital berdasarkan kaidah pertambangan yang baik agar tercipta operasi yang aman dan produktif. <i><strong>Optimalkan diri dan tim kita, dengan Optimals GMP</strong></i>
                                 </p>
                                 <hr>
-                                <i><strong>optimals v1.0.0</strong><br>copyright mandiricoal.co.id 2023</i><br><br>
+                                <i><strong>optimals v1.0.0</strong><br>Copyright © <a href="https://mandiricoal.co.id/">mandiricoal.co.id</a> 2023</i><br><br>
                             </div>
                             <div class="col-md-4">
                                 <center>
