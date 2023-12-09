@@ -290,10 +290,8 @@
         </div>
         <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright ©
-                mandiricoal.co.id 2023</span>
-                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block"> Optimals By: <a
-                    href="https://themewagon.com/">mandiricoal.co.id</a></span>
+                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">optimals v1.0.0</span>
+                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © <a href="https://mandiricoal.co.id/">mandiricoal.co.id</a> 2023</span>
                 </div>
             </footer>
         </div>
