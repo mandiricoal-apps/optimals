@@ -321,13 +321,13 @@
 
                     }]
                 },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
+                // options: {
+                //     scales: {
+                //         y: {
+                //             beginAtZero: true
+                //         }
+                //     }
+                // }
             });
         </script>
     @stop
