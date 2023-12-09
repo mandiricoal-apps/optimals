@@ -109,9 +109,9 @@ class DatabaseSeeder extends Seeder
 
         Area::create(['area_name' => 'Front Loading OB', 'description' => 'Front Loading OB']);
         Area::create(['area_name' => 'Front Loading Coal', 'description' => 'Front Loading Coal']);
-        Area::create(['area_name' => 'Area Disposal', 'description' => 'Area Disposal']);
-        Area::create(['area_name' => 'Area Dewatering', 'description' => 'Area Dewatering']);
-        Area::create(['area_name' => 'Area Haulroad', 'description' => 'Area Haulroad']);
+        Area::create(['area_name' => 'Dewatering', 'description' => 'Dewatering']);
+        Area::create(['area_name' => 'Disposal', 'description' => 'Disposal']);
+        Area::create(['area_name' => 'Haulroad', 'description' => 'Haulroad']);
 
         $this->call([
             UserSeeder::class,

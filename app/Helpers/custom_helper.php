@@ -33,7 +33,7 @@ function tanggal2bulandepan($date)
 
 function areaImage()
 {
-    return ['OB.jpg', 'COAL.jpg',  'DISPOSAL.jpg', 'DEWATERING.jpg', 'HAULROAD.jpg', 'default.png'];
+    return ['OB.jpg', 'COAL.jpg', 'DEWATERING.jpg',   'DISPOSAL.jpg', 'HAULROAD.jpg', 'default.png'];
 }
 
 function maxScore()
