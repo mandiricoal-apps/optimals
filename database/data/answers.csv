@@ -152,9 +152,9 @@ Kondisi lantai kerja undulasi  ? 40 cm;46;1
 Kondisi lantai kerja undulasi 30 cm - 40 cm;46;2
 Kondisi lantai kerja undulasi 20 cm - 30 cm;46;3
 Kondisi lantai kerja undulasi ? 20;46;4
-"Terdapat genangan air tepat di titik penimbunan (dumping point) dan atau > ±20% area ; Tidak terdapat contour drainage/arah aliran air";47;1
-"Terdapat genangan air ±20% area ; Contour drainage/arah aliran air permukaan ada tetapi tidak berfungsi";47;2
-"Terdapat genangan air ±10% area ; Contour drainage/arah aliran air permukaan terbentuk hanya sebagian";47;3
+"Terdapat genangan air tepat di titik penimbunan (dumping point) dan atau > ï¿½20% area ; Tidak terdapat contour drainage/arah aliran air";47;1
+"Terdapat genangan air ï¿½20% area ; Contour drainage/arah aliran air permukaan ada tetapi tidak berfungsi";47;2
+"Terdapat genangan air ï¿½10% area ; Contour drainage/arah aliran air permukaan terbentuk hanya sebagian";47;3
 "Tidak ada genangan air ; Terdapat contour drainage/arah aliran air permukaan 1-2%";47;4
 "Tidak terdapat patok batas penimbunan ; Penimbunan tidak lurus sesuai acuan dan tidak rapi";48;1
 "Terdapat patok batas penimbunan dengan jarak antara patok lebih dari 50m ; Patok batas penimbunan yang terpasang adalah temporary monthly ; Penimbunan tidak lurus sesuai acuan dan tidak rapi";48;2
@@ -196,10 +196,10 @@ Total undulasi ? 30% dari panjang segmen jalan;58;1
 Total undulasi 10-30% dari panjang panjang segmen jalan;58;2
 Total undulasi 5-10% dari segmen jalan;58;3
 Total undulasi ? 5% dari panjang segmen jalan;58;4
-Grade ±4% (lebih dari 12%);59;1
-Grade ? ±2%;59;2
-Grade ±1%;59;3
-On grade ±0.5%;59;4
+Grade ï¿½4% (lebih dari 12%);59;1
+Grade ? ï¿½2%;59;2
+Grade ï¿½1%;59;3
+On grade ï¿½0.5%;59;4
 <3.5x Lebar Truk Terbesar untuk jalan 2 arah , < 2x Lebar Truk Terbesar untuk jalan 1 arah;60;1
 ? 3.5x Lebar Truk Terbesar untuk jalan 2 arah , ? 2x Lebar Truk Terbesar untuk jalan 1 arah;60;4
 Super Elevasi terbalik mengarah  ke bagian luar tikungan;61;1
@@ -222,14 +222,14 @@ Debu tebal jarak pandang <40m;65;1
 Debu terkontrol, jarak pandang 40- 80 m Penyiraman menerus (tdk putus- putus);65;2
 Debu terkontrol, jarak pandang 40-80 m Terdapat penyiraman putus-putus 1x panjang unit;65;3
 Debu terkontrol, jarak pandang ? 80 m Terdapat penyiraman putus putus 1x panjang unit;65;4
-"Drainase tidak lancar / meluap ; Terdapat genangan di badan jalan ?1m² ; Sedimentasi melebihi elevasi jalan";66;1
+"Drainase tidak lancar / meluap ; Terdapat genangan di badan jalan ?1mï¿½ ; Sedimentasi melebihi elevasi jalan";66;1
 "Badan jalan bebas genangan air ; Drainase lancar sesuai plan mengarah ke sump ; Sedimentasi melebihi elevasi jalan (perlu di maintenance) ; Terdapat sodetan ke arah slope final dibawahnya";66;2
 "Badan jalan bebas genangan air ; Drainase lancar sesuai plan mengarah ke sump ; Sedimentasi melebihi elevasi jalan (perlu di maintenance) ; Tidak terdapat sodetan ke arah slope dibawahnya";66;3
 "Badan jalan bebas genangan air ; Drainase lancar sesuai plan mengarah ke sump ; Tidak ada sedimentasi melebihi elevasi jalan ; Tidak terdapat sodetan ke arah slope dibawahnya";66;4
 Tidak terdapat guide post;67;1
 Terdapat guide post dengan jarak >40 meter disepanjang bahu jalan;67;2
 Terdapat guide post dengan jarak setiap 40 meter di sepanjang bahu jalan dengan tinggi kurang satandard Kurang terawat (tidak rusak, kurang bersih, scotlight mulai pudar);67;3
-Terdapat guide post dengan jarak setiap 40 meter di sepanjang bahu jalan dengan tinggi satandard Terawat (tidak rusak, bersih, scotlight terlihat jelas;67;4
+Terdapat guide post dengan jarak setiap 40 meter di sepanjang bahu jalan dengan tinggi satandard Terawat (tidak rusak, bersih, scotlight terlihat jelas);67;4
 Total panjang spoil ?30% dari panjang segmen jalan;68;1
 10% total panjang spoil <30% dari panjang segmen jalan;68;2
 Total panjang spoil ? 10% dari panjang segmen jalan;68;3

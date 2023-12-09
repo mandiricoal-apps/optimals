@@ -114,6 +114,7 @@ class DatabaseSeeder extends Seeder
         Area::create(['area_name' => 'Area Haulroad', 'description' => 'Area Haulroad']);
 
         $this->call([
+            UserSeeder::class,
             QuestionSeeder::class,
         ]);
     }
