@@ -119,6 +119,7 @@ class DailyInspectionController extends Controller
         switch ($dailyInspection->area_id) {
             case 3:
                 $dataLocation = [
+                    'PT' => $location->pit,
                     'DISPOSAL' => $location->disposal,
                     'BLOK' => $location->blok_start . '-' . $location->blok_end,
                     'STRIP' => $location->strip_start . '-' . $location->strip_end,
@@ -127,11 +128,13 @@ class DailyInspectionController extends Controller
                 break;
             case 4:
                 $dataLocation = [
+                    'PT' => $location->pit,
                     'SUMP' => $location->sump,
                 ];
                 break;
             case 5:
                 $dataLocation = [
+                    'PT' => $location->pit,
                     'NAMA JALAN' => $location->nama_jalan,
                     'SEGMEN' => $location->segmen,
                 ];
