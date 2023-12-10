@@ -21,7 +21,7 @@ class DailyInspectionController extends Controller
         $areas = Area::withCount([
             'dailyInspection' => function (Builder $query) {
                 $accesbilityData = Auth::user()->roles[0]->accesbility_data;
-                if ($accesbilityData == 'user_company') {
+                if ($accesbilityData == 'user_company' || Auth::user()->company == "MIP") {
                     $query->whereHas('location', function ($q) {
                         return $q->where('location.pit', '=', Auth::user()->company);
                     });
