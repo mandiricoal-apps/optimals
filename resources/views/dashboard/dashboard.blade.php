@@ -130,16 +130,11 @@
             <h5>Percentage Daily Inspection by Company</h5>
             <hr>
             <div class="row">
-                <div class="card">
-                    <div class="card border-0">
-                        <div class="card-body mb-1">
-                            <div class="d-flex flex-wrap">
-                                <div class="doughnut-wrapper w-80">
-                                    <canvas id="myChart"></canvas>
-                                </div>
-                                <div id="doughnut-chart-legend"
-                                    class="pl-lg-6 rounded-legend align-self-center flex-grow legend-vertical legend-bottom-left">
-                                </div>
+                <div class="card" style="height: 360px;">
+                    <div class="card border-0 py-2">
+                        <div class="card-body mb-1 p-0">
+                            <div class="doughnut-wrapper pt-2">
+                                <canvas id="myChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -264,6 +259,7 @@
     @endsection
     @section('js')
 
+
         <!-- Select2 -->
         <script src="assets/vendors/select2/select2.min.js"></script>
 
@@ -296,40 +292,74 @@
             });
         </script>
 
-        <!-- Custom JS, Chart JS -->
-        
         <script>
-            const ctx = document.getElementById('myChart');
+            var comp = [];
+            $.ajax({
+                type: "get",
+                url: "/company-api",
+                async: false,
+                dataType: "json",
+                success: function(data) {
+                    var temp = data.employee;
+                    temp.forEach(e => {
+                        e.id = e.comp_name;
+                        e.text = e.comp_name;
+                    });
 
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ['MIP', 'MKP', 'RML'],
-                    datasets: [{
-                        label: '#dailyinspection(%)',
-                        data: [
-                            {{ $total_all == 0 ? 0 : round(($MIP / $total_all) * 100, 2) }},
-                            {{ $total_all == 0 ? 0 : round(($MKP / $total_all) * 100, 2) }},
-                            {{ $total_all == 0 ? 0 : round(($RML / $total_all) * 100, 2) }}
+                    comp = temp;
+                }
+            });
 
-                        ],
-                        borderWidth: 1,
-                        backgroundColor: [
-                            'crimson',
-                            'darkorange',
-                            'dodgerblue'
-                        ],
-                        
-                    }],
-                    
-                },
-                // options: {
-                //     scales: {
-                //         y: {
-                //             beginAtZero: true
-                //         }
-                //     }
-                // }
+            var select2_company = $('#company').select2({
+                theme: 'bootstrap',
+                data: comp,
+                placeholder: 'Select Company'
+            });
+        </script>
+
+        <!-- Custom JS, Chart JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const ctx = document.getElementById('myChart').getContext('2d');
+                ctx.canvas.width = 300;
+                ctx.canvas.height = 300;
+
+                const dataValues = [{{ $MIP }}, {{ $MKP }}, {{ $RML }}];
+                const dataLabels = ['MIP', 'MKP', 'RML'];
+
+                const total = dataValues.reduce((acc, value) => acc + value, 0);
+                const percentages = dataValues.map(value => ((value / total) * 100).toFixed(2));
+
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: dataLabels,
+                        datasets: [{
+                            label: '#dailyinspection',
+                            data: percentages,
+                            borderWidth: 1,
+                            backgroundColor: [
+                                'crimson',
+                                'darkorange',
+                                'dodgerblue'
+                            ],
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            labels: {
+                                render: function(args) {
+                                    return args.value + '%';
+                                },
+                                fontColor: 'white'
+                            }
+                        }
+                    }
+                });
             });
         </script>
     @stop

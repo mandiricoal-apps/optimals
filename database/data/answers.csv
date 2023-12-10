@@ -2,13 +2,13 @@ answer;question_id;point
 "< 2 Meter PC2000/3000 class /100 T- 150 T (Posisi track excavator dibawah level tinggi vessel DT, tidak pada keadaan double bench) ; Untuk soft materials > tinggi kabin loader (7,5 meter) ; Untuk soft materials, jarak face penggalian dengan unit alat gali (< 7 meter)";1;1
 2 - 3 Meter PC2000/3000 class / 100 T- 150 T (Posisi track excavator dibawah level tinggi vessel DT, tidak pada keadaan double bench);1;2
 3 - 4 Meter PC2000/3000 class /100 T- 150 T (Posisi track excavator dibawah level tinggi vessel DT, tidak pada keadaan double bench);1;3
-"? 4 Meter PC2000/3000 class /100 T- 150 T (Posisi track excavator selevel dengan tinggi vessel DT, tidak pada keadaan double bench) ; Untuk soft materials setinggi kabin loader (7,5 meter) ; Untuk soft materials, jarak face penggalian dengan unit alat gali (7 meter)";1;4
-Kondisi Lantai Kerja Undulasi  ? 30 cm;2;1
+">= 4 Meter PC2000/3000 class /100 T- 150 T (Posisi track excavator selevel dengan tinggi vessel DT, tidak pada keadaan double bench) ; Untuk soft materials setinggi kabin loader (7,5 meter) ; Untuk soft materials, jarak face penggalian dengan unit alat gali (7 meter)";1;4
+Kondisi Lantai Kerja Undulasi  >= 30 cm;2;1
 Kondisi Lantai Kerja Undulasi 20 cm - 30 cm;2;2
 Kondisi Lantai Kerja Undulasi 20-10 cm;2;3
-Kondisi Lantai Kerja Undulasi ?10 cm;2;4
+Kondisi Lantai Kerja Undulasi <=10 cm;2;4
 "Terdapat genangan air tepat di titik penggalian (loading point) dan atau >10% area ; Tidak terdapat contour drainage/arah aliran air";3;1
-"Terdapat genangan air ?10% area ; Tidak terdapat contour drainage/arah aliran air";3;2
+"Terdapat genangan air <=10% area ; Tidak terdapat contour drainage/arah aliran air";3;2
 "Tidak terdapat genangan air ; Arah aliran air (contour drainage) 1-2% terbentuk sebagian";3;3
 "Tidak terdapat genangan air ; Terdapat arah aliran air (contour drainage) 1-2% dan terencana dalam peta/ desain ; terbentuk jalur paritan air";3;4
 Tidak terdapat patok batas acuan penggalian & penggalian tidak lurus;4;1
@@ -18,19 +18,19 @@ Tidak terdapat patok batas acuan penggalian & penggalian tidak lurus;4;1
 <2x lebar DT;5;1
 2-3x lebar DT;5;2
 3-4x lebar DT;5;3
-? 4x lebar DT;5;4
+>= 4x lebar DT;5;4
 "Tidak ada Grade Box / Alat Kontrol Elevasi atau tidak Berfungsi ; Grade Box / Alat Kontrol Elevasi tidak tervalidasi oleh PIC (pengawas dan survey tidak melakukan validasi) ; Elevasi lantai kerja tidak sesuai rencana";6;1
 "Tersedia Grade Box / Alat Kontrol Elevasi : Grade box tidak dalam kondisi baik , Lokasi gradebox tidak aman dan/atau tidak dibarikade , Jarak dengan Front penggalian >50m ; Grade Box / Alat Kontrol Elevasi tervalidasi oleh salah satu PIC (pengawas atau survey) , Form validasi dalam kondisi rusak dan/ tidak terbaca dengan jelas ; Elevasi lantai kerja sesuai rencana";6;2
 "Tersedia Grade Box / Alat Kontrol Elevasi : Lokasi gradebox tidak aman dan/atau tidak dibarikade , Jarak dengan Front penggalian 20-50m ; Grade Box / Alat Kontrol Elevasi tervalidasi oleh PIC (Pengawas dan survey) , Form validasi dalam kondisi rusak dan/ tidak terbaca dengan jelas ; Elevasi lantai kerja sesuai rencana (on grade) , Acuan benang ukur antara gradebox dan unit hauler terbaca";6;3
 Tersedia Grade Box / Alat Kontrol Elevasi : Kondisi grade box dalam keadaan baik , Lokasi gradebox aman dan dibarikade , Jarak dengan Front penggalian 20-50m Grade Box / Alat Kontrol Elevasi tervalidasi oleh PIC (Pengawas dan survey) , Form validasi dalam kondisi baik dan/ mudah terbaca , Elevasi lantai kerja sesuai rencana (on grade) , Acuan benang ukur antara gradebox dan unit hauler terbaca;6;4
 Terdapat material tertinggal/tidak terangkut;7;1
-Kondisi front rapi , terdapat spoil atau material yang tertinggal/tidak angkut ?50m3 (?1xload DT 100ton);7;2
-Kondisi front rapi , terdapat spoil atau material yang tertinggal/tidak angkut ?20m3;7;3
+Kondisi front rapi , terdapat spoil atau material yang tertinggal/tidak angkut >=50m3 (>=1xload DT 100ton);7;2
+Kondisi front rapi , terdapat spoil atau material yang tertinggal/tidak angkut <=20m3;7;3
 Kondisi front rapi ,tidak terdapat spoil atau material yang tertinggal/tidak angkut;7;4
 Tidak terdapat penerangan di loading point;8;1
 "Terdapat penerangan <3 lux pada jarak maksimal 50 meter dan/atau ; Towerlamp tidak dalam kondisi baik";8;2
-"Penerangan memadai ?3 lux pada jarak < 50 meter ; Towerlamp dalam kondisi baik ( lengkap dan semua lampu menyala)";8;3
-"Penerangan memadai ?3 lux pada jarak maksimal 50 meter ; Towerlamp dalam kondisi baik ( lengkap dan semua lampu menyala)";8;4
+"Penerangan memadai >=3 lux pada jarak < 50 meter ; Towerlamp dalam kondisi baik ( lengkap dan semua lampu menyala)";8;3
+"Penerangan memadai >=3 lux pada jarak maksimal 50 meter ; Towerlamp dalam kondisi baik ( lengkap dan semua lampu menyala)";8;4
 Terdapat Batter Peg dengan jarak >25 meter , Terdapat salah satu batter peg yang memiliki sudut kemiringan tidak sesuai rencana/design , batter peg tidak rusak dan berfungsi baik;9;1
 Terdapat Batter Peg dengan jarak >25 meter , Semua batter peg memiliki sudut kemiringan sesuai rencana/design ,batter peg tidak rusak dan berfungsi baik;9;2
 Terdapat Batter Peg setiap 25 meter , Terdapat salah satu batter peg yang memiliki sudut kemiringan tidak sesuai rencana/design , batter peg tidak rusak dan berfungsi baik;9;3
@@ -41,8 +41,8 @@ Dinding lereng final atau temporary dalam keadaan rapi, kemiringan sesuai design
 "Dinding lereng final atau temporary dalam keadaan rapi, kemiringan sesuai design dan bentuk lurus sesuai patok acuan , ada patok acuan di atasnya ; Tidak terdapat material lepas pada lereng ; Tidak terdapat lereng gantung (over hangslope)";10;4
 Tidak terdapat tanggul pengaman dan/atau Terdapat tanggul pengaman dengan tinggi kurang dari 3/4  ban Truk terbesar dengan panjang segment >7m pada front pinggir lereng.;11;1
 Terdapat tanggul pengaman dengan tinggi kurang dari 3/4  ban Truk terbesar dengan panjang segment antara 1.5-7m;11;2
-Terdapat tanggul  standar, ?3/4 tinggi ban Truk terbesar , Tanggul tidak rapi terbentuk;11;3
-Terdapat tanggul  standar , ?3/4 tinggi ban Truk terbesar , Tanggul rapi dan terbentuk;11;4
+Terdapat tanggul  standar, >=3/4 tinggi ban Truk terbesar , Tanggul tidak rapi terbentuk;11;3
+Terdapat tanggul  standar , >=3/4 tinggi ban Truk terbesar , Tanggul rapi dan terbentuk;11;4
 Dropcut atau potensi genangan air;12;1
 Tidak Dropcut atau ideal;12;4
 Lebar Front kurang dari 2.5x unit terbesar;13;1
@@ -104,7 +104,7 @@ tersedia walkway tetapi kurang layak;32;3
 Tersedia walkway dan memadai;32;4
 Tidak tersedia;33;1
 Semua operational pompa penerangan < 3 Lux;33;2
-"Tidak semua area operational pompa ; Terjangkau ? 3 Lux";33;3
+"Tidak semua area operational pompa ; Terjangkau >= 3 Lux";33;3
 Tersedia dan memadai;33;4
 "Terdapat / ditemukan : Kebocoran ; Kontaminansi";34;1
 Tidak terdapat / ditemukan;34;4
@@ -113,8 +113,8 @@ Tidak Tersedia;35;1
 Tersedia tapi tidak memadai;35;3
 Tersedia dan memadai;35;4
 Tidak tersedia;36;1
-"Tersedia dan memadai ( komp < 3 M ; sedimentasi ? 50% kapasitas ; Jadwal maintenance tdk berkelanjutan )";36;2
-"Tersedia dan memadai ( Min 3 Komp ; Sedimentasi ? %50 % kapasitas ; Jadwal Maintenance Continue";36;3
+"Tersedia dan memadai ( komp < 3 M ; sedimentasi >= 50% kapasitas ; Jadwal maintenance tdk berkelanjutan )";36;2
+"Tersedia dan memadai ( Min 3 Komp ; Sedimentasi >= %50 % kapasitas ; Jadwal Maintenance Continue";36;3
 Tersedia dan memadai;36;4
 Tidak tersedia;37;1
 Tersedia namun kurang lengkap;37;2
@@ -148,20 +148,20 @@ Terdapat Unit Dozer Support tidak sesuai kapasitas (1 unit DZ melayani > 4 Fleet
 "Tinggi jenjang timbunan sesuai rekomendasi geotek ; Elevasi grade aliran air disposal adalah +/->1.5 meter dari standar tinggi sesuai jenis material";44;2
 "Tinggi jenjang timbunan sesuai rekomendasi geotek ; Elevasi grade aliran air disposal adalah +/-1s.d 1.5 meter dari standar tinggi sesuai jenis material";44;3
 "Tinggi jenjang timbunan sesuai rekomendasi geotek ; Elevasi grade aliran air disposal adalah +/-1 meter dari standar tinggi sesuai jenis material";44;4
-Kondisi lantai kerja undulasi  ? 40 cm;45;1
+Kondisi lantai kerja undulasi  >= 40 cm;45;1
 Kondisi lantai kerja undulasi 30 cm - 40 cm;45;2
 Kondisi lantai kerja undulasi 20 cm - 30 cm;45;3
-Kondisi lantai kerja undulasi ? 20;45;4
-"Terdapat genangan air tepat di titik penimbunan (dumping point) dan atau > ï¿½20% area ; Tidak terdapat contour drainage/arah aliran air";46;1
-"Terdapat genangan air ï¿½20% area ; Contour drainage/arah aliran air permukaan ada tetapi tidak berfungsi";46;2
-"Terdapat genangan air ï¿½10% area ; Contour drainage/arah aliran air permukaan terbentuk hanya sebagian";46;3
+Kondisi lantai kerja undulasi <= 20;45;4
+"Terdapat genangan air tepat di titik penimbunan (dumping point) dan atau > +/-20% area ; Tidak terdapat contour drainage/arah aliran air";46;1
+"Terdapat genangan air +/-20% area ; Contour drainage/arah aliran air permukaan ada tetapi tidak berfungsi";46;2
+"Terdapat genangan air +/-10% area ; Contour drainage/arah aliran air permukaan terbentuk hanya sebagian";46;3
 "Tidak ada genangan air ; Terdapat contour drainage/arah aliran air permukaan 1-2%";46;4
 "Tidak terdapat patok batas penimbunan ; Penimbunan tidak lurus sesuai acuan dan tidak rapi";47;1
 "Terdapat patok batas penimbunan dengan jarak antara patok lebih dari 50m ; Patok batas penimbunan yang terpasang adalah temporary monthly ; Penimbunan tidak lurus sesuai acuan dan tidak rapi";47;2
 "Terdapat patok batas penimbunan dengan jarak antar patok maksimal 50m ; Patok batas penimbunan yang terpasang adalah temporary monthly ; Penimbunan lurus sesuai acuan dan rapi";47;3
 "Terdapat patok batas penimbunan dengan jarak antara patok 50m ; Patok batas penimbunan yang terpasang adalah temporary weekly per kemajuan penimbunan setiap 25meter ; Penimbunan lurus sesuai acuan dan rapi";47;4
 < 2x lebar truk + (Turning Radius x jumlah fleet) HD 100ton < 25m HD 150ton < 30m;48;1
-? 2x lebar truk + (Turning Radius x jumlah fleet) HD 100ton ? 25m HD 150ton ? 30m HD 200ton ? 35m;48;4
+>= 2x lebar truk + (Turning Radius x jumlah fleet) HD 100ton >= 25m HD 150ton >= 30m HD 200ton >= 35m;48;4
 "Tidak ada grade box / alat kontrol elevasi atau tidak berfungsi ; Grade box / alat kontrol elevasi tidak tervalidasi oleh PIC (pengawas dan survey tidak melakukan validasi) ; Elevasi lantai kerja tidak sesuai rencana";49;1
 "Tersedia grade box / alat kontrol elevasi (-Grade box tidak dalam kondisi baik -Lokasi gradebox tidak aman dan/atau tidak dibarikade - Jarak dengan dumpingan  >100m) ; Grade Box / Alat Kontrol Elevasi tervalidasi oleh salah satu PIC (pengawas atau survey) (-Form validasi dalam kondisi rusak dan/ tidak terbaca dengan jelas) ; Elevasi lantai kerja sesuai rencana";49;2
 "Tersedia Grade Box / Alat Kontrol Elevasi (-Kondisi grade box dalam keadaan baik -Lokasi gradebox tidak aman dan/atau tidak dibarikade - Jarak dengan dumpingan 100m) ; Grade Box / Alat Kontrol Elevasi tervalidasi oleh PIC (Pengawas dan survey) (-Form validasi dalam kondisi rusak dan/ tidak terbaca dengan jelas) ; - Elevasi lantai kerja sesuai rencana (on grade) -Acuan benang ukur antara gradebox dan unit hauler terbaca";49;3
@@ -192,24 +192,24 @@ Tidak Terdapat area parkir sarana disetiap disposal;56;1
 Terdapat area parkir sarana disetiap disposal tanpa bundwall;56;2
 Terdapat area parkir sarana disetiap disposal dengan bundwall tidak standar;56;3
 Terdapat area parkir sarana disetiap disposal yang aman dengan bundwall standart;56;4
-Total undulasi ? 30% dari panjang segmen jalan;57;1
+Total undulasi >= 30% dari panjang segmen jalan;57;1
 Total undulasi 10-30% dari panjang panjang segmen jalan;57;2
 Total undulasi 5-10% dari segmen jalan;57;3
-Total undulasi ? 5% dari panjang segmen jalan;57;4
-Grade ï¿½4% (lebih dari 12%);58;1
-Grade ? ï¿½2%;58;2
-Grade ï¿½1%;58;3
-On grade ï¿½0.5%;58;4
+Total undulasi <= 5% dari panjang segmen jalan;57;4
+Grade +/- 4% (lebih dari 12%);58;1
+Grade >= +/-2%;58;2
+Grade +/-1%;58;3
+On grade +/-0.5%;58;4
 <3.5x Lebar Truk Terbesar untuk jalan 2 arah , < 2x Lebar Truk Terbesar untuk jalan 1 arah;59;1
-? 3.5x Lebar Truk Terbesar untuk jalan 2 arah , ? 2x Lebar Truk Terbesar untuk jalan 1 arah;59;4
+>= 3.5x Lebar Truk Terbesar untuk jalan 2 arah , >= 2x Lebar Truk Terbesar untuk jalan 1 arah;59;4
 Super Elevasi terbalik mengarah  ke bagian luar tikungan;60;1
 Super Elevasi < 2% mengarah ke bagian dalam tikungan;60;2
 Super Elevasi > 4% mengarah  bagian dalam tikungan;60;3
 Super Elevasi 2-4% mengarah ke bagian dalam tikungan;60;4
-Tidak terdapat tanggul atau ? 1.5 m terdapat tanggul yang tidak standar (< 3/4 tinggi ban Truk 5 terbesar);61;1
-"Terdapat tanggul standar ?3/4 tinggi ban Truk terbesar  ; Lebar bawah tidak standar ; Material tidak rapi ; Tidak terdapat control blindspot di tanggul setiap persimpangan jalan sesuai dengan traffic rules";61;2
-"Terdapat tanggul standar ?3/4 tinggi ban Truk terbesar ; Lebar bawah tidak standar dan/atau ; Material tidak rapi ; Terdapat control blindspot di tanggul setiap persimpangan jalan sesuai dengan traffic rules";61;3
-"Terdapat tanggul standar ?3/4 tinggi ban (tyre) Truk terbesar; Lebar bawah 1.5xTinggi ; Material rapi ; Terdapat control blindspot di tanggul setiap persimpangan jalan sesuai dengan traffic rules";61;4
+Tidak terdapat tanggul atau >= 1.5 m terdapat tanggul yang tidak standar (< 3/4 tinggi ban Truk 5 terbesar);61;1
+"Terdapat tanggul standar >=3/4 tinggi ban Truk terbesar  ; Lebar bawah tidak standar ; Material tidak rapi ; Tidak terdapat control blindspot di tanggul setiap persimpangan jalan sesuai dengan traffic rules";61;2
+"Terdapat tanggul standar >=3/4 tinggi ban Truk terbesar ; Lebar bawah tidak standar dan/atau ; Material tidak rapi ; Terdapat control blindspot di tanggul setiap persimpangan jalan sesuai dengan traffic rules";61;3
+"Terdapat tanggul standar >=3/4 tinggi ban (tyre) Truk terbesar; Lebar bawah 1.5xTinggi ; Material rapi ; Terdapat control blindspot di tanggul setiap persimpangan jalan sesuai dengan traffic rules";61;4
 Tidak terdapat rambu atau tidak sesuai standar traffic rules minimal;62;1
 "Terdapat rambu dan sesuai standar traffic rules minimal ; Kondisi tidak terawat (miring, rebah, lepas, patah)";62;2
 "Terdapat rambu dan sesuai standar traffic rules minimal ; Kondisi rambu terawat (berdiri tegak, kurang bersih, kurang terlihat jelas)";62;3
@@ -221,23 +221,23 @@ Crossfall 4% Terbentuk sepanjang segmen jalan;63;4
 Debu tebal jarak pandang <40m;64;1
 Debu terkontrol, jarak pandang 40- 80 m Penyiraman menerus (tdk putus- putus);64;2
 Debu terkontrol, jarak pandang 40-80 m Terdapat penyiraman putus-putus 1x panjang unit;64;3
-Debu terkontrol, jarak pandang ? 80 m Terdapat penyiraman putus putus 1x panjang unit;64;4
-"Drainase tidak lancar / meluap ; Terdapat genangan di badan jalan ?1mï¿½ ; Sedimentasi melebihi elevasi jalan";65;1
+Debu terkontrol, jarak pandang >= 80 m Terdapat penyiraman putus putus 1x panjang unit;64;4
+"Drainase tidak lancar / meluap ; Terdapat genangan di badan jalan >= 1m² ; Sedimentasi melebihi elevasi jalan";65;1
 "Badan jalan bebas genangan air ; Drainase lancar sesuai plan mengarah ke sump ; Sedimentasi melebihi elevasi jalan (perlu di maintenance) ; Terdapat sodetan ke arah slope final dibawahnya";65;2
 "Badan jalan bebas genangan air ; Drainase lancar sesuai plan mengarah ke sump ; Sedimentasi melebihi elevasi jalan (perlu di maintenance) ; Tidak terdapat sodetan ke arah slope dibawahnya";65;3
 "Badan jalan bebas genangan air ; Drainase lancar sesuai plan mengarah ke sump ; Tidak ada sedimentasi melebihi elevasi jalan ; Tidak terdapat sodetan ke arah slope dibawahnya";65;4
 Tidak terdapat guide post;66;1
 Terdapat guide post dengan jarak >40 meter disepanjang bahu jalan;66;2
 Terdapat guide post dengan jarak setiap 40 meter di sepanjang bahu jalan dengan tinggi kurang satandard Kurang terawat (tidak rusak, kurang bersih, scotlight mulai pudar);66;3
-Terdapat guide post dengan jarak setiap 40 meter di sepanjang bahu jalan dengan tinggi satandard Terawat (tidak rusak, bersih, scotlight terlihat jelas);66;4
-Total panjang spoil ?30% dari panjang segmen jalan;67;1
+Terdapat guide post dengan jarak setiap 40 meter di sepanjang bahu jalan dengan tinggi satandard Terawat (tidak rusak, bersih, scotlight terlihat jelas;66;4
+Total panjang spoil >= 30% dari panjang segmen jalan;67;1
 10% total panjang spoil <30% dari panjang segmen jalan;67;2
-Total panjang spoil ? 10% dari panjang segmen jalan;67;3
-Total panjang spoil ? 5% dari panjang segmen jalan;67;4
+Total panjang spoil <= 10% dari panjang segmen jalan;67;3
+Total panjang spoil <= 5% dari panjang segmen jalan;67;4
 Tidak terdapat penerangan di persimpangan;68;1
 Terdapat penerangan <3lux pada radius <25m dari persimpangan;68;2
-Terdapat penerangan ?3lux pada radius 25-50m dari persimpangan;68;3
-Terdapat Penerangan ?3lux pada radius 250m dari persimpangan;68;4
+Terdapat penerangan >=3lux pada radius 25-50m dari persimpangan;68;3
+Terdapat Penerangan >=3lux pada radius 250m dari persimpangan;68;4
 Tidak terdapat devider di persimpangan dan/ tikungan tajam/ switchback;69;1
 "Terdapat devider di persimpangan dan tikungan tajam/ switchback ; Dimensi tidak standard ; Tidak ada rambu penunjuk arah";69;2
 "Terdapat devider di persimpangan dan tikungan tajam/ switchback ; Dimensi standard ; Rambu penunjuk arah kurang terawat (kotor,miring) ; Terdapat spoil (tidak rapi)";69;3

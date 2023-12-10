@@ -22,23 +22,25 @@ class DailyInspectionController extends Controller
             'dailyInspection' => function (Builder $query) {
                 $accesbilityData = Auth::user()->roles[0]->accesbility_data;
                 if ($accesbilityData == 'user_company') {
-                    $query->whereHas('user', function ($q) {
-                        return $q->where('company', '=', Auth::user()->company);
+                    $query->whereHas('location', function ($q) {
+                        return $q->where('data_location.pit', '=', Auth::user()->company);
                     });
                 }
-                $query->where('approved_at', '=', NULL);
-                $query->whereRaw('NOW() < DATE_ADD(
-                    DATE_ADD(
-                        LAST_DAY(daily_inspections.created_at) + INTERVAL 2 DAY,
+                $query->where(function ($querys) {
+
+                    $querys->where('approved_at', '=', NULL);
+                    $querys->orWhereRaw('NOW() > DATE_ADD(
+                        LAST_DAY(daily_inspections.created_at) + INTERVAL 3 DAY,
                         INTERVAL 0 DAY
-                    ),
-                    INTERVAL TIME_TO_SEC(TIME(daily_inspections.created_at)) SECOND
                 )');
+                });
             },
         ]);
+        $areas = $areas->get();
+        $areas->load('question');
 
 
-        $data['areas'] = $areas->get();
+        $data['areas'] = $areas;
         return view('dashboard.daily_inspection', $data);
     }
 
@@ -56,18 +58,17 @@ class DailyInspectionController extends Controller
         $data['breadcrumb'] = 'daily_inspection_perarea';
         $data['area_name'] = $area->area_name;
         $data['area_id'] = $area->id;
-        $dailyInspection = DB::table('daily_inspections')->selectRaw('daily_inspections.*, users.name, users.nik, users.id as user_id, COUNT(DISTINCT issue.id) issue')
+        $dailyInspection = DB::table('daily_inspections')->selectRaw('daily_inspections.*, users.name, users.nik, users.id as user_id, COUNT(DISTINCT issue.id) issue, data_location.pit as comp')
             ->join('users', 'daily_inspections.create_by', '=', 'users.id')
             ->join('daily_inspection_summary', 'daily_inspection_summary.inspection_id', '=', 'daily_inspections.id')
             ->leftJoin('issue', 'issue.sumary_id', '=', 'daily_inspection_summary.id')
+            ->join('data_location', 'data_location.inspection_id', '=', 'daily_inspections.id')
             ->orderByDesc('created_at')
 
             ->where('daily_inspections.area_id', '=', $area->id);
         if ($accesbilityData == 'user_company') {
-            $dailyInspection = $dailyInspection->where('users.company', '=', Auth::user()->company);
+            $dailyInspection = $dailyInspection->where('data_location.pit', '=', Auth::user()->company);
         }
-
-
 
         if ($request->start) {
             $dailyInspection = $dailyInspection->where('daily_inspections.created_at', '>=', $request->start . ' 00:00:00');
@@ -102,31 +103,32 @@ class DailyInspectionController extends Controller
         $data['title'] = 'Daily Inspection ' . $dailyInspection->code;
         $data['breadcrumb'] = 'detail_daily_inspection';
         $dailyInspection->load([
-                               'summary', 
-                               'location', 
-                               'summary.question' => function ($query) {
-            $query->withTrashed();
-        }, 
-                               'summary.answer'=> function ($query) {
-            $query->withTrashed();
-        }, 
-                               'summary.issue', 
-                               'user' => function ($query) {
-            $query->withTrashed();
-        }]);
+            'summary',
+            'location',
+            'summary.question' => function ($query) {
+                $query->withTrashed();
+            },
+            'summary.answer' => function ($query) {
+                $query->withTrashed();
+            },
+            'summary.issue',
+            'user' => function ($query) {
+                $query->withTrashed();
+            }
+        ]);
         $location = $dailyInspection->location;
         $dataLocation = [];
         switch ($dailyInspection->area_id) {
-            case 3:
+            case 4:
                 $dataLocation = [
                     'PT' => $location->pit,
                     'DISPOSAL' => $location->disposal,
-                    'BLOK' => $location->blok_start . '-' . $location->blok_end,
-                    'STRIP' => $location->strip_start . '-' . $location->strip_end,
-                    'RL' => $location->rl,
+                    'BLOK' => $location->blok_start . $location->blok_end ? ' to ' . $location->blok_end : '',
+                    'STRIP' => $location->strip_start . $location->strip_end ? ' to ' . $location->strip_end : '',
+                    'RL' => $location->rl . $location->rl_end ? ' to ' . $location->rl_end : '',
                 ];
                 break;
-            case 4:
+            case 3:
                 $dataLocation = [
                     'PT' => $location->pit,
                     'SUMP' => $location->sump,
@@ -143,10 +145,10 @@ class DailyInspectionController extends Controller
             default:
                 $dataLocation = [
                     'PIT' => $location->pit,
-                    'BLOK' => $location->blok_start . '-' . $location->blok_end,
-                    'STRIP' => $location->strip_start . '-' . $location->strip_end,
+                    'BLOK' => $location->blok_start . $location->blok_end ? ' to ' . $location->blok_end : '',
+                    'STRIP' => $location->strip_start . $location->strip_end ? ' to ' . $location->strip_end : '',
                     'SEAM' => $location->seam,
-                    'RL' => $location->rl,
+                    'RL' => $location->rl . $location->rl_end ? ' to ' . $location->rl_end : '',
                     'NO. UNIT' => $location->no_unit,
                 ];
                 break;
