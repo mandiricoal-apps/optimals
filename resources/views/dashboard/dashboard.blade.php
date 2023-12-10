@@ -297,7 +297,7 @@
         </script>
 
         <!-- Custom JS, Chart JS -->
-        <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+        
         <script>
             const ctx = document.getElementById('myChart');
 
