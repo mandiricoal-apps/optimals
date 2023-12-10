@@ -206,7 +206,7 @@
                         <div class="row ">
                             <div class="col-md-8">
                                 <h3 class="card-title">Optimals - GMP</h3>
-                                <p class="card-text"><strong>Optimals - GMP (Good Mining Practices)</strong> adalah Operational System PT Mandiri Intiperkasa yang mengelola inspeksi lapangan secara digital berdasarkan kaidah pertambangan yang baik agar tercipta operasi yang aman dan produktif. <i><strong>Optimalkan diri dan tim kita, dengan Optimals GMP</strong></i>
+                                <p class="card-text"><strong>Optimals - GMP (Good Mining Practice)</strong> adalah Operational System PT Mandiri Intiperkasa yang mengelola inspeksi lapangan secara digital berdasarkan kaidah pertambangan yang baik agar tercipta operasi yang aman dan produktif. <i><strong>Optimalkan diri dan tim kita, dengan Optimals GMP!</strong></i>
                                 </p>
                                 <hr>
                                 <i><strong>optimals v1.0.0</strong><br>Copyright © <a href="https://mandiricoal.co.id/">mandiricoal.co.id</a> 2023</i><br><br>

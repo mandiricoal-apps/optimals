@@ -97,20 +97,20 @@
                                 </tr>
                             @endforeach
 
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Creation Date</th>
-                                <th>Daily Inspection</th>
-                                <th>Score</th>
-                                <th>Submitter</th>
-                                <th>Company</th>
-                                <th>Status</th>
-                                <th class="text-center">Action</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
+
+                    </tbody>
+                    <!-- <tfoot>
+                        <tr>
+                            <th>Creation Date</th>
+                            <th>Daily Inspection</th>
+                            <th>Score</th>
+                            <th>Submitter</th>
+                            <th>Status</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </tfoot> -->
+                </table>
+
             </div>
         </div>
 
