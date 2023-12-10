@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('strip_end')->nullable();
             $table->text('seam')->nullable();
             $table->integer('rl')->nullable();
+            $table->integer('rl_end')->nullable();
             $table->text('no_unit')->nullable();
             $table->text('disposal')->nullable();
             $table->text('sump')->nullable();

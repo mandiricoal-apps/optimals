@@ -259,6 +259,7 @@
     @endsection
     @section('js')
 
+
     <!-- Select2 -->
     <script src="assets/vendors/select2/select2.min.js"></script>
 
@@ -362,3 +363,4 @@
     });
 </script>
 @stop
+

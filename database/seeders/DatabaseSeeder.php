@@ -21,11 +21,13 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $role = Role::create(['name' => 'admin', 'description' => 'Administrator', 'accesbility_data' => 'all']);
-        Role::create(['name' => 'Reviewer MIP', 'description' => 'Reviewer MIP', 'accesbility_data' => 'all']);
-        Role::create(['name' => 'Reviewer MKP', 'description' => 'Reviewer MKP', 'accesbility_data' => 'user_company']);
-        Role::create(['name' => 'Reviewer RML', 'description' => 'Reviewer RML', 'accesbility_data' => 'user_company']);
-        Role::create(['name' => 'Operational Team', 'description' => 'Operational Team', 'accesbility_data' => 'all']);
+        $role = Role::create(['name' => 'admin', 'description' => 'Administrator', 'accesbility_data' => 'all', 'is_admin' => 1]);
+        Role::create(['name' => 'Reviewer MIP', 'description' => 'Reviewer MIP', 'accesbility_data' => 'all', 'is_admin' => 0]);
+        Role::create(['name' => 'Reviewer MKP', 'description' => 'Reviewer MKP', 'accesbility_data' => 'user_company', 'is_admin' => 0]);
+        Role::create(['name' => 'Reviewer RML', 'description' => 'Reviewer RML', 'accesbility_data' => 'user_company', 'is_admin' => 0]);
+        Role::create(['name' => 'Operational Team', 'description' => 'Operational Team', 'accesbility_data' => 'all', 'is_admin' => 0]);
+        Role::create(['name' => 'Admin Operational', 'description' => 'Admin Operational', 'accesbility_data' => 'all', 'is_admin' => 1]);
+
 
         Permission::create(['name' => 'view_user', 'parent' => '[MD] User', 'type' => 'view']);
         Permission::create(['name' => 'edit_user', 'parent' => '[MD] User', 'type' => 'edit']);
@@ -62,13 +64,13 @@ class DatabaseSeeder extends Seeder
 
         $user = new User();
         $user->name = 'Super Admin';
-        // $user->user_id = 'MIP-0001';
+        $user->user_id = 'IT-MIP';
         $user->company = 'MIP';
-        $user->nik = '0001';
+        $user->nik = '0000';
         $user->division = 'IT';
-        // $user->email = 'admin@mail.com';
+        $user->email = 'hiski46@gmail.com';
         // $user->email_verified_at = date('Y:m:d H:i:s');
-        $user->password = Hash::make(md5('123123'));
+        $user->password = Hash::make(md5('hirika'));
         $user->save();
 
         $role->givePermissionTo('view_user');
@@ -107,11 +109,12 @@ class DatabaseSeeder extends Seeder
 
         Area::create(['area_name' => 'Front Loading OB', 'description' => 'Front Loading OB']);
         Area::create(['area_name' => 'Front Loading Coal', 'description' => 'Front Loading Coal']);
-        Area::create(['area_name' => 'Area Disposal', 'description' => 'Area Disposal']);
-        Area::create(['area_name' => 'Area Dewatering', 'description' => 'Area Dewatering']);
-        Area::create(['area_name' => 'Area Haulroad', 'description' => 'Area Haulroad']);
+        Area::create(['area_name' => 'Dewatering', 'description' => 'Dewatering']);
+        Area::create(['area_name' => 'Disposal', 'description' => 'Disposal']);
+        Area::create(['area_name' => 'Haulroad', 'description' => 'Haulroad']);
 
         $this->call([
+            UserSeeder::class,
             QuestionSeeder::class,
         ]);
     }
