@@ -209,93 +209,89 @@
                         Mandiricoal System</small></h5>
                     </li>
                 </ul>
-                <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                    <a class="navbar-brand brand-logo-mini" href="index.html"><img
-                        src="/assets/images/logo-mini.svg" alt="logo" /></a>
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item nav-profile dropdown d-none d-md-block" id="parent">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#"
+                        data-toggle="dropdown" aria-expanded="false">
+                        <div class="nav-profile-text">Account </div>
+                    </a>
+                    <div class="dropdown-menu center navbar-dropdown">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#modal-pass">
+                            Change Password
+                        </a>
+                        <a class="dropdown-item" onclick="logout()">
+                            Logout
+                        </a>
                     </div>
-                    <ul class="navbar-nav navbar-nav-right">
-                        <li class="nav-item nav-profile dropdown d-none d-md-block" id="parent">
-                            <a class="nav-link dropdown-toggle" id="profileDropdown" href="#"
-                            data-toggle="dropdown" aria-expanded="false">
-                            <div class="nav-profile-text">Account </div>
-                        </a>
-                        <div class="dropdown-menu center navbar-dropdown">
-                            <a class="dropdown-item" data-toggle="modal" data-target="#modal-pass">
-                                Change Password
-                            </a>
-                            <a class="dropdown-item" onclick="logout()">
-                                Logout
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item nav-logout d-none d-lg-block">
-                        <a class="nav-link" href="/">
-                            <i class="mdi mdi-home-circle"></i>
-                        </a>
-                    </li>
-                </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                data-toggle="offcanvas">
-                <span class="mdi mdi-menu"></span>
-            </button>
+                </li>
+                <li class="nav-item nav-logout d-none d-lg-block">
+                    <a class="nav-link" href="/">
+                        <i class="mdi mdi-home-circle"></i>
+                    </a>
+                </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+            data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+        </button>
+    </div>
+</nav>
+
+<div class="main-panel">
+    <div class="content-wrapper px-5 ">
+        <div class="row">
+            <div class="page-header p-0">
+                @if (isset($title))
+                <h3 class="page-title">{{ $title }}</h3>
+                @endif
+                @if (isset($breadcrumb))
+                {{ Breadcrumbs::render($breadcrumb) }}
+                @endif
+                {{-- <nav aria-label="breadcrumb">
+
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">UI Elements</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"> Buttons </li>
+                    </ol>
+                </nav> --}}
+            </div>
         </div>
-    </nav>
-
-    <div class="main-panel">
-        <div class="content-wrapper px-5 ">
-            <div class="row">
-                <div class="page-header p-0">
-                    @if (isset($title))
-                    <h3 class="page-title">{{ $title }}</h3>
-                    @endif
-                    @if (isset($breadcrumb))
-                    {{ Breadcrumbs::render($breadcrumb) }}
-                    @endif
-                    {{-- <nav aria-label="breadcrumb">
-
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">UI Elements</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"> Buttons </li>
-                        </ol>
-                    </nav> --}}
-                </div>
-            </div>
-            @if (session('message'))
-            <div class="row">
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                    <h5>Success !</h5>
-                    {!! session('message') !!}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
-            @endif
-            @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <h5>Failed !</h5>
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $err)
-                    <li>{{ $err }}</li>
-                    @endforeach
-
-                </ul>
+        @if (session('message'))
+        <div class="row">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <h5>Success !</h5>
+                {!! session('message') !!}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            @endif
+        </div>
+        @endif
+        @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <h5>Failed !</h5>
+            <ul class="mb-0">
+                @foreach ($errors->all() as $err)
+                <li>{{ $err }}</li>
+                @endforeach
 
-            @yield('content')
+            </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-        <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">optimals v1.0.0</span>
-                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © <a href="https://mandiricoal.co.id/">mandiricoal.co.id</a> 2023</span>
-                </div>
-            </footer>
-        </div>
+        @endif
+
+        @yield('content')
     </div>
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">optimals v1.0.0</span>
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © <a href="https://mandiricoal.co.id/">mandiricoal.co.id</a> 2023</span>
+        </div>
+    </footer>
+</div>
+</div>
 </div>
 
 <!-- Modal MD-->

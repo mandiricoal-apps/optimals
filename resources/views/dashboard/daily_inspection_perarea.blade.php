@@ -94,7 +94,7 @@
                         @endforeach
 
                     </tbody>
-                    <tfoot>
+                    <!-- <tfoot>
                         <tr>
                             <th>Creation Date</th>
                             <th>Daily Inspection</th>
@@ -103,7 +103,7 @@
                             <th>Status</th>
                             <th class="text-center">Action</th>
                         </tr>
-                    </tfoot>
+                    </tfoot> -->
                 </table>
             </div>
         </div>
