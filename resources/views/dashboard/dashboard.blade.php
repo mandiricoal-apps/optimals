@@ -269,7 +269,6 @@
 
         <!-- Chart JS -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1.0.2/dist/chartjs-plugin-deferred.min.js"></script>
 
         <!-- Custom JS, Get data company -->
         <script>
@@ -324,17 +323,13 @@
                     }],
                     
                 },
-                plugins: [ChartDataLabels],    
-                options: {
-                  responsive: true,
-                  maintainAspectRatio: true,
-                  plugins: {
-                    labels: {
-                      render: 'value',
-                      fontColor: ['white', 'white', 'white']
-                    }
-                  }
-                }
+                // options: {
+                //     scales: {
+                //         y: {
+                //             beginAtZero: true
+                //         }
+                //     }
+                // }
             });
         </script>
     @stop
