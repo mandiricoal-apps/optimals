@@ -20,7 +20,7 @@
                                     <h3 class="font-weight-bold">{{ $area->area_name }} <i class="mdi mdi-arrow-top-right"></i></h3>
                                     <div class="badge badge-danger">
                                         {{ $area->daily_inspection_count }}
-                                        <small>Daily inspection waiting to be approved</small>
+                                        <small>Waiting to be approved</small>
                                     </div>
                                 </div>
                             </div>
