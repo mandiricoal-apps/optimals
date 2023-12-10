@@ -123,9 +123,9 @@ class DailyInspectionController extends Controller
                 $dataLocation = [
                     'PT' => $location->pit,
                     'DISPOSAL' => $location->disposal,
-                    'BLOK' => $location->blok_start . $location->blok_end ? ' to ' . $location->blok_end : '',
-                    'STRIP' => $location->strip_start . $location->strip_end ? ' to ' . $location->strip_end : '',
-                    'RL' => $location->rl . $location->rl_end ? ' to ' . $location->rl_end : '',
+                    'BLOK' => $location->blok_start . $location->blok_end ? '... to ' . $location->blok_end : '',
+                    'STRIP' => $location->strip_start . $location->strip_end ? '... to ' . $location->strip_end : '',
+                    'RL' => $location->rl . $location->rl_end ? '... to ' . $location->rl_end : '',
                 ];
                 break;
             case 3:
@@ -145,10 +145,10 @@ class DailyInspectionController extends Controller
             default:
                 $dataLocation = [
                     'PIT' => $location->pit,
-                    'BLOK' => $location->blok_start . $location->blok_end ? ' to ' . $location->blok_end : '',
-                    'STRIP' => $location->strip_start . $location->strip_end ? ' to ' . $location->strip_end : '',
+                    'BLOK' => $location->blok_start . $location->blok_end ? '... to ' . $location->blok_end : '',
+                    'STRIP' => $location->strip_start . $location->strip_end ? '... to ' . $location->strip_end : '',
                     'SEAM' => $location->seam,
-                    'RL' => $location->rl . $location->rl_end ? ' to ' . $location->rl_end : '',
+                    'RL' => $location->rl . $location->rl_end ? '... to ' . $location->rl_end : '',
                     'NO. UNIT' => $location->no_unit,
                 ];
                 break;
