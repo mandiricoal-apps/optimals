@@ -324,6 +324,7 @@
                     }],
                     
                 },
+                plugins: [ChartDataLabels],    
                 options: {
                   responsive: true,
                   maintainAspectRatio: true,
