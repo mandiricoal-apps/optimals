@@ -40,7 +40,7 @@
                                         data-target="#view-modal">{{ $issue->summary->inspection->user->name }} <i
                                         style="font-size: 14px;" class="mdi mdi-link-variant"></i></a></p>
                                     </div>
-                                    <div class="col-lg-2 col-md-12">
+                                    <div class="col-lg-10 col-md-12">
                                         <div class="row mb-3">
                                             <div class="col">
 
