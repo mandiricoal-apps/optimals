@@ -319,18 +319,19 @@
                             'dodgerblue'
                         ],
 
-                    }]
-                },
-                options: {
-                  responsive: true,
-                  maintainAspectRatio: true,
-                  plugins: {
-                    labels: {
-                      render: 'value',
-                      fontColor: ['white', 'white', 'white']
+                    }],
+                    options: {
+                      responsive: true,
+                      maintainAspectRatio: true,
+                      plugins: {
+                        labels: {
+                          render: 'value',
+                          fontColor: ['white', 'white', 'white']
+                        }
+                      }
                     }
-                  }
-                }
+                },
+                
             });
         </script>
     @stop
