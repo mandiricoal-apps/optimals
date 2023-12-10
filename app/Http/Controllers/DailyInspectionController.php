@@ -101,7 +101,17 @@ class DailyInspectionController extends Controller
     {
         $data['title'] = 'Daily Inspection ' . $dailyInspection->code;
         $data['breadcrumb'] = 'detail_daily_inspection';
-        $dailyInspection->load(['summary', 'location', 'summary.question', 'summary.answer', 'summary.issue', 'user' => function ($query) {
+        $dailyInspection->load([
+                               'summary', 
+                               'location', 
+                               'summary.question' => function ($query) {
+            $query->withTrashed();
+        }, 
+                               'summary.answer'=> function ($query) {
+            $query->withTrashed();
+        }, 
+                               'summary.issue', 
+                               'user' => function ($query) {
             $query->withTrashed();
         }]);
         $location = $dailyInspection->location;
@@ -109,6 +119,7 @@ class DailyInspectionController extends Controller
         switch ($dailyInspection->area_id) {
             case 3:
                 $dataLocation = [
+                    'PT' => $location->pit,
                     'DISPOSAL' => $location->disposal,
                     'BLOK' => $location->blok_start . '-' . $location->blok_end,
                     'STRIP' => $location->strip_start . '-' . $location->strip_end,
@@ -117,11 +128,13 @@ class DailyInspectionController extends Controller
                 break;
             case 4:
                 $dataLocation = [
+                    'PT' => $location->pit,
                     'SUMP' => $location->sump,
                 ];
                 break;
             case 5:
                 $dataLocation = [
+                    'PT' => $location->pit,
                     'NAMA JALAN' => $location->nama_jalan,
                     'SEGMEN' => $location->segmen,
                 ];

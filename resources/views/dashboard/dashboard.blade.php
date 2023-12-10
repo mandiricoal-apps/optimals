@@ -297,6 +297,7 @@
         </script>
 
         <!-- Custom JS, Chart JS -->
+        
         <script>
             const ctx = document.getElementById('myChart');
 
@@ -318,8 +319,9 @@
                             'darkorange',
                             'dodgerblue'
                         ],
-
-                    }]
+                        
+                    }],
+                    
                 },
                 // options: {
                 //     scales: {
