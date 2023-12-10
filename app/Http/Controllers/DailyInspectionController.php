@@ -21,21 +21,26 @@ class DailyInspectionController extends Controller
         $areas = Area::withCount([
             'dailyInspection' => function (Builder $query) {
                 $accesbilityData = Auth::user()->roles[0]->accesbility_data;
-                if ($accesbilityData == 'user_company' || Auth::user()->company == "MIP") {
+                if ($accesbilityData == 'user_company') {
                     $query->whereHas('location', function ($q) {
-                        return $q->where('location.pit', '=', Auth::user()->company);
+                        return $q->where('data_location.pit', '=', Auth::user()->company);
                     });
                 }
-                $query->where('approved_at', '=', NULL);
-                $query->whereRaw('NOW() > DATE_ADD(
-                    LAST_DAY(daily_inspections.created_at) + INTERVAL 3 DAY,
-                    INTERVAL 0 DAY
-            )');
+                $query->where(function ($querys) {
+
+                    $querys->where('approved_at', '=', NULL);
+                    $querys->orWhereRaw('NOW() > DATE_ADD(
+                        LAST_DAY(daily_inspections.created_at) + INTERVAL 3 DAY,
+                        INTERVAL 0 DAY
+                )');
+                });
             },
         ]);
+        $areas = $areas->get();
+        $areas->load('question');
 
 
-        $data['areas'] = $areas->get();
+        $data['areas'] = $areas;
         return view('dashboard.daily_inspection', $data);
     }
 
