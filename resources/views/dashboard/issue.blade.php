@@ -83,9 +83,8 @@
                                 </td>
                             </tr>
                             @endforeach
-
                         </tbody>
-                        <tfoot>
+                        <!-- <tfoot>
                             <tr>
                                 <th>Creation Date</th>
                                 <th>Issue Code</th>
@@ -96,13 +95,9 @@
                                 <th>Status</th>
                                 <th class="text-center">Action</th>
                             </tr>
-                        </tfoot>
+                        </tfoot> -->
                     </table>
                 </div>
-
-
-
-
             </div>
         </div>
     </div>
