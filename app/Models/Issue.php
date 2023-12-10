@@ -27,6 +27,11 @@ class Issue extends Model
         return $this->belongsTo(DailyInspectionSummary::class, 'sumary_id', 'id');
     }
 
+    function userUpdate()
+    {
+        return $this->belongsTo(User::class, 'updated_by', 'id');
+    }
+
     function progressIssue()
     {
         return $this->hasOne(ProgressIssue::class, 'issue_id', 'id');

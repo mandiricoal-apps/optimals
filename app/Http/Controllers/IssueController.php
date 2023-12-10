@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\updateStatusIssue;
 use App\Models\Issue;
 use App\Models\ProgressIssue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class IssueController extends Controller
 {
@@ -112,6 +114,8 @@ class IssueController extends Controller
             $progressIssue->save();
 
             DB::commit();
+            $email = $issue->summary->inspection->user->email;
+            Mail::to($email)->send(new updateStatusIssue($issue));
         } catch (\Throwable $th) {
             DB::rollBack();
             return back()->withErrors([
@@ -119,8 +123,6 @@ class IssueController extends Controller
             ]);
         }
 
-
-
-        return back();
+        return back()->with("meesage", "Issue status changed successfully");
     }
 }
