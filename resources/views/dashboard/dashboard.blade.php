@@ -269,6 +269,7 @@
 
         <!-- Chart JS -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
 
         <!-- Custom JS, Get data company -->
         <script>
