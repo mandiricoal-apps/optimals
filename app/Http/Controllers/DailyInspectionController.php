@@ -23,19 +23,24 @@ class DailyInspectionController extends Controller
                 $accesbilityData = Auth::user()->roles[0]->accesbility_data;
                 if ($accesbilityData == 'user_company') {
                     $query->whereHas('location', function ($q) {
-                        return $q->where('location.pit', '=', Auth::user()->company);
+                        return $q->where('data_location.pit', '=', Auth::user()->company);
                     });
                 }
-                $query->where('approved_at', '=', NULL);
-                $query->whereRaw('NOW() > DATE_ADD(
-                    LAST_DAY(daily_inspections.created_at) + INTERVAL 3 DAY,
-                    INTERVAL 0 DAY
-            )');
+                $query->where(function ($querys) {
+
+                    $querys->where('approved_at', '=', NULL);
+                    $querys->orWhereRaw('NOW() > DATE_ADD(
+                        LAST_DAY(daily_inspections.created_at) + INTERVAL 3 DAY,
+                        INTERVAL 0 DAY
+                )');
+                });
             },
         ]);
+        $areas = $areas->get();
+        $areas->load('question');
 
 
-        $data['areas'] = $areas->get();
+        $data['areas'] = $areas;
         return view('dashboard.daily_inspection', $data);
     }
 
@@ -118,9 +123,9 @@ class DailyInspectionController extends Controller
                 $dataLocation = [
                     'PT' => $location->pit,
                     'DISPOSAL' => $location->disposal,
-                    'BLOK' => $location->blok_start . $location->blok_end ? ' to ' . $location->blok_end : '',
-                    'STRIP' => $location->strip_start . $location->strip_end ? ' to ' . $location->strip_end : '',
-                    'RL' => $location->rl . $location->rl_end ? ' to ' . $location->rl_end : '',
+                    'BLOK' => $location->blok_start . ($location->blok_end ? ' - ' . $location->blok_end : ''),
+                    'STRIP' => $location->strip_start . ($location->strip_end ? ' - ' . $location->strip_end : ''),
+                    'RL' => $location->rl . ($location->rl_end ? ' - ' . $location->rl_end : ''),
                 ];
                 break;
             case 3:
@@ -140,10 +145,10 @@ class DailyInspectionController extends Controller
             default:
                 $dataLocation = [
                     'PIT' => $location->pit,
-                    'BLOK' => $location->blok_start . $location->blok_end ? ' to ' . $location->blok_end : '',
-                    'STRIP' => $location->strip_start . $location->strip_end ? ' to ' . $location->strip_end : '',
+                    'BLOK' => $location->blok_start . ($location->blok_end ? ' - ' . $location->blok_end : ''),
+                    'STRIP' => $location->strip_start . ($location->strip_end ? ' - ' . $location->strip_end : ''),
                     'SEAM' => $location->seam,
-                    'RL' => $location->rl . $location->rl_end ? ' to ' . $location->rl_end : '',
+                    'RL' => $location->rl . ($location->rl_end ? ' - ' . $location->rl_end : ''),
                     'NO. UNIT' => $location->no_unit,
                 ];
                 break;
