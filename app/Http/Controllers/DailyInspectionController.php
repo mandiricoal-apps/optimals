@@ -27,9 +27,8 @@ class DailyInspectionController extends Controller
                     });
                 }
                 $query->where(function ($querys) {
-
-                    $querys->where('approved_at', '=', NULL);
-                    $querys->orWhereRaw('NOW() > DATE_ADD(
+                    $querys->where('approved_at', '=', NULL)
+                        ->whereRaw('NOW() < DATE_ADD(
                         LAST_DAY(daily_inspections.created_at) + INTERVAL 3 DAY,
                         INTERVAL 0 DAY
                 )');
