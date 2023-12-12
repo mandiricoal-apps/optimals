@@ -63,7 +63,7 @@
                                                     </th>
                                                 </tr>
                                                 <tr>
-                                                    <th width="">Issue<br><br>
+                                                    <th style="white-space:normal">Issue<br><br>
                                                         <small>
                                                             {{ $issue->issue }}
                                                         </small>
