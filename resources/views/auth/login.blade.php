@@ -213,10 +213,10 @@
                             </div>
                             <div class="col-md-4">
                                 <center>
-<!--                                     <a href="https://optimals.mandiricoal.co.id/download/optimals.apk">
+                                    <a href="https://optimals.mandiricoal.co.id/download/optimals.apk">
                                         <img class="d-block img-fluid" src="/assets/images/barcode/optimals.png"width="60%">
                                     </a>
-                                    <i>Scan here or Click to download <strong>Optimals Apps</strong></i> -->
+                                    <i>Scan here or Click to download <strong>Optimals Apps</strong></i>
                                 </center>
                             </div>
                         </div>
