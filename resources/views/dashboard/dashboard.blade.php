@@ -267,7 +267,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <!-- Custom JS, Get data company -->
-        <script>
+<!--         <script>
             var comp = [];
             $.ajax({
                 type: "get",
@@ -315,7 +315,7 @@
                 data: comp,
                 placeholder: 'Select Company'
             });
-        </script>
+        </script> -->
 
         <!-- Custom JS, Chart JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
