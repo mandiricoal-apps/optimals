@@ -79,7 +79,7 @@
                                                             @if (is_array(json_decode($issue->image)))
                                                                 <div class="row">
                                                                     @foreach (json_decode($issue->image) as $item)
-                                                                        <div class="col-2 my-auto">
+                                                                        <div class="col-lg-2 col-8 pb-1 my-auto">
                                                                             <img src="{{ asset('storage/issue_photo/' . $item) }}"
                                                                                 class="img-fluid" id="img-location"
                                                                                 alt="{{ $item }}"
