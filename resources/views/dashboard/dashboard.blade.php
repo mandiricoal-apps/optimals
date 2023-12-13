@@ -238,7 +238,7 @@
                                             <small><b>Description :</b> {{ $is->issue }}</small>
                                         </td>
                                         <td style="text-align:center;">
-                                            <span class="badge badge-{{ issueColor($is->status) }}">{{ issue()[$is->status] }}
+                                            <span class="badge badge-{{ issueColor($is->status) }} w-100">{{ issue()[$is->status] }}
                                             </span>
                                         </td>
                                     </tr>
