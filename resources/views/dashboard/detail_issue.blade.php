@@ -117,7 +117,7 @@
                                                         @can('edit_issue')
                                                             @if ($issue->status == 'open' || $issue->status == 'progress')
                                                                 <div class="row">
-                                                                    <div class="col-3">
+                                                                    <div class="col-12 col-md-3">
                                                                         <select class="form-select form-select"
                                                                             id="select-status">
                                                                             {{-- <option value="open"
@@ -143,7 +143,7 @@
                                                                             @endcan
                                                                         </select>
                                                                     </div>
-                                                                    <div class="col-3">
+                                                                    <div class="col-12 col-lg-3">
                                                                         <button class="btn btn-primary"
                                                                             onclick="changeStatus()"><i style="font-size: 14px;"
                                                                                 class="mdi mdi-save"></i>
