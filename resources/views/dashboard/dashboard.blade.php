@@ -238,7 +238,6 @@
                                             <small><b>Description :</b> {{ $is->issue }}</small>
                                         </td>
                                         <td style="text-align:center;">
-                                            <i>{{ issue()[$is->status] }}</i>
                                             <span class="badge badge-{{ issueColor($is->status) }}">{{ issue()[$is->status] }}
                                             </span>
                                         </td>
