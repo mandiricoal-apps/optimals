@@ -65,6 +65,7 @@ function colorScore($val)
     } else {
         return 'success';
     }
+    
 }
 
 function issue()
@@ -87,6 +88,8 @@ function issueColor($status){
         } else {
             $color = 'warning';
         }
+
+    return $color;
 }
 
 function company()
