@@ -267,30 +267,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <!-- Custom JS, Get data company -->
-<!--         <script>
-            var comp = [];
-            $.ajax({
-                type: "get",
-                url: "/company-api",
-                async: false,
-                dataType: "json",
-                success: function(data) {
-                    var temp = data.employee;
-                    temp.forEach(e => {
-                        e.id = e.comp_name;
-                        e.text = e.comp_name;
-                    });
-
-                    comp = temp;
-                }
-            });
-
-            var select2_company = $('#company').select2({
-                theme: 'bootstrap',
-                data: comp,
-                placeholder: 'Select Company'
-            });
-        </script>
+        
 
         <script>
             var comp = [];
@@ -315,7 +292,7 @@
                 data: comp,
                 placeholder: 'Select Company'
             });
-        </script> -->
+        </script>
 
         <!-- Custom JS, Chart JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
