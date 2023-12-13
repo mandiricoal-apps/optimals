@@ -143,7 +143,7 @@
                                                                             @endcan
                                                                         </select>
                                                                     </div>
-                                                                    <div class="col-12 col-lg-3">
+                                                                    <div class="col-12 col-lg-3 text-center pt-3">
                                                                         <button class="btn btn-primary"
                                                                             onclick="changeStatus()"><i style="font-size: 14px;"
                                                                                 class="mdi mdi-save"></i>
