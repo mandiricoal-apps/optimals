@@ -144,7 +144,7 @@ class DailyInspectionController extends Controller
             default:
                 $dataLocation = [
                     'PIT' => $location->pit,
-                    'BLOK' => $location->blok_start . ($location->blok_end ? ' s/d ' . $locations/d>blok_end : ''),
+                    'BLOK' => $location->blok_start . ($location->blok_end ? ' s/d ' . $location->blok_end : ''),
                     'STRIP' => $location->strip_start . ($location->strip_end ? ' s/d ' . $location->strip_end : ''),
                     'SEAM' => $location->seam,
                     'RL' => $location->rl . ($location->rl_end ? ' s/d ' . $location->rl_end : ''),
