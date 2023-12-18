@@ -94,23 +94,26 @@
                                         <div class="row">
                                             <b>Detail Location</b>
                                             <hr>
-                                            <div class="col-lg-4 col-md-12">
+                                            <div class="col-lg-4 col-md-12 pb-2">
                                                 <img src="{{ asset('storage/location_photo/' . $dailyInspection->location->image) }}"
                                                     alt="location image" class=" " data-toggle="modal"
                                                     data-target="#img-modal" id="img-location" width="120px" height="120px"
                                                     style=" border-radius:5px;"><br>
                                             </div>
-                                            <div class="col-lg-3 col-6">
-                                                @foreach ($dataLocation as $key => $val)
-                                                    <b>
-                                                        <p class="m-0 text-black">{{ $key }}</p>
-                                                    </b>
-                                                @endforeach
-                                            </div>
-                                            <div class="col-lg-5 col-6">
-                                                @foreach ($dataLocation as $key => $val)
-                                                    <p class="m-0 text-black">: {{ $val }}</p>
-                                                @endforeach
+                                            <div class="col-lg-8 col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-sm">
+                                                        <tbody>
+                                                            @foreach ($dataLocation as $key => $val)
+                                                                <tr>
+                                                                    <th scope="row">{{ $key }}</th>
+                                                                    <td style="white-space: normal; overflow: hidden;">
+                                                                        {{ $val }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
