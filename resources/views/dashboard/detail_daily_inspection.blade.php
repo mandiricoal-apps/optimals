@@ -74,6 +74,7 @@
                                             </div>
                                         </center>
                                     </div>
+
                                 </div>
                                 <div class="col-lg-3 col-md-12 mb-3">
                                     <span class="font-12 text-muted">ID Daily Inspection : </span>
@@ -94,26 +95,30 @@
                                         <div class="row">
                                             <b>Detail Location</b>
                                             <hr>
-                                            <div class="col-lg-4 col-md-12">
+                                            <div class="col-lg-4 col-md-12 pb-2">
                                                 <img src="{{ asset('storage/location_photo/' . $dailyInspection->location->image) }}"
                                                     alt="location image" class=" " data-toggle="modal"
                                                     data-target="#img-modal" id="img-location" width="120px" height="120px"
                                                     style=" border-radius:5px;"><br>
                                             </div>
-                                            <div class="col-lg-3 col-6">
-                                                @foreach ($dataLocation as $key => $val)
-                                                    <b>
-                                                        <p class="m-0 text-black">{{ $key }}</p>
-                                                    </b>
-                                                @endforeach
-                                            </div>
-                                            <div class="col-lg-5 col-6">
-                                                @foreach ($dataLocation as $key => $val)
-                                                    <p class="m-0 text-black">: {{ $val }}</p>
-                                                @endforeach
+                                            <div class="col-lg-8 col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-sm">
+                                                        <tbody>
+                                                            @foreach ($dataLocation as $key => $val)
+                                                                <tr>
+                                                                    <th scope="row">{{ $key }}</th>
+                                                                    <td style="white-space: normal; overflow: hidden;">
+                                                                        {{ $val }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -169,6 +174,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+
 
                             <form class="forms-sample" method="post" action="/edit-score/{{ $dailyInspection->id }}"
                                 onsubmit="showLoader()" target="">
@@ -235,98 +241,39 @@
                                         </tbody>
                                     </table>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="score-modal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Edit Point</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                            <form class="forms-sample" method="post" action="/edit-score/{{ $dailyInspection->id }}"
-                                onsubmit="showLoader()" target="">
-                                <div class="modal-body p-5">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="">Point</label><span style="color:red;">*</span>
-                                        <input type="number" class="form-control" id=""
-                                            value="{{ round($dailyInspection->total_score, 2) }}" max="100"
-                                            min="1" step="any" name="score" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Reason</label><span style="color:red;">*</span>
-                                        <textarea class="form-control" id="" name="reason_score" required="" rows="3"></textarea>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col">
-                                            <button class="btn btn-light form-control" data-dismiss="modal"
-                                                aria-label="Close"><i style="font-size: 14px;"
-                                                    class="mdi mdi-close-circle-outline"></i>
-                                                Cancel</button>
-                                        </div>
-                                        <div class="col">
-                                            <button type="submit" class="btn btn-primary mr-2 form-control"><i
-                                                    style="font-size: 14px;" class="mdi mdi-content-save"></i> Save
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="modal fade" id="img-modal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md modal-dialog-centered" role="document" style="width: fit-content">
+                    <div class="modal-dialog modal-md modal-dialog-centered " role="document" style="width: fit-content">
                         <div class="modal-content">
                             <img src="{{ asset('storage/location_photo/' . $dailyInspection->location->image) }}"
                                 alt="location image" class="img-fluid " style="max-height: 600; object-fit: contain;">
                         </div>
                     </div>
                 </div>
-                {{-- <div class="modal fade" id="img-modal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md modal-dialog-centered" role="document" style="width: fit-content">
-                        <div class="modal-content">
-                            <img src="{{ asset('storage/location_photo/' . $dailyInspection->location->image) }}"
-                                alt="location image" class="img-fluid " style="max-height: 600; object-fit: contain;">
-                        </div>
-                    </div>
-                </div> --}}
 
 
-            </div>
-        </div>
-
-        <!-- Active/Inactive -->
-        <script type="text/javascript">
-            function approve(id) {
-                Swal.fire({
-                    title: 'Approve?',
-                    text: 'Do you want to Approve?',
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes',
-                    cancelButtonText: 'No'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        showLoader();
-                        window.location.href = "/approve-daily-inspection/" + id;
-                    }
+                <!-- Active/Inactive -->
+                <script type="text/javascript">
+                    function approve(id) {
+                        Swal.fire({
+                            title: 'Approve?',
+                            text: 'Do you want to Approve?',
+                            icon: 'question',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes',
+                            cancelButtonText: 'No'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                showLoader();
+                                window.location.href = "/approve-daily-inspection/" + id;
+                            }
 
 
-                });
-            };
-        </script>
-    @endsection
+                        });
+                    };
+                </script>
+            @endsection
