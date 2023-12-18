@@ -1,6 +1,7 @@
 @extends('layout')
 @section('daily_inspection', 'active')
 @section('content')
+
     <div class="row">
 
         <div class="card">
@@ -98,34 +99,34 @@
                             @endforeach
 
 
-                    </tbody>
-                    <!-- <tfoot>
-                        <tr>
-                            <th>Creation Date</th>
-                            <th>Daily Inspection</th>
-                            <th>Score</th>
-                            <th>Submitter</th>
-                            <th>Status</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                    </tfoot> -->
-                </table>
+                        </tbody>
+                        <!-- <tfoot>
+                                        <tr>
+                                            <th>Creation Date</th>
+                                            <th>Daily Inspection</th>
+                                            <th>Score</th>
+                                            <th>Submitter</th>
+                                            <th>Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </tfoot> -->
+                    </table>
 
+                </div>
             </div>
-        </div>
 
-        <script type="text/javascript">
-            function toggleSwitchClicked() {
-                Swal.fire({
-                    title: 'Reload Page?',
-                    text: 'Do you want to reload the page?',
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes',
-                    cancelButtonText: 'No'
-                }).then((result) => {
-                    location.reload();
-                });
-            };
-        </script>
-    @endsection
+            <script type="text/javascript">
+                function toggleSwitchClicked() {
+                    Swal.fire({
+                        title: 'Reload Page?',
+                        text: 'Do you want to reload the page?',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes',
+                        cancelButtonText: 'No'
+                    }).then((result) => {
+                        location.reload();
+                    });
+                };
+            </script>
+        @endsection

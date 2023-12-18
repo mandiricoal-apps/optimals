@@ -20,8 +20,15 @@ class IssueController extends Controller
         if ($request->status) {
             $status = $request->status;
         }
+
+        if ($request->start) {
+            $title_date =  date("d F Y", strtotime($request->start)) . " - " . date("d F Y", strtotime($request->end));
+        } else {
+            $title_date = date('F Y');
+        }
+
         $data['status'] = $status;
-        $data['title'] = issue()[$status] . " Issue";
+        $data['title'] = issue()[$status] . " Issue" . '<br><small>' . $title_date . '</small></br>';
 
         $issues = DB::table('issue')
             ->join('daily_inspection_summary', 'daily_inspection_summary.id', '=', 'issue.sumary_id')
@@ -33,9 +40,13 @@ class IssueController extends Controller
 
         if ($request->start) {
             $issues = $issues->where('issue.created_at', '>=', $request->start . ' 00:00:00');
+        } else {
+            $issues = $issues->where('issue.created_at', '>=', date('Y-m-d', strtotime('first day of this month', time())) . ' 00:00:00');
         }
         if ($request->end) {
             $issues = $issues->where('issue.created_at', '<=', $request->end . ' 23:59:59');
+        } else {
+            $issues = $issues->where('issue.created_at', '<=', date('Y-m-d', strtotime('last day of this month', time())) . ' 23:59:59');
         }
         $issues =  $issues->orderBy('issue.created_at', 'desc');
         if ($accesbilityData == 'user_company') {
