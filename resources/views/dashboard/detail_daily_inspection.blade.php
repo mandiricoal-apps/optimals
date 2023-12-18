@@ -94,250 +94,253 @@
                             <div class="row">
                                 <b>Detail Location</b>
                                 <hr>
-                                <div class="col-lg-4 col-md-12">
+                                <div class="col-lg-4 col-md-12 pb-2">
                                     <img src="{{ asset('storage/location_photo/' . $dailyInspection->location->image) }}"
                                     alt="location image" class=" " data-toggle="modal"
                                     data-target="#img-modal" id="img-location" width="120px" height="120px"
                                     style=" border-radius:5px;"><br>
                                 </div>
-                                <div class="col-lg-3 col-6">
-                                    @foreach ($dataLocation as $key => $val)
-                                    <b>
-                                        <p class="m-0 text-black">{{ $key }}</p>
-                                    </b>
-                                    @endforeach
-                                </div>
-                                <div class="col-lg-5 col-6">
-                                    @foreach ($dataLocation as $key => $val)
-                                    <p class="m-0 text-black">: {{ $val }}</p>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr>
-    <div class="table-responsive">
-        <table id="" class="table table-striped table-hover mb-5">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th width="50%">Question & Answer</th>
-                    <th width="40%">Issue</th>
-                    <th width="5%">Score Point</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($dailyInspection->summary as $summary)
-                <tr>
-                    <td class="text-center">{{ $loop->iteration }}</td>
-                    <td style="white-space: normal; overflow: hidden;">
-                        {{ $summary->question->question }} <br><br>
-                        <small>{{ $summary->answer->answer }}</small>
-                    </td>
-                    <td style="white-space: normal; overflow: hidden;">
-                        @if ($summary->issue)
-                        <small>
-                            {{ $summary->issue->issue }}<br><br>
-                            <i><b>Status : {{ ucfirst($summary->issue->status) }} |
-                                <a href="/detail-issue/{{ $summary->issue->id }}"
-                                    target="_blank">Detail Issue <i
-                                    class="mdi mdi-arrow-top-right"></i></a>
-                                </b></i>
-                            </small>
-                            @else
-                            -
-                            @endif
-                        </td>
-                        <td>{{ $summary->score }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
-        <div class="modal fade" id="score-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Point</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <form class="forms-sample" method="post" action="/edit-score/{{ $dailyInspection->id }}"
-                    onsubmit="showLoader()" target="">
-                    <div class="modal-body p-5">
-                        @csrf
-                        <div class="form-group">
-                            <label for="">Point</label><span style="color:red;">*</span>
-                            <input type="number" class="form-control" id=""
-                            value="{{ round($dailyInspection->total_score, 2) }}" max="100"
-                            min="1" step="any" name="score" required="">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Reason</label><span style="color:red;">*</span>
-                            <textarea class="form-control" id="" name="reason_score" required="" rows="3"></textarea>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col">
-                                <button class="btn btn-light form-control" data-dismiss="modal"
-                                aria-label="Close"><i style="font-size: 14px;"
-                                class="mdi mdi-close-circle-outline"></i> Cancel</button>
-                            </div>
-                            <div class="col">
-                                <button type="submit" class="btn btn-primary mr-2 form-control"><i
-                                    style="font-size: 14px;" class="mdi mdi-content-save"></i> Save
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="log-score-modal" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Score History</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table table-sm">
-                        <thead>
-                            <th>No.</th>
-                            <th>Score</th>
-                            <th>Reason</th>
-                            <th>Updater</th>
-                            <th>Date</th>
-                        </thead>
-                        <tbody>
-                            @foreach ($logScore as $log)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $log->score }}</td>
-                                <td>{{ $log->description }}</td>
-                                <td>{{ $log->user->name }}</td>
-                                <td>{{ tanggalText($log->created_at) }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-<<<<<<< HEAD
-=======
-
-                <div class="modal fade" id="score-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-md" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Edit Point</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                            <form class="forms-sample" method="post" action="/edit-score/{{ $dailyInspection->id }}"
-                                onsubmit="showLoader()" target="">
-                                <div class="modal-body p-5">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="">Point</label><span style="color:red;">*</span>
-                                        <input type="number" class="form-control" id=""
-                                            value="{{ round($dailyInspection->total_score, 2) }}" max="100"
-                                            min="1" step="any" name="score" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Reason</label><span style="color:red;">*</span>
-                                        <textarea class="form-control" id="" name="reason_score" required="" rows="3"></textarea>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col">
-                                            <button class="btn btn-light form-control" data-dismiss="modal"
-                                                aria-label="Close"><i style="font-size: 14px;"
-                                                    class="mdi mdi-close-circle-outline"></i> Cancel</button>
-                                        </div>
-                                        <div class="col">
-                                            <button type="submit" class="btn btn-primary mr-2 form-control"><i
-                                                    style="font-size: 14px;" class="mdi mdi-content-save"></i> Save
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="log-score-modal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Score History</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="table-responsive">
-                                    <table class="table table-sm">
-                                        <thead>
-                                            <th>No.</th>
-                                            <th>Score</th>
-                                            <th>Reason</th>
-                                            <th>Updater</th>
-                                            <th>Date</th>
-                                        </thead>
+                                <div class="col-lg-8 col-md-12">
+                                    <div class="table-responsive">
+                                      <table class="table table-striped table-sm">
                                         <tbody>
-                                            @foreach ($logScore as $log)
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $log->score }}</td>
-                                                    <td style="white-space:pre-line; line-break:auto">
-                                                        {{ $log->description }}</td>
-                                                    <td>{{ $log->user->name }}</td>
-                                                    <td>{{ tanggalText($log->created_at) }}</td>
-                                                </tr>
+                                            @foreach ($dataLocation as $key => $val)
+                                            <tr>
+                                                <th scope="row">{{ $key }}</th>
+                                                <td style="white-space: normal; overflow: hidden;">{{ $val }}</td>
+                                            </tr>
+
                                             @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="img-modal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md modal-dialog-centered" role="document" style="width: fit-content">
-                        <div class="modal-content">
-                            <img src="{{ asset('storage/location_photo/' . $dailyInspection->location->image) }}"
-                                alt="location image" class="img-fluid " style="max-height: 600; object-fit: contain;">
-                        </div>
-                    </div>
-                </div>
-
-
->>>>>>> c99fbd48ae33790db7109a8f1076360be379a78a
             </div>
-
-
         </div>
     </div>
+</div>
+<hr>
+<div class="table-responsive">
+    <table id="" class="table table-striped table-hover mb-5">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th width="50%">Question & Answer</th>
+                <th width="40%">Issue</th>
+                <th width="5%">Score Point</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($dailyInspection->summary as $summary)
+            <tr>
+                <td class="text-center">{{ $loop->iteration }}</td>
+                <td style="white-space: normal; overflow: hidden;">
+                    {{ $summary->question->question }} <br><br>
+                    <small>{{ $summary->answer->answer }}</small>
+                </td>
+                <td style="white-space: normal; overflow: hidden;">
+                    @if ($summary->issue)
+                    <small>
+                        {{ $summary->issue->issue }}<br><br>
+                        <i><b>Status : {{ ucfirst($summary->issue->status) }} |
+                            <a href="/detail-issue/{{ $summary->issue->id }}"
+                                target="_blank">Detail Issue <i
+                                class="mdi mdi-arrow-top-right"></i></a>
+                            </b></i>
+                        </small>
+                        @else
+                        -
+                        @endif
+                    </td>
+                    <td>{{ $summary->score }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="score-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Point</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form class="forms-sample" method="post" action="/edit-score/{{ $dailyInspection->id }}"
+                onsubmit="showLoader()" target="">
+                <div class="modal-body p-5">
+                    @csrf
+                    <div class="form-group">
+                        <label for="">Point</label><span style="color:red;">*</span>
+                        <input type="number" class="form-control" id=""
+                        value="{{ round($dailyInspection->total_score, 2) }}" max="100"
+                        min="1" step="any" name="score" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Reason</label><span style="color:red;">*</span>
+                        <textarea class="form-control" id="" name="reason_score" required="" rows="3"></textarea>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-light form-control" data-dismiss="modal"
+                            aria-label="Close"><i style="font-size: 14px;"
+                            class="mdi mdi-close-circle-outline"></i> Cancel</button>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary mr-2 form-control"><i
+                                style="font-size: 14px;" class="mdi mdi-content-save"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="log-score-modal" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Score History</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead>
+                        <th>No.</th>
+                        <th>Score</th>
+                        <th>Reason</th>
+                        <th>Updater</th>
+                        <th>Date</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($logScore as $log)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $log->score }}</td>
+                            <td>{{ $log->description }}</td>
+                            <td>{{ $log->user->name }}</td>
+                            <td>{{ tanggalText($log->created_at) }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <<<<<<< HEAD
+            =======
+
+            <div class="modal fade" id="score-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Point</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form class="forms-sample" method="post" action="/edit-score/{{ $dailyInspection->id }}"
+                        onsubmit="showLoader()" target="">
+                        <div class="modal-body p-5">
+                            @csrf
+                            <div class="form-group">
+                                <label for="">Point</label><span style="color:red;">*</span>
+                                <input type="number" class="form-control" id=""
+                                value="{{ round($dailyInspection->total_score, 2) }}" max="100"
+                                min="1" step="any" name="score" required="">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Reason</label><span style="color:red;">*</span>
+                                <textarea class="form-control" id="" name="reason_score" required="" rows="3"></textarea>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <button class="btn btn-light form-control" data-dismiss="modal"
+                                    aria-label="Close"><i style="font-size: 14px;"
+                                    class="mdi mdi-close-circle-outline"></i> Cancel</button>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary mr-2 form-control"><i
+                                        style="font-size: 14px;" class="mdi mdi-content-save"></i> Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="log-score-modal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Score History</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <th>No.</th>
+                                <th>Score</th>
+                                <th>Reason</th>
+                                <th>Updater</th>
+                                <th>Date</th>
+                            </thead>
+                            <tbody>
+                                @foreach ($logScore as $log)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $log->score }}</td>
+                                    <td style="white-space:pre-line; line-break:auto">
+                                        {{ $log->description }}</td>
+                                        <td>{{ $log->user->name }}</td>
+                                        <td>{{ tanggalText($log->created_at) }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="img-modal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered" role="document" style="width: fit-content">
+            <div class="modal-content">
+                <img src="{{ asset('storage/location_photo/' . $dailyInspection->location->image) }}"
+                alt="location image" class="img-fluid " style="max-height: 600; object-fit: contain;">
+            </div>
+        </div>
+    </div>
+
+
+    >>>>>>> c99fbd48ae33790db7109a8f1076360be379a78a
+</div>
+
+
+</div>
+</div>
 </div>
 <div class="modal fade" id="img-modal" tabindex="-1" role="dialog"
 aria-labelledby="exampleModalLabel" aria-hidden="true">
