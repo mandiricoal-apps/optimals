@@ -176,96 +176,48 @@
                             </div>
 
 
-            <form class="forms-sample" method="post" action="/edit-score/{{ $dailyInspection->id }}"
-                onsubmit="showLoader()" target="">
-                <div class="modal-body p-5">
-                    @csrf
-                    <div class="form-group">
-                        <label for="">Point</label><span style="color:red;">*</span>
-                        <input type="number" class="form-control" id=""
-                        value="{{ round($dailyInspection->total_score, 2) }}" max="100"
-                        min="1" step="any" name="score" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Reason</label><span style="color:red;">*</span>
-                        <textarea class="form-control" id="" name="reason_score" required="" rows="3"></textarea>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col">
-                            <button class="btn btn-light form-control" data-dismiss="modal"
-                            aria-label="Close"><i style="font-size: 14px;"
-                            class="mdi mdi-close-circle-outline"></i> Cancel</button>
-                        </div>
-                        <div class="col">
-                            <button type="submit" class="btn btn-primary mr-2 form-control"><i
-                                style="font-size: 14px;" class="mdi mdi-content-save"></i> Save
-                            </button>
+                            <form class="forms-sample" method="post" action="/edit-score/{{ $dailyInspection->id }}"
+                                onsubmit="showLoader()" target="">
+                                <div class="modal-body p-5">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="">Point</label><span style="color:red;">*</span>
+                                        <input type="number" class="form-control" id=""
+                                            value="{{ round($dailyInspection->total_score, 2) }}" max="100"
+                                            min="1" step="any" name="score" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Reason</label><span style="color:red;">*</span>
+                                        <textarea class="form-control" id="" name="reason_score" required="" rows="3"></textarea>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col">
+                                            <button class="btn btn-light form-control" data-dismiss="modal"
+                                                aria-label="Close"><i style="font-size: 14px;"
+                                                    class="mdi mdi-close-circle-outline"></i> Cancel</button>
+                                        </div>
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary mr-2 form-control"><i
+                                                    style="font-size: 14px;" class="mdi mdi-content-save"></i> Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="log-score-modal" tabindex="-1" role="dialog"
-aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-md" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Score History</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="table-responsive">
-                <table class="table table-sm">
-                    <thead>
-                        <th>No.</th>
-                        <th>Score</th>
-                        <th>Reason</th>
-                        <th>Updater</th>
-                        <th>Date</th>
-                    </thead>
-                    <tbody>
-                        @foreach ($logScore as $log)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $log->score }}</td>
-                            <td>{{ $log->description }}</td>
-                            <td>{{ $log->user->name }}</td>
-                            <td>{{ tanggalText($log->created_at) }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            <<<<<<< HEAD
-            =======
-
-            <div class="modal fade" id="score-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-md" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Point</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <form class="forms-sample" method="post" action="/edit-score/{{ $dailyInspection->id }}"
-                        onsubmit="showLoader()" target="">
-                        <div class="modal-body p-5">
-                            @csrf
-                            <div class="form-group">
-                                <label for="">Point</label><span style="color:red;">*</span>
-                                <input type="number" class="form-control" id=""
-                                value="{{ round($dailyInspection->total_score, 2) }}" max="100"
-                                min="1" step="any" name="score" required="">
+                <div class="modal fade" id="log-score-modal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Score History</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-
                             <div class="modal-body">
                                 <div class="table-responsive">
                                     <table class="table table-sm">
@@ -289,113 +241,39 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         </tbody>
                                     </table>
                                 </div>
-
-
-
                             </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="log-score-modal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Score History</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal fade" id="score-modal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Edit Point</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                            <form class="forms-sample" method="post" action="/edit-score/{{ $dailyInspection->id }}"
-                                onsubmit="showLoader()" target="">
-                                <div class="modal-body p-5">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="">Point</label><span style="color:red;">*</span>
-                                        <input type="number" class="form-control" id=""
-                                            value="{{ round($dailyInspection->total_score, 2) }}" max="100"
-                                            min="1" step="any" name="score" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Reason</label><span style="color:red;">*</span>
-                                        <textarea class="form-control" id="" name="reason_score" required="" rows="3"></textarea>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col">
-                                            <button class="btn btn-light form-control" data-dismiss="modal"
-                                                aria-label="Close"><i style="font-size: 14px;"
-                                                    class="mdi mdi-close-circle-outline"></i>
-                                                Cancel</button>
-                                        </div>
-                                        <div class="col">
-                                            <button type="submit" class="btn btn-primary mr-2 form-control"><i
-                                                    style="font-size: 14px;" class="mdi mdi-content-save"></i> Save
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
-
                 <div class="modal fade" id="img-modal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md modal-dialog-centered" role="document" style="width: fit-content">
+                    <div class="modal-dialog modal-md modal-dialog-centered " role="document" style="width: fit-content">
                         <div class="modal-content">
                             <img src="{{ asset('storage/location_photo/' . $dailyInspection->location->image) }}"
                                 alt="location image" class="img-fluid " style="max-height: 600; object-fit: contain;">
                         </div>
                     </div>
                 </div>
-                {{-- <div class="modal fade" id="img-modal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md modal-dialog-centered" role="document" style="width: fit-content">
-                        <div class="modal-content">
-                            <img src="{{ asset('storage/location_photo/' . $dailyInspection->location->image) }}"
-                                alt="location image" class="img-fluid " style="max-height: 600; object-fit: contain;">
-                        </div>
-                    </div>
-                </div> --}}
 
 
-            </div>
-        </div>
+                <!-- Active/Inactive -->
+                <script type="text/javascript">
+                    function approve(id) {
+                        Swal.fire({
+                            title: 'Approve?',
+                            text: 'Do you want to Approve?',
+                            icon: 'question',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes',
+                            cancelButtonText: 'No'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                showLoader();
+                                window.location.href = "/approve-daily-inspection/" + id;
+                            }
 
 
-        <!-- Active/Inactive -->
-        <script type="text/javascript">
-            function approve(id) {
-                Swal.fire({
-                    title: 'Approve?',
-                    text: 'Do you want to Approve?',
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes',
-                    cancelButtonText: 'No'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        showLoader();
-                        window.location.href = "/approve-daily-inspection/" + id;
-                    }
-
-
-                });
-            };
-        </script>
-    @endsection
+                        });
+                    };
+                </script>
+            @endsection
