@@ -237,7 +237,10 @@
                                             {{ $is->code }}<br>
                                             <small><b>Description :</b> {{ $is->issue }}</small>
                                         </td>
-                                        <td style="text-align:center;"><i>{{ issue()[$is->status] }}</i></td>
+                                        <td style="text-align:center;">
+                                            <span class="badge badge-{{ issueColor($is->status) }} w-100">{{ issue()[$is->status] }}
+                                            </span>
+                                        </td>
                                     </tr>
                                 @endforeach
 
@@ -267,30 +270,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <!-- Custom JS, Get data company -->
-        <script>
-            var comp = [];
-            $.ajax({
-                type: "get",
-                url: "/company-api",
-                async: false,
-                dataType: "json",
-                success: function(data) {
-                    var temp = data.employee;
-                    temp.forEach(e => {
-                        e.id = e.comp_name;
-                        e.text = e.comp_name;
-                    });
-
-                    comp = temp;
-                }
-            });
-
-            var select2_company = $('#company').select2({
-                theme: 'bootstrap',
-                data: comp,
-                placeholder: 'Select Company'
-            });
-        </script>
+        
 
         <script>
             var comp = [];

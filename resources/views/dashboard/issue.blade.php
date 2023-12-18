@@ -50,7 +50,7 @@
                                 <th>Submitter Name</th>
                                 <th>Submitter NIK</th>
                                 <th>Description</th>
-                                <th>Company</th>
+                                <th>Inspection Area</th>
                                 <th>Status</th>
                                 <th class="text-center">Action</th>
                             </tr>

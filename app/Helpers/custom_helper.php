@@ -65,6 +65,7 @@ function colorScore($val)
     } else {
         return 'success';
     }
+    
 }
 
 function issue()
@@ -77,6 +78,19 @@ function issue()
     ];
 }
 
+function issueColor($status){
+    if ($status == 'progress') {
+            $color = 'primary';
+        } else if ($status == 'close') {
+            $color = 'success';
+        } else if ($status == 'reject') {
+            $color = 'danger';
+        } else {
+            $color = 'warning';
+        }
+
+    return $color;
+}
 
 function company()
 {

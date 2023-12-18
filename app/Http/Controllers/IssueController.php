@@ -114,10 +114,10 @@ class IssueController extends Controller
             $progressIssue->save();
 
             DB::commit();
-            $email = $issue->summary->inspection->user->email;
-            if ($email != '' || $email != null) {
-                Mail::to($email)->send(new updateStatusIssue($issue));
-            }
+            // $email = $issue->summary->inspection->user->email;
+            // if ($email != '' || $email != null) {
+            //     Mail::to($email)->send(new updateStatusIssue($issue));
+            // }
         } catch (\Throwable $th) {
             DB::rollBack();
             return back()->withErrors([

@@ -63,7 +63,7 @@
                                                     </th>
                                                 </tr>
                                                 <tr>
-                                                    <th width="">Issue<br><br>
+                                                    <th style="white-space:normal">Issue<br><br>
                                                         <small>
                                                             {{ $issue->issue }}
                                                         </small>
@@ -79,7 +79,7 @@
                                                             @if (is_array(json_decode($issue->image)))
                                                                 <div class="row">
                                                                     @foreach (json_decode($issue->image) as $item)
-                                                                        <div class="col-2 my-auto">
+                                                                        <div class="col-lg-2 col-8 pb-1 my-auto">
                                                                             <img src="{{ asset('storage/issue_photo/' . $item) }}"
                                                                                 class="img-fluid" id="img-location"
                                                                                 alt="{{ $item }}"
@@ -117,7 +117,7 @@
                                                         @can('edit_issue')
                                                             @if ($issue->status == 'open' || $issue->status == 'progress')
                                                                 <div class="row">
-                                                                    <div class="col-3">
+                                                                    <div class="col-12 col-md-3">
                                                                         <select class="form-select form-select"
                                                                             id="select-status">
                                                                             {{-- <option value="open"
@@ -143,7 +143,7 @@
                                                                             @endcan
                                                                         </select>
                                                                     </div>
-                                                                    <div class="col-3">
+                                                                    <div class="col-12 col-lg-3 text-center pt-3">
                                                                         <button class="btn btn-primary"
                                                                             onclick="changeStatus()"><i style="font-size: 14px;"
                                                                                 class="mdi mdi-save"></i>
