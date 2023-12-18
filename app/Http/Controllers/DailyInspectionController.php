@@ -51,9 +51,15 @@ class DailyInspectionController extends Controller
             $status = $request->status;
         }
 
+        if ($request->start) {
+            $title_date =  date("d F Y", strtotime($request->start)) . " - " . date("d F Y", strtotime($request->end));
+        } else {
+            $title_date = date('F Y');
+        }
+
 
         $data['status'] = $status;
-        $data['title'] = ($status == "not-approved" ? 'Open' : 'Close') . ' Daily Inspection in ' . $area->area_name . ' (' . $area->area_code . ')';
+        $data['title'] = ($status == "not-approved" ? 'Open' : 'Close') . ' Daily Inspection in ' . $area->area_name . ' (' . $area->area_code . ')' . '<br><small>' . $title_date . '</small></br>';
         $data['breadcrumb'] = 'daily_inspection_perarea';
         $data['area_name'] = $area->area_name;
         $data['area_id'] = $area->id;
@@ -71,10 +77,16 @@ class DailyInspectionController extends Controller
 
         if ($request->start) {
             $dailyInspection = $dailyInspection->where('daily_inspections.created_at', '>=', $request->start . ' 00:00:00');
+        } else {
+            $dailyInspection = $dailyInspection->where('daily_inspections.created_at', '>=', date('Y-m-d', strtotime('first day of this month', time())) . ' 00:00:00');
         }
+
         if ($request->end) {
             $dailyInspection = $dailyInspection->where('daily_inspections.created_at', '<=', $request->end . ' 23:59:59');
+        } else {
+            $dailyInspection = $dailyInspection->where('daily_inspections.created_at', '<=', date('Y-m-d', strtotime('last day of this month', time())) . ' 23:59:59');
         }
+
         if ($status == "approved") {
             $dailyInspection = $dailyInspection->where(function ($query) {
                 $query->where("approved_at", "IS NOT", NULL)->orWhereRaw('NOW() > DATE_ADD(
