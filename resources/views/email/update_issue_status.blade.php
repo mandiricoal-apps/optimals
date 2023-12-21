@@ -66,7 +66,7 @@
         <a href="{{ url('/detail-issue/' . $issue->id) }} " class="button">View Issue</a>
 
         <p>Thank you,</p>
-        <img src="{{ url('/assets/images/logo/logo_img4.png') }}" alt="Optimals logo">
+        <img src="{{ url('/assets/images/logo/logo_img4.png') }}" height="50" alt="Optimals logo">
         <p>Optimals by MandiriCoal</p>
 
         <p>
