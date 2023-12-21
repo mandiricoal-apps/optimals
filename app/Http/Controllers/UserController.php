@@ -53,6 +53,7 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'nik' => 'required|unique:users',
+            'email' => 'required|email',
         ]);
         $data = $request->except(['_token', 'roles', 'password']);
 
@@ -75,8 +76,12 @@ class UserController extends Controller
 
     function editUser(Request $request, $id)
     {
+        $validated = $request->validate([
+            'email' => 'required|email',
+        ]);
         $user = User::find($id);
-
+        $user->email = $request->email;
+        $user->save();
         if ($user->syncRoles([$request->input('roles')])) {
             return redirect('/user?status=active')->with('message', 'Berhasil mengedit user');
         }

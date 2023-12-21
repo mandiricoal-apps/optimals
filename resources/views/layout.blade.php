@@ -107,7 +107,7 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
-                @canany(['view_user', 'view_area', 'view_qna'])
+                @canany(['view_user', 'view_area', 'view_qna', 'view_notif_email'])
                     <li class="pt-2 pb-1">
                         <span class="nav-item-head">Master Data</span>
                     </li>
@@ -130,6 +130,12 @@
                                 @can('view_roles')
                                     <li class="nav-item ">
                                         <a class="nav-link @yield('roles')" type="button" href="/roles">Management Roles</a>
+                                    </li>
+                                @endcan
+                                @can('view_notif_email')
+                                    <li class="nav-item ">
+                                        <a class="nav-link @yield('notif-email')" type="button" href="/notif-email">Notification
+                                            Email</a>
                                     </li>
                                 @endcan
                             </ul>

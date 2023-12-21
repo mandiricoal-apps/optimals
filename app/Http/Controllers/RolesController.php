@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -12,7 +13,13 @@ class RolesController extends Controller
     {
         $data['title'] = 'Data Role';
         $data['breadcrumb'] = 'data-roles';
-        $data['roles'] = Role::whereNot('name', 'admin')->get();
+        if (Auth::user()->id == 1) {
+
+            $data['roles'] = Role::get();
+        } else {
+
+            $data['roles'] = Role::whereNot('name', 'admin')->get();
+        }
 
         return view('dashboard.roles', $data);
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DailyInspectionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IssueController;
+use App\Http\Controllers\NotificationEmailController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UserController;
@@ -113,5 +114,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/issue', [IssueController::class, 'index']);
         Route::get('/detail-issue/{issue}', [IssueController::class, 'detail']);
         Route::post('//change-status-issue/{issue}', [IssueController::class, 'changeStatus'])->middleware(['permission:edit_issue']);
+    });
+
+    Route::group(['middleware' => ['permission:view_notif_email']], function () {
+        Route::get('/notif-email', [NotificationEmailController::class, 'index']);
+        Route::post('/create-notif-email', [NotificationEmailController::class, 'create'])->middleware(['permission:create_notif_email']);
+        Route::post('/edit-notif-email/{id}', [NotificationEmailController::class, 'update'])->middleware(['permission:edit_notif_email']);
+        Route::get('/delete-notif-email/{id}', [NotificationEmailController::class, 'delete'])->middleware(['permission:delete_notif_email']);
     });
 });

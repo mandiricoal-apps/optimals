@@ -45,18 +45,41 @@
 
 <body>
     <div class="container">
+        @php
+            $reason = '';
+            if ($issue->status == 'progress') {
+                $reason = $issue->progressIssue->progress_reason;
+            } elseif ($issue->status == 'close') {
+                $reason = $issue->progressIssue->closed_reason;
+            } elseif ($issue->status == 'reject') {
+                $reason = $issue->progressIssue->rejected_reason;
+            }
+        @endphp
         <h1>Your issue is {{ issue()[$issue->status] }}</h1>
-        <p>Hello {{ $issue->summary->inspection->user->name }},</p>
+        <p>Hello {{ $issue->summary->inspection->user->name }},</p> <br>
         <p>Your issue with code <b>{{ $issue->code }}</b> in daily inspection
-            <b>{{ $issue->summary->inspection->code }}</b> is {{ issue()[$issue->status] }}
-            at {{ tanggalText($issue->updated_at) }} by {{ $issue->userUpdate->name }}
+            <b>{{ $issue->summary->inspection->code }}</b> has been {{ issue()[$issue->status] }}
+            by {{ $issue->userUpdate->name }} on date {{ tanggalText($issue->updated_at) }}, with reason
+            {{ $reason }}
         </p>
-
-
-
+        <p>Click the following link to see more detailed data.</p>
         <a href="{{ url('/detail-issue/' . $issue->id) }} " class="button">View Issue</a>
 
-        <p>Optimals App</p>
+        <p>Thank you,</p>
+        <img src="{{ url('/assets/images/logo/logo_img4.png') }}" alt="Optimals logo">
+        <p>Optimals by MandiriCoal</p>
+
+        <p>
+            <small>
+                <i>
+                    Caution: This is an automatically generated e-mail, please do not reply or send any e-mail to this
+                    address. <br>
+                    To ensure receipt of update from OPTIMALS-GMP, please note the following advice : <br>
+                    1. Your e-mail account must be valid and active. <br>
+                    2. Your mailbox has sufficient space to receive email.
+                </i>
+            </small>
+        </p>
     </div>
 </body>
 

@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Issue;
+use App\Models\NotificationEmail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -33,8 +34,18 @@ class updateStatusIssue extends Mailable
      */
     public function envelope()
     {
+        $comp = $this->issue->summary->inspection->location->pit;
+        if ($comp == 'MKP') {
+            $email = NotificationEmail::whereIn('company', ['MKP', 'MIP'])->get();
+        } else if ($comp == 'RML') {
+            $email = NotificationEmail::whereIn('company', ['RML', 'MIP'])->get();
+        }
+        $cc = $email->map(function ($e, $k) {
+            return $e->email;
+        });
         return new Envelope(
-            subject: 'Update Status Issue',
+            subject: "[OPTIMALS - GMP] ISSUE-" . $this->issue->code . ", DI-" . $this->issue->summary->inspection->code . ", " . issue()[$this->issue->status],
+            cc: $cc,
         );
     }
 

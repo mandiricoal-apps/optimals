@@ -90,3 +90,8 @@ Breadcrumbs::for('detail_issue', function (BreadcrumbTrail $trail) {
     $trail->parent('issue');
     $trail->push('Detail Issue', '/issue');
 });
+
+Breadcrumbs::for('notif_email', function (BreadcrumbTrail $trail) {
+    $trail->parent('master-data');
+    $trail->push('Notification Email', '/notif-email');
+});
