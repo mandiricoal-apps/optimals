@@ -55,10 +55,12 @@
                 $reason = $issue->progressIssue->rejected_reason;
             }
         @endphp
-        <h1>Your issue is {{ issue()[$issue->status] }}</h1>
+        <h1>Your issue
+            {{ $issue->status == 'progress' ? 'is beeing progressed' : 'has been ' . issue()[$issue->status] }}</h1>
         <p>Hello {{ $issue->summary->inspection->user->name }},</p> <br>
         <p>Your issue with code <b>{{ $issue->code }}</b> in daily inspection
-            <b>{{ $issue->summary->inspection->code }}</b> has been {{ issue()[$issue->status] }}
+            <b>{{ $issue->summary->inspection->code }}</b>
+            {{ $issue->status == 'progress' ? 'is beeing progressed' : 'has been ' . issue()[$issue->status] }}
             by {{ $issue->userUpdate->name }} on date {{ tanggalText($issue->updated_at) }}, with reason
             {{ $reason }}
         </p>
@@ -66,8 +68,11 @@
         <a href="{{ url('/detail-issue/' . $issue->id) }} " class="button">View Issue</a>
 
         <p>Thank you,</p>
-        <img src="{{ url('/assets/images/logo/logo_img4.png') }}" height="50" alt="Optimals logo">
-        <p>Optimals by MandiriCoal</p>
+
+        <p>
+            <img src="{{ url('/assets/images/logo/logo_img4.png') }}" height="100" alt="Optimals logo"><br>Optimals by
+            MandiriCoal
+        </p>
 
         <p>
             <small>
