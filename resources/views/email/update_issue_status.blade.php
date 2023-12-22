@@ -69,8 +69,8 @@
 
         <p>Thank you,</p>
 
-        <p>
-            <img src="{{ url('/assets/images/logo/logo_img4.png') }}" height="100" alt="Optimals logo"><br>Optimals by
+        <p style="text-align: center">
+            <img src="{{ url('/assets/images/logo/email-logo.png') }}" height="100" alt="Optimals logo"><br>Optimals by
             MandiriCoal
         </p>
 
