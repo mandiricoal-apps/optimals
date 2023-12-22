@@ -33,7 +33,7 @@
         .button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #DC3545;
             color: #fff;
             text-decoration: none;
             border-radius: 3px;
@@ -65,12 +65,12 @@
             {{ $reason }}
         </p>
         <p>Click the following link to see more detailed data.</p>
-        <a href="{{ url('/detail-issue/' . $issue->id) }} " class="button">View Issue</a>
+        <a href="{{ url('/detail-issue/' . $issue->id) }} " class="button"><b>View Issue</b></a>
 
         <p>Thank you,</p>
 
         <p style="text-align: center">
-            <img src="{{ url('/assets/images/logo/email-logo.png') }}" height="100" alt="Optimals logo"><br>Optimals by
+            <img src="{{ url('/assets/images/logo/email-logo.jpg') }}" height="100" alt="Optimals logo"><br>Optimals by
             MandiriCoal
         </p>
 
