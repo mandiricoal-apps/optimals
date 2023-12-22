@@ -15,7 +15,7 @@
         .container {
             width: 80%;
             margin: 0 auto;
-            background-color: #fff !impottant;
+            background-color: #fff ;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -34,7 +34,7 @@
             display: inline-block;
             padding: 10px 20px;
             background-color: #DC3545;
-            color: #fff;
+            color: #fff !impottant;
             text-decoration: none;
             border-radius: 3px;
             margin-top: 10px;
