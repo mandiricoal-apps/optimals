@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\notifIssue;
 use App\Models\Area;
 use App\Models\DailyInspection;
 use App\Models\DailyInspectionSummary;
@@ -13,6 +14,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 use function PHPSTORM_META\map;
@@ -72,7 +74,8 @@ class InspectionApi extends Controller
             } else {
                 $date = date(now());
             }
-            $summary_daily_inspection = array_map(function ($item) use ($inspection_id, $date) {
+            $issues = [];
+            $summary_daily_inspection = array_map(function ($item) use ($inspection_id, $date, &$issues) {
                 $item['inspection_id'] = $inspection_id;
                 $item['created_at'] = $date;
                 $item['updated_at'] = $date;
@@ -85,12 +88,19 @@ class InspectionApi extends Controller
                     $tempIssue['sumary_id'] = $saveSummary->id;
                     $tempIssue['created_at'] = $date;
                     $tempIssue['updated_at'] = $date;
-                    Issue::create($tempIssue);
+                    $saveIsssue = Issue::create($tempIssue);
+                    $issues[] = $saveIsssue;
                 }
 
                 return $item;
             }, $summary_daily_inspection);
             DB::commit();
+            $email = Auth::user()->email;
+            if ($email != '' || $email != null) {
+                if (count($issues) > 0) {
+                    Mail::to(Auth::user()->email)->send(new notifIssue($save_daily_inspection, $issues));
+                }
+            }
             return response()->json(['message' => $save_daily_inspection->id], 200);
         } catch (\Throwable $th) {
             DB::rollBack();

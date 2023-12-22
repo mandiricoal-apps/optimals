@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\updateScore;
 use App\Models\Area;
 use App\Models\DailyInspection;
 use App\Models\LogScore;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class DailyInspectionController extends Controller
 {
@@ -193,6 +195,10 @@ class DailyInspectionController extends Controller
         ]);
 
         if ($dailyInspection->save()) {
+            $email = $dailyInspection->user->email;
+            if ($email != '' || $email != null) {
+                Mail::to($email)->send(new updateScore($dailyInspection));
+            }
             return redirect("/daily-inspection-detail/$dailyInspection->id")->with('message', 'Berhasil mengubah score');
         }
         return back();

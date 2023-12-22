@@ -11,22 +11,19 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class notifIssue extends Mailable
+class updateScore extends Mailable
 {
     use Queueable, SerializesModels;
 
     public DailyInspection $dailyInspection;
-    public array $issues;
-
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($dailyInspection, $issues)
+    public function __construct($dailyInspection)
     {
         $this->dailyInspection = $dailyInspection;
-        $this->issues = $issues;
     }
 
     /**
@@ -46,7 +43,7 @@ class notifIssue extends Mailable
             return $e->email;
         });
         return new Envelope(
-            subject: '[OPTIMALS - GMP]DAILY INSPECTION - ' . $this->dailyInspection->code . ' HAS  NEW ISSUE',
+            subject: '[OPTIMALS - GMP] DAILY INSPECTION - ' . $this->dailyInspection->code . ' HAS BEEN CHANGED',
             cc: $cc
         );
     }
@@ -59,8 +56,8 @@ class notifIssue extends Mailable
     public function content()
     {
         return new Content(
-            view: 'email.notif_issue',
-            with: ['dailyInspection' => $this->dailyInspection, 'issues' => $this->issues]
+            view: 'email.update_score',
+            with: ['dailyInspection' => $this->dailyInspection]
         );
     }
 
