@@ -54,8 +54,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::get('/', [DashboardController::class, 'index']);
 
-    Route::get('/company-api', [UserController::class, 'companyApi']);
-    Route::get('/employee-api', [UserController::class, 'employeeApi']);
+    Route::get('/company-api', [UserController::class, 'companyApi'])->middleware(['permission:create_user']);
+    Route::get('/employee-api', [UserController::class, 'employeeApi'])->middleware(['permission:create_user']);
     Route::get('/get-role', [RolesController::class, 'getRole']);
 
     Route::get('/modal-view-user/{id}', [UserController::class, 'modalViewuser']);
