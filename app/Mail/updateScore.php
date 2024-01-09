@@ -43,7 +43,7 @@ class updateScore extends Mailable
             return $e->email;
         });
         return new Envelope(
-            subject: '[OPTIMALS - GMP] DAILY INSPECTION - ' . $this->dailyInspection->code . ' HAS BEEN CHANGED',
+            subject: '[OPTIMALS - GMP] DAILY INSPECTION - ' . $this->dailyInspection->code . ' SCORE HAS BEEN CHANGED',
             cc: $cc
         );
     }

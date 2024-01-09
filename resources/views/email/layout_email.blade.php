@@ -51,7 +51,7 @@
 
         <p style="text-align: center">
             <img src="{{ url('/assets/images/logo/email-logo.jpg') }}" height="100" alt="Optimals logo"><br>
-            <a href="{{ url('') }} ">{{ url('') }}</a>
+            <a href="{{ url('') }} ">Optimals by MandiriCoal</a>
         </p>
 
         <p>

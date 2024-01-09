@@ -1,7 +1,7 @@
 @extends('email.layout_email')
 
 @section('body')
-    <h1>DAILY INSPECTION - {{ $dailyInspection->code }} HAS BEEN CHANGED</h1>
+    <h1>DAILY INSPECTION - {{ $dailyInspection->code }} SCORE HAS BEEN CHANGED</h1>
     <p>Hello {{ $dailyInspection->user->name }},</p> <br>
 
     <p>
