@@ -3,8 +3,10 @@
 @section('issue', 'active')
 
 @section('content')
-    <div class="row mb-3">
-        <div class="col-6 col-md-3 mb-2">
+
+
+    <div class="row">
+        <div class="col-6 col-md-3 mb-md-0 mb-3">
             <a href="/issue?status=open&all=true" style="text-decoration: none">
                 <div class="card shadow-sm" style="background-color:rgba(255, 166, 0, 0.2); cursor: pointer; ">
                     <div class="card-body" style="color:rgba(255, 166, 1) ">
@@ -15,7 +17,7 @@
             </a>
 
         </div>
-        <div class="col-6 col-md-3 mb-2">
+        <div class="col-6 col-md-3 mb-md-0 mb-3">
             <a href="/issue?status=progress&all=true" style="text-decoration: none">
                 <div class="card shadow-sm" style="background-color:rgba(100, 148, 237, 0.3); cursor: pointer;">
                     <div class="card-body" style="color:rgba(100, 148, 237,1) ">
@@ -26,7 +28,7 @@
             </a>
 
         </div>
-        <div class="col-6 col-md-3 mb-2">
+        <div class="col-6 col-md-3 mb-md-0 mb-3">
             <a href="/issue?status=close&all=true" style="text-decoration: none">
                 <div class="card shadow-sm" style="background-color:rgba(54, 230, 130, 0.3); cursor: pointer;">
                     <div class="card-body" style="color:rgba(46, 139, 87,1)">
@@ -37,7 +39,7 @@
             </a>
 
         </div>
-        <div class="col-6 col-md-3 mb-2">
+        <div class="col-6 col-md-3 mb-md-0 mb-3">
             <a href="/issue?status=reject&all=true" style="text-decoration: none">
                 <div class="card shadow-sm" style="background-color:rgba(220, 20, 60, 0.2); cursor: pointer;">
                     <div class="card-body" style="color:crimson ">
@@ -50,6 +52,18 @@
 
         </div>
     </div>
+    <div class="d-flex my-3">
+        <hr class="my-auto flex-grow-1" style="border: 1px solid rgba(0,0,0, 0.5);">
+        <div class="px-4"><small class="text-dark"><i><b>*</b> Note : Total Issue adalah Summary data dari <b>Go Live</b>
+                    Optimals - GMP
+                    sampai Tanggal  <b>{{ date('d F Y') }}</b></i></small></div>
+        {{-- <hr class="my-auto flex-grow-1" style="border: 1px solid rgba(0,0,0, 0.5);"> --}}
+    </div>
+    {{-- <div class="text-end my-2">
+        <p><small class="text-dark"><i><b>*</b> Note : Total Issue adalah Summary data dari <b>Go Live</b> Optimals - GMP
+                    sampai Tanggal  <b>{{ date('d F Y') }}</b></i></small></p>
+
+    </div> --}}
     <div class="row">
         <div class="card">
             <div class="card-body">
@@ -137,17 +151,17 @@
                             @endforeach
                         </tbody>
                         <!-- <tfoot>
-                                                                                                                                                                                                                                                                                                                                                                                                                        <tr>
-                                                                                                                                                                                                                                                                                                                                                                                                                            <th>Creation Date</th>
-                                                                                                                                                                                                                                                                                                                                                                                                                            <th>Issue Code</th>
-                                                                                                                                                                                                                                                                                                                                                                                                                            <th>Daily Inspection</th>
-                                                                                                                                                                                                                                                                                                                                                                                                                            <th>Submitter</th>
-                                                                                                                                                                                                                                                                                                                                                                                                                            <th>Company</th>
-                                                                                                                                                                                                                                                                                                                                                                                                                            <th>Description</th>
-                                                                                                                                                                                                                                                                                                                                                                                                                            <th>Status</th>
-                                                                                                                                                                                                                                                                                                                                                                                                                            <th class="text-center">Action</th>
-                                                                                                                                                                                                                                                                                                                                                                                                                        </tr>
-                                                                                                                                                                                                                                                                                                                                                                                                                    </tfoot> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th>Creation Date</th>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th>Issue Code</th>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th>Daily Inspection</th>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th>Submitter</th>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th>Company</th>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th>Description</th>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th>Status</th>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th class="text-center">Action</th>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </tfoot> -->
                     </table>
                 </div>
             </div>
