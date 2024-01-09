@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Ramsey\Uuid\Type\Integer;
 
 class IssueController extends Controller
 {
@@ -20,11 +21,14 @@ class IssueController extends Controller
         if ($request->status) {
             $status = $request->status;
         }
-
-        if ($request->start) {
-            $title_date =  date("d F Y", strtotime($request->start)) . " - " . date("d F Y", strtotime($request->end));
+        if ($request->all) {
+            $title_date = "All";
         } else {
-            $title_date = date('F Y');
+            if ($request->start) {
+                $title_date =  date("d F Y", strtotime($request->start)) . " - " . date("d F Y", strtotime($request->end));
+            } else {
+                $title_date = date('F Y');
+            }
         }
 
         $data['status'] = $status;
@@ -37,16 +41,17 @@ class IssueController extends Controller
             ->join('area', 'area.id', '=', 'daily_inspections.area_id')
             ->join('data_location', 'data_location.inspection_id', '=', 'daily_inspections.id')
             ->where('issue.status', '=', $status);
-
-        if ($request->start) {
-            $issues = $issues->where('issue.created_at', '>=', $request->start . ' 00:00:00');
-        } else {
-            $issues = $issues->where('issue.created_at', '>=', date('Y-m-d', strtotime('first day of this month', time())) . ' 00:00:00');
-        }
-        if ($request->end) {
-            $issues = $issues->where('issue.created_at', '<=', $request->end . ' 23:59:59');
-        } else {
-            $issues = $issues->where('issue.created_at', '<=', date('Y-m-d', strtotime('last day of this month', time())) . ' 23:59:59');
+        if (!$request->all) {
+            if ($request->start) {
+                $issues = $issues->where('issue.created_at', '>=', $request->start . ' 00:00:00');
+            } else {
+                $issues = $issues->where('issue.created_at', '>=', date('Y-m-d', strtotime('first day of this month', time())) . ' 00:00:00');
+            }
+            if ($request->end) {
+                $issues = $issues->where('issue.created_at', '<=', $request->end . ' 23:59:59');
+            } else {
+                $issues = $issues->where('issue.created_at', '<=', date('Y-m-d', strtotime('last day of this month', time())) . ' 23:59:59');
+            }
         }
         $issues =  $issues->orderBy('issue.created_at', 'desc');
         if ($accesbilityData == 'user_company') {
@@ -54,8 +59,24 @@ class IssueController extends Controller
         }
         $issues = $issues->get(['issue.created_at', 'issue.status', 'issue.issue as issue', 'issue.code as issue_code', 'issue.id as issue_id', 'daily_inspections.id as inspections_id', 'daily_inspections.code as inspection_code', 'area.area_name', 'users.name', 'users.id as user_id', 'users.nik', 'data_location.pit as company']);
         $data['issues'] = $issues;
-
+        $data['open'] = $this->countIssue('open', $accesbilityData);
+        $data['progress'] = $this->countIssue('progress', $accesbilityData);
+        $data['close'] = $this->countIssue('close', $accesbilityData);
+        $data['reject'] = $this->countIssue('reject', $accesbilityData);
         return view('dashboard.issue', $data);
+    }
+
+    function countIssue($status, $accesbility): int
+    {
+        $issue = DB::table('issue')
+            ->join('daily_inspection_summary', 'daily_inspection_summary.id', '=', 'issue.sumary_id')
+            ->join('daily_inspections', 'daily_inspections.id', '=', 'daily_inspection_summary.inspection_id')
+            ->join('data_location', 'data_location.inspection_id', '=', 'daily_inspections.id')
+            ->where('issue.status', $status);
+        if ($accesbility == 'user_company') {
+            $issue->where('data_location.pit', '=', Auth::user()->company);
+        }
+        return $issue->count();
     }
 
     function detail(Issue $issue)
